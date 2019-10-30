@@ -54,11 +54,15 @@ def getimg(driver, path=''):
         imgfromurl(img_url, path)
     except TimeoutException:
         print("Can not find picture in this page ")
+
+
 def getpath(url):
     o = urlparse(url)
     parse_url = o.path.split('/')
     parse_url = list(filter(lambda x: x!='', parse_url)) # remove ''
+    print(parse_url)
     return "/".join(parse_url)
+
 
 def nextpage(driver):
     b = driver.find_element_by_css_selector(".nextButton.btn.btn-primary.long")
@@ -77,7 +81,7 @@ def lookup(driver, query):
 
 if __name__ == "__main__":
     driver = init_driver()
-    auth_in_site(driver, "name", "pass")
+    #auth_in_site(driver, "name", "pass")
     lookup(driver,"http://readmanga.me/wolf_and_spice/vol1/1?mtr=1")
     time.sleep(1)
     driver.quit()
