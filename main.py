@@ -10,8 +10,9 @@ from time import sleep
 from urllib.request import urlretrieve
 import os
 
-def get_html(url, useragent=None, proxy=None):
-    r = requests.get(url, headers=useragent, proxies=proxy)
+
+def get_html(url):
+    r = requests.get(url)
     return r.text
 
 def get_list_presentation(html):
@@ -53,38 +54,33 @@ def download_images(urls, array):
     
     for i in range(0, len(array)):
         normal_url = ''.join(urls)
-        current_path = os.getcwd()
         name_of_new_path = "tomo_chan_is_a_girl_" + str(i)
-        os.mkdir(current_path + "\\" + name_of_new_path)
-        urlretrieve(normal_url, name_of_new_path)
-        #urllib.request.urlretrieve(urls, urls)
+        urllib.request.urlretrieve(normal_url, name_of_new_path + ".jpg")
+        print("parsing: " + array[i], "url : " + normal_url)
+        time.sleep(30) 
     
 
 
 def main():
     url = 'http://readmanga.me/'
     url_manga = 'tomo_chan_is_a_girl_/vol1/1'
-    useragents = open('useragents.txt').read().split('\n')
-    proxies = open('proxies.txt').read().split('\n')
+    img_urls = []
 
-    #get_list_presentation(get_html(url + 'list/presentation/', useragent, proxy))
-    #get_manga_chapters(get_html(url + url_manga, useragent, proxy))
 
     # Выгрузка картинок:
 
-    for i in range(40):
-        proxy = {'http': 'http://' + choice(proxies)}
-        useragent = {'User-Agent': choice(useragents)}
-        sleep(uniform(3, 6))
+   
+    chapters_array = get_manga_chapters(get_html(url + url_manga))
+    #champ_url = get_url_images_from_chapter(url + chapters_array)
 
-        try:
-            chapters_array = get_manga_chapters(get_html(url + url_manga, useragent, proxy))
+    for i in range(0, len(chapters_array)):
+        urls_to_img = url[:-1] + chapters_array[i]
+        img_urls.append(get_url_images_from_chapter(urls_to_img))
+        print(img_urls)
+
+    #print(chapters_array[k])
+    #download_images(champ_url, chapters_array)
         
-        except:
-            continue
-
-        for k in range(0, len(chapters_array)):
-                download_images(get_url_images_from_chapter(url + chapters_array[k]), chapters_array)
     
 
 
