@@ -53,10 +53,10 @@ def get_url_images_from_chapter(url: str) -> list:
 def download_images(urls, array):
     
     for i in range(0, len(array)):
-        normal_url = ''.join(urls)
+        normal_url = ''.join(urls[i])
+        print("parsing: " + str(array[i]), "url : " + normal_url)
         name_of_new_path = "tomo_chan_is_a_girl_" + str(i)
         urllib.request.urlretrieve(normal_url, name_of_new_path + ".jpg")
-        print("parsing: " + array[i], "url : " + normal_url)
         time.sleep(30) 
     
 
@@ -75,11 +75,13 @@ def main():
 
     for i in range(0, len(chapters_array)):
         urls_to_img = url[:-1] + chapters_array[i]
-        img_urls.append(get_url_images_from_chapter(urls_to_img))
-        print(img_urls)
+        img_urls.append(get_url_images_from_chapter(urls_to_img[i]))
+        #print(img_urls)
+    
+    download_images(img_urls, img_urls)
 
     #print(chapters_array[k])
-    #download_images(champ_url, chapters_array)
+       
         
     
 
