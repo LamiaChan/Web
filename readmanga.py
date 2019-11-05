@@ -5,13 +5,17 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.firefox.options import Options
 
 import urllib.request
 from urllib.parse import urlparse
 import os
+import sys
 
 def init_driver():
-    driver = webdriver.Firefox()
+    options = Options()
+    options.headless = True
+    driver = webdriver.Firefox(options=options)
     driver.wait = WebDriverWait(driver, 5)
     return driver
 
@@ -68,6 +72,10 @@ def nextpage(driver):
     b = driver.find_element_by_css_selector(".nextButton.btn.btn-primary.long")
     b.click()
 
+def get_href_from_txt():
+    f = open('manga_title.txt', 'r')
+    return f.read()
+
 def lookup(driver, query):
     
     driver.get(query)
@@ -82,6 +90,6 @@ def lookup(driver, query):
 if __name__ == "__main__":
     driver = init_driver()
     #auth_in_site(driver, "name", "pass")
-    lookup(driver,"http://readmanga.me/wolf_and_spice/vol1/1?mtr=1")
+    lookup(driver, get_href_from_txt()) #'http://readmanga.me/wolf_and_spice/vol1/1?mtr=1')
     time.sleep(1)
     driver.quit()

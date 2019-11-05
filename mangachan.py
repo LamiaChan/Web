@@ -5,13 +5,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.firefox.options import Options
 
 import urllib.request
 from urllib.parse import urlparse
 import os
 
 def init_driver():
-    driver = webdriver.Firefox()
+    options = Options()
+    options.headless = True
+    driver = webdriver.Firefox(options=options)
     driver.wait = WebDriverWait(driver, 5)
     return driver
 
@@ -80,6 +83,10 @@ def getpath(url):
     parser_nurl.append(parse_url_ch)
 
     return "/".join(parser_nurl)
+
+def get_href_from_txt():
+    f = open('manga_title.txt', 'r')
+    return f.read()
     
 def lookup(driver, query):
     
@@ -94,6 +101,6 @@ def lookup(driver, query):
 
 if __name__ == "__main__":
     driver = init_driver()
-    lookup(driver,"https://manga-chan.me/online/373720-girl-the-wilds_v0_ch1.html#page=1")
+    lookup(driver, get_href_from_txt())#"https://manga-chan.me/online/373720-girl-the-wilds_v0_ch1.html#page=1")
     time.sleep(1)
     driver.quit()
