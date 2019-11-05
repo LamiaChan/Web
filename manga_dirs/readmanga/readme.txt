@@ -1,0 +1,1 @@
+readmanga dir
