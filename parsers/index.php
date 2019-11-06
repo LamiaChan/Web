@@ -12,35 +12,13 @@
 
 <?php
 
-$title_url = $_POST['sender'];
+require_once(__DIR__.'../../web/core/Manga.php');
 
-$manga_site_selector = $_POST['manga-site'];
 
-$file = 'manga_title.txt';
-
-if ($manga_site_selector == 'readmanga'){
-
-        file_put_contents($file, $title_url);
-
-        if (isset($title_url)){
-
-            $command = escapeshellcmd('python readmanga.py ');
-            $output = shell_exec($command);
-
-            echo $output;
-        }
-
-} else {
-
-        file_put_contents($file, $title_url);
-
-        if (isset($title_url)){
-
-            $command = escapeshellcmd('python mangachan.py ');
-            $output = shell_exec($command);
-
-            echo $output;
-        }
-
+$manga = new Manga();
+if(!empty($_POST))
+{
+    $manga->DownloadManga();
 }
+
 ?>
