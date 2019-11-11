@@ -61,7 +61,6 @@ def getpath(url):
     
     parser_new_url = '_'.join(parser_new_url)
 
-    #parser_url volume and chapter and root value:
     parse_new_url_vol_and_ch_r = parser_new_url.split("_")
 
     parse_url_vol = parse_new_url_vol_and_ch_r[-2]
