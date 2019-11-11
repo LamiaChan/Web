@@ -43,10 +43,34 @@ class Manga {
 
     function ShowManga()
     {
-        $command = escapeshellcmd('python MangaDirs.py');
-        $output = shell_exec($command);
-        echo $output;
+
+        $def_dir_sp = explode('/', __DIR__);
         
+        $i = 0;
+        $def = '';
+
+        while ($i != (count($def_dir_sp)- 2)){
+            $def .= $def_dir_sp[$i];
+            $def .= '/';
+            $i = $i + 1;
+        }
+        $def .= 'manga_dirs/';
+
+        $manga_dirs = [];
+        $dir_row = scandir($def);
+        foreach($dir_row as $row =>$value){ 
+            if(preg_match('/.txt/', $value, $matches)){
+                continue;
+            } else {
+                array_push($manga_dirs, $value);
+            }     
+        }
+
+        $manga_dirs = array_splice($manga_dirs, 2);
+
+        print_r($manga_dirs);
+        
+
     }
 
     

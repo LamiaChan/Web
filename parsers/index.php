@@ -1,3 +1,5 @@
+<!-- test php file -->
+
 <form method='post'>
 
     <select name="manga-site">
@@ -14,11 +16,12 @@
 
 require_once(__DIR__.'../../web/core/Manga.php');
 
-
 $manga = new Manga();
 if(!empty($_POST))
 {
     $manga->DownloadManga();
 }
+
+$manga->ShowManga();
 
 ?>
