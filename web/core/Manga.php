@@ -43,9 +43,10 @@ class Manga {
 
     function ShowManga()
     {
-
+        $command = escapeshellcmd('python MangaDirs.py');
+        $output = shell_exec($command);
+        echo $output;
         
-
     }
 
     
