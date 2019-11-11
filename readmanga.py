@@ -16,6 +16,7 @@ def init_driver():
     return driver
 
 def auth_in_site(driver, username, password):
+    #auth on readmanga
     driver.get("https://grouple.co/internal/auth/login?quiet=false&targetUri=http%3A%2F%2Freadmanga.me%2Finternal%2Fauth%3FtargetUri%3D%252F")
     div_form = driver.find_element_by_css_selector(".col-md-6.col-lg-offset-1.col-lg-4")
     auth_form = div_form.find_element_by_tag_name("form")
