@@ -11,6 +11,7 @@ class Manga {
     {
         $this->title_url = isset($_POST['sender']) ? $_POST['sender'] : null;
         $this->manga_site_selector = isset($_POST['manga-site']) ? $_POST['manga-site'] : null;
+        $this->tosite = isset($_POST['manga-dir']) ? $_POST['manga-dir'] : null;
     }
 
     // python download function for manga
@@ -44,7 +45,11 @@ class Manga {
     function ShowManga()
     {
 
-        $def_dir_sp = explode('/', __DIR__);
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $def_dir_sp = explode('\\', __DIR__);
+        } else {
+            $def_dir_sp = explode('/', __DIR__);
+        }
         
         $i = 0;
         $def = '';
@@ -68,11 +73,25 @@ class Manga {
 
         $manga_dirs = array_splice($manga_dirs, 2);
 
-        print_r($manga_dirs);
+        return $manga_dirs;
         
 
     }
+    function ForwardingToSite()
+    {
+        if (empty($this->tosite)) {
+            throw new Exception("Empty Post not allowed");
+        } else {
+            
+            if($this->tosite == 'mangachan'){
+                /* do something */
+            }
+            
+            if($this->tosite == 'readmanga'){
+                /* do something */
+            }
+        }
 
-    
+    }
 
 }

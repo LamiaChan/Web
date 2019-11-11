@@ -15,13 +15,24 @@
 <?php
 
 require_once(__DIR__.'../../web/core/Manga.php');
-
 $manga = new Manga();
+
+// Доделать
+$dirs = $manga->ShowManga();
+echo '<form method="post"><select name="manga-dir">';
+foreach ($dirs as $value){
+    echo '<option value="' . $value . '">' . $value . '</option>';
+}
+echo '</select>';
+echo '<input type="submit"></form>';
+// Доделать
+
 if(!empty($_POST))
 {
     $manga->DownloadManga();
 }
 
-$manga->ShowManga();
+
+
 
 ?>
