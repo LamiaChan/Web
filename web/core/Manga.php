@@ -42,7 +42,7 @@ class Manga {
 
     // show manga
 
-    function ShowManga()
+    function ShowDirs($atr="")
     {
 
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
@@ -59,7 +59,16 @@ class Manga {
             $def .= '/';
             $i = $i + 1;
         }
-        $def .= 'manga_dirs/';
+        // переделать
+        if ($atr == ""){
+            
+            $def .= 'manga_dirs/';
+        
+        } else {
+
+            $def .= 'manga_dirs/';
+            $def .= $atr;
+        }
 
         $manga_dirs = [];
         $dir_row = scandir($def);
@@ -77,6 +86,8 @@ class Manga {
         
 
     }
+    // TODO: дописать функцию которая возращяет название манги которая содержится в дириктории сайта
+    
     function ForwardingToSite()
     {
         if (empty($this->tosite)) {
@@ -84,7 +95,10 @@ class Manga {
         } else {
             
             if($this->tosite == 'mangachan'){
-                /* do something */
+                
+                //include __DIR__.'/patterns/MangaSiteP.php';
+
+                
             }
             
             if($this->tosite == 'readmanga'){
