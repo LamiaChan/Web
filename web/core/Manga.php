@@ -59,7 +59,7 @@ class Manga {
             $def .= '/';
             $i = $i + 1;
         }
-        // переделать
+
         if ($atr == ""){
             
             $def .= 'manga_dirs/';
@@ -86,7 +86,6 @@ class Manga {
         
 
     }
-    // TODO: дописать функцию которая возращяет название манги которая содержится в дириктории сайта
     
     function ForwardingToSite()
     {
@@ -94,18 +93,18 @@ class Manga {
             throw new Exception("Empty Post not allowed");
         } else {
             
-            if($this->tosite == 'mangachan'){
-                
-                //include __DIR__.'/patterns/MangaSiteP.php';
+            if($this->tosite == 'mangachan' || $this->tosite == 'readmanga'){
+
+                $manga_dirs = $this->ShowDirs($this->tosite);
 
                 
+            } else {
+                throw new Exception("Site with name: " . $this->tosite . " dosen't exist");
             }
             
-            if($this->tosite == 'readmanga'){
-                /* do something */
-            }
         }
 
+        return($manga_dirs);
     }
 
 }
