@@ -17,7 +17,6 @@ define('MAIN', __DIR__);
       $model      = (Factory::getClass('model'));
       $controller = (Factory::getClass('controller'));  
 
-      $view->manga_detail('wolf_and_spice');
 
 
  ?>
