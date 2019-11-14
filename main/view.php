@@ -1,7 +1,6 @@
 <?php
 
    namespace Main;
-   
    use PDO;
    use exception;
 
@@ -12,6 +11,26 @@
             include MAIN.'/templates/main_page_visitor.php';
         } else {
             include MAIN.'/templates/main_page.php';
+        }
+    }
+
+    public function all_manga(){
+        $manga_elms = [];
+
+        $pdo = new PDO('mysql:host=localhost;dbname=lamia_chan', 'root', '',
+                     array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
+        $result = $pdo->query("SELECT * FROM `manga_content`");
+
+        if ($result == TRUE){
+            while ($row = $result->fetch()) {
+                array_push($manga_elms, [
+                    'title' => $row['name'], 
+                    'description' => $row['description'],
+                    ]);
+            }
+
+            include MAIN.'/templates/manga_all.php';
         }
     }
 
@@ -28,9 +47,9 @@
         if ($result == TRUE){
             while($row = $result->fetch()){
                 array_push($manga_elms, [
-                                            'title' => $row['name'], 
-                                            'description' => $row['description'],
-                                        ]);
+                    'title' => $row['name'], 
+                    'description' => $row['description'],
+                    ]);
 
             }
 
@@ -38,8 +57,6 @@
 
         } else {
             throw new Exception("Manga Not Found");
-
-            // include MAIN.'/templates/404_error.php';
         }
 
     }
