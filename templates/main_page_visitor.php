@@ -1,0 +1,1 @@
+<? echo 'visitor page'; ?>

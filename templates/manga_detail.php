@@ -1,0 +1,1 @@
+<? echo '<pre>'; print_r($manga_elms); echo '</pre>'; ?>
