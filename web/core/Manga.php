@@ -18,6 +18,7 @@ class Manga {
 
     function DownloadManga() 
     {
+        $pdo = new PDO('mysql:host=localhost;dbname=lamia_chan', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
         if (empty($this->title_url) || empty($this->manga_site_selector)) {
             throw new Exception("Empty Post not allowed");
@@ -26,11 +27,38 @@ class Manga {
 
             $file = 'manga_title.txt';
             if ($this->manga_site_selector == 'readmanga'){
+                
+                $manga_name = explode('/', $this->title_url);
+                $manga_name = $manga_name[3];
+
+                $query = $pdo->prepare("INSERT INTO manga_content (manga_site, name, description)
+                        VALUES (:manga_site, :name, :description)");
+                
+                $result = $query->execute([
+                    ':manga_site' => $this->manga_site_selector, 
+                    ':name' => $manga_name, 
+                    ':description' => 'null',
+                    ]);
+                
+                
                     file_put_contents($file, $this->title_url);
                         $command = escapeshellcmd('python readmanga.py ');
                         $output = shell_exec($command);
                         echo $output;
             } else {
+
+                $manga_name = explode('/', $this->title_url);
+                $manga_name = $manga_name[3];
+
+                $query = $pdo->prepare("INSERT INTO manga_content (manga_site, name, description)
+                        VALUES (:manga_site, :name, :description)");
+                
+                $result = $query->execute([
+                    ':manga_site' => $this->manga_site_selector, 
+                    ':name' => $manga_name, 
+                    ':description' => 'null',
+                    ]);
+                    
                     file_put_contents($file, $this->title_url);
                         $command = escapeshellcmd('python mangachan.py ');
                         $output = shell_exec($command);
