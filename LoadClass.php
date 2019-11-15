@@ -17,6 +17,6 @@ define('MAIN', __DIR__);
       $model      = (Factory::getClass('model'));
       $controller = (Factory::getClass('controller'));  
 
-
+      $model->CollectMangaUsingParser('http://readmanga.me/wolf_and_spice/vol1/1?mtr=1');
 
  ?>
