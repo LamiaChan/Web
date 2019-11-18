@@ -46,6 +46,22 @@
         $stmt->execute($data);
       }
 
+      public function CollectManga($manga_name, $description){ // $img
+         $pdo = new PDO('mysql:host=localhost;dbname=lamia_chan', 'root', '',
+                     array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
+         $data = [
+            'name' => $manga_name,
+            'description' => $description,
+            #'image' => $img,
+         ];
+            
+         $sql = "INSERT INTO manga_content (name, description) VALUES (:name, :description)";
+         $stmt= $pdo->prepare($sql);
+         $stmt->execute($data);
+
+      }
+
 }
 
  ?>
