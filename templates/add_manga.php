@@ -1,5 +1,13 @@
-<?php
+<form method='post'>
 
-    echo 'add manga template';
+    <input type="text" name="manga_name">
+    
+    <br> <br>
+    
+    <input type="text" name="description">
 
-?>
+    <br> <br>
+
+    <input type="submit"> 
+
+</form>

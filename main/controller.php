@@ -2,6 +2,8 @@
 
    namespace Main;
 
+   use exception;
+
    class Controller {
 
       private $name;
@@ -31,7 +33,10 @@
          } else {
             array_push($manga_content, $this->description);
          }
-
+         
+         echo '<pre>';
+         print_r($manga_content);
+         echo '</pre>';
          
       }
 

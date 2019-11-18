@@ -63,9 +63,10 @@
     public function AddManga() {
         include MAIN.'/templates/add_manga.php';
 
-        $controller = new Controller;
-
-        $controller->AddManga();
+        if(!empty($_POST)){
+            $controller = new Controller;
+            $controller->AddManga();
+        }
     }
 }
 
