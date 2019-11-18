@@ -4,9 +4,9 @@
    use PDO;
    use exception;
 
-   class View {
+   class View extends Controller {
 
-    public function main_page($usr_stat) {
+    public function MainPage($usr_stat){
         if ($usr_stat == NULL || $usr_stat == ''){
             include MAIN.'/templates/main_page_visitor.php';
         } else {
@@ -14,7 +14,7 @@
         }
     }
 
-    public function all_manga(){
+    public function AllManga(){
         $manga_elms = [];
 
         $pdo = new PDO('mysql:host=localhost;dbname=lamia_chan', 'root', '',
@@ -34,7 +34,7 @@
         }
     }
 
-    public function manga_detail($manga_name){
+    public function MangaDetail($manga_name){
         $manga_elms = [];
 
         $pdo = new PDO('mysql:host=localhost;dbname=lamia_chan', 'root', '',
@@ -59,6 +59,13 @@
             throw new Exception("Manga Not Found");
         }
 
+    }
+    public function AddManga() {
+        include MAIN.'/templates/add_manga.php';
+
+        $controller = new Controller;
+
+        $controller->AddManga();
     }
 }
 
