@@ -4,7 +4,7 @@
 
    use exception;
 
-   class Controller {
+   class Controller extends Model {
 
       private $name;
       private $description;
@@ -33,10 +33,10 @@
          } else {
             array_push($manga_content, $this->description);
          }
-         
-         echo '<pre>';
-         print_r($manga_content);
-         echo '</pre>';
+
+         $model = new Model;
+
+         $model->CollectManga($manga_content[0], $manga_content[1]);
          
       }
 
