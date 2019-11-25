@@ -34,13 +34,12 @@
          $data = [
             'name'            => $manga_name[3],
             'description'     => $description,
-            'dir'             => $manga_name[3],
             'preview_image'   => $img,
         ];
 
-        print_r($manga_name);
+        //TODO доделать preview_image
         
-        $sql = "INSERT INTO manga_content (name, description) VALUES (:name, :description)";
+        $sql = "INSERT INTO manga_content (name, description, preview_image) VALUES (:name, :description, :preview_image)";
         $stmt= $pdo->prepare($sql);
         $stmt->execute($data);
       }
@@ -49,21 +48,16 @@
          $pdo = new PDO('mysql:host=localhost;dbname=lamia_chan', 'root', '',
                      array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
-         $dir = str_replace(" ", "_", $manga_name);
 
          $data = [
             'name'            => $manga_name,
             'description'     => $description,
-            'dir'             => $dir,
-            'preview_image'   => $img,
+            'preview_image'   => $preview_image,
          ];
-         echo '<pre>';
-         print_r($data);
-         echo '</pre>';
-         /*
-         $sql = "INSERT INTO manga_content (name, description, dir, preview_image) VALUES (:name, :description, :dir, :preview_image)";
+
+         $sql = "INSERT INTO manga_content (name, description, preview_image) VALUES (:name, :description, :preview_image)";
          $stmt= $pdo->prepare($sql);
-         $stmt->execute($data); */
+         $stmt->execute($data); 
       }
 
 }
