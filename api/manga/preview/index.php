@@ -24,4 +24,6 @@ function show($id, $pdo){
 $id     = $_GET['id'];
 $pdo    = $model->ApiPdo();
 
-echo show($id, $pdo);
+$result = show($id, $pdo);
+
+echo $result;
