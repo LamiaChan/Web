@@ -34,6 +34,8 @@
         }
     }
 
+    // Переделать MangaDetail
+
     public function MangaDetail($manga_name){
         $manga_elms = [];
 
@@ -67,6 +69,12 @@
             $controller = new Controller;
             $controller->AddManga();
         }
+    }
+
+    public function IndexPage(){
+        include MAIN. '/templates/header.php';
+        include MAIN. '/templates/index_page.php';
+        include MAIN. '/templates/footer.php';
     }
 }
 
