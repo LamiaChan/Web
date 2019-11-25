@@ -191,3 +191,83 @@ JavaScript error: https://readmanga.me/tower_of_god/vol1/3, line 79: SyntaxError
 [GPU 2228, Chrome_ChildThread] W
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
+1574621157727	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\markt\\AppData\\Local\\Temp\\rust_mozprofilesTclxj"
+*** You are running in headless mode.
+1574621159803	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1574621159803	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1574621159803	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1574621159803	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1574621165293	Marionette	INFO	Listening on port 65055
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 16240, Gecko_IOThread] WARNING: file z:/task_1571244707/build/src/ipc/chromium/src/base/process_util_win.cc, line 160
+[Parent 16240, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+1574621596861	Marionette	INFO	Stopped listening on port 65055
+ion: mozillaAddons
+1574621225950	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1574621225950	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1574621225950	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1574621228952	Marionette	INFO	Listening on port 65154
+1574621229450	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://readmanga.me/reinkarnaciia_vracha, line 75: SyntaxError: private fields are not currently supported
+[Parent 13844, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Parent 13844, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 13844, Gecko_IOThread] WARNING: file z:/task_1571244707/build/src/ipc/chromium/src/base/process_util_win.cc, line 160
+[Child 12512, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 12512, Chro[Parent 13844, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 14036, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 14036, Chrome_ChildThconsole.error: (new Error("Transaction canceled due to a closed connection.", "resource://gre/modules/Sqlite.jsm", 613))
+1574621599046	Marionette	INFO	Stopped listening on port 65154
+ manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1574621288338	Marionette	INFO	Listening on port 65335
+1574621288593	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://readmanga.me/wolf_and_spice/vol1/1?mtr=1, line 80: SyntaxError: private fields are not currently supported
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 12160, Gecko_IOThread] WARNING: file z:/task_1571244707/build/src/ipc/chromium/src/base/process_util_win.cc, line 160
+[Child 5576, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 5576, Chrome1574621603613	Marionette	INFO	Stopped listening on port 65335
+nsion permission: resource://pdf.js/
+1574621562842	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1574621565918	Marionette	INFO	Listening on port 49359
+1574621566377	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x370120,name=PContent::Msg_AsyncMessage) Channel error: cannot send/recv
+
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 9412, Gecko_IOThread] WARNING: file z:/task_1571244707/build/src/ipc/chromium/src/base/process_util_win.cc, line 160
+[Parent 9412, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Parent 9412, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[1574621607455	Marionette	INFO	Stopped listening on port 49359
+1574621678896	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\markt\\AppData\\Local\\Temp\\rust_mozprofileYzZ1Xk"
+*** You are running in headless mode.
+1574621679450	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1574621679450	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1574621679451	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1574621679451	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1574621682445	Marionette	INFO	Listening on port 49506
+1574621682509	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://readmanga.me/wolf_and_spice/vol1/1?mtr=1, line 80: SyntaxError: private fields are not currently supported
+JavaScript error: https://yastatic.net/pcode/adfox/loader.js, line 4: Error: adfox#checkContainer: Element with id #adfox_156861415062829231 not found
+[Parent 10460, Gecko_IOThread] WARNING: pipe error: 232: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 502
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x56000F,name=PHttpBackgroundChannel::Msg___delete__) Channel error: cannot send/recv
+
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+[Parent 10460, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Parent 10460, Gecko_IOThread] WARNING: file z:/task_1571244707/build/src/ipc/chromium/src/base/process_util_win.cc, line 160
+[Child 3460, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571244707/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 3460, CA content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
