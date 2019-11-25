@@ -8,10 +8,10 @@
           return new View();
           break;
         case 'controller':
-          return new Controller;
+          return new Controller();
           break;
         case 'model':
-          return new Model;
+          return new Model();
           break;
       }
     }
