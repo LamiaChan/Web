@@ -41,7 +41,11 @@
             throw new Exception("Empty Post not allowed. Preview Image is empty");
          
          } else {
+            mkdir(MAIN. '/manga_dirs/'. str_replace(" ", "_", $this->name));
 
+            $uploaddir = MAIN. '/manga_dirs/'. str_replace(" ", "_", $this->name);
+            $uploadfile = $uploaddir . basename($_FILES['image_contaner']['name']);
+            move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile);
 
             array_push($manga_content, $this->image_contaner);
          }
