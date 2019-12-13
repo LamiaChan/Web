@@ -33,7 +33,7 @@ def detail(request, pk):
 def reading(request, manga_id, chapter_id):
     page = Page.objects.filter(chapter_id=chapter_id)
 
-    return render(request, 'reading.html', {'page': page})
+    return render(request, 'reading.html', {'page': page, 'manga_id': manga_id})
 
 def add_manga(request):
     errors = []
