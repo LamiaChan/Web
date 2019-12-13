@@ -1,0 +1,19 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}">
+   
+<h2>Список Манги</h2>
+<table>
+    <tr><th>Id</th><th>Название</th><th>описание</th></tr>
+    <tr><td>{{ manga.id }}</td><td>{{ manga.title }}</td><td>{{ manga.description }}</td></tr>
+</table>
+
+<h2>Главы</h2>
+<table>
+    <tr><th>Id</th><th>Название</th><th>manga id</th></tr>
+    {% for chapters in chapter %}
+        <tr><td>{{ chapters.id }}</td><td><a href="{{ chapters.id }}">{{ chapters.title }}</a></td><td>{{ chapters.manga_id }}</td></tr>
+    {% endfor %}
+</table>
+
+
