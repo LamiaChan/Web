@@ -9,6 +9,7 @@ class Source(models.Model):
     url = models.URLField()
 
     PLATFORM_DICT = {
+        'lamiachan.ru': 'lamiachan',
         'mangalib.me': 'mangalib',
         'mangas.rocks': 'readmanga',
         'mints.rocks': 'mintmanga',

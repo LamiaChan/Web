@@ -21,6 +21,14 @@
 
         <br><br>
 
+        <label>Источник (название сайта)</label> 
+
+        <br><br>
+
+        <input name="source" type="text" value="{{ form.source }}">
+
+        <br><br>
+
         <label>Описание</label> 
 
         <br><br>
@@ -32,5 +40,6 @@
         <input type="submit" value="Отправить">
         {% csrf_token %}
     </form>
+    <h3><a href="/core/add">Вернуться</a></h3>
 </body>
 </html>

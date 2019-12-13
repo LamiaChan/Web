@@ -35,6 +35,9 @@ def reading(request, manga_id, chapter_id):
 
     return render(request, 'reading.html', {'page': page, 'manga_id': manga_id})
 
+def add(request):
+    return render(request, 'add.html')
+
 def add_manga(request):
     errors = []
     form = {}
@@ -42,15 +45,68 @@ def add_manga(request):
          
         form['manga_name'] = request.POST.get('manga_name')
         form['discription'] = request.POST.get('discription')
+        form['source'] = request.POST.get('source')
          
         if not form['manga_name']:
             errors.append('Заполните название')
         if not form['discription']:
             errors.append('Заполните описание')
+        if not form['source']:
+            errors.append('Заполните источник')
              
         if not errors:
-            # ... сохранение данных в базу
+            manga = Manga(title=form['manga_name'], description=form['discription'])
+            manga.save()
             return HttpResponse('Манга созданна')
          
-    return render(request, 'add_manga.html', {'errors': errors, 'form':form})
+    return render(request, 'add_manga.html', {'errors': errors, 'form': form})
 
+def add_chapter(request):
+    errors = []
+    form = {}
+    mangas = Manga.objects.all()
+
+    if request.POST:
+         
+        form['manga_name'] = request.POST.get('manga_name')
+        form['title'] = request.POST.get('title')
+         
+        if not form['manga_name']:
+            errors.append('Выберете мангу')
+        if not form['title']:
+            errors.append('Заполните название главы')
+             
+        if not errors:
+            chapter = Chapter(manga=Manga.objects.get(id=form['manga_name']), title=form['title'])
+            chapter.save()
+            #print(form['manga_name'])
+            return HttpResponse('глава созданна')
+
+    
+    return render(request, 'add_chapter.html', { 'mangas': mangas, 'errors': errors, 'form': form })
+
+def add_page(request):
+    errors = []
+    form = {}
+    mangas = Manga.objects.all()
+
+    if request.POST:
+         
+        form['images'] = request.POST.get('manga_name')
+        #form['title'] = request.POST.get('title')
+         
+        if not form['images']:
+            errors.append('Выберете мангу')
+        '''
+        if not form['title']:
+            errors.append('Заполните название главы')
+        '''
+
+        if not errors:
+            #chapter = Chapter(manga=Manga.objects.get(id=form['manga_name']), title=form['title'])
+            #chapter.save()
+            print(form['images'])
+            #return HttpResponse('глава созданна')
+
+    
+    return render(request, 'add_page.html', { 'mangas': mangas, 'errors': errors, 'form': form })
