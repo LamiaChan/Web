@@ -91,12 +91,14 @@ def add_page(request):
     mangas = Manga.objects.all()
 
     if request.POST:
-         
-        form['images'] = request.POST.get('manga_name')
+        # Узнать у паши 
+        #  либо написать класс формы (чего я делать не хочу )
+        print(len(request.POST.get('images')))
+        form['images'] = request.POST.get('images')
         #form['title'] = request.POST.get('title')
          
-        if not form['images']:
-            errors.append('Выберете мангу')
+        if form['images'] is None:
+            errors.append('Загрузите картинку')
         '''
         if not form['title']:
             errors.append('Заполните название главы')
@@ -105,7 +107,8 @@ def add_page(request):
         if not errors:
             #chapter = Chapter(manga=Manga.objects.get(id=form['manga_name']), title=form['title'])
             #chapter.save()
-            print(form['images'])
+            #print(form['images'])
+            print('no errors')
             #return HttpResponse('глава созданна')
 
     
