@@ -1,0 +1,43 @@
+<html>
+<head>
+     
+    <title>Django</title>
+</head>
+<body>
+    
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+     
+    <form action="" method="post">
+        <label>Манга</label> 
+
+        <br><br>
+
+        <select name="manga_name">
+            <option selected="selected" disabled>Выберете мангу</option>
+            {% for manga in mangas %}
+                <option value="{{ manga.id }}">{{ manga.title }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <label>Название главы</label> 
+
+        <br><br>
+
+        <input name="title" type="text" value="{{ form.title }}">
+
+        <br><br>
+        
+        <input type="submit" value="Отправить">
+        {% csrf_token %}
+    </form>
+    <h3><a href="/core/add">Вернуться</a></h3>
+</body>
+</html>
