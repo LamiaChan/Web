@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <MainHead></MainHead>
+    <MainContent> </MainContent>
     <button type="button" @click="getHashtags()">Грузи города</button>
     <TestApi :testapi="testapi"> </TestApi>
   </div>
@@ -13,6 +14,7 @@
 import TestApi from './components/TestApi.vue'
 import MainHead from './components/MainHead.vue'
 import axios from 'axios'
+import MainContent from './components/MainContent'
 
 
 export default {
@@ -28,7 +30,8 @@ export default {
   },
   components: {
     TestApi,
-    MainHead
+    MainHead,
+    MainContent
   },
   methods: {
     getHashtags(){
