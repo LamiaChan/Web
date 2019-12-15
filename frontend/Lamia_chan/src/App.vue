@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <MainHead></MainHead>
-    <MainContent> </MainContent>
-    <button type="button" @click="getHashtags()">Грузи города</button>
-    <TestApi :testapi="testapi"> </TestApi>
+<router-view />
   </div>
 </template>
 
@@ -11,36 +8,16 @@
 <script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
 
 <script>
-import TestApi from './components/TestApi.vue'
-import MainHead from './components/MainHead.vue'
 import axios from 'axios'
-import MainContent from './components/MainContent'
 
 
 export default {
   name: 'app',
     data(){
     return {
-      todos: ['Ремонт', 'Уборка'],
-      testapi: [],
-      url: {
-          testapilink: 'http://localhost:8000/api/v1/manga/?format=json',
-      },
+      
     }
   },
-  components: {
-    TestApi,
-    MainHead,
-    MainContent
-  },
-  methods: {
-    getHashtags(){
-        axios.get(this.url.testapilink).then((response) => {
-            this.testapi = response.data;
-            console.log("done")
-        });
-    },
-  }
 }
 </script>
 
