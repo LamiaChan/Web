@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from .models import Manga
-from .models import Page
-from .models import Chapter
-from .models import Source
-
+from .models import Manga, Page, Source, Chapter
+import os
+import os.path as pathj
+import sys
 
 def index(request):
     manga_list = []
@@ -85,31 +84,70 @@ def add_chapter(request):
     
     return render(request, 'add_chapter.html', { 'mangas': mangas, 'errors': errors, 'form': form })
 
-def add_page(request):
+def add_page_select_manga(request):
     errors = []
     form = {}
     mangas = Manga.objects.all()
 
     if request.POST:
-        # Узнать у паши 
-        #  либо написать класс формы (чего я делать не хочу )
-        print(len(request.POST.get('images')))
-        form['images'] = request.POST.get('images')
-        #form['title'] = request.POST.get('title')
+        form['manga_name'] = request.POST.get('manga_name')
          
-        if form['images'] is None:
-            errors.append('Загрузите картинку')
-        '''
-        if not form['title']:
-            errors.append('Заполните название главы')
-        '''
+        if form['manga_name'] is None:
+            errors.append('Выберете мангу')
 
         if not errors:
-            #chapter = Chapter(manga=Manga.objects.get(id=form['manga_name']), title=form['title'])
-            #chapter.save()
-            #print(form['images'])
-            print('no errors')
-            #return HttpResponse('глава созданна')
+            url ='/{0}/{1}/{2}'.format('core', 'add_page_select_chapter', form['manga_name'])
+            return HttpResponseRedirect(url)
 
     
-    return render(request, 'add_page.html', { 'mangas': mangas, 'errors': errors, 'form': form })
+    return render(request, 'add_page_select_manga.html', { 'mangas': mangas, 'errors': errors, 'form': form })
+
+
+def add_page_select_chapter(request, manga_id):
+    errors = []
+    form = {}
+    chapters = Chapter.objects.filter(manga_id=manga_id)
+
+    if request.POST:
+        form['ch_name'] = request.POST.get('ch_name')
+         
+        if form['ch_name'] is None:
+            errors.append('Выберете главу')
+
+        if not errors:
+            url ='/{0}/{1}/{2}/{3}'.format('core', 'add_page', manga_id, form['ch_name'])
+            return HttpResponseRedirect(url)
+
+    
+    return render(request, 'add_page_select_chapter.html', { 'chapters': chapters, 'errors': errors, 'form': form })
+
+
+def add_page(request, manga_id, chapter_id):
+    errors = []
+    form = {}
+
+    if request.POST:
+        form['images'] = request.POST.getlist('images[]')
+         
+        if form['images'] is None:
+            errors.append('Загрузите файлы')
+
+        if not errors:
+            for i in range(0, len(form['images'])):
+                dirm = '/manga/' + form['images'][i]
+                #page = Page(number=i+1, image=dirm, chapter_id=Chapter.objects.get(id=chapter_id).id)
+                #page.save()
+                '''
+                with open('backend', 'wb+') as destination:
+                    for chunk in form['images'][i].chunks():
+                        destination.write(chunk)
+                '''
+                # доделать
+                # file_path = pathj.abspath(pathj.join(__file__ ,"../../media/manga/" + form['images'][i]))
+                
+
+            return HttpResponse('Манга созданна')
+
+    
+    return render(request, 'add_page.html', {'errors': errors, 'form': form })
+

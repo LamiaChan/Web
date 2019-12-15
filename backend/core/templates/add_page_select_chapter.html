@@ -14,12 +14,16 @@
     {% endif %}
      
     <form action="" method="post">
-
-        <label>Загрузите файлы</label> 
+        <label>Выберете Главу</label> 
 
         <br><br>
 
-        <input value="{{ form.images }}" name="images[]" multiple="multiple" type="file">
+        <select name="ch_name">
+            <option selected="selected" disabled>Выберете Главу</option>
+            {% for chapter in chapters %}
+                <option value="{{ chapter.id }}">{{ chapter.title }}</option>
+            {% endfor %}
+        </select>
 
         <br><br>
         

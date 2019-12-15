@@ -14,12 +14,16 @@
     {% endif %}
      
     <form action="" method="post">
-
-        <label>Загрузите файлы</label> 
+        <label>Выберете Мангу</label> 
 
         <br><br>
 
-        <input value="{{ form.images }}" name="images[]" multiple="multiple" type="file">
+        <select name="manga_name">
+            <option selected="selected" disabled>Выберете Мангу</option>
+            {% for manga in mangas %}
+                <option value="{{ manga.id }}">{{ manga.title }}</option>
+            {% endfor %}
+        </select>
 
         <br><br>
         
