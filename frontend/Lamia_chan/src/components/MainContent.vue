@@ -3,14 +3,14 @@
         <section class="mainManga">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3" v-for="(testapione,index) in testapi" :key="index">
                         <div class="manga">
-                            <h3 class="manga__title">Anime title</h3>
+                            <h3 class="manga__title">{{ testapione.title }}</h3>
                             <div class="manga__img">
                                 <img src="" alt="" class="manga__img__pict">
                             </div>
                             <div class="manga__text">
-                                Здесь будет находиться краткое описание манги, чтобы пользователь имет представление о ней
+                                {{ testapione.description }}
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-    
+        props: ['testapi'],
 }
 </script>
 

@@ -1,11 +1,14 @@
 <template>
-    <ul>
-        <li v-for="(testapione,index) in testapi" :key="index">{{testapione}}</li>
-    </ul>
+    <div class=""></div>
 </template>
 
 <script>
 export default {
     props: ['testapi'],
+     data(){
+        return {
+            kek: "KEK",
+    }
+  },
 }
 </script>

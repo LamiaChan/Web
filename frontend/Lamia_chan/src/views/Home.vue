@@ -1,7 +1,7 @@
 <template>
   <div>
     <MainHead></MainHead>
-    <MainContent> </MainContent>
+    <MainContent :testapi="testapi"> </MainContent>
     <!--<button type="button" @click="getHashtags()">Грузи города</button>-->
     <TestApi :testapi="testapi"> </TestApi>
   </div>
