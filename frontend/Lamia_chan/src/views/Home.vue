@@ -2,7 +2,7 @@
   <div>
     <MainHead></MainHead>
     <MainContent> </MainContent>
-    <button type="button" @click="getHashtags()">Грузи города</button>
+    <!--<button type="button" @click="getHashtags()">Грузи города</button>-->
     <TestApi :testapi="testapi"> </TestApi>
   </div>
 </template>
@@ -40,7 +40,10 @@ export default {
             console.log("done")
         });
     },
-  }
+  },
+    beforeMount(){
+      this.getHashtags()
+ },
 }
 </script>
 
