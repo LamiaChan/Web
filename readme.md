@@ -3,7 +3,8 @@
 ## dependence
 ### python
 
-django version: 2.2&nbsp;
+django version:2.2
+
 python: 3.6+
 
 ```
@@ -14,8 +15,10 @@ pip install djangorestframework
 
 ### javascript 
 
-nodejs version: v12.13.1&nbsp;
-npm version: 6.12.1&nbsp;
+nodejs version: v12.13.1
+
+npm version: 6.12.1
+
 vue/cli: 4.1.1
 
 ```
