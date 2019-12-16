@@ -48,3 +48,7 @@ class Page(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.image.url)
+
+class Tag(models.Model):
+    title = models.CharField(max_length=256)
+    manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
