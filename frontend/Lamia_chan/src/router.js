@@ -7,6 +7,7 @@ import Detail from '@/views/Detail'
 Vue.use(Router)
 
 export default new Router({
+    props: ['testapi'],
     mode:'history',
     routes: [
         
@@ -20,8 +21,9 @@ export default new Router({
             component: About
         },
         {
-            path: '/detail/',
-            component: Detail
+            path: '/detail/:id',
+            component: Detail,
+            props: true
         }
     ]
 })
