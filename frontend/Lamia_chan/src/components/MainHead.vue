@@ -7,8 +7,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Манга</a>
+            <a class="nav-item nav-link active" href="/">Манга <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="#">Поиск</a>
             <router-link class="nav-item nav-link" to="/about">О нас</router-link>
             <a class="nav-item nav-link" href="#">Сотрудничество</a>

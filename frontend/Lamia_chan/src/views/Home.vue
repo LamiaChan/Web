@@ -21,7 +21,6 @@ export default {
   name: 'app',
     data(){
     return {
-      todos: ['Ремонт', 'Уборка'],
       testapi: [],
       url: {
           testapilink: 'http://localhost:8000/api/v1/manga/?format=json',
