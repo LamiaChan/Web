@@ -4,12 +4,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3" v-for="(testapione,index) in testapi" :key="index">
-                        <div class="manga">
-                            <div class="manga__img">
-                                <img :src="testapione.preview_image_url"   alt="" class="manga__img__pict">
-                                <span class="manga__title">{{ testapione.title }}</span>
+                        <a v-bind:href="'/detail/'+ testapione.id">
+                            <div class="manga">
+                                <div class="manga__img">
+                                    <img :src="testapione.preview_image_url"   alt="" class="manga__img__pict">
+                                    <span class="manga__title">{{ testapione.title }}</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
