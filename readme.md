@@ -27,3 +27,10 @@ sudo apt install npm
 npm install vue   
 sudo npm install -g @vue/cli
 ```
+
+
+#### TODO
+
+* Разобраться с api сделать его более удобным
+* Сделать выводы на frontend через api
+* Разобраться с загрузкой картинок

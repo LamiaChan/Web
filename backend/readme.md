@@ -91,3 +91,5 @@ http://localhost:8000/api/v1/manga/
 
     chapter_id = id главы -> chapter_id (в таблице page) == id (в таблице chapter)
 
+
+
