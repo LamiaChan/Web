@@ -4,7 +4,7 @@ from core.models import Manga, Page, Source, Chapter
 class MangaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manga
-        fields = ('id', 'title', 'description')
+        fields = ('id', 'title', 'description', 'preview_image_url')
 
 
 class ChapterSerializer(serializers.ModelSerializer):

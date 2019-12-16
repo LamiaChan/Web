@@ -7,10 +7,7 @@
                         <div class="manga">
                             <h3 class="manga__title">{{ testapione.title }}</h3>
                             <div class="manga__img">
-                                <img src="" alt="" class="manga__img__pict">
-                            </div>
-                            <div class="manga__text">
-                                {{ testapione.description }}
+                                <img src=""   alt="" class="manga__img__pict">
                             </div>
                         </div>
                     </div>

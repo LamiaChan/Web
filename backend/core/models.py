@@ -27,6 +27,7 @@ class Source(models.Model):
     
 class Manga(models.Model):
     title = models.CharField(max_length=256)
+    preview_image_url = models.CharField(max_length=256, default='none')
     description = models.CharField(max_length=500)
     sources = models.ManyToManyField(Source)
 
