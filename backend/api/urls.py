@@ -1,4 +1,5 @@
 from rest_framework import routers
+
 from .views import MangaViewSet, PageViewSet, ChapterViewSet
 # Создаем router и регистрируем наш ViewSet
 router = routers.DefaultRouter()
