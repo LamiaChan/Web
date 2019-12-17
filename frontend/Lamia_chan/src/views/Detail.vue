@@ -1,7 +1,7 @@
 <template>
     <div>
         <MainHead></MainHead>
-        <!--<DetailContent></DetailContent>-->
+        <DetailContent></DetailContent>
         <div class="col-md-3" v-for="(mangaone,index) in manga" :key="index">
             {{ mangaone }}
         </div>
@@ -21,7 +21,7 @@
 
 <script>
 import MainHead from '../components/MainHead.vue'
-//import DetailContent from '../components/DetailContent'
+import DetailContent from '../components/DetailContent'
 import axios from 'axios'
 
 
@@ -40,7 +40,7 @@ export default {
     },
     components: {
         MainHead,
-        //DetailContent,
+        DetailContent,
     },
 
     methods: {
