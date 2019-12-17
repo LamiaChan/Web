@@ -4,13 +4,24 @@ from core.models import Manga, Page, Source, Chapter
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
-        fields = ['id', 'number', 'image', 'chapter_id']
+        fields = [
+            'id', 
+            'number', 
+            'image', 
+            'chapter_id'
+        ]
 
 class ChapterSerializer(serializers.ModelSerializer):
     page_set = serializers.SerializerMethodField()
     class Meta:
         model = Chapter
-        fields = ['id', 'title', 'manga_id', 'page_set']
+        fields = [
+            'id', 
+            'title', 
+            'manga_id', 
+            'page_set'
+            
+        ]
     
     def get_page_set(self, instance):
         page = instance.page_set.all()

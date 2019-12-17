@@ -23,7 +23,7 @@
                     <div class="chapter__block">
                         <h3 class="chapter__head">Главы:</h3>
                         <ul v-for="(mangaChapter,index) in manga.chapter_set" :key="index">
-                            <li><a v-bind:href="'/detail/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</a></li>
+                            <li><a v-bind:href="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</a></li>
                         </ul>
                     </div>
                 </div>
