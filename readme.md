@@ -29,6 +29,13 @@ sudo npm install -g @vue/cli
 ```
 
 
+#### startproject
+
+```
+npm run serve —prefix frontend/Lamia_chan & python backend/manage.py runserver
+```
+
+
 #### TODO
 
 * Разобраться с api сделать его более удобным
