@@ -14,7 +14,8 @@ new Vue({
     render: h => h(App),
 
     methods: {
+
   },
-},
+}
 
 ).$mount('#app')
