@@ -2,6 +2,7 @@
     <div>
         <MainHead></MainHead>
         <DetailContent></DetailContent>
+        <!--
         <div class="col-md-3" v-for="(mangaone,index) in manga" :key="index">
             {{ mangaone }}
         </div>
@@ -14,6 +15,7 @@
                 <h1>Пиздуй учить уроки мелкий пидор</h1>
             </div>
         </div>
+        -->
     </div>
 </template>
 

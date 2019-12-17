@@ -1,7 +1,14 @@
 <template>
     <div id="vue">
-        <h1>KEK</h1>
-        <button v-on:click="getPageUrl()">+1</button>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title">
+                        <h1>KEK</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -28,24 +35,28 @@ export default {
             var element = params[i];
         }
         if (element == 4){
-            alert(params[params.length-1])
             return params[params.length-1]
         } 
       },
       getHashtags(){
         axios.get(this.url.mangalink).then((response) => {
             this.manga = response.data;
+            alert("yes1")
+            alert(this.manga)
             });
         },
         getChapters(){
         axios.get(this.url.chapterlink).then((response) => {
             this.chapter = response.data;
+            alert("yes1");
             });
         },
-      beforeMount(){
-
-      }
   },
+        beforeMount(){
+        this.getHashtags(),
+        this.getChapters(),
+        alert(this.manga)
+      }
 }
 
 </script>
