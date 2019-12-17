@@ -33,7 +33,7 @@ sudo npm install -g @vue/cli
 #### startproject
 
 ```
-npm run serve —prefix frontend/Lamia_chan & python backend/manage.py runserver
+npm run serve --prefix frontend/Lamia_chan & python backend/manage.py runserver
 ```
 
 
