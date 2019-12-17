@@ -11,6 +11,7 @@ python: 3.6+
 pip install django 
 pip install django-cors-headers
 pip install djangorestframework
+python -m pip install Pillow"
 ```
 
 ### javascript 
