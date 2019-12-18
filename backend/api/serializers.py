@@ -44,4 +44,5 @@ class MangaSerializer(serializers.ModelSerializer):
     def get_chapter_set(self, instance):
         chapter = instance.chapter_set.all()
         return ChapterSerializer(chapter, many=True).data
+
         

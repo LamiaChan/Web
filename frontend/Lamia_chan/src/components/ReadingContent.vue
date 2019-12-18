@@ -1,10 +1,8 @@
 <template>
     <div id="vue">
-        <div v-for="(chapter,index) in manga.chapter_set" :key="index">
-            <ul v-for="(page,index) in chapter.page_set" :key="index">
-                <li v-if="ReturnChapterId() == page.chapter_id">{{page}}</li>
-            </ul>
-        </div>
+        <ul v-for="(page,index) in chapter.page_set" :key="index">
+            <li>{{page}}</li>
+        </ul>
     </div>
 </template>
 
@@ -18,7 +16,7 @@ export default {
             manga: [],
             chapter: [],
             url: {
-                mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl()[0]  + '/?format=json'
+                chapterlink: 'http://localhost:8000/api/v1/chapter/' + this.getPageUrl()  + '/?format=json'
             },
         }
     },
@@ -35,18 +33,13 @@ export default {
               var element = params[i];
           }
 
-            return [ params[params.length-2], params[params.length-1] ]
+            return params[params.length-1]
 
-        },
-
-        ReturnChapterId(){
-            var t = this.getPageUrl()[1];
-            return t;
         },
 
         getHashtags(){
-        axios.get(this.url.mangalink).then((response) => {
-            this.manga = response.data;
+        axios.get(this.url.chapterlink).then((response) => {
+            this.chapter = response.data;
             console.log("done2")
             });
         }
