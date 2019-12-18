@@ -1,8 +1,17 @@
 <template>
     <div id="vue">
-        <ul v-for="(page,index) in chapter.page_set" :key="index">
-            <li>{{page}}</li>
-        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div v-for="(chapterone,index) in chapter.page_set" :key="index" class="capter__block">
+                        <h2 class="chapter__title">Глава: {{ chapterone.number }}</h2>
+                        <div class="page">
+                            <img :src="'http://localhost:8000'+chapterone.image" alt="" class="page__img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -72,5 +81,11 @@ ul{
 .chapter__link:hover{
     color: black;
     text-decoration: none;
+}
+.capter__block{
+    text-align: center;
+}
+.page__img{
+    width: 60%;
 }
 </style>
