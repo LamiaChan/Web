@@ -56,3 +56,10 @@ export default {
         position: relative;
     }
 </style>
+<!-- Global styles -->
+<style>
+.notFound{
+    text-align: center;
+    margin-top: 50px;
+}
+</style>

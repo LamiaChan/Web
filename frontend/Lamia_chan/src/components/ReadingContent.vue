@@ -1,6 +1,6 @@
 <template>
     <div id="vue">
-        <div class="container">
+        <div v-if="manga.chapter_set" class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div v-for="(chapterone,index) in chapter.page_set" :key="index" class="capter__block">
@@ -11,6 +11,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else class="notFound">
+            <h1>404</h1>
+            <h2>Sorry, this page in progress</h2>
         </div>
     </div>
 </template>

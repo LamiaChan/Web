@@ -1,6 +1,6 @@
 <template>
     <div id="vue">
-        <div class="container">
+        <div v-if="manga.chapter_set" class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="title__container">
@@ -10,10 +10,11 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="img__block">
+                <div  class="img__block">
                         <img :src="manga.preview_image_url" alt="">
-                    </div>
                 </div>
+                
+            </div>
                 <div class="col-lg-6">
                     <div class="text__block">
                         <p class="text">
@@ -28,6 +29,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else class="notFound">
+            <h1>404</h1>
+            <h2>Sorry, this page in progress</h2>
         </div>
     </div>
 </template>

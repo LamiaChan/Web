@@ -1,12 +1,26 @@
 <template>
-    <div class="container">
-        <h1>HEY THERE</h1>
+    <div class="content">
+        <MainHead></MainHead>
+        <AboutContent></AboutContent>
     </div>
 </template>
 
 <script>
+import MainHead from '../components/MainHead.vue'
+import AboutContent from '../components/AboutContent'
+
+
 export default {
-    
+    name: 'app',
+            data(){
+            return {
+
+        }
+    },
+    components: {
+        MainHead,
+        AboutContent,
+    },
 }
 </script>
 
