@@ -3,11 +3,17 @@
         <div v-if="manga.chapter_set" class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    <h1 class="capter__block"> {{ chapter.title }} </h1>
                     <div v-for="(chapterone,index) in chapter.page_set" :key="index" class="capter__block">
-                        <h2 class="chapter__title">Глава: {{ chapterone.number }}</h2>
-                        <div class="page">
-                            <img :src="'http://localhost:8000'+chapterone.image" alt="" class="page__img">
-                        </div>
+                        
+                            <h2 class="chapter__number">Страница: {{ chapterone.number }}</h2>
+                            <div class="page">
+                                <img 
+                                    :data-id="'http://localhost:8000'+chapterone.image"
+                                    :src="'http://localhost:8000'+chapterone.image" 
+                                    alt="" class="page__img"
+                                >
+                            </div>
                     </div>
                 </div>
             </div>
@@ -51,11 +57,24 @@ export default {
         },
 
         getHashtags(){
-        axios.get(this.url.chapterlink).then((response) => {
-            this.chapter = response.data;
-            console.log("done2")
-            });
-        }
+            axios.get(this.url.chapterlink).then((response) => {
+                this.chapter = response.data;
+                console.log("done2")
+                this.chapter.page_set.forEach(chapterone => console.log(chapterone));
+                });
+        },
+
+
+
+        /* 
+            TODO:
+                Добавить метод выгрузки картинок
+                типо событие onClick и когда оно соверщается мы переходим на след
+                изоброжение тем самым меня src картинки и добавить if
+                если это последняя картинка то переход на след главу +
+                надо сделать проверку если это последняя глава то переадресация на 
+                страницу с мангой :)
+        */
     },
 
     beforeMount(){

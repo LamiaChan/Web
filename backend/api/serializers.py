@@ -1,5 +1,14 @@
 from rest_framework import serializers
-from core.models import Manga, Page, Source, Chapter
+from core.models import Manga, Page, Source, Chapter, Tag
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = [
+            'id',
+            'title',
+        ]
+    
 
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,6 +46,7 @@ class MangaSerializer(serializers.ModelSerializer):
             'title', 
             'description', 
             'preview_image_url',
+            'tags',
             'chapter_set',
 
         ]
@@ -44,5 +54,6 @@ class MangaSerializer(serializers.ModelSerializer):
     def get_chapter_set(self, instance):
         chapter = instance.chapter_set.all()
         return ChapterSerializer(chapter, many=True).data
+    
 
         
