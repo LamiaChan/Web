@@ -15,12 +15,12 @@ services:
     env_file: .env
 
   frontend:
-    build:
-      context: ./frontend/Lamia_chan
-    #image: node:lts-alpine
-    #command: npm run serve
+    image: node:12
+    command: npm install
+    command: npm audit fix
+    command: npm run serve
     volumes:
-      - ./.env:/app/.env:ro
+      #- ./.env:/app/.env:ro
       - ./frontend/Lamia_chan:/app
     working_dir: /app
     restart: on-failure
