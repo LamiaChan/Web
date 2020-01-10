@@ -60,7 +60,6 @@ export default {
     },
 
     beforeMount(){
-      this.getHashtags()
     },
     
 }
