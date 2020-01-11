@@ -16,8 +16,6 @@ services:
 
   frontend:
     image: node:12
-    command: npm install
-    command: npm audit fix
     command: npm run serve
     volumes:
       #- ./.env:/app/.env:ro
