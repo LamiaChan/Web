@@ -53,7 +53,6 @@ export default {
         getHashtags(){
         axios.get(this.url.mangalink).then((response) => {
             this.manga = response.data;
-            console.log("done")
             });
         }
     },

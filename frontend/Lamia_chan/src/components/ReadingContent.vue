@@ -55,8 +55,10 @@ export default {
         getHashtags(){
             axios.get(this.url.chapterlink).then((response) => {
                 this.chapter = response.data;
-                console.log("done2")
-                this.chapter.page_set.forEach(chapterone => console.log(chapterone));
+                /*
+                    console.log("done2")
+                    this.chapter.page_set.forEach(chapterone => console.log(chapterone));
+                */
                 });
         },
 

@@ -21,6 +21,16 @@
                             {{ manga.description }}
                         </p>
                     </div>
+                    <div class="tags__block">
+                        <h3 class="tags__head">Тэги:</h3>
+                        
+                        <ul v-for="(tags,index) in tags" :key="index">
+                            <div v-for="(mangaTags,index) in manga.tags" :key="index">
+                                <li><a v-if="mangaTags == tags.id">{{tags.title}}</a></li>
+                            </div>
+                        </ul>
+
+                    </div>
                     <div class="chapter__block">
                         <h3 class="chapter__head">Главы:</h3>
                         <ul v-for="(mangaChapter,index) in manga.chapter_set" :key="index">
@@ -46,8 +56,10 @@ export default {
             return {
             manga: [],
             chapter: [],
+            tags: [],
             url: {
-                mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl()  + '/?format=json'
+                mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl()  + '/?format=json',
+                tagslink: 'http://localhost:8000/api/v1/tag/?format=json'
             },
         }
     },
@@ -68,15 +80,23 @@ export default {
         },
 
         getHashtags(){
-        axios.get(this.url.mangalink).then((response) => {
-            this.manga = response.data;
+            axios.get(this.url.mangalink).then((response) => {
+                this.manga = response.data;
             });
-        }
+            
+            axios.get(this.url.tagslink).then((response) => {
+                this.tags = response.data;
+            });
+        },
+
+
     },
 
     beforeMount(){
       this.getHashtags()
     },
+
+    
     
 }
 

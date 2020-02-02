@@ -36,7 +36,6 @@ export default {
     getHashtags(){
         axios.get(this.url.testapilink).then((response) => {
             this.testapi = response.data;
-            console.log("done")
         });
     },
   },
