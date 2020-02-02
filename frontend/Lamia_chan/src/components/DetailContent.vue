@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-6">
                 <div  class="img__block">
-                        <img :src="manga.preview_image_url" alt="">
+                        <img :src="manga.preview_image_url" alt="" class="img__block__pic">
                 </div>
                 
             </div>
@@ -26,7 +26,9 @@
                         
                         <ul v-for="(tags,index) in tags" :key="index">
                             <div v-for="(mangaTags,index) in manga.tags" :key="index">
-                                <li><a v-if="mangaTags == tags.id">{{tags.title}}</a></li>
+                                <li>
+                                    <div class="tagBlock"><a v-if="mangaTags == tags.id" class="tag">{{tags.title}}</a></div>
+                                </li>
                             </div>
                         </ul>
 
@@ -108,6 +110,9 @@ export default {
     margin-top: 20px;
     margin-bottom: 40px;
 }
+.img__block__pic{
+    width: 400px;
+}
 .text{
     font-size: 20px;
 }
@@ -121,5 +126,25 @@ ul{
 .chapter__link:hover{
     color: black;
     text-decoration: none;
+}
+.tagBlock{
+    
+}
+.tag{
+    display: inline-block;
+    text-align: center;
+    padding: 8px;
+    font-size: 20px;
+    background: #1f4037;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #99f2c8, #1f4037);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #99f2c8, #1f4037); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 8px;
+    color: #fff;
+    transition-duration: .5s;
+
+}
+.tag:hover{
+    background: -webkit-linear-gradient(to right, #99f2c8 0%, #99f2c8 50%, #1f4037 100%);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #99f2c8 0%, #99f2c8 50%, #1f4037 100%);
 }
 </style>

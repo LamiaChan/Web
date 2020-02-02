@@ -5,13 +5,14 @@
                 <div class="col-lg-12">
                     <h1 class="capter__block"> {{ chapter.title }} </h1>
                         <div class="page">
-                        <button @click="pgCount--" class="ReadBtn">◄</button>
+                        <button @click="prevPg()" class="ReadBtn">◄</button>
                             <img 
                                 :data-id="'http://localhost:8000'+chapter.page_set[pgCount].image"
                                 :src="'http://localhost:8000'+chapter.page_set[pgCount].image" 
                                 alt="" class="page__img"
+                                @click="nextPg()"
                             >
-                        <button @click="pgCount++" class="ReadBtn">►</button>
+                        <button @click="nextPg()" class="ReadBtn">►</button>
                         </div>
                 </div>
             </div>
@@ -44,6 +45,16 @@ export default {
 
     methods: {
 
+        nextPg(){
+            if(this.pgCount<this.chapter.page_set.length-1){
+                this.pgCount++;
+            }
+        },
+        prevPg(){
+            if(this.pgCount>=1){
+                this.pgCount--;
+            }
+        },
         getPageUrl(){
 
           var currentUrl = window.location.pathname;
