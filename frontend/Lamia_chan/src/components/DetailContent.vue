@@ -64,16 +64,12 @@ export default {
               var element = params[i];
           }
 
-          if (element == 4){
-              return params[params.length-1]
-          } 
-
+            return params[params.length-1];
         },
 
         getHashtags(){
         axios.get(this.url.mangalink).then((response) => {
             this.manga = response.data;
-            console.log("done2")
             });
         }
     },
