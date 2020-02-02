@@ -17,7 +17,7 @@ class PageSerializer(serializers.ModelSerializer):
             'id', 
             'number', 
             'image', 
-            'chapter_id'
+            'chapter'
         ]
 
 class ChapterSerializer(serializers.ModelSerializer):
@@ -27,7 +27,7 @@ class ChapterSerializer(serializers.ModelSerializer):
         fields = [
             'id', 
             'title', 
-            'manga_id', 
+            'manga', 
             'page_set'
             
         ]
