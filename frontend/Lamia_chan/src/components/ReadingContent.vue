@@ -4,16 +4,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="capter__block"> {{ chapter.title }} </h1>
-                    <div v-for="(chapterone,index) in chapter.page_set" :key="index" class="capter__block">
-                        
-                            <h2 class="chapter__number">Страница: {{ chapterone.number }}</h2>
-                            <div class="page">
-                                <img 
-                                    :data-id="'http://localhost:8000'+chapterone.image"
-                                    :src="'http://localhost:8000'+chapterone.image" 
-                                    alt="" class="page__img"
-                                >
-                            </div>
+                        <div class="page">
+                        <button @click="pgCount--" class="ReadBtn">◄</button>
+                            <img 
+                                :data-id="'http://localhost:8000'+chapter.page_set[pgCount].image"
+                                :src="'http://localhost:8000'+chapter.page_set[pgCount].image" 
+                                alt="" class="page__img"
+                            >
+                        <button @click="pgCount++" class="ReadBtn">►</button>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pgNumber">
+                        <span>{{ chapter.page_set[pgCount].number }}</span>
                     </div>
                 </div>
             </div>
@@ -28,6 +33,7 @@ export default {
     name: 'app',
             data(){
             return {
+            pgCount: 0,
             manga: [],
             chapter: [],
             url: {
@@ -106,7 +112,19 @@ ul{
 .capter__block{
     text-align: center;
 }
+.page{
+    text-align: center;
+}
 .page__img{
     width: 60%;
+}
+.ReadBtn{
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.5);
+}
+.pgNumber{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 30px;
 }
 </style>
