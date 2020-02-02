@@ -3,6 +3,7 @@ from django.urls                import reverse
 from django.utils               import timezone
 from django.utils.translation   import ugettext_lazy as _
 from urllib.parse 		        import urlparse
+from datetime                   import datetime
 
 
 class Source(models.Model):
@@ -25,6 +26,14 @@ class Source(models.Model):
     def __str__(self):
         return str(self.url)
     
+
+class DateUp(models.Model):
+    date = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return str(self.date)
+
+
 class Tag(models.Model):
     title = models.CharField(max_length=256)
     
@@ -38,6 +47,7 @@ class Manga(models.Model):
     description = models.CharField(max_length=500)
     sources = models.ManyToManyField(Source)
     tags = models.ManyToManyField(Tag)
+    upload_date =  models.ManyToManyField(DateUp)
 
     def __str__(self):
         return str(self.title)

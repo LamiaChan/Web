@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Manga, Page, Source, Chapter, Tag
+from core.models import *
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,6 +7,14 @@ class TagSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'title',
+        ]
+
+class DateUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = [
+            'id',
+            'date',
         ]
     
 
@@ -47,6 +55,7 @@ class MangaSerializer(serializers.ModelSerializer):
             'description', 
             'preview_image_url',
             'tags',
+            'upload_date',
             'chapter_set',
 
         ]
