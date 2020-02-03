@@ -23,14 +23,10 @@
                     </div>
                     <div class="tags__block">
                         <h3 class="tags__head">Тэги:</h3>
-                        
-                        <ul v-for="(tags,index) in tags" :key="index">
-                            <div v-for="(mangaTags,index) in manga.tags" :key="index">
-                                <li>
-                                    <div class="tagBlock"><a v-if="mangaTags == tags.id" class="tag">{{tags.title}}</a></div>
-                                </li>
-                            </div>
-                        </ul>
+
+                        <div v-for="(mangaTags,index) in manga.tags" :key="index" class="tags">
+                            <div v-for="(tags,index) in tags" :key="index" class="tags"><a v-if="mangaTags == tags.id" class="tag">{{tags.title}}</a></div>
+                        </div>
 
                     </div>
                     <div class="chapter__block">
@@ -127,8 +123,8 @@ ul{
     color: black;
     text-decoration: none;
 }
-.tagBlock{
-    
+.tags{
+    display: inline-block;
 }
 .tag{
     display: inline-block;
@@ -141,6 +137,8 @@ ul{
     border-radius: 8px;
     color: #fff;
     transition-duration: .5s;
+    margin-right: 10px;
+    margin-bottom: 10px
 
 }
 .tag:hover{

@@ -37,11 +37,12 @@ export default {
     }
     .manga__img__pict{
         width: 80%;
+        max-height: 290px;
     }
     .manga__title{
         font-size: 15px;
         color: #fff;
-        display:block;
+        display:inline-block;
         width: 80%;
         height: 49px;
         padding: 3px;
