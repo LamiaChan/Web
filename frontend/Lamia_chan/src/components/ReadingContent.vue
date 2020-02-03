@@ -5,14 +5,14 @@
                 <div class="col-lg-12">
                     <h1 class="capter__block"> {{ chapter.title }} </h1>
                         <div class="page">
-                        <button @click="prevPg()" class="ReadBtn">◄</button>
+                        <!--<button @click="prevPg()" class="ReadBtn">◄</button>-->
                             <img 
                                 :data-id="'http://localhost:8000'+chapter.page_set[pgCount].image"
                                 :src="'http://localhost:8000'+chapter.page_set[pgCount].image" 
                                 alt="" class="page__img"
                                 @click="nextPg()"
                             >
-                        <button @click="nextPg()" class="ReadBtn">►</button>
+                        <!--<button @click="nextPg()" class="ReadBtn">►</button>-->
                         </div>
                 </div>
             </div>
@@ -79,17 +79,6 @@ export default {
                 });
         },
 
-
-
-        /* 
-            TODO:
-                Добавить метод выгрузки картинок
-                типо событие onClick и когда оно соверщается мы переходим на след
-                изоброжение тем самым меня src картинки и добавить if
-                если это последняя картинка то переход на след главу +
-                надо сделать проверку если это последняя глава то переадресация на 
-                страницу с мангой :)
-        */
     },
 
     beforeMount(){
