@@ -22,7 +22,7 @@
             <input class="manga-searcher form-control" type="text" placeholder="Поиск" id="menu1" data-toggle="dropdown"  v-model="searchQuery">
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" >
                 <div v-for="(item,index) in filteredResources" :key="index">
-                  <li role="presentation"><a style="color:black;" role="menuitem" tabindex="-1" v-bind:href="'/detail/'+item.id">{{item.title}}</a></li>
+                  <li role="presentation"><img style="width: 30px;" :src="item.preview_image_url"><a style="color:black;" role="menuitem" tabindex="-1" v-bind:href="'/detail/'+item.id">{{item.title}}</a></li>
                   <div class="dropdown-divider"></div>
                   
                 </div>
