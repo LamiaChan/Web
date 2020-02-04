@@ -173,7 +173,7 @@ ul{
 
 }
 .dropCustom{
-    height: 500px;
+    max-height: 500px;
     overflow-y: auto;
 }
 .chapter__link{
