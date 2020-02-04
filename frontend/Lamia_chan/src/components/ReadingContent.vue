@@ -3,6 +3,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    <div class="readingInfo">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle dropdownCustom" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Выбрать главу
+                                </a>
+
+                                <div class="dropdown-menu dropCustom" aria-labelledby="dropdownMenuLink">
+                                    <span class="dropdown-item" v-for="(mangaChapter,index) in manga.chapter_set" :key="index" v-value="mangaChapter.title"><router-link v-bind:to="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</router-link></span>
+
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
                     <h1 class="capter__block"> {{ chapter.title }} </h1>
                         <div class="page">
                         <!--<button @click="prevPg()" class="ReadBtn">◄</button>-->
@@ -38,7 +58,8 @@ export default {
             manga: [],
             chapter: [],
             url: {
-                chapterlink: 'http://localhost:8000/api/v1/chapter/' + this.getPageUrl()  + '/?format=json'
+                chapterlink: 'http://localhost:8000/api/v1/chapter/' + this.getPageUrl(1)  + '/?format=json',
+                mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl(2)  + '/?format=json'
             },
         }
     },
@@ -55,7 +76,7 @@ export default {
                 this.pgCount--;
             }
         },
-        getPageUrl(){
+        getPageUrl(a){
 
           var currentUrl = window.location.pathname;
 
@@ -64,8 +85,7 @@ export default {
           for (let i = 0; i < params.length; i++) {
               var element = params[i];
           }
-
-            return params[params.length-1]
+            return params[params.length-a]
 
         },
 
@@ -78,11 +98,21 @@ export default {
                 */
                 });
         },
+        getHashtagsManga(){
+            axios.get(this.url.mangalink).then((response) => {
+                this.manga = response.data;
+                /*
+                    console.log("done2")
+                    this.chapter.page_set.forEach(chapterone => console.log(chapterone));
+                */
+                });
+        },
 
     },
 
     beforeMount(){
-      this.getHashtags()
+      this.getHashtags(),
+      this.getHashtagsManga()
     },
     
 }
