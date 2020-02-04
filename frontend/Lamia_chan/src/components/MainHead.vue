@@ -9,7 +9,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <router-link class="nav-item nav-link active" to="/">Манга </router-link><span class="sr-only">(current)</span> 
+                <router-link class="nav-item nav-link active" to="/">Каталог Манги</router-link><span class="sr-only">(current)</span> 
               </li>
 
               <li class="nav-item">
@@ -70,10 +70,10 @@ export default {
 
   computed: {
     filteredResources (){
-      // это надо улучшить 
+      // это надо улучшить, уже лучше 
       if(this.searchQuery){
       return this.manga.filter((item)=>{
-        return item.title.startsWith(this.searchQuery);
+        return item.title.toLowerCase().match(this.searchQuery.toLowerCase());
       })
       }else{
         return this.manga;
