@@ -48,6 +48,7 @@ class Manga(models.Model):
     sources = models.ManyToManyField(Source)
     tags = models.ManyToManyField(Tag)
     upload_date =  models.ManyToManyField(DateUp)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.title)

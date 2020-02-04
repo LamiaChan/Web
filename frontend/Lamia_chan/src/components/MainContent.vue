@@ -2,8 +2,10 @@
     <div class="content">
         <section class="mainManga">
             <div class="container">
+                <h2>Недавно обновленные</h2>
                 <div class="row">
-                    <div class="col-md-3" v-for="(testapione,index) in testapi" :key="index">
+                    <!-- добавить сортировку по дате обнавления (testapione.updated) -->
+                    <div class="col-md-3" v-for="(testapione,index) in testapi.slice(0, 8)" :key="index">
                         <router-link v-bind:to="'/detail/'+ testapione.id">
                             <div class="manga">
                                 <div class="manga__img">

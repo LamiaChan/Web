@@ -21,7 +21,7 @@
           <form class="form-inline my-2 my-lg-0 dropdown">
             <input class="manga-searcher form-control" type="text" placeholder="Поиск" id="menu1" data-toggle="dropdown"  v-model="searchQuery">
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" >
-                <div v-for="(item,index) in filteredResources" :key="index">
+                <div v-for="(item,index) in filteredResources.slice(0, 10)" :key="index">
                   <li role="presentation"><img style="width: 30px;" :src="item.preview_image_url"><a style="color:black;" role="menuitem" tabindex="-1" v-bind:href="'/detail/'+item.id">{{item.title}}</a></li>
                   <div class="dropdown-divider"></div>
                   
@@ -70,13 +70,13 @@ export default {
 
   computed: {
     filteredResources (){
-      // это надо улучшить, уже лучше 
-      if(this.searchQuery){
+      // оганичить вывод до 10
+      if(this.searchQuery && this.searchQuery.length >= 1){
       return this.manga.filter((item)=>{
         return item.title.toLowerCase().match(this.searchQuery.toLowerCase());
       })
       }else{
-        return this.manga;
+        return '';
       }
     }
   }

@@ -56,6 +56,7 @@ class MangaSerializer(serializers.ModelSerializer):
             'preview_image_url',
             'tags',
             'upload_date',
+            'updated',
             'chapter_set',
 
         ]
