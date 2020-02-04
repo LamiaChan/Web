@@ -31,9 +31,21 @@
                     </div>
                     <div class="chapter__block">
                         <h3 class="chapter__head">Главы:</h3>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle dropdownCustom" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Выбрать главу
+                            </a>
+
+                            <div class="dropdown-menu dropCustom" aria-labelledby="dropdownMenuLink">
+                                <span class="dropdown-item" v-for="(mangaChapter,index) in manga.chapter_set" :key="index" v-value="mangaChapter.title"><router-link v-bind:to="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</router-link></span>
+
+                            </div>
+                        </div>
+                        <!--
                         <ul v-for="(mangaChapter,index) in manga.chapter_set" :key="index">
                             <li><router-link v-bind:to="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</router-link></li>
                         </ul>
+                        -->
                     </div>
                 </div>
             </div>
@@ -131,9 +143,9 @@ ul{
     text-align: center;
     padding: 8px;
     font-size: 20px;
-    background: #1f4037;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #99f2c8, #1f4037);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #99f2c8, #1f4037); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #00b09b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: 8px;
     color: #fff;
     transition-duration: .5s;
@@ -142,7 +154,29 @@ ul{
 
 }
 .tag:hover{
-    background: -webkit-linear-gradient(to right, #99f2c8 0%, #99f2c8 50%, #1f4037 100%);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #99f2c8 0%, #99f2c8 50%, #1f4037 100%);
+    background: #00b09b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+    -moz-box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+    box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+
+}
+.dropdownCustom{
+    width: 300px;
+    background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+    -moz-box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+    box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+
+}
+.dropCustom{
+    height: 500px;
+    overflow-y: auto;
+}
+.chapter__link{
+    font-size: 15px;
 }
 </style>
