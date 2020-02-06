@@ -1,5 +1,5 @@
 <template>
-    <div id="vue">
+    <div id="vue" :key="componentKey">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -24,6 +24,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="capter__block"> {{ chapter.title }} </h1>
+                    <button @click="Vue.forceUpdate()">UPDATE</button>
                         <div class="page">
                         <!--<button @click="prevPg()" class="ReadBtn">◄</button>-->
                             <img 
@@ -49,6 +50,7 @@
 
 <script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
 <script>
+import Vue from 'vue';
 import axios from 'axios'
 export default {
     name: 'app',

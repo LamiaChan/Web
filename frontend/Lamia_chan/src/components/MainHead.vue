@@ -22,7 +22,12 @@
             <input class="manga-searcher form-control" type="text" placeholder="Поиск" id="menu1" data-toggle="dropdown"  v-model="searchQuery">
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" >
                 <div v-for="(item,index) in filteredResources.slice(0, 10)" :key="index">
-                  <li role="presentation"><img style="width: 30px;" :src="item.preview_image_url"><a style="color:black;" role="menuitem" tabindex="-1" v-bind:href="'/detail/'+item.id">{{item.title}}</a></li>
+                  <li role="presentation" style="padding:5px;">
+                    <img class="search__img" :src="item.preview_image_url">
+                     <div class="search_description_block">
+                    <a style="color:black;" class="search__link" role="menuitem" tabindex="-1" v-bind:href="'/detail/'+item.id">{{item.title}}</a>
+                    </div>
+                  </li>
                   <div class="dropdown-divider"></div>
                   
                 </div>
@@ -83,4 +88,16 @@ export default {
  
 }
 </script>
+
+<style scoped>
+  .search_description_block{
+    display: inline-block;
+    width: 180px;
+  }
+  .search__img{
+    width: 30px;
+    position: relative; 
+    top: -10px;
+  }
+</style>
 
