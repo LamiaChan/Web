@@ -37,7 +37,9 @@
                             </a>
 
                             <div class="dropdown-menu dropCustom" aria-labelledby="dropdownMenuLink">
-                                <span class="dropdown-item" v-for="(mangaChapter,index) in manga.chapter_set" :key="index" v-value="mangaChapter.title"><router-link v-bind:to="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</router-link></span>
+                                <span class="dropdown-item" v-for="(mangaChapter,index) in manga.chapter_set" :key="index">
+                                    <router-link v-bind:to="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</router-link>
+                                </span>
 
                             </div>
                         </div>

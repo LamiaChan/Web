@@ -1,5 +1,5 @@
 <template>
-    <div id="vue" :key="componentKey">
+    <div id="vue">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -12,7 +12,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropCustom" aria-labelledby="dropdownMenuLink">
-                                    <span class="dropdown-item" v-for="(mangaChapter,index) in manga.chapter_set" :key="index" v-value="mangaChapter.title"><router-link v-bind:to="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</router-link></span>
+                                    <span class="dropdown-item" v-for="(mangaChapter,index) in manga.chapter_set" :key="index">
+                                        <a v-bind:href="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</a>
+                                    </span>
 
                                 </div>
                                 </div>
@@ -24,7 +26,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="capter__block"> {{ chapter.title }} </h1>
-                    <button @click="Vue.forceUpdate()">UPDATE</button>
                         <div class="page">
                         <!--<button @click="prevPg()" class="ReadBtn">◄</button>-->
                             <img 
@@ -67,17 +68,19 @@ export default {
     },
 
     methods: {
-
         nextPg(){
             if(this.pgCount<this.chapter.page_set.length-1){
                 this.pgCount++;
             }
         },
-        prevPg(){
-            if(this.pgCount>=1){
-                this.pgCount--;
-            }
-        },
+        /*
+            prevPg(){
+                if(this.pgCount>=1){
+                    this.pgCount--;
+                }
+        
+            },
+        */
         getPageUrl(a){
 
           var currentUrl = window.location.pathname;
@@ -116,6 +119,7 @@ export default {
       this.getHashtags(),
       this.getHashtagsManga()
     },
+    
     
 }
 
