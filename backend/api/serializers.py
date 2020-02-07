@@ -1,5 +1,26 @@
 from rest_framework import serializers
+from django.utils.text import gettext_lazy as _
 from core.models import *
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+
+        model = User
+        fields = ('id', 'username', 'email', 'password',
+                  'is_superuser', 'is_staff')
+        read_only_fields = ('is_superuser', 'is_staff')
+        extra_kwargs = {'password': {'write_only': True}}
+
+
+class UserShowSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = User
+        fields = ('id', 'username', 'name')
+        read_only_fields = ('username', 'name')
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:

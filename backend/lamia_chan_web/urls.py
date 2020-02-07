@@ -8,6 +8,7 @@ urlpatterns = [
     path('core/', include('core.urls')),
     path('admin/', admin.site.urls),
     url(r'^api/v1/', include('api.urls')),
+    #url(r'^api/user/', include('drf_user.urls')),
     
 ]
 
