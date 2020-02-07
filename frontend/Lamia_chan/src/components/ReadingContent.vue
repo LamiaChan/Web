@@ -6,33 +6,34 @@
                     <div class="readingInfo">
                         <div class="row">
                             <div class="col-sm-3"></div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <div class="dropdown">
-                                <a class="btn btn-secondary dropdown-toggle dropdownCustom" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="btn btn-secondary dropdown-toggle dropBlock_chapters" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Выбрать главу
                                 </a>
 
                                 <div class="dropdown-menu dropCustom" aria-labelledby="dropdownMenuLink">
-                                    <span class="dropdown-item" v-for="(mangaChapter,index) in manga.chapter_set" :key="index">
+                                    <span class="dropdown-item" v-for="(mangaChapter,index) in manga.chapter_set" :key="index" v-bind:class="{ active: (mangaChapter.id == getPageUrl(1)) }">
                                         <a v-bind:href="'/reading/'+ manga.id + '/' + mangaChapter.id" class="chapter__link">{{ mangaChapter.title }}</a>
                                     </span>
 
                                 </div>
                                 </div>
+                               </div>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-2">
+                                    <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle dropBlock_pages" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Страница
+                                            </a>
 
-                                <div class="dropdown">
-                                    <a class="btn btn-secondary dropdown-toggle dropdownCustom" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Страница
-                                    </a>
-
-                                <div class="dropdown-menu dropCustom" aria-labelledby="dropdownMenuLink">
-                                    <span class="dropdown-item" v-for="(pages,index) in chapter.page_set" :key="index">
-                                        <a @click="pgCount = pages.number-1" class="chapter__link">{{ pages.number }}</a>
-                                    </span>
-
+                                        <div class="dropdown-menu dropCustom" aria-labelledby="dropdownMenuLink">
+                                            <span class="dropdown-item small_link" v-for="(pages,index) in chapter.page_set" :key="index" v-bind:class="{ active: (pgCount == pages.number-1) }">
+                                                <a @click="pgCount = pages.number-1" class="chapter__link small_link">{{ pages.number }}</a>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                </div>
-                            </div>
                             <div class="col-sm-3"></div>
                         </div>
                     </div>
@@ -162,6 +163,9 @@ ul{
     color: black;
     text-decoration: none;
 }
+.small_link{
+    width: 160px;
+}
 .capter__block{
     text-align: center;
 }
@@ -180,10 +184,17 @@ ul{
     font-size: 20px;
     margin-bottom: 30px;
 }
-.dropdownCustom{
+.dropBlock_chapters{
     width: 300px;
 }
+.dropBlock_pages{
+    width: 160px;
+}
 .dropdown{
-    background: yellow;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+.active{
+    background: grey;
 }
 </style>
