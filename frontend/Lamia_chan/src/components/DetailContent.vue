@@ -25,7 +25,9 @@
                         <h3 class="tags__head">Тэги:</h3>
 
                         <div v-for="(mangaTags,index) in manga.tags" :key="index" class="tags">
-                            <div v-for="(tags,index) in tags" :key="index" class="tags"><a v-if="mangaTags == tags.id" class="tag">{{tags.title}}</a></div>
+                            <div v-for="(tags,index) in tags" :key="index" class="tags">
+                                <router-link v-if="mangaTags == tags.id" v-bind:to="'/tags/' + mangaTags"  class="tag">{{tags.title}}</router-link>
+                            </div>
                         </div>
 
                     </div>

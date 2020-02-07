@@ -12,6 +12,9 @@
                 <router-link class="nav-item nav-link active" to="/">Каталог Манги</router-link><span class="sr-only">(current)</span> 
               </li>
 
+              <li>
+                <router-link class="nav-link" to="/tag">Тэги </router-link>
+              </li>
               <li class="nav-item">
                 <router-link class="nav-link" to="/about">О нас </router-link>
               </li>

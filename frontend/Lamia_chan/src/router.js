@@ -4,6 +4,8 @@ import Home from '@/views/Home'
 import About from '@/views/About'
 import Detail from '@/views/Detail'
 import Reading from '@/views/Reading'
+import TagsSelect from '@/views/TagsSelect'
+import Tag from '@/views/Tag'
 
 Vue.use(Router)
 
@@ -31,5 +33,15 @@ export default new Router({
             component: Reading,
             props: true
         },
+        {
+            path: '/tag',
+            component: Tag,
+            props: true
+        },
+        {
+            path: '/tags/:id',
+            component: TagsSelect,
+            props: true
+        }
     ]
 })
