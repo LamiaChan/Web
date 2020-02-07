@@ -36,6 +36,8 @@ export default {
     }
     .manga{
         text-align: center;
+        margin-bottom: 15px;
+        margin-top: 15px;
     }
     .manga__img__pict{
         width: 80%;

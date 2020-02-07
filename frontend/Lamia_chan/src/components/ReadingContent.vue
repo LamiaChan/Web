@@ -5,7 +5,8 @@
                 <div class="col-lg-12">
                     <div class="readingInfo">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
                                 <div class="dropdown">
                                 <a class="btn btn-secondary dropdown-toggle dropdownCustom" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Выбрать главу
@@ -18,7 +19,21 @@
 
                                 </div>
                                 </div>
+
+                                <div class="dropdown">
+                                    <a class="btn btn-secondary dropdown-toggle dropdownCustom" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Страница
+                                    </a>
+
+                                <div class="dropdown-menu dropCustom" aria-labelledby="dropdownMenuLink">
+                                    <span class="dropdown-item" v-for="(pages,index) in chapter.page_set" :key="index">
+                                        <a @click="pgCount = pages.number-1" class="chapter__link">{{ pages.number }}</a>
+                                    </span>
+
+                                </div>
+                                </div>
                             </div>
+                            <div class="col-sm-3"></div>
                         </div>
                     </div>
                 </div>
@@ -139,7 +154,9 @@ ul{
 }
 .chapter__link{
     color: black;
-    font-size: 22px;
+    font-size: 15px;
+    display: inline-block;
+    width: 250px;
 }
 .chapter__link:hover{
     color: black;
@@ -162,5 +179,11 @@ ul{
     text-align: center;
     font-size: 20px;
     margin-bottom: 30px;
+}
+.dropdownCustom{
+    width: 300px;
+}
+.dropdown{
+    background: yellow;
 }
 </style>
