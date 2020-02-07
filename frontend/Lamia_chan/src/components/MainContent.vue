@@ -5,7 +5,7 @@
                 <h2>Недавно обновленные</h2>
                 <div class="row">
                     <!-- добавить сортировку по дате обнавления (testapione.updated) -->
-                    <div class="col-md-3" v-for="(testapione,index) in testapi.slice(0, 8)" :key="index">
+                    <div class="col-md-3" v-for="(testapione,index) in testapi.slice(0, 8).sort( (a,b) => b.updated.localeCompare(a.updated) )" :key="index">
                         <router-link v-bind:to="'/detail/'+ testapione.id">
                             <div class="manga">
                                 <div class="manga__img">
