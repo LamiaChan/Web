@@ -3,7 +3,7 @@
         <input v-model="login" placeholder="Login">
         <input v-model="pass" placeholder="pass">
         <button v-on:click="sub">send</button>
-        <p>token: {{token.data.token}}</p>
+        <p>response: {{token}}</p>
     </div>
 </template>
 
