@@ -2,13 +2,12 @@
     <div class="content">
         <section class="mainManga">
             <div class="container">
-                <h2>Выбранный тэг: {{ tags.title }}</h2>
-                <div class="row">
+                <h2 class="tag__title">Выбранный тэг: {{ tags.title }}</h2>
+                <div class="row" v-if="tagsCheck() != 0">
                     <!-- добавить сортировку по дате обнавления (testapione.updated) -->
-                    <div class="col-md-3" v-for="(testapione,index) in manga" :key="index">
+                    <div v-for="(testapione,index) in manga" :key="index">
                         <div v-for="(ch, index) in testapione.tags" :key="index">
-                            <!-- дороботать это -->
-                            <div v-if="tags.id == ch">
+                            <div class="col-md-3" v-if="tags.id == ch">
                                 <router-link v-bind:to="'/detail/'+ testapione.id">
                                     <div class="manga">
                                         <div class="manga__img">
@@ -20,6 +19,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="" v-else>
+                    <h3>Извините, но по данному тэгу пока нет манги ;(</h3>
                 </div>
             </div>
         </section>
@@ -36,6 +38,7 @@ export default {
             manga: [],
             chapter: [],
             tags: [],
+            coincidences: 0,
             url: {
                 mangalink: 'http://localhost:8000/api/v1/manga/?format=json',
                 tagslink: 'http://localhost:8000/api/v1/tag/' + this.getPageUrl()  + '/?format=json'
@@ -61,24 +64,48 @@ export default {
         getHashtags(){
             axios.get(this.url.mangalink).then((response) => {
                 this.manga = response.data;
-            });
-            
-            axios.get(this.url.tagslink).then((response) => {
-                this.tags = response.data;
+                console.log('manga loaded')
             });
         },
-
+        getTags(){          
+            axios.get(this.url.tagslink).then((response) => {
+                this.tags = response.data;
+                console.log('tags loaded')
+            });
+        },
+        tagsCheck(){
+            console.log(this.manga[0]);
+            var coincidences = 0;
+            for (let i = 0; i < this.manga.length; i++) {
+                for (let j = 0; j < this.manga[i].tags.length; j++) {
+                    if (this.manga[i].tags[j] == this.tags.id) {
+                        coincidences++;
+                        break
+                    }
+                }
+            }
+            return coincidences
+        },
+        kek(){
+            console.log('kek')
+        }
 
     },
 
     beforeMount(){
-      this.getHashtags()
-    },
+      this.getHashtags(),
+      this.getTags()
+     
+    }
     
 }
 
 </script>
 <style scoped>
+    .tag__title{
+        margin-bottom: 30px;
+        font-size: 35px;
+    }
     .mainManga{
         margin-top: 40px;
     }
@@ -86,17 +113,17 @@ export default {
         text-align: center;
     }
     .manga__img__pict{
-        width: 80%;
-        max-height: 290px;
+        width: 200px;
+        height: 290px;
     }
     .manga__title{
         font-size: 15px;
         color: #fff;
         display:inline-block;
-        width: 80%;
+        width: 200px;
         height: 49px;
         padding: 3px;
-        left: 10%;
+        left: 0px;
         background-color: rgba(0, 0, 0, 0.7);
         position:absolute;
         top:83%;

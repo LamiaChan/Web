@@ -1,10 +1,14 @@
 <template>
-    <div class="content">
-        <div class="row" >
-            <div v-for="(tagsItem,index) in tags" :key="index" class="tags">
-                <router-link v-bind:to="'/tags/' + tagsItem.id"  class="tag">{{tagsItem.title}}</router-link>
+    <div class="">
+        <section class="allTags">
+            <div class="container">
+                <div class="row" >
+                    <div v-for="(tagsItem,index) in tags" :key="index" class="tags">
+                        <router-link v-bind:to="'/tags/' + tagsItem.id"  class="tag">{{tagsItem.title}}</router-link>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 </template>
 
@@ -44,27 +48,8 @@ export default {
 
 </script>
 <style scoped>
-.title__container{
-    text-align:center;
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-.img__block__pic{
-    width: 400px;
-}
-.text{
-    font-size: 20px;
-}
-ul{
-    list-style-type: none;
-}
-.chapter__link{
-    color: black;
-    font-size: 22px;
-}
-.chapter__link:hover{
-    color: black;
-    text-decoration: none;
+.allTags{
+    padding-top: 30px;
 }
 .tags{
     display: inline-block;
@@ -91,6 +76,7 @@ ul{
     -webkit-box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
     -moz-box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
     box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+    text-decoration: none;
 
 }
 .dropdownCustom{
