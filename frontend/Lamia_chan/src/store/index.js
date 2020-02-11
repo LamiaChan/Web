@@ -18,8 +18,11 @@ export default new Vuex.Store({
         SET_TODOS(state, todos){
             state.todos = todos
         },
-        SET_TOKEN(state,token){
-            state.token = token
+        SET_TOKEN_REFRESH(state,token_refresh){
+            state.token_refresh = token_refresh
+        },
+        SET_TOKEN_ACCESS(state,token_access){
+            state.token_access = token_access
         }
     },
     actions: {
@@ -28,10 +31,11 @@ export default new Vuex.Store({
                 context.commit('SET_LOADING_STATUS', 'loading');
             }, 2000)
         },
-        tokenUpdate(context){
-            setTimeout(function(){
-                context.commit('SET_TOKEN', 'UPDATEDTOKEN');
-            }, 2000)
+        writeToken_access(context,newToken_access){
+            context.commit('SET_TOKEN_ACCESS', newToken_access)
+        },
+        writeToken_refresh(context, newToken_refresh){
+            context.commit('SET_TOKEN_REFRESH', newToken_refresh)
         }
 
     },
@@ -39,8 +43,11 @@ export default new Vuex.Store({
         takeLoading(state){
             return state.loadingStatus
         },
-        takeToken(state){
-            return state.token
+        takeToken_access(state){
+            return state.token_access
+        },
+        takeToken_refresh(state){
+            return state.token_refresh
         }
     }
 })

@@ -46,6 +46,7 @@ export default {
                 console.log(response)
                 this.token_refresh = response.data.refresh;
                 this.token_access = response.data.access;
+                this.createLocalStorage()
             })
             .catch(error => {
                 console.log(error.response)
@@ -53,9 +54,24 @@ export default {
             });
           }   
           
+      },
+      takeToken_access(){
+          return this.$store.getters.takeToken_access;
+      },
+      takeToken_refresh(){
+          return this.$store.getters.takeToken_refresh;
+      },
+      rewriteTokens(){
+          if(this.token_refresh && this.token_access){
+            this.$store.dispatch('writeToken_access', this.token_access)
+            this.$store.dispatch('writeToken_refresh', this.token_refresh)
+          }
+      },
+      createLocalStorage(){
+            this.rewriteTokens()
+            window.localStorage.setItem('token_access',this.takeToken_access())
+            window.localStorage.setItem('token_refresh',this.takeToken_refresh())
       }
-
-
     }
 
 }
