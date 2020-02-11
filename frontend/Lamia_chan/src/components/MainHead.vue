@@ -19,7 +19,7 @@
                 <router-link class="nav-link" to="/about">О нас </router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/auth">auth </router-link>
+                <router-link class="nav-link" to="/auth">Войти </router-link>
               </li>
             </ul>
             
