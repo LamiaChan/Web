@@ -9,8 +9,6 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-
-
 router = routers.DefaultRouter()
 router.register(r'manga', MangaViewSet)
 router.register(r'jmanga', JavaAppMangaViewSet)
