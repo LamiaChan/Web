@@ -8,7 +8,8 @@ export default new Vuex.Store({
         loadingStatus: 'notLoading',
         count: 1,
         todos: [],
-        token: 'TEST DONE!!!'
+        token_refresh: 'empty',
+        token_access:  'empty'
     },
     mutations: {
         SET_LOADING_STATUS(state, status) {

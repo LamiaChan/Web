@@ -3,7 +3,9 @@
         <input v-model="login" placeholder="Login">
         <input v-model="pass" placeholder="pass">
         <button v-on:click="sub">send</button>
-        <p>response: {{token}}</p>
+        <p>token_access: {{token_access}}</p>
+        <br>
+        <p>token_refresh: {{token_refresh}}</p>
     </div>
 </template>
 
@@ -17,9 +19,10 @@ export default {
             manga: [],
             login: "",
             pass: "",
-            token: "",
+            token_refresh: "",
+            token_access: "",
             url: {
-                loginlink: 'http://localhost:8000/api/v1/login/?format=json'
+                loginlink: 'http://localhost:8000/api/v1/token/?format=json'
             },
         }
     },
@@ -41,7 +44,8 @@ export default {
             })
             .then(response => { 
                 console.log(response)
-                this.token = response
+                this.token_refresh = response.data.refresh;
+                this.token_access = response.data.access;
             })
             .catch(error => {
                 console.log(error.response)
