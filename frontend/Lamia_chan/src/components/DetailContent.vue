@@ -77,6 +77,8 @@ export default {
             },
         }
     },
+    computed: {
+    },
 
     methods: {
 
@@ -101,9 +103,16 @@ export default {
             axios.get(this.url.tagslink).then((response) => {
                 this.tags = response.data;
             });
-        },
-
-
+        }
+        // takeToken1(){
+        //     return this.$store.getters.takeToken;
+        // },
+        // createLocalStorage(){
+        //     window.localStorage.setItem('test', this.takeToken1());
+        // },
+        // updateToken(){
+        //     this.$store.dispatch('tokenUpdate')
+        // }
     },
 
     beforeMount(){

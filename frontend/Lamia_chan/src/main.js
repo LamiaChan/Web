@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import Vuex from 'vuex'
+import store from './store'
 
 /*
   import axios from 'axios'
@@ -16,8 +18,10 @@ import router from './router'
 
 //import About from './components/About.vue'
 
+Vue.use(Vuex)
 
 new Vue({
+    store,
     router,
     render: h => h(App),
 
