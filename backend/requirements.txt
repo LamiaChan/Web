@@ -47,4 +47,5 @@ urllib3==1.23
 wcwidth==0.1.7
 Werkzeug==0.14.1
 django-filter
-rest_framework_jwt
+djangorestframework-jwt
+djangorestframework-simplejwt

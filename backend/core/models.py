@@ -1,9 +1,11 @@
+from __future__                 import unicode_literals
 from django.db                  import models
 from django.urls                import reverse
 from django.utils               import timezone
 from django.utils.translation   import ugettext_lazy as _
 from urllib.parse 		        import urlparse
 from datetime                   import datetime
+from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin,BaseUserManager)
 
 
 class Source(models.Model):
