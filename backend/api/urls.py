@@ -2,7 +2,13 @@ from rest_framework import routers
 from django.urls import include, path
 
 from . import views
-from .views import MangaViewSet, ChapterViewSet, PageViewSet, TagViewSet, JavaAppMangaViewSet
+from .views import MangaViewSet, ChapterViewSet, PageViewSet, TagViewSet, JavaAppMangaViewSet, CreateUserAPIView
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 
 router = routers.DefaultRouter()
@@ -13,9 +19,10 @@ router.register(r'page', PageViewSet)
 router.register(r'tag', TagViewSet)
 
 urlpatterns = [
-    path('login/', views.LoginView.as_view(), name='Login'),
-    # ex: api/user/register/
-    path('register/', views.RegisterView.as_view(), name='Register'),
+    path('hello/', views.HelloView.as_view(), name='hello'),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('create/', CreateUserAPIView.as_view()),
 ]
 
 urlpatterns += router.urls
