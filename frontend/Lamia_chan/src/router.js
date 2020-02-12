@@ -45,7 +45,7 @@ export default new Router({
             props: true
         },
         {
-            path: '/auth',
+            path: '/auth/:type',
             component: Auth
         }
     ]

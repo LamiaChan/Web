@@ -63,7 +63,7 @@ class ChapterSerializer(serializers.ModelSerializer):
         model = Chapter
         fields = [
             'id', 
-            'title', 
+            'title',
             'manga', 
             'page_set'
             
