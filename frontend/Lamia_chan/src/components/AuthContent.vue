@@ -1,7 +1,7 @@
 <template>
     <div id="vue">
         <div class="wrapper fadeInDown">
-            <div v-if="page_type == 'login'" id="formContent">
+            <div id="formContent">
                 <div class="fadeIn first">
                     <h1>Войти</h1>
                 </div>
@@ -11,39 +11,15 @@
                     <input v-on:click="sub" type="submit" class="fadeIn fourth" value="Войти">
 
                 <div id="formFooter">
-                    <a v-bind:href="'/auth/register'">Нету аккаунта?</a>
+                    <router-link class="nav-link" to="/register">Нету аккаунта?</router-link>
                     <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
                 </div>
                 
                 <div v-for="(err,index) in errors" :key="index">
                     {{err}}
                 </div>
-
-            </div>
-            <div v-else id="formContent">
-                <div class="fadeIn first">
-                    <h1>Регистрация</h1>
-                </div>
-
-                    <input v-model="login" type="text" id="login" class="fadeIn second" required placeholder="Логин">
-                    <input v-model="pass"  type="password" id="password" class="fadeIn third" required placeholder="Пароль">
-                    <input v-model="email"  type="email" id="email" class="fadeIn third" required placeholder="Почта">
-                    <input v-on:click="sub" type="submit" class="fadeIn fourth" value="Зарегистрироваться">
-
-                <div id="formFooter">
-                    <a v-bind:href="'/auth/login'">Есть аккаунт?</a>
-                    <!--<a class="underlineHover" href="#">Forgot Password?</a> -->
-                </div>
-
-                <div v-for="(err,index) in errors" :key="index">
-                    {{err}}
-                </div>
-                
-                <div v-for="(succ,index) in successful" :key="index">
-                    {{succ}}
-                </div>
-            </div>
         </div>
+    </div>
     </div>
 </template>
 
@@ -57,7 +33,6 @@ export default {
             manga: [],
             errors: [],
             successful: [],
-            page_type: "",
             login: "",
             pass: "",
             email: "",
@@ -110,21 +85,9 @@ export default {
                     this.errors.push('Пароль дожен быть длинее 6 символов');
                 }
             }
-
-            if(this.page_type == 'register'){
-                if(!this.email){
-                    this.errors.push('Введите email');
-                } else {
-                    if(!email_regx.test(this.email)){
-                        this.errors.push('Уверены, что email введен верно?');
-                    }
-                }
-            
-            }
             
             if(this.errors.length == 0){
                 
-                if(this.page_type == 'login'){
 
                     axios.post(this.url.getToken,{
                         "username": this.login,
@@ -145,38 +108,7 @@ export default {
                         this.errors.push('Не верный логин или пароль'); 
 
                     });
-            } 
-
-            if(this.errors.length == 0){
-                if(this.page_type == 'register'){
-
-                    axios.post(this.url.createUser,{
-                        "username": this.login,
-                        "email": this.email,
-                        "password": this.pass
-                        
-                    })
-                    .then(response => { 
-                        this.successful.push('Аккаунт создан'); 
-                        console.log(response.data);
-                        this.login = '';
-                        this.pass = '';
-                        this.email = '';
-
-                        /*
-                            this.token_refresh = response.data.refresh;
-                            this.token_access = response.data.access;
-                            this.createLocalStorage()
-                        */
-
-                    })
-                    .catch(error => {
-                        console.log(error.response);
-                        //this.errors.push('Не верный логин или пароль'); 
-
-                    });
-                }
-            }
+            
         } 
           
       },
@@ -200,7 +132,7 @@ export default {
     },
 
     beforeMount(){
-      this.page_type = this.getPageUrl()
+
     },
 
 }

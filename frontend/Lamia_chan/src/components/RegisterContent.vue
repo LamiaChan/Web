@@ -12,8 +12,7 @@
                     <input v-on:click="sub" type="submit" class="fadeIn fourth" value="Зарегистрироваться">
 
                 <div id="formFooter">
-                    <a v-bind:href="'/auth/login'">Есть аккаунт?</a>
-                    <!--<a class="underlineHover" href="#">Forgot Password?</a> -->
+                    <router-link class="nav-link" to="/auth">Есть аккаунт?</router-link>
                 </div>
                 
 

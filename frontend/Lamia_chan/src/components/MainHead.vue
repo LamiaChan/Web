@@ -19,7 +19,7 @@
                 <router-link class="nav-link" to="/about">О нас </router-link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" v-bind:href="'/auth/login'">Войти </a>
+                <router-link class="nav-link" to="/auth">Войти</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" to="/register">Регистрация</router-link>
