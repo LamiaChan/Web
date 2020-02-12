@@ -136,6 +136,8 @@ export default {
                         this.token_refresh = response.data.refresh;
                         this.token_access = response.data.access;
                         this.createLocalStorage()
+                        this.login = '';
+                        this.pass = '';
                         
                     })
                     .catch(error => {
@@ -157,6 +159,10 @@ export default {
                     .then(response => { 
                         this.successful.push('Аккаунт создан'); 
                         console.log(response.data);
+                        this.login = '';
+                        this.pass = '';
+                        this.email = '';
+
                         /*
                             this.token_refresh = response.data.refresh;
                             this.token_access = response.data.access;
@@ -217,9 +223,9 @@ h2 {
     margin: 40px 8px 10px 8px; 
     color: #cccccc;
 }
+</style>
 
-
-
+<style>
 /* STRUCTURE */
 
 .wrapper {

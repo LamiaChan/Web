@@ -7,6 +7,7 @@ import Reading from '@/views/Reading'
 import TagsSelect from '@/views/TagsSelect'
 import Tag from '@/views/Tag'
 import Auth from '@/views/Auth'
+import Register from '@/views/Register'
 
 Vue.use(Router)
 
@@ -47,6 +48,10 @@ export default new Router({
         {
             path: '/auth/:type',
             component: Auth
+        },
+        {
+            path: '/register',
+            component: Register
         }
     ]
 })

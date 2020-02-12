@@ -21,6 +21,9 @@
               <li class="nav-item">
                 <a class="nav-link" v-bind:href="'/auth/login'">Войти </a>
               </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/register">Регистрация</router-link>
+              </li>
             </ul>
             
 
