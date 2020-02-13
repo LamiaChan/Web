@@ -19,8 +19,24 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    
+    name: 'user',
+    data(){
+        return {
+
+        }
+    },
+    methods: {
+        takeTag(){
+            axios.get('http://localhost:8000/api/v1/userinfo').then((response) => {
+                console.log(response);
+            })
+        }
+    },
+    beforeMount(){
+      this.takeTag()
+    },
 }
 </script>
 
