@@ -18,7 +18,7 @@ router.register(r'page', PageViewSet)
 router.register(r'tag', TagViewSet)
 
 urlpatterns = [
-    path('hello/', views.HelloView.as_view(), name='hello'),
+    path('userinfo/', views.GetUserInfo.as_view(), name='userinfo'),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/check', TokenVerifyView.as_view(), name='token_checker'),

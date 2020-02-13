@@ -13,14 +13,29 @@ from rest_framework.decorators      import permission_classes
 from django.contrib.auth            import get_user_model
 
 # token test
+'''
 class HelloView(APIView):
     permission_classes = (IsAuthenticated,)             # <-- And here
 
-    def get(self, request):
+    def post(self, request):
         content = {'message': 'Hello, World!'}
         return Response(content)
+'''
 
 User = get_user_model()
+
+
+class GetUserInfo(APIView):
+
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserSerializer
+
+    def get(self, request, *args, **kwargs):
+        # serializer to handle turning our `User` object into something that
+        # can be JSONified and sent to the client.
+        serializer = self.serializer_class(request.user)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class CreateUserAPIView(CreateAPIView):
     queryset = User.objects.all()
