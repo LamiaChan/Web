@@ -8,6 +8,7 @@ import TagsSelect from '@/views/TagsSelect'
 import Tag from '@/views/Tag'
 import Auth from '@/views/Auth'
 import Register from '@/views/Register'
+import UserPage from '@/views/UserPage'
 
 Vue.use(Router)
 
@@ -52,6 +53,10 @@ export default new Router({
         {
             path: '/register',
             component: Register
+        },
+        {
+            path: '/mypage',
+            component: UserPage
         }
     ]
 })
