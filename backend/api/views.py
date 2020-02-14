@@ -43,11 +43,11 @@ class CreateUserAPIView(CreateAPIView):
 
 class MangaViewSet(viewsets.ModelViewSet):
     #pagination_class = StandardResultsSetPagination
-    queryset = Manga.objects.all()
+    queryset = Manga.objects.all().order_by('-updated')
     serializer_class = MangaSerializer
 
 class ChapterViewSet(viewsets.ModelViewSet):
-    queryset = Chapter.objects.all()
+    queryset = Chapter.objects.all().order_by('-updated')
     serializer_class = ChapterSerializer
 
 class PageViewSet(viewsets.ModelViewSet):
