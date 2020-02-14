@@ -98,7 +98,8 @@ export default {
                         //console.log(response.data);
                         this.token_refresh = response.data.refresh;
                         this.token_access = response.data.access;
-                        this.createLocalStorage()
+                        this.createLocalStorage();
+                        this.$store.dispatch('writeAuthStatus', 1)
                         this.login = '';
                         this.pass = '';
                         this.$router.push('/mypage');

@@ -9,7 +9,8 @@ export default new Vuex.Store({
         count: 1,
         todos: [],
         token_refresh: 'empty',
-        token_access:  'empty'
+        token_access:  'empty',
+        authStatus: 0
     },
     mutations: {
         SET_LOADING_STATUS(state, status) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
         },
         SET_TOKEN_ACCESS(state,token_access){
             state.token_access = token_access
+        },
+        SET_AUTH_STATUS(state,authStatus){
+            state.authStatus = authStatus
         }
     },
     actions: {
@@ -36,6 +40,9 @@ export default new Vuex.Store({
         },
         writeToken_refresh(context, newToken_refresh){
             context.commit('SET_TOKEN_REFRESH', newToken_refresh)
+        },
+        writeAuthStatus(context, newSuthStatus){
+            context.commit('SET_AUTH_STATUS', newSuthStatus)
         }
 
     },
@@ -48,6 +55,9 @@ export default new Vuex.Store({
         },
         takeToken_refresh(state){
             return state.token_refresh
+        },
+        takeAuthStatus(state){
+            return state.authStatus
         }
     }
 })
