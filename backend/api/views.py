@@ -11,6 +11,7 @@ from rest_framework.permissions     import IsAuthenticated, AllowAny
 from rest_framework.decorators      import api_view
 from rest_framework.decorators      import permission_classes
 from django.contrib.auth            import get_user_model
+from rest_framework.pagination      import PageNumberPagination
 
 # token test
 '''
@@ -21,6 +22,11 @@ class HelloView(APIView):
         content = {'message': 'Hello, World!'}
         return Response(content)
 '''
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 8
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
 
 User = get_user_model()
 
@@ -45,9 +51,10 @@ class MangaViewSet(viewsets.ModelViewSet):
     queryset = Manga.objects.all()
     serializer_class = MangaSerializer
 
-class JavaAppMangaViewSet(viewsets.ModelViewSet):
+class MangaViewSetv2(viewsets.ModelViewSet):
     queryset = Manga.objects.all()
     serializer_class = MangaSerializer
+    pagination_class = StandardResultsSetPagination
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
