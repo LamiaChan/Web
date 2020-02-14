@@ -48,20 +48,9 @@ class CreateUserAPIView(CreateAPIView):
     serializer_class = UserSerializer
 
 class MangaViewSet(viewsets.ModelViewSet):
+    #pagination_class = StandardResultsSetPagination
     queryset = Manga.objects.all()
     serializer_class = MangaSerializer
-
-class MangaViewSetv2(viewsets.ModelViewSet):
-    queryset = Manga.objects.all()
-    serializer_class = MangaSerializer
-    pagination_class = StandardResultsSetPagination
-
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        serializer_data = serializer.data # get the default serialized representation
-        custom_data = {'content': serializer_data} # custom representation
-        return Response(custom_data)
 
 class ChapterViewSet(viewsets.ModelViewSet):
     queryset = Chapter.objects.all()

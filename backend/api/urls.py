@@ -2,7 +2,7 @@ from rest_framework import routers
 from django.urls import include, path
 
 from . import views
-from .views import MangaViewSet, ChapterViewSet, PageViewSet, TagViewSet, MangaViewSetv2, CreateUserAPIView
+from .views import MangaViewSet, ChapterViewSet, PageViewSet, TagViewSet, CreateUserAPIView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -12,7 +12,6 @@ from rest_framework_simplejwt.views import (
 
 router = routers.DefaultRouter()
 router.register(r'manga', MangaViewSet)
-router.register(r'manga_v2', MangaViewSetv2)
 router.register(r'chapter', ChapterViewSet)
 router.register(r'page', PageViewSet)
 router.register(r'tag', TagViewSet)
