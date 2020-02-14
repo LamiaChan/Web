@@ -24,14 +24,34 @@ export default {
     name: 'user',
     data(){
         return {
-
+            url:{
+                getUserInfo: 'http://localhost:8000/api/v1/userinfo'
+            },
+            token: '',
         }
     },
     methods: {
         takeTag(){
-            axios.get('http://localhost:8000/api/v1/userinfo').then((response) => {
-                console.log(response);
-            })
+
+            this.token = localStorage.getItem('token_access');
+
+            if (this.token != 'empty'){
+
+                // axios.get('http://localhost:8000/api/v1/userinfo', {
+                //     Authorization: 'Bearer ' + this.token 
+                // }).then((response) => {
+                //     console.log(response);
+                // })
+
+                axios.get(this.url.getUserInfo, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${this.token}`
+                    }
+                })
+
+            }
         }
     },
     beforeMount(){
