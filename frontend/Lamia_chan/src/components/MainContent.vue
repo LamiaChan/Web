@@ -4,8 +4,11 @@
             <div class="container">
                 <h2>Недавно обновленные</h2>
                 <div class="row">
-                    <!-- добавить сортировку по дате обнавления (testapione.updated) -->
-                    <div class="col-md-3" v-for="(testapione,index) in testapi.sort( (a,b) => b.updated.localeCompare(a.updated) ).slice(0, 8)" :key="index">
+                    
+                    <!-- добавить сортировку по дате обнавления (testapione.updated) 
+                    .sort( (a,b) => b.chapter_set.updated.localeCompare(a.chapter_set.updated) )-->
+
+                    <div class="col-md-3" v-for="(testapione,index) in testapi" :key="index">
                         <router-link v-bind:to="'/detail/'+ testapione.id">
                             <div class="manga">
                                 <div class="manga__img">
