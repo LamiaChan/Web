@@ -11,22 +11,16 @@ from rest_framework.permissions     import IsAuthenticated, AllowAny
 from rest_framework.decorators      import api_view
 from rest_framework.decorators      import permission_classes
 from django.contrib.auth            import get_user_model
-from rest_framework.pagination      import PageNumberPagination
+#from rest_framework.pagination      import PageNumberPagination
 
-# token test
+
 '''
-class HelloView(APIView):
-    permission_classes = (IsAuthenticated,)             # <-- And here
-
-    def post(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
-'''
-
+need to refactor frontend
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 8
     page_size_query_param = 'page_size'
     max_page_size = 1000
+'''
 
 User = get_user_model()
 
