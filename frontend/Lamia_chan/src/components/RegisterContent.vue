@@ -100,6 +100,7 @@ export default {
                         this.login = '';
                         this.pass = '';
                         this.email = '';
+                        this.$router.push('/auth');
 
                         /*
                             this.token_refresh = response.data.refresh;

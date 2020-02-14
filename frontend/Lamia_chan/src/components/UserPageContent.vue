@@ -49,9 +49,8 @@ export default {
                 .catch(error => {
                     //console.log(error.response);
                     if (error.response.statusText == "Unauthorized"){
-                        console.log('выйди и зайди нормально');
                         // перенапроавить на страницу аунтификациии 
-                        this.router.go('/auth');
+                        this.$router.push('/auth');
                     }
 
                 });

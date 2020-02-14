@@ -101,6 +101,7 @@ export default {
                         this.createLocalStorage()
                         this.login = '';
                         this.pass = '';
+                        this.$router.push('/mypage');
                         
                     })
                     .catch(error => {
