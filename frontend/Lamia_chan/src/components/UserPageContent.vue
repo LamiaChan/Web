@@ -37,20 +37,24 @@ export default {
 
             if (this.token != 'empty'){
 
-                // axios.get('http://localhost:8000/api/v1/userinfo', {
-                //     Authorization: 'Bearer ' + this.token 
-                // }).then((response) => {
-                //     console.log(response);
-                // })
-
                 axios.get(this.url.getUserInfo, {
                     
                     headers: {
                         'Authorization': `Bearer ${this.token}`
                     }
-                }).then((response) => {
+                })
+                .then((response) => {
                      console.log(response);
                 })
+                .catch(error => {
+                    //console.log(error.response);
+                    if (error.response.statusText == "Unauthorized"){
+                        console.log('выйди и зайди нормально');
+                        // перенапроавить на страницу аунтификациии 
+                        this.router.go('/auth');
+                    }
+
+                });
 
             }
         }
