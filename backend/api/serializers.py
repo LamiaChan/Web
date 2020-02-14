@@ -65,6 +65,7 @@ class ChapterSerializer(serializers.ModelSerializer):
             'id', 
             'title',
             'manga', 
+            'updated',
             'page_set'
             
         ]
