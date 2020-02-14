@@ -25,7 +25,7 @@ export default {
     data(){
         return {
             url:{
-                getUserInfo: 'http://localhost:8000/api/v1/userinfo'
+                getUserInfo: 'http://localhost:8000/api/v1/userinfo/'
             },
             token: '',
         }
@@ -44,11 +44,12 @@ export default {
                 // })
 
                 axios.get(this.url.getUserInfo, {
+                    
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Accept': 'application/json',
                         'Authorization': `Bearer ${this.token}`
                     }
+                }).then((response) => {
+                     console.log(response);
                 })
 
             }
