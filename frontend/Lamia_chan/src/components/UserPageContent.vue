@@ -6,8 +6,8 @@
                     <div class="leftBar">
                         <div class="imgContainer"><img src="" class="userImg" alt=""></div>
                         <div><button class="btn btn-outline-dark userButton">Загрузить фото</button></div>
-                        <div class="borderG"><span class="userName">{{user.username}}</span></div>
-                        <div class="borderG"><span class="userEmail">{{user.email}}</span></div>
+                        <div><span class="userName">{{user.username}}</span></div>
+                        <div><span class="userEmail">{{user.email}}</span></div>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -72,8 +72,7 @@ export default {
     height: 500px;
     margin-top: 30px;
     text-align: center;
-    border: 2px #38ef7d solid;
-    border-radius: 8px;
+    border: 2px #93a0ad solid;
     padding-top: 20px;
 }
 .imgContainer{
@@ -81,17 +80,14 @@ export default {
     height: 250px;
     margin-left: auto;
     margin-right: auto;
-    background: #38ef7d;
+    background: #93a0ad;
 }
 .userName, .userEmail{
+    display: inline-block;
     font-size: 20px;
     margin-top: 20px;
 }
 .userButton{
     margin-top: 10px;
-}
-.borderG{
-        border-bottom: 2px #38ef7d solid;
-        margin-top: 20px;
 }
 </style>
