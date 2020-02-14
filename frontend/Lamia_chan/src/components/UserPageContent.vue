@@ -6,8 +6,8 @@
                     <div class="leftBar">
                         <div class="imgContainer"><img src="" class="userImg" alt=""></div>
                         <div><button class="btn btn-outline-dark userButton">Загрузить фото</button></div>
-                        <div><span class="userName">name</span></div>
-                        <div><span class="userEmail">email</span></div>
+                        <div class="borderG"><span class="userName">{{user.username}}</span></div>
+                        <div class="borderG"><span class="userEmail">{{user.email}}</span></div>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -24,6 +24,7 @@ export default {
     name: 'user',
     data(){
         return {
+            user: [],
             url:{
                 getUserInfo: 'http://localhost:8000/api/v1/userinfo/'
             },
@@ -45,6 +46,8 @@ export default {
                 })
                 .then((response) => {
                      console.log(response);
+                     this.user = response.data;
+                      console.log(this.user.username)
                 })
                 .catch(error => {
                     //console.log(error.response);
@@ -67,15 +70,18 @@ export default {
 <style scoped>
 .leftBar{
     height: 500px;
-    background-color: skyblue;
+    margin-top: 30px;
     text-align: center;
+    border: 2px #38ef7d solid;
+    border-radius: 8px;
+    padding-top: 20px;
 }
 .imgContainer{
     width: 250px;
     height: 250px;
     margin-left: auto;
     margin-right: auto;
-    background: yellow;
+    background: #38ef7d;
 }
 .userName, .userEmail{
     font-size: 20px;
@@ -83,5 +89,9 @@ export default {
 }
 .userButton{
     margin-top: 10px;
+}
+.borderG{
+        border-bottom: 2px #38ef7d solid;
+        margin-top: 20px;
 }
 </style>

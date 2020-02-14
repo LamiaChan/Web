@@ -18,7 +18,10 @@
               <li class="nav-item">
                 <router-link class="nav-link" to="/about">О нас </router-link>
               </li>
-              <li class="nav-item">
+              <li v-if="user.username" class="nav-item">
+                <router-link class="nav-link" to="/mypage">{{user.username}}</router-link>
+              </li>
+                <li v-else class="nav-item">
                 <router-link class="nav-link" to="/auth">Войти</router-link>
               </li>
             </ul>
@@ -64,9 +67,12 @@ export default {
     return {
       manga: [],
       searchQuery:'',
+      token: "",
+      user: [],
       
       url: {
           mangalink: 'http://localhost:8000/api/v1/manga/?format=json',
+          getUserInfo: 'http://localhost:8000/api/v1/userinfo/'
       },
     }
   },
@@ -77,10 +83,40 @@ export default {
             this.manga = response.data;
         });
     },
+        takeTag(){
+
+            this.token = localStorage.getItem('token_access');
+
+            if (this.token != 'empty'){
+
+                axios.get(this.url.getUserInfo, {
+                    
+                    headers: {
+                        'Authorization': `Bearer ${this.token}`
+                    }
+                })
+                .then((response) => {
+                     console.log("Answer:")
+                     console.log(response);
+                     this.user = response.data;
+                      console.log(this.user.username)
+                })
+                .catch(error => {
+                    //console.log(error.response);
+                    if (error.response.statusText == "Unauthorized"){
+                        // перенапроавить на страницу аунтификациии 
+                        this.$router.push('/auth');
+                    }
+
+                });
+
+            }
+        }
     
   },
     beforeMount(){
-      this.getHashtags()
+      this.getHashtags(),
+      this.takeTag()
  },
 
   computed: {
