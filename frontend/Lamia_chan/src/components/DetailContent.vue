@@ -26,7 +26,7 @@
 
                         <div v-for="(mangaTags,index) in manga.tags" :key="index" class="tags">
                             <div v-for="(tags,index) in tags" :key="index" class="tags">
-                                <router-link v-if="mangaTags == tags.id" v-bind:to="'/tags/' + mangaTags"  class="tag">{{tags.title}}</router-link>
+                                <span @click="sendTags(tags.id)" v-if="mangaTags == tags.id"  class="tag">{{tags.title}}</span>
                             </div>
                         </div>
 
@@ -103,6 +103,10 @@ export default {
             axios.get(this.url.tagslink).then((response) => {
                 this.tags = response.data;
             });
+        },
+        sendTags(tag){
+            this.$store.dispatch('writeChosenTags', tag)
+            this.$router.push('/tags')
         }
         // takeToken1(){
         //     return this.$store.getters.takeToken;

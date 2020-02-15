@@ -96,6 +96,7 @@ export default {
             // Даннаяфункция отвечает за то, что если выбранно несколько тэгов, которые одновременно есть
             // У одной манги, то она не будет выводиться несколько раз ; )
             this.repeatStatus = a;
+            // Если noManga будет равна 0, товыведется сообщения об отсутствии манги по этому тэгу
             if (a == 1){
                 this.noManga = 1;
             }
@@ -124,6 +125,8 @@ export default {
     }
     .manga{
         text-align: center;
+        margin-bottom: 15px;
+        margin-top: 15px;
     }
     .manga__img__pict{
         width: 200px;
