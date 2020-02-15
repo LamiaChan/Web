@@ -6,12 +6,44 @@ from django.contrib.auth                    import get_user_model
 
 
 User = get_user_model()
+'''
+class MangaUserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username')
+    email = serializers.CharField(source='user.email')
+    password = serializers.CharField(source='user.password')
+    user_image = serializers.Field(source='user_image')
+    user_moto = serializers.Field(source='user_moto')
 
-class UserSerializer(ModelSerializer):
+    class Meta:
+        model = MangaUser
+        fields = ('id', 'username', 'email', 'password', 'user_image', 'user_moto')
+
+    def restore_object(self, attrs, instance=None):
+        """
+        Given a dictionary of deserialized field values, either update
+        an existing model instance, or create a new model instance.
+        """
+        if instance is not None:
+            instance.user.email = attrs.get('user.email', instance.user.email)
+            instance.user_image = attrs.get('user_image', instance.user_image)
+            instance.user_moto = attrs.get('user_moto', instance.user_moto)
+            instance.user.password = attrs.get('user.password', instance.user.password)
+            return instance
+
+        user = User.objects.create_user(username=attrs.get('user.username'), email= attrs.get('user.email'), password=attrs.get('user.password'))
+        return MangaUser(user=user)
+'''
+
+class UserSerializer(serializers.ModelSerializer):
+    #mangauser_set = serializers.SerializerMethodField()
+    user_image = serializers.ImageField(source='mangauser.user_image')
+    user_moto = serializers.CharField(source='mangauser.user_moto')
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'password']
+        fields = ['id', 'username', 'email', 'password', 'user_image', 'user_moto']
         extra_kwargs = {'password': {'write_only': True}}
+
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)

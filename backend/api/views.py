@@ -6,7 +6,7 @@ from rest_framework                 import status
 from rest_framework.generics        import CreateAPIView
 from rest_framework.generics        import RetrieveUpdateAPIView
 from .serializers                   import MangaSerializer, ChapterSerializer, PageSerializer, TagSerializer, UserSerializer
-from core.models                    import Manga, Page, Source, Chapter, Tag
+from core.models                    import Manga, Page, Source, Chapter, Tag, MangaUser
 from rest_framework.permissions     import IsAuthenticated, AllowAny
 from rest_framework.decorators      import api_view
 from rest_framework.decorators      import permission_classes
@@ -24,7 +24,6 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 User = get_user_model()
 
-
 class GetUserInfo(APIView):
 
     permission_classes = (IsAuthenticated,)
@@ -33,7 +32,7 @@ class GetUserInfo(APIView):
     def get(self, request, *args, **kwargs):
         # serializer to handle turning our `User` object into something that
         # can be JSONified and sent to the client.
-        serializer = self.serializer_class(request.user)
+        serializer = self.serializer_class(request.user, context={"request":request})
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 

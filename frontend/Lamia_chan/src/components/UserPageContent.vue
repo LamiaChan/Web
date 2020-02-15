@@ -4,10 +4,11 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="leftBar">
-                        <div class="imgContainer"><img src="" class="userImg" alt=""></div>
+                        <div class="imgContainer"><img :src="user.user_image" class="userImg" alt=""></div>
                         <div><button class="btn btn-outline-dark userButton">Загрузить фото</button></div>
                         <div><span class="userName">{{user.username}}</span></div>
                         <div><span class="userEmail">{{user.email}}</span></div>
+                        <div><span class="userAbout">О себе: {{user.user_moto}}</span></div>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -68,6 +69,9 @@ export default {
 </script>
 
 <style scoped>
+.userImg{
+    width: 250px;
+}
 .leftBar{
     height: 500px;
     margin-top: 30px;
@@ -82,7 +86,7 @@ export default {
     margin-right: auto;
     background: #93a0ad;
 }
-.userName, .userEmail{
+.userName, .userEmail, .userAbout{
     display: inline-block;
     font-size: 20px;
     margin-top: 20px;

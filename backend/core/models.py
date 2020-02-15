@@ -6,7 +6,7 @@ from django.utils.translation   import ugettext_lazy as _
 from urllib.parse 		        import urlparse
 from datetime                   import datetime
 from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin,BaseUserManager)
-
+from django.contrib.auth.models import User
 
 class Source(models.Model):
     url = models.URLField()
@@ -70,3 +70,13 @@ class Page(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.image.url)
+
+
+class MangaUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_image = models.ImageField(upload_to='upicks')
+    user_moto = models.CharField(max_length=256)
+    '''
+    user_book_marks = models.ManyToManyField(Page)
+    user_favorite_manga = models.ManyToManyField(Manga)
+    '''
