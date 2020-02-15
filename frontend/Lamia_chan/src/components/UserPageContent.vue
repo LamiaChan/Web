@@ -9,6 +9,7 @@
                         <div><span class="userName">{{user.username}}</span></div>
                         <div><span class="userEmail">{{user.email}}</span></div>
                         <div><span class="userAbout">О себе: {{user.user_moto}}</span></div>
+                        <div><button @click="exitAccount()" class="exitButton">Выйти</button></div>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -60,6 +61,13 @@ export default {
                 });
 
             }
+        },
+        exitAccount(){
+            window.localStorage.setItem('token_access','empty')
+            window.localStorage.setItem('token_refresh','empty')
+            this.$store.dispatch('writeToken_access', 'empty')
+            this.$store.dispatch('writeToken_refresh', 'empty')
+            this.$router.push('/auth');
         }
     },
     beforeMount(){
@@ -94,4 +102,5 @@ export default {
 .userButton{
     margin-top: 10px;
 }
+
 </style>
