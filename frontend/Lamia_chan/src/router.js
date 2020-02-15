@@ -55,6 +55,7 @@ export default new Router({
             component: Register
         },
         {
+            // need to refactor 
             path: '/mypage',
             component: UserPage
         }
