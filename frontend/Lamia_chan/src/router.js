@@ -1,14 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home'
-import About from '@/views/About'
-import Detail from '@/views/Detail'
-import Reading from '@/views/Reading'
-import TagsSelect from '@/views/TagsSelect'
-import Tag from '@/views/Tag'
-import Auth from '@/views/Auth'
-import Register from '@/views/Register'
-import UserPage from '@/views/UserPage'
 
 Vue.use(Router)
 
@@ -19,45 +10,45 @@ export default new Router({
         
         {
             path: '/',
-            component: Home
+            component: () => import('@/views/Home')
         },
 
         {
             path: '/about',
-            component: About
+            component: () => import('@/views/About')
         },
         {
             path: '/detail/:id',
-            component: Detail,
+            component: () => import('@/views/Detail'),
             props: true
         },
         {
             path: '/reading/:id/:chapter',
-            component: Reading,
+            component: () => import('@/views/Reading'),
             props: true
         },
         {
             path: '/tag',
-            component: Tag,
+            component: () => import('@/views/Tag'),
             props: true
         },
         {
             path: '/tags/:id',
-            component: TagsSelect,
+            component: () => import('@/views/TagsSelect'),
             props: true
         },
         {
             path: '/auth',
-            component: Auth
+            component: () => import('@/views/Auth')
         },
         {
             path: '/register',
-            component: Register
+            component: () => import('@/views/Register')
         },
         {
             // need to refactor 
             path: '/mypage',
-            component: UserPage
+            component: () => import('@/views/UserPage')
         }
     ]
 })
