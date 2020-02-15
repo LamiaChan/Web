@@ -18,8 +18,8 @@
               <li class="nav-item">
                 <router-link class="nav-link" to="/about">О нас </router-link>
               </li>
-              <li v-if="takeAuthStatus() == 1" class="nav-item">
-                <router-link class="nav-link" to="/mypage">Мой профиль</router-link>
+              <li v-if="user.username" class="nav-item">
+                <router-link class="nav-link" to="/mypage">{{ user.username }}</router-link>
               </li>
                 <li v-else class="nav-item">
                 <router-link class="nav-link" to="/auth">Войти</router-link>
@@ -86,10 +86,33 @@ export default {
     takeAuthStatus(){
           return this.$store.getters.takeAuthStatus;
       },
+      // Функция проверяет, авторезирован ли пользователь, и если да, то
+      // в хедере выводит ссылку на его страницу, иначе вывдит кнопку "Войти"
+        takeTag(){
+            this.token = localStorage.getItem('token_access');
+
+            if (this.token != 'empty'){
+
+                axios.get(this.url.getUserInfo, {
+                    
+                    headers: {
+                        'Authorization': `Bearer ${this.token}`
+                    }
+                })
+                .then((response) => {
+                     this.user = response.data;
+                })
+                .catch(error => {
+                });
+
+            }
+        },
+    
     
   },
     beforeMount(){
-      this.getHashtags()
+      this.getHashtags(),
+      this.takeTag()
  },
 
   computed: {
@@ -109,9 +132,6 @@ export default {
 </script>
 
 <style scoped>
-  .search_description_block{
-
-  }
   .search__img{
     width: 30px;
   }
