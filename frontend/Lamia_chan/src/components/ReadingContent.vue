@@ -76,20 +76,34 @@ export default {
             pgCount: 0,
             manga: [],
             chapter: [],
+            nextPgStatus: 0,
             url: {
                 chapterlink: 'http://localhost:8000/api/v1/chapter/' + this.getPageUrl(1)  + '/?format=json',
-                mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl(2)  + '/?format=json'
+                mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl(2)  + '/?format=json',
+                nextlink: 'http://localhost:8000/api/v1/chapter/' + (Number(this.getPageUrl(1))+1) + '/?format=json'
             },
         }
     },
 
     methods: {
+        // Эта функция служит для того, чтобы перелистывать страницы, а когда заканчивается глава
+        // и пользователь нажимает, чтобы перейти на следующую страницу,
+        // его перекидовало на следующую главу, если она есть
+        
         nextPg(){
             if(this.pgCount<this.chapter.page_set.length-1){
                 this.pgCount++;
+                console.log(this.getNextPage());
             }
+            else if (this.nextPgStatus == 1){ // проверяем есть ли следующая глава
+                this.nextPgStatus = 0; // переменная, отвечающая за статус следующей главы (0 - нету, 1 - есть)
+                let nextPg = Number(this.getPageUrl(1)) + 1;
+                window.location = '/reading/' + this.getPageUrl(2) + '/' + nextPg; // формируем ссылку на следующую главу
+            }
+
         },
         /*
+            Функция, которая перелистывает на страницу назад (возможно не нужна)
             prevPg(){
                 if(this.pgCount>=1){
                     this.pgCount--;
@@ -128,6 +142,16 @@ export default {
                 */
                 });
         },
+        getNextPage(){
+            // Данная функция проверяет, есть ли следующая глава и обновляет статус
+            console.log(this.url.nextlink)
+            axios.get(this.url.nextlink).then((response) => {
+                this.nextPgStatus = 1;
+            })
+            .catch(error => {
+                this.nextPgStatus = 0;
+            });
+        }
 
     },
 
