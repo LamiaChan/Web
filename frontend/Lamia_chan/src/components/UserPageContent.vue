@@ -9,7 +9,7 @@
                         <div><span class="userName">{{user.username}}</span></div>
                         <div><span class="userEmail">{{user.email}}</span></div>
                         <div><span class="userAbout">О себе: {{user.user_moto}}</span></div>
-                        <div><button @click="exitAccount()" class="exitButton">Выйти</button></div>
+                        <div><button @click="exitAccount()" class="blubtn">Выйти</button></div>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -81,7 +81,7 @@ export default {
     width: 250px;
 }
 .leftBar{
-    height: 500px;
+    height: 530px;
     margin-top: 30px;
     text-align: center;
     border: 2px #93a0ad solid;
@@ -101,6 +101,37 @@ export default {
 }
 .userButton{
     margin-top: 10px;
+}
+button.blubtn {
+  width:90px;
+  background-color: #fff;
+  text-align:center;
+  display:block;
+  font-family: arial;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 14px;
+  border: #1071FF 1px solid;
+  color: #1071FF;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+   margin: 20px auto;
+  transition: .5s;
+  border-radius: 0px;
+}
+button.blubtn:hover {
+  top: 5px;
+  transition: .5s;
+  color: red;
+  border: red 1px solid;
+  border-radius: 10px;
+}
+button.blubtn:active {
+  color: #000;
+  border: #1A1A1A 1px solid;
+  transition: .07s;
+  background-color: #FFF;
 }
 
 </style>
