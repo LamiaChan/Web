@@ -2,22 +2,16 @@
     <div class="content">
         <section class="mainManga">
             <div class="container">
-
-                <div v-for="(needTag,index) in $store.getters.takeChosenTags" :key="index">
-                    <h1>{{needTag}}</h1>
-                </div>
-                
-                <h2 class="tag__title">Выбранный тэг: {{ tags.title }}</h2>
-               
                 <div class="row">
                     <!-- добавить сортировку по дате обнавления (testapione.updated) -->
-                     
                     <div v-for="(testapione,index) in manga" :key="index">
+                        {{ mangaRepeat(0)}}
                         <div v-for="(ch, index) in testapione.tags" :key="index">
                             <div v-for="(needTag,index) in $store.getters.takeChosenTags" :key="index">
-                            <div class="col-md-3" v-if="ch == needTag">
+                            <div class="col-md-3" v-if="((ch == needTag)&&(repeatStatus==0))">
                                 <router-link v-bind:to="'/detail/'+ testapione.id">
                                     <div class="manga">
+                                        {{ mangaRepeat(1)}}
                                         <div class="manga__img">
                                             <img :src="testapione.preview_image_url"   alt="" class="manga__img__pict">
                                             <span class="manga__title">{{ testapione.title }}</span>
@@ -30,7 +24,7 @@
                     </div>
                     
                 </div>
-                <div class="">
+                <div v-if="noManga == 0" class="">
                     <h3>Извините, но по данному тэгу пока нет манги ;(</h3>
                 </div>
             </div>
@@ -49,6 +43,8 @@ export default {
             chapter: [],
             tags: [],
             coincidences: 0,
+            repeatStatus: 0,
+            noManga: 0,
             url: {
                 mangalink: 'http://localhost:8000/api/v1/manga/?format=json',
                 tagslink: 'http://localhost:8000/api/v1/tag/?format=json'
@@ -96,8 +92,13 @@ export default {
             }
             return coincidences
         },
-        kek(){
-            console.log('kek')
+        mangaRepeat(a){
+            // Даннаяфункция отвечает за то, что если выбранно несколько тэгов, которые одновременно есть
+            // У одной манги, то она не будет выводиться несколько раз ; )
+            this.repeatStatus = a;
+            if (a == 1){
+                this.noManga = 1;
+            }
         }
     },
 
@@ -105,6 +106,9 @@ export default {
       this.getHashtags(),
       this.getTags()
      
+    },
+    beforeDestroy(){
+        this.$store.dispatch('writeChosenTags', [])
     }
     
 }
