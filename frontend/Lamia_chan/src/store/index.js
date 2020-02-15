@@ -10,7 +10,8 @@ export default new Vuex.Store({
         todos: [],
         token_refresh: 'empty',
         token_access:  'empty',
-        authStatus: 0
+        authStatus: 0,
+        chosenTags: []
     },
     mutations: {
         SET_LOADING_STATUS(state, status) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
         },
         SET_AUTH_STATUS(state,authStatus){
             state.authStatus = authStatus
+        },
+        SET_CHOSEN_TAGS(state,chosenTags){
+            state.chosenTags = chosenTags
         }
     },
     actions: {
@@ -43,6 +47,9 @@ export default new Vuex.Store({
         },
         writeAuthStatus(context, newSuthStatus){
             context.commit('SET_AUTH_STATUS', newSuthStatus)
+        },
+        writeChosenTags(context, newChosenTags){
+            context.commit('SET_CHOSEN_TAGS', newChosenTags)
         }
 
     },
@@ -58,6 +65,9 @@ export default new Vuex.Store({
         },
         takeAuthStatus(state){
             return state.authStatus
+        },
+        takeChosenTags(state){
+            return state.chosenTags
         }
     }
 })

@@ -4,7 +4,13 @@
             <div class="container">
                 <div class="row" >
                     <div v-for="(tagsItem,index) in tags" :key="index" class="tags">
-                        <router-link v-bind:to="'/tags/' + tagsItem.id"  class="tag">{{tagsItem.title}}</router-link>
+                        <!--<router-link v-bind:to="'/tags/' + tagsItem.id"  class="tag">{{tagsItem.title}}</router-link> -->
+                        <span class="tag" @click="$event.target.classList.toggle('red'), getClickedTag(tagsItem.id)">{{tagsItem.title}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button @click="sendTags()" class="btn btn-success">Показать</button>
                     </div>
                 </div>
             </div>
@@ -22,6 +28,7 @@ export default {
             manga: [],
             chapter: [],
             tags: [],
+            takenTags: [],
             url: {
                 tagslink: 'http://localhost:8000/api/v1/tag/?format=json'
             },
@@ -35,6 +42,25 @@ export default {
             axios.get(this.url.tagslink).then((response) => {
                 this.tags = response.data;
             });
+        },
+        getClickedTag(takenTag){
+            let haveTag = 0;
+            for (let i = 0; i < this.takenTags.length; i++) {
+                if (this.takenTags[i] == takenTag){
+                    haveTag = 1;
+                    this.takenTags.splice(i, 1);
+                    break
+                } 
+            }
+            if (haveTag == 0){
+                this.takenTags.push(takenTag);
+                haveTag = 0;
+            }
+            console.log(this.takenTags);
+        },
+        sendTags(){
+            this.$store.dispatch('writeChosenTags', this.takenTags)
+            this.$router.push('/tags')
         },
 
 
@@ -95,5 +121,20 @@ export default {
 }
 .chapter__link{
     font-size: 15px;
+}
+.red{
+    transition-duration: .5s;
+    background: #22c1c3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fdbb2d, #22c1c3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fdbb2d, #22c1c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+    text-decoration: none;
+}
+.red:hover{
+    background: #22c1c3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fdbb2d, #22c1c3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fdbb2d, #22c1c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-shadow: 0px 0px 29px 1px rgba(0,255,102,0.92);
+    text-decoration: none;
 }
 </style>

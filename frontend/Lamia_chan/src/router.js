@@ -33,7 +33,7 @@ export default new Router({
             props: true
         },
         {
-            path: '/tags/:id',
+            path: '/tags',
             component: () => import('@/views/TagsSelect'),
             props: true
         },

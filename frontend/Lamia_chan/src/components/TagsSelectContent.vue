@@ -2,12 +2,20 @@
     <div class="content">
         <section class="mainManga">
             <div class="container">
+
+                <div v-for="(needTag,index) in $store.getters.takeChosenTags" :key="index">
+                    <h1>{{needTag}}</h1>
+                </div>
+                
                 <h2 class="tag__title">Выбранный тэг: {{ tags.title }}</h2>
-                <div class="row" v-if="tagsCheck() != 0">
+               
+                <div class="row">
                     <!-- добавить сортировку по дате обнавления (testapione.updated) -->
+                     
                     <div v-for="(testapione,index) in manga" :key="index">
                         <div v-for="(ch, index) in testapione.tags" :key="index">
-                            <div class="col-md-3" v-if="tags.id == ch">
+                            <div v-for="(needTag,index) in $store.getters.takeChosenTags" :key="index">
+                            <div class="col-md-3" v-if="ch == needTag">
                                 <router-link v-bind:to="'/detail/'+ testapione.id">
                                     <div class="manga">
                                         <div class="manga__img">
@@ -17,10 +25,12 @@
                                     </div>
                                 </router-link>
                             </div>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="" v-else>
+                <div class="">
                     <h3>Извините, но по данному тэгу пока нет манги ;(</h3>
                 </div>
             </div>
@@ -41,7 +51,7 @@ export default {
             coincidences: 0,
             url: {
                 mangalink: 'http://localhost:8000/api/v1/manga/?format=json',
-                tagslink: 'http://localhost:8000/api/v1/tag/' + this.getPageUrl()  + '/?format=json'
+                tagslink: 'http://localhost:8000/api/v1/tag/?format=json'
             },
         }
     },
@@ -64,17 +74,17 @@ export default {
         getHashtags(){
             axios.get(this.url.mangalink).then((response) => {
                 this.manga = response.data;
-                console.log('manga loaded')
+                console.log(this.manga)
             });
         },
         getTags(){          
             axios.get(this.url.tagslink).then((response) => {
                 this.tags = response.data;
-                console.log('tags loaded')
+                console.log(this.tags)
+                console.log(this.$store.getters.takeChosenTags)
             });
         },
         tagsCheck(){
-            console.log(this.manga[0]);
             var coincidences = 0;
             for (let i = 0; i < this.manga.length; i++) {
                 for (let j = 0; j < this.manga[i].tags.length; j++) {
@@ -89,7 +99,6 @@ export default {
         kek(){
             console.log('kek')
         }
-
     },
 
     beforeMount(){

@@ -22,10 +22,7 @@ export default {
             data(){
             return {
             manga: [],
-            chapter: [],
-            url: {
-                mangalink: 'http://localhost:8000/api/v1/tag/' + this.getPageUrl()  + '/?format=json'
-            },
+            chapter: []
         }
     },
     components: {
