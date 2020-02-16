@@ -38,6 +38,13 @@ class GetUserInfo(APIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def put(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 class CreateUserAPIView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
