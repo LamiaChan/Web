@@ -5,19 +5,24 @@
                 <div class="row">
                     <!-- добавить сортировку по дате обнавления (testapione.updated) -->
                     <div v-for="(testapione,index) in manga" :key="index">
-                        {{ mangaRepeat(0)}}
+                        <!--{{ mangaRepeat(0)}} -->
+                        {{ clearCoincidences()}}
                         <div v-for="(ch, index) in testapione.tags" :key="index">
                             <div v-for="(needTag,index) in $store.getters.takeChosenTags" :key="index">
                             <div class="col-md-3" v-if="((ch == needTag)&&(repeatStatus==0))">
-                                <router-link v-bind:to="'/detail/'+ testapione.id">
-                                    <div class="manga">
-                                        {{ mangaRepeat(1)}}
-                                        <div class="manga__img">
-                                            <img :src="testapione.preview_image_url"   alt="" class="manga__img__pict">
-                                            <span class="manga__title">{{ testapione.title }}</span>
+                                {{ AddCoincidences() }}
+                                <div v-if="coincidences == $store.getters.takeChosenTags.length">
+                                    {{ hasManga()}}
+                                    <router-link v-bind:to="'/detail/'+ testapione.id">
+                                        <div class="manga">
+                                           <!-- {{ mangaRepeat(1)}} -->
+                                            <div class="manga__img">
+                                                <img :src="testapione.preview_image_url"   alt="" class="manga__img__pict">
+                                                <span class="manga__title">{{ testapione.title }}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </router-link>
+                                    </router-link>
+                               </div>
                             </div>
                             </div>
                         </div>
@@ -70,27 +75,12 @@ export default {
         getHashtags(){
             axios.get(this.url.mangalink).then((response) => {
                 this.manga = response.data;
-                console.log(this.manga)
             });
         },
         getTags(){          
             axios.get(this.url.tagslink).then((response) => {
                 this.tags = response.data;
-                console.log(this.tags)
-                console.log(this.$store.getters.takeChosenTags)
             });
-        },
-        tagsCheck(){
-            var coincidences = 0;
-            for (let i = 0; i < this.manga.length; i++) {
-                for (let j = 0; j < this.manga[i].tags.length; j++) {
-                    if (this.manga[i].tags[j] == this.tags.id) {
-                        coincidences++;
-                        break
-                    }
-                }
-            }
-            return coincidences
         },
         mangaRepeat(a){
             // Даннаяфункция отвечает за то, что если выбранно несколько тэгов, которые одновременно есть
@@ -100,12 +90,26 @@ export default {
             if (a == 1){
                 this.noManga = 1;
             }
+            else if (a == 0){
+                this.coincidences = 0;
+            }
+        },
+        AddCoincidences(){
+            this.coincidences++;
+        },
+        clearCoincidences(){
+            this.coincidences = 0;
+        },
+        hasManga(){
+            this.noManga = 1;
         }
+        
     },
 
     beforeMount(){
       this.getHashtags(),
-      this.getTags()
+      this.getTags(),
+      console.log(this.$store.getters.takeChosenTags)
      
     },
     beforeDestroy(){
