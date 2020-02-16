@@ -11,6 +11,8 @@ from rest_framework.permissions     import IsAuthenticated, AllowAny
 from rest_framework.decorators      import api_view
 from rest_framework.decorators      import permission_classes
 from django.contrib.auth            import get_user_model
+from rest_framework.parsers         import FileUploadParser, FormParser
+
 #from rest_framework.pagination      import PageNumberPagination
 
 

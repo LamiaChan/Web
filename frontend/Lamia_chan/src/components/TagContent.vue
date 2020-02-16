@@ -9,9 +9,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <button @click="sendTags()" class="btn btn-success">Показать</button>
-                    </div>
+
+                        <button @click="sendTags()" class="btn btn-success tag">Показать</button>
+
                 </div>
             </div>
         </section>
