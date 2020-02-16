@@ -105,7 +105,9 @@ export default {
             });
         },
         sendTags(tag){
-            this.$store.dispatch('writeChosenTags', tag)
+            let arr = [];
+            arr.push(tag)
+            this.$store.dispatch('writeChosenTags', arr)
             this.$router.push('/tags')
         }
         // takeToken1(){
