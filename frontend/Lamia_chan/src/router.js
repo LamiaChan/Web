@@ -49,10 +49,6 @@ export default new Router({
             // need to refactor 
             path: '/mypage',
             component: () => import('@/views/UserPage')
-        },
-        {
-            path:'/testupload',
-            component: () => import('@/views/TestMangaUpload')
         }
     ]
 })

@@ -6,7 +6,8 @@ from rest_framework                 import status
 from rest_framework.generics        import CreateAPIView
 from rest_framework.generics        import RetrieveUpdateAPIView
 from .serializers                   import MangaSerializer, ChapterSerializer, PageSerializer, TagSerializer, UserSerializer
-from core.models                    import Manga, Page, Source, Chapter, Tag, MangaUser
+from core.models                    import Manga, Page, Source, Chapter, Tag
+#, MangaUser
 from rest_framework.permissions     import IsAuthenticated, AllowAny
 from rest_framework.decorators      import api_view
 from rest_framework.decorators      import permission_classes
@@ -39,10 +40,9 @@ class GetUserInfo(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data, partial=True)
+        serializer = self.serializer_class(request.user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class CreateUserAPIView(CreateAPIView):
