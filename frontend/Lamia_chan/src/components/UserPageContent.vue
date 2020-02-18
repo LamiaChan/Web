@@ -9,6 +9,7 @@
                         <div><span class="userName">{{user.username}}</span></div>
                         <div><span class="userEmail">{{user.email}}</span></div>
                         <div><span class="userAbout">О себе: {{user.user_moto}}</span></div>
+                        <div><span class="userAbout">Звание: {{user.rank}}</span></div>
                         <div><button @click="exitAccount()" class="blubtn">Выйти</button></div>
                     </div>
                 </div>

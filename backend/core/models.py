@@ -65,16 +65,16 @@ class Chapter(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.title)
+        bookmark_title = str(self.manga) + ' : ' + str(self.title)
+        return str(bookmark_title)
 
 class Page(models.Model):
     number = models.IntegerField(null=True, blank=True)
     image = models.ImageField(upload_to='manga')
-
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+    
     def __str__(self):
         return str(self.image.url)
-
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -87,7 +87,25 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_('is_staff'), default=False)
     user_image = models.ImageField(upload_to='upicks', null=True, blank=True)
     user_moto = models.CharField(max_length=256, null=True, blank=True)
-    user_favorite_manga = models.ManyToManyField(Manga)
+    user_favorite_manga = models.ManyToManyField(Manga, null=True, blank=True)
+    bookmarks = models.ManyToManyField(Chapter, null=True, blank=True)
+    RANK_LIST = [
+        ('Новичок', 'Новичок'),
+        ('Завсегдатый', 'Завсегдатый'),
+        ('Боженька', 'Боженька'),
+        ('Модератор', 'Модератор'),
+
+        #Funny
+
+        ('Жидо-скриптизер', 'Жидо-скриптизер'),
+        ('Хозяин-питона', 'Хозяин-питона')
+    ]
+
+    rank = models.CharField(
+        max_length = 30,
+        choices = RANK_LIST,
+        default = 'Новичок',
+    )
 
 
     objects = UserManager()
