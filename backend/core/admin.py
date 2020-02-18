@@ -20,7 +20,7 @@ admin.site.register(Chapter)
 admin.site.register(Source)
 admin.site.register(Manga)
 admin.site.register(Tag)
-admin.site.register(DateUp)
+admin.site.register(Report)
 
 admin.site.register(User)
 #admin.site.register(User, UserAdmin)

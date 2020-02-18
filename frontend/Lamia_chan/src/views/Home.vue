@@ -1,9 +1,10 @@
 <template>
   <div>
     <MainHead></MainHead>
-    <MainContent :testapi="testapi"> </MainContent>
+    <MainContent :testapi="testapi" :reports="reports"> </MainContent>
     <!--<button type="button" @click="getHashtags()">Грузи города</button>-->
     <TestApi :testapi="testapi"> </TestApi>
+    <Reports :reports="reports"> </Reports>
   </div>
 </template>
 
@@ -22,8 +23,10 @@ export default {
     data(){
     return {
       testapi: [],
+      reports: [],
       url: {
           testapilink: 'http://localhost:8000/api/v1/manga/?format=json',
+          newslist: 'http://localhost:8000/api/v1/news/',
       },
     }
   },
@@ -37,6 +40,11 @@ export default {
         axios.get(this.url.testapilink).then((response) => {
             this.testapi = response.data;
         });
+
+        axios.get(this.url.newslist).then((response) => {
+            this.reports = response.data;
+        });
+
     },
   },
     beforeMount(){

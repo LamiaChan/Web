@@ -5,8 +5,8 @@ from rest_framework.views           import APIView
 from rest_framework                 import status
 from rest_framework.generics        import CreateAPIView
 from rest_framework.generics        import RetrieveUpdateAPIView
-from .serializers                   import MangaSerializer, ChapterSerializer, PageSerializer, TagSerializer, UserSerializer
-from core.models                    import Manga, Page, Source, Chapter, Tag
+from .serializers                   import MangaSerializer, ChapterSerializer, PageSerializer, TagSerializer, UserSerializer, ReportSerializer
+from core.models                    import Manga, Page, Source, Chapter, Tag, Report
 #, MangaUser
 from rest_framework.permissions     import IsAuthenticated, AllowAny
 from rest_framework.decorators      import api_view
@@ -53,6 +53,11 @@ class MangaViewSet(viewsets.ModelViewSet):
     #pagination_class = StandardResultsSetPagination
     queryset = Manga.objects.all().order_by('-updated')
     serializer_class = MangaSerializer
+
+class ReportViewSet(viewsets.ModelViewSet):
+    #pagination_class = StandardResultsSetPagination
+    queryset = Report.objects.all().order_by('-updated')
+    serializer_class = ReportSerializer
 
 class ChapterViewSet(viewsets.ModelViewSet):
     queryset = Chapter.objects.all().order_by('-updated')

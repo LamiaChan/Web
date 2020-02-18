@@ -18,7 +18,28 @@
                             </div>
                         </router-link>
                     </div>
+
                 </div>
+
+                <h2>Новости</h2>
+                <div class="row">
+                    
+                    <!-- добавить сортировку по дате обнавления (testapione.updated) 
+                    .sort( (a,b) => b.chapter_set.updated.localeCompare(a.chapter_set.updated) )-->
+
+                    <div class="col-md-3" v-for="(report,index) in reports" :key="index">
+                        <router-link v-bind:to="'/news/'+ report.id">
+                            <div class="manga">
+                                <div class="manga__img">
+                                    <img :src="report.image"   alt="" class="manga__img__pict">
+                                    <span class="manga__title">{{ report.title }}</span>
+                                </div>
+                            </div>
+                        </router-link>
+                    </div>
+                    
+                </div>
+
             </div>
         </section>
     </div>
@@ -29,7 +50,7 @@
 
 <script>
 export default {
-        props: ['testapi'],
+        props: ['testapi', 'reports'],
 }
 </script>
 

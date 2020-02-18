@@ -45,6 +45,19 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
 
 
+
+class ReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Report
+        fields = [
+            'id',
+            'title',
+            'image',
+            'body',
+            'updated'
+        ]
+
+
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
