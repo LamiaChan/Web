@@ -49,3 +49,4 @@ Werkzeug==0.14.1
 django-filter
 djangorestframework-jwt
 djangorestframework-simplejwt
+django-tinymce
