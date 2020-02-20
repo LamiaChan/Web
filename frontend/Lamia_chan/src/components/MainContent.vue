@@ -29,14 +29,15 @@
 
                     <div class="col-md-3" v-for="(report,index) in reports" :key="index">
                         <router-link v-bind:to="'/news/'+ report.id">
-                            <div class="manga">
-                                <div class="manga__img">
-                                    <img :src="report.image"   alt="" class="manga__img__pict">
-                                    <span class="manga__title">{{ report.title }}</span>
+                            <div class="news">
+                                <div class="news__img">
+                                    <img :src="report.image"   alt="" class="news__img__pict">
+                                    <span>{{ report.title }}</span>
                                 </div>
                             </div>
                         </router-link>
                     </div>
+                    
                     
                 </div>
 
@@ -63,9 +64,18 @@ export default {
         margin-bottom: 15px;
         margin-top: 15px;
     }
+    .news{
+        text-align: center;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
     .manga__img__pict{
         width: 80%;
         max-height: 290px;
+    }
+    .news__img__pict{
+        max-height: 400px; 
+        width: 100%;
     }
     .manga__title{
         font-size: 15px;
@@ -81,6 +91,10 @@ export default {
 
     }
     .manga__img{
+        display:inline-block;
+        position: relative;
+    }
+    .news__img{
         display:inline-block;
         position: relative;
     }
