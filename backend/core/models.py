@@ -65,6 +65,33 @@ class Manga(models.Model):
     tags = models.ManyToManyField(Tag)
     upload_date =  models.ManyToManyField(DateUp)
     updated = models.DateTimeField(auto_now=True)
+    year_of_publish = models.DateTimeField()
+
+    OBJECT_TYPES = [
+        ('Манга', 'Манга'),
+        ('Манхва', 'Манхва'),
+        ('Маньхуа', 'Маньхуа'),
+        ('Ранобэ', 'Ранобэ'),
+    ]
+
+    object_type = models.CharField(
+        max_length = 30,
+        choices = OBJECT_TYPES,
+        default = 'Манга',
+    )
+    
+    TRANSLATING_LIST = [
+        ('Ожидает загрузки', 'Ожидает загрузки'),
+        ('Заброшенно', 'Заброшенно'),
+        ('Продолжается', 'Продолжается'),
+        ('Переведено', 'Переведено'),
+    ]
+
+    translating_status = models.CharField(
+        max_length = 30,
+        choices = TRANSLATING_LIST,
+        default = 'Ожидает загрузки',
+    )
 
     def __str__(self):
         return str(self.title)
