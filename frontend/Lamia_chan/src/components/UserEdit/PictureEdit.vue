@@ -11,17 +11,14 @@
         <div class="row">
             <div class="modal-body">
                 Картинка <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/> <br>
-            <!--
-                <div id="formContent">
-                    <input v-model="login" type="text" id="login" class="fadeIn second" required placeholder="Логин"> <br>
-                    <input v-model="pass"  type="password" id="password" class="fadeIn third" required placeholder="Пароль"> <br>
-                    <input v-model="email"  type="email" id="email" class="fadeIn third" required placeholder="Почта">
+            
+                    <input v-model="login" type="text" id="login" class="" required placeholder="Логин"> <br>
+                    <input v-model="password"  type="password" id="password" class="" required placeholder="Пароль"> <br>
+                    <input v-model="email"  type="email" id="email" class="" required placeholder="Почта">
+                <div class="">
+                    <button type="button" class="btn btn-primary" v-on:click="submitFile()" >Сохранить</button>
                 </div>
-            -->
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" v-on:click="submitFile()" >Сохранить</button>
             </div>
         </div>
     </div>
@@ -34,7 +31,9 @@ export default {
     props: ['url','token'],
     data(){
         return{
-
+            email:"",
+            password:"",
+            login:""
         }
     },
     methods: {
@@ -44,11 +43,14 @@ export default {
         submitFile(){
 
                     let formData = new FormData();
+                    
+                    if (this.file != undefined){
+                        formData.append('user_image', this.file);
+                    }
 
-                    //formData.append('username', this.user.username);
-                    formData.append('email', 'test@test.ru');
-                    formData.append('user_image', this.file);
-                    //formData.append('user_moto', this.user.user_moto);
+                    formData.append('username', this.login);
+                    formData.append('email', this.email);
+                    formData.append('password', this.password);
 
                     axios.put( 
                         this.url.getUserInfo,

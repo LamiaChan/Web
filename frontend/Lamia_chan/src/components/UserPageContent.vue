@@ -5,12 +5,9 @@
                 <div class="col-sm-4">
                     <div class="leftBar">
                         <div class="imgContainer"><img :src="user.user_image" class="userImg" alt=""></div>
-                        <div><button class="btn btn-outline-dark userButton" data-toggle="modal" data-target="#editModal">Редактировать</button></div>
-                        <div><button @click="imgedit()">Редактировать картинку</button></div>
+                        <div><button class="btn btn-outline-dark userButton" @click="imgedit()" >Редактировать</button></div>
                         <div><span class="userName">{{user.username}}</span></div>
-                        <div><button @click="nameedit()">Редактировать имя</button></div>
                         <div><span class="userEmail">{{user.email}}</span></div>
-                        <div><button @click="emailedit()">Редактировать email</button></div>
                         <div><span class="userAbout">О себе: {{user.user_moto}}</span></div>
                         <div><span class="userAbout">Звание: {{user.rank}}</span></div>
                         <div><button @click="exitAccount()" class="blubtn">Выйти</button></div>
@@ -19,40 +16,10 @@
                 <div class="col-sm-8">
                     <div class="UserMain">
                         <PictureEdit v-if="editPict==1" :url="url" :token="token" />
-                        <NameEdit v-if="editName==1" :url="url" :token="token" />
-                        <EmailEdit v-if="editEmail==1" :url="url" :token="token" />
                     </div>
                 </div>
             </div>
 
-            <!-- modal windows -->
-
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Редактирования профиля</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Картинка <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/> <br>
-                    <!--
-                        <div id="formContent">
-                            <input v-model="login" type="text" id="login" class="fadeIn second" required placeholder="Логин"> <br>
-                            <input v-model="pass"  type="password" id="password" class="fadeIn third" required placeholder="Пароль"> <br>
-                            <input v-model="email"  type="email" id="email" class="fadeIn third" required placeholder="Почта">
-                        </div>
-                    -->
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" v-on:click="submitFile()" >Сохранить</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -61,21 +28,15 @@
 <script>
 import axios from 'axios'
 import PictureEdit from '../components/UserEdit/PictureEdit.vue'
-import NameEdit from '../components/UserEdit/NameEdit.vue'
-import EmailEdit from '../components/UserEdit/EmailEdit.vue'
 export default {
     name: 'user',
     components: {
-        PictureEdit,
-        NameEdit,
-        EmailEdit,
+        PictureEdit
     },
     data(){
         return {
             user: [],
             editPict: 0,
-            editName: 0,
-            editEmail: 0,
             url:{
                 getUserInfo: 'http://localhost:8000/api/v1/userinfo/'
             },
@@ -161,22 +122,6 @@ export default {
             else{
                 this.editPict = 0;
             }
-        },
-        nameedit(){
-            if (this.editName != 1){
-                this.editName = 1;
-            }
-            else{
-                this.editName = 0;
-            } 
-        },
-        emailedit(){
-            if (this.editEmail != 1){
-                this.editEmail = 1;
-            }
-            else{
-                this.editEmail = 0;
-            } 
         }
     },
     beforeMount(){
