@@ -6,15 +6,22 @@
                     <div class="leftBar">
                         <div class="imgContainer"><img :src="user.user_image" class="userImg" alt=""></div>
                         <div><button class="btn btn-outline-dark userButton" data-toggle="modal" data-target="#editModal">Редактировать</button></div>
+                        <div><button @click="imgedit()">Редактировать картинку</button></div>
                         <div><span class="userName">{{user.username}}</span></div>
+                        <div><button @click="nameedit()">Редактировать имя</button></div>
                         <div><span class="userEmail">{{user.email}}</span></div>
+                        <div><button @click="emailedit()">Редактировать email</button></div>
                         <div><span class="userAbout">О себе: {{user.user_moto}}</span></div>
                         <div><span class="userAbout">Звание: {{user.rank}}</span></div>
                         <div><button @click="exitAccount()" class="blubtn">Выйти</button></div>
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <div class="UserMaiN"></div>
+                    <div class="UserMain">
+                        <PictureEdit v-if="editPict==1" :url="url" :token="token" />
+                        <NameEdit v-if="editName==1" :url="url" :token="token" />
+                        <EmailEdit v-if="editEmail==1" :url="url" :token="token" />
+                    </div>
                 </div>
             </div>
 
@@ -53,11 +60,22 @@
 
 <script>
 import axios from 'axios'
+import PictureEdit from '../components/UserEdit/PictureEdit.vue'
+import NameEdit from '../components/UserEdit/NameEdit.vue'
+import EmailEdit from '../components/UserEdit/EmailEdit.vue'
 export default {
     name: 'user',
+    components: {
+        PictureEdit,
+        NameEdit,
+        EmailEdit,
+    },
     data(){
         return {
             user: [],
+            editPict: 0,
+            editName: 0,
+            editEmail: 0,
             url:{
                 getUserInfo: 'http://localhost:8000/api/v1/userinfo/'
             },
@@ -135,6 +153,30 @@ export default {
             this.$store.dispatch('writeToken_access', 'empty')
             this.$store.dispatch('writeToken_refresh', 'empty')
             this.$router.push('/auth');
+        },
+        imgedit(){
+            if (this.editPict != 1){
+                this.editPict = 1;
+            }
+            else{
+                this.editPict = 0;
+            }
+        },
+        nameedit(){
+            if (this.editName != 1){
+                this.editName = 1;
+            }
+            else{
+                this.editName = 0;
+            } 
+        },
+        emailedit(){
+            if (this.editEmail != 1){
+                this.editEmail = 1;
+            }
+            else{
+                this.editEmail = 0;
+            } 
         }
     },
     beforeMount(){
