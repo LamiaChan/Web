@@ -11,7 +11,8 @@ export default new Vuex.Store({
         token_refresh: 'empty',
         token_access:  'empty',
         authStatus: 0,
-        chosenTags: []
+        chosenTags: [],
+        api: 'api_url'
     },
     mutations: {
         SET_LOADING_STATUS(state, status) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
         },
         SET_CHOSEN_TAGS(state,chosenTags){
             state.chosenTags = chosenTags
+        },
+        SET_API(state,api){
+            state.api = api
         }
     },
     actions: {
@@ -50,6 +54,9 @@ export default new Vuex.Store({
         },
         writeChosenTags(context, newChosenTags){
             context.commit('SET_CHOSEN_TAGS', newChosenTags)
+        },
+        writeApi(context, newApi){
+            context.commit('SET_API', newApi)
         }
 
     },
@@ -68,6 +75,9 @@ export default new Vuex.Store({
         },
         takeChosenTags(state){
             return state.chosenTags
+        },
+        takeApi(state){
+            return state.api
         }
     }
 })

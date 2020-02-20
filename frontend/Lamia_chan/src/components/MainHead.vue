@@ -28,7 +28,7 @@
             
 
           <form class="form-inline my-2 my-lg-0 dropdown">
-            <input class="manga-searcher form-control" type="text" placeholder="Поиск" id="menu1" data-toggle="dropdown"  v-model="searchQuery">
+            <input class="manga-searcher form-control" type="texts" placeholder="Поиск" id="menu1" data-toggle="dropdown"  v-model="searchQuery">
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" >
                 <div v-for="(item,index) in filteredResources.slice(0, 10)" :key="index">
                   <li role="presentation" style="padding:5px;">

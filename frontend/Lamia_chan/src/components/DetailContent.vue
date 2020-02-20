@@ -81,6 +81,9 @@ export default {
     },
 
     methods: {
+        testingStorg(){
+            console.log(localStorage.getItem('api'));
+        },
 
         getPageUrl(){
 
@@ -122,7 +125,8 @@ export default {
     },
 
     beforeMount(){
-      this.getHashtags()
+      this.getHashtags(),
+      this.testingStorg()
     },
 
     

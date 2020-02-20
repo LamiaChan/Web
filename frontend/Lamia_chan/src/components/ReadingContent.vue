@@ -197,7 +197,9 @@ ul{
     text-align: center;
 }
 .page__img{
-    width: 60%;
+    /*width: 90%;*/
+    max-width: 1000px;
+    min-height: 300px;
 }
 .ReadBtn{
     display: inline-block;
