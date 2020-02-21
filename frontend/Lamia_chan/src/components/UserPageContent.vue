@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="UserMain">
-                        <PictureEdit v-if="editPict==1" :url="url" :token="token" />
+                        <PictureEdit v-if="editPict==1" :url="url" :token="token" :user="user" />
                     </div>
                 </div>
             </div>
