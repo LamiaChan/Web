@@ -1,14 +1,6 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-lg-10">
-                <h3>Редактировать аватарку</h3>
-            </div>
-            <div class="col-lg-2">
-                <button @click="exit()">X</button>
-            </div>
-        </div>
-        <div class="row">
             <!--
             
                 Картинка <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/> <br>
@@ -22,19 +14,24 @@
 
             <div class="col-lg-12">
                 <div class="form-style-5">
-                    <form>
                     <fieldset>
-                    <legend><span class="number">1</span> Candidate Info</legend>
-                    <input type="text" name="field1" placeholder="Your Name *">
-                    <input type="email" name="field2" placeholder="Your Email *">
-                    <textarea name="field3" placeholder="About yourself"></textarea>    
+                    <legend><span class="number">1</span> Основная информация
+                        <button @click="exit()" class="exitButton"><i class="fa fa-times"></i></button>
+                    </legend>
+                    <input type="text" name="field1" v-model="login">
+                    <input type="email" name="field2" v-model="email">
+                    <textarea name="field3" v-model="about" placeholder="Информаци о себе"></textarea>    
                     </fieldset>
                     <fieldset class="input__wrapper">
                         <legend><span class="number">2</span> Фото профиля</legend>
-                        <input class="photoButton" type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                        <div class="fileform">
+                            <div id="fileformlabel">{{filename}}</div>
+                            <div class="selectbutton">Обзор</div>
+                            <input class="photoButton" type="file" id="upload" ref="file" v-on:change="handleFileUpload()"/>
+                        </div>
+                        
                     </fieldset>
-                    <input type="submit" value="Apply" />
-                    </form>
+                    <button type="submit" class="btn btn-primary" v-on:click="submitFile()" >Сохранить</button>
                 </div>
             </div>
         </div>
@@ -50,7 +47,9 @@ export default {
         return{
             email:"",
             password:"",
-            login:""
+            login:"",
+            about:"Информация о себе",
+            filename:"Не выбранно"
         }
     },
     methods: {
@@ -67,7 +66,8 @@ export default {
 
                     formData.append('username', this.login);
                     formData.append('email', this.email);
-                    formData.append('password', this.password);
+                    //formData.append('password', this.password);
+                    formData.append('user_moto', this.about);
 
                     axios.put( 
                         this.url.getUserInfo,
@@ -89,13 +89,14 @@ export default {
 
         handleFileUpload(){
             this.file = this.$refs.file.files[0];
+            this.filename = this.file.name;
             console.log(this.file);
         },
         standartSettings(){
             this.email = this.user.email
             this.login = this.user.username
-            console.log(this.user)
-        }
+            this.about = this.user.user_moto
+        },
     },
     beforeMount(){
         this.standartSettings()
@@ -148,7 +149,7 @@ export default {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box; 
 	background-color: #e8eeef;
-	color:#8a97a0;
+	color:#7a7c7e;
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	margin-bottom: 30px;
@@ -183,7 +184,7 @@ export default {
 	border-radius: 15px 15px 15px 0px;
 }
 
-.form-style-5 input[type="submit"],
+.form-style-5 button[type="submit"],
 .form-style-5 input[type="button"]
 {
 	position: relative;
@@ -199,8 +200,9 @@ export default {
 	border: 1px solid #16a085;
 	border-width: 1px 1px 3px;
 	margin-bottom: 10px;
+    transition-duration: .5s;
 }
-.form-style-5 input[type="submit"]:hover,
+.form-style-5 button[type="submit"]:hover,
 .form-style-5 input[type="button"]:hover
 {
 	background: #109177;
@@ -208,5 +210,77 @@ export default {
 .photoButton{
     background: #1abc9c;
 	color: #fff;
+}
+.fileform { 
+    background-color: #e8eeef;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 26px;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    text-align: left;
+    vertical-align: middle;
+    width: 230px;
+    margin-bottom: 30px;
+}
+ 
+.fileform .selectbutton { 
+    background-color: #1abc9c;
+    border: 1px solid #1abc9c;
+    border-radius: 2px;
+    color: #FFFFFF;
+    float: right;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+}
+ 
+.fileform #upload{
+    position:absolute; 
+    top:0; 
+    left:0; 
+    width:100%; 
+    -moz-opacity: 0; 
+    filter: alpha(opacity=0); 
+    opacity: 0; 
+    font-size: 150px; 
+    height: 30px; 
+    z-index:20;
+}
+.fileform #fileformlabel { 
+    background-color: #e8eeef;
+    color:#7a7c7e;
+    font-size: 15px;
+    float: left;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    text-align: left;
+    vertical-align: middle;
+    width:160px;
+}
+.exitButton{
+    background: #cccdce;
+    color: #000;
+    width: 30px;
+    height: 30px;
+    border: 2px #cccdce solid;
+    border-radius: 2px;
+    text-align: center;
+    padding: 0;
+    line-height: 30px;
+    vertical-align: middle;
+    float: right;
+    transition-duration: .5s;
+
+}
+.exitButton:hover{
+    color: #16a085;
 }
 </style>
