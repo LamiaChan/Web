@@ -19,7 +19,9 @@
                         <button @click="exit()" class="exitButton"><i class="fa fa-times"></i></button>
                     </legend>
                     <input type="text" name="field1" v-model="login">
-                    <input type="email" name="field2" v-model="email">
+                    <input type="email" name="field2" v-bind:class="{ errorInput: emailError }" v-model="email" v-on:change="checkEmail()">
+                    <small class="helper-text invalid" v-if="email=='' || checkEmail()">
+                    Некорректный Email</small>
                     <textarea name="field3" v-model="about" placeholder="Информаци о себе"></textarea>    
                     </fieldset>
                     <fieldset class="input__wrapper">
@@ -49,7 +51,8 @@ export default {
             password:"",
             login:"",
             about:"Информация о себе",
-            filename:"Не выбранно"
+            filename:"Не выбранно",
+            emailError: 0,
         }
     },
     methods: {
@@ -60,6 +63,19 @@ export default {
 
                     let formData = new FormData();
                     
+
+                    var english = /^[A-Za-z0-9]*$/;
+                    var email_regx = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i;
+
+                    this.errors = [];
+
+                    if(!this.login){
+                        this.errors.push('Требуется указать имя.');
+                    } 
+                    else if(!english.test(this.login)) {
+                        this.errors.push('Используйте латиницу');
+                    }
+                    else{
                     if (this.file != undefined){
                         formData.append('user_image', this.file);
                     }
@@ -85,6 +101,7 @@ export default {
                 .catch(error => {
                     console.log(error.response);
                 });
+                }
         },
 
         handleFileUpload(){
@@ -97,6 +114,18 @@ export default {
             this.login = this.user.username
             this.about = this.user.user_moto
         },
+        checkEmail(){
+            var email_regx = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i;
+            if(email_regx.test(this.email)){
+                console.log('ok')
+                return 0
+            }
+            else{
+                console.log('no ok')
+                this.emailError = 1;
+                return 1
+            }
+        }
     },
     beforeMount(){
         this.standartSettings()
@@ -152,7 +181,7 @@ export default {
 	color:#7a7c7e;
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-	margin-bottom: 30px;
+	margin-top: 30px;
 }
 .form-style-5 input[type="text"]:focus,
 .form-style-5 input[type="date"]:focus,
@@ -282,5 +311,11 @@ export default {
 }
 .exitButton:hover{
     color: #16a085;
+}
+.errorMassage{
+    color: red;
+}
+.errorInput{
+    border: 1px red solid;
 }
 </style>
