@@ -135,7 +135,7 @@ export default {
     width: 250px;
 }
 .leftBar{
-    height: 530px;
+    min-height: 530px;
     margin-top: 30px;
     text-align: center;
     border: 2px #93a0ad solid;
