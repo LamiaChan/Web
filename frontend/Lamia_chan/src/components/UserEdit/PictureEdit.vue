@@ -18,11 +18,14 @@
                     <legend><span class="number">1</span> Основная информация
                         <button @click="exit()" class="exitButton"><i class="fa fa-times"></i></button>
                     </legend>
-                    <input type="text" name="field1" v-model="login">
-                    <input type="email" name="field2" v-bind:class="{ errorInput: emailError }" v-model="email" v-on:change="checkEmail()">
-                    <small class="helper-text invalid" v-if="email=='' || checkEmail()">
-                    Некорректный Email</small>
-                    <textarea name="field3" v-model="about" placeholder="Информаци о себе"></textarea>    
+                    <input type="text" name="field1" v-bind:class="{ errorInput: ((loginError==0)||(login=='')) }" v-model="login" v-on:change="checkLogin()">
+                    <small class="errorMassage" v-if="login=='' || checkLogin()">Некорректный логин</small>
+
+                    <input type="email" name="field2" v-bind:class="{ errorInput: ((emailError==0)||(email=='')) }" v-model="email" v-on:change="checkEmail()">
+                    <small class="errorMassage" v-if="email=='' || checkEmail()">Некорректный Email</small>
+                    
+                    <textarea name="field3" v-model="about" v-bind:class="{ errorInput: ((aboutError==0)||(about=='')) }" v-on:change="checkText()" placeholder="Информаци о себе"></textarea>
+                    <small class="errorMassage" v-if="about=='' || checkText()">Некорректное описание</small>   
                     </fieldset>
                     <fieldset class="input__wrapper">
                         <legend><span class="number">2</span> Фото профиля</legend>
@@ -53,6 +56,8 @@ export default {
             about:"Информация о себе",
             filename:"Не выбранно",
             emailError: 0,
+            loginError: 0,
+            aboutError: 0,
         }
     },
     methods: {
@@ -107,7 +112,6 @@ export default {
         handleFileUpload(){
             this.file = this.$refs.file.files[0];
             this.filename = this.file.name;
-            console.log(this.file);
         },
         standartSettings(){
             this.email = this.user.email
@@ -117,13 +121,38 @@ export default {
         checkEmail(){
             var email_regx = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i;
             if(email_regx.test(this.email)){
-                console.log('ok')
-                return 0
+                
+                this.emailError = 1;
+                return false
             }
             else{
-                console.log('no ok')
-                this.emailError = 1;
-                return 1
+                
+                this.emailError = 0;
+                return true
+            }
+        },
+        checkLogin(){
+            var english = /^[A-Za-z0-9]*$/
+            if(english.test(this.login)){
+                
+                this.loginError = 1;
+                return false
+            }
+            else{
+                
+                this.loginError = 0;
+                return true
+            }
+        },
+        checkText(){
+            var english = /^[A-Za-z0-9 .,?!]*$/
+            if(english.test(this.about)){
+                this.aboutError = 1;
+                return false
+            }
+            else{
+                this.aboutError = 0;
+                return true
             }
         }
     },
@@ -182,6 +211,8 @@ export default {
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	margin-top: 30px;
+    display: inline-block;
+    box-shadow: 0px 0px 2px 1px rgba(2, 189, 76, 0.92);
 }
 .form-style-5 input[type="text"]:focus,
 .form-style-5 input[type="date"]:focus,
@@ -316,6 +347,7 @@ export default {
     color: red;
 }
 .errorInput{
-    border: 1px red solid;
+    color: red !important;
+    box-shadow: 0px 0px 8px 1px rgba(226, 7, 7, 0.92) !important;
 }
 </style>
