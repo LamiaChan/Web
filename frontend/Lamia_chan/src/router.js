@@ -49,6 +49,10 @@ export default new Router({
             // need to refactor 
             path: '/mypage',
             component: () => import('@/views/UserPage')
-        }
+        },
+        {
+            path: '/news/:id',
+            component: () => import('@/views/News')
+        },
     ]
 })
