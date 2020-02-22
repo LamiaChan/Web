@@ -44,6 +44,30 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+class ShowUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = [
+            'id', 
+            'username', 
+            'email', 
+            'user_image', 
+            'user_moto', 
+            'user_favorite_manga',
+            'rank'
+        ]
+
+        read_only_fields  = [
+            'id', 
+            'username', 
+            'email', 
+            'user_image', 
+            'user_moto', 
+            'user_favorite_manga',
+            'rank'
+        ]
+
 
 
 class ReportSerializer(serializers.ModelSerializer):

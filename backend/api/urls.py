@@ -2,7 +2,7 @@ from rest_framework import routers
 from django.urls import include, path
 
 from . import views
-from .views import MangaViewSet, ChapterViewSet, PageViewSet, TagViewSet, CreateUserAPIView, ReportViewSet
+from .views import MangaViewSet, ChapterViewSet, PageViewSet, TagViewSet, CreateUserAPIView, ReportViewSet, ShowUserViewSet
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -16,6 +16,7 @@ router.register(r'chapter', ChapterViewSet)
 router.register(r'page', PageViewSet)
 router.register(r'tag', TagViewSet)
 router.register(r'news', ReportViewSet)
+router.register(r'show_users', ShowUserViewSet)
 
 urlpatterns = [
     path('userinfo/', views.GetUserInfo.as_view(), name='userinfo'),
