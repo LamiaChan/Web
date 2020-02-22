@@ -26,7 +26,7 @@
                     <br> 8) Добавить систему оценки манги 
                     <br> 9) Добавить систему загрузки манги
                     <br> 10) <s>Пофиксить баг на странице выбраного тегов и доверстать стрницу со всеми тэгами</s>
-                    <br> 11) начать делать приложения для ios и <a href="https://github.com/mar4elkin/lamia_chan_android">android</a>
+                    <br> 11) начать делать приложения для <a href="https://github.com/mar4elkin/lamia_chan_app">ios</a> и <a href="https://github.com/mar4elkin/lamia_chan_app">android</a>
                     <br> 12) разбить логику на компоненты 
                     <br> 13) переделать стрицу пользователя, чтобы на нее могли зайти другие 
                     <br> 14) <b> перенести обращение к api в другое место #TODO</b> 
@@ -63,7 +63,7 @@
             </div>
 
             <div class="col">
-                <h5>Lamia_chan_android commits</h5>
+                <h5>Lamia_chan_app commits</h5>
                 <ul>
                     <li v-for="(app,index) in lamia_chan_android" :key="index">
                         <a :href="app.html_url" target="_blank" class="commit">{{ app.sha.slice(0, 7)}}</a>
@@ -88,7 +88,7 @@ export default {
             lamia_chan_android: [],
             url:{
                 lamia_chan_web_commits: 'https://api.github.com/repos/mar4elkin/Lamia_chan_web/commits?per_page=3&sha=',
-                lamia_chan_android_commits: 'https://api.github.com/repos/mar4elkin/Lamia_chan_android/commits?per_page=3&sha='
+                lamia_chan_android_commits: 'https://api.github.com/repos/mar4elkin/Lamia_chan_app/commits?per_page=3&sha='
             },
             token: '',
         }

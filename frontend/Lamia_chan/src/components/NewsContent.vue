@@ -10,7 +10,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <p>{{news.body}}</p>
+                    <p v-html="news.body"></p>
                 </div>
                 <div class="col-lg-6">
                     <div class="news__img"><img :src="news.image"   alt="" class="news__img__pict"></div>

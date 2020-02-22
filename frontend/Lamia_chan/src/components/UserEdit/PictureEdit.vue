@@ -145,7 +145,7 @@ export default {
             }
         },
         checkText(){
-            var english = /^[A-Za-z0-9 .,?!]*$/
+            var english = /^[А-Яа-яA-Za-z0-9 .,?!]*$/
             if(english.test(this.about)){
                 this.aboutError = 1;
                 return false
