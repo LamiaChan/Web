@@ -47,7 +47,7 @@ export default new Router({
         },
         {
             // need to refactor 
-            path: '/mypage',
+            path: '/user:id',
             component: () => import('@/views/UserPage')
         },
         {

@@ -44,42 +44,6 @@ export default {
         }
     },
     methods: {
-            submitFile(){
-
-                    let formData = new FormData();
-
-
-                    
-                    //formData.append('username', this.user.username);
-                    formData.append('email', 'test@test.ru');
-                    formData.append('user_image', this.file);
-                    //formData.append('user_moto', this.user.user_moto);
-
-
-
- 
-                    axios.put( 
-                        this.url.getUserInfo,
-                        formData,
-                        {
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                            'Authorization': `Bearer ${this.token}`
-                        }
-                    }
-                    ).then(function(){
-                console.log('SUCCESS!!');
-                })
-                .catch(error => {
-                    console.log(error.response);
-                });
-            },
-
-        handleFileUpload(){
-            this.file = this.$refs.file.files[0];
-            console.log(this.file);
-        },
-
         takeTag(){
 
             this.token = localStorage.getItem('token_access');
@@ -95,7 +59,7 @@ export default {
                 .then((response) => {
                      console.log(response);
                      this.user = response.data;
-                      console.log(this.user.username)
+                      console.log(this.user.id)
                 })
                 .catch(error => {
                     //console.log(error.response);
@@ -116,6 +80,7 @@ export default {
             this.$router.push('/auth');
         },
         imgedit(){
+            console.log('kek'+this.emailError)
             if (this.editPict != 1){
                 this.editPict = 1;
             }

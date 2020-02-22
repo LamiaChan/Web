@@ -102,7 +102,7 @@ export default {
                         this.$store.dispatch('writeAuthStatus', 1)
                         this.login = '';
                         this.pass = '';
-                        this.$router.push('/mypage');
+                        this.$router.push('/');
                         
                     })
                     .catch(error => {
