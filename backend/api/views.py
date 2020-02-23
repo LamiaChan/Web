@@ -19,8 +19,9 @@ from rest_framework.parsers         import FileUploadParser, FormParser
 
 '''
 need to refactor frontend
+
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 8
+    page_size = 2
     page_size_query_param = 'page_size'
     max_page_size = 1000
 '''
@@ -49,6 +50,7 @@ class GetUserInfo(APIView):
 class ShowUserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = ShowUserSerializer
+    http_method_names = ['get']
 
 class CreateUserAPIView(CreateAPIView):
     queryset = User.objects.all()
@@ -58,11 +60,15 @@ class MangaViewSet(viewsets.ModelViewSet):
     #pagination_class = StandardResultsSetPagination
     queryset = Manga.objects.all().order_by('-updated')
     serializer_class = MangaSerializer
+    
 
 class ReportViewSet(viewsets.ModelViewSet):
     #pagination_class = StandardResultsSetPagination
     queryset = Report.objects.all().order_by('-updated')
     serializer_class = ReportSerializer
+    #need to refactor
+    http_method_names = ['get']
+
 
 class ChapterViewSet(viewsets.ModelViewSet):
     queryset = Chapter.objects.all().order_by('-updated')
