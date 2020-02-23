@@ -13,18 +13,18 @@ from rest_framework.decorators      import api_view
 from rest_framework.decorators      import permission_classes
 from django.contrib.auth            import get_user_model
 from rest_framework.parsers         import FileUploadParser, FormParser
-
-#from rest_framework.pagination      import PageNumberPagination
+from rest_framework.pagination      import PageNumberPagination
 
 
 '''
 need to refactor frontend
+'''
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 2
+    page_size = 8
     page_size_query_param = 'page_size'
     max_page_size = 1000
-'''
+
 
 User = get_user_model()
 
@@ -57,7 +57,7 @@ class CreateUserAPIView(CreateAPIView):
     serializer_class = UserSerializer
 
 class MangaViewSet(viewsets.ModelViewSet):
-    #pagination_class = StandardResultsSetPagination
+    pagination_class = StandardResultsSetPagination
     queryset = Manga.objects.all().order_by('-updated')
     serializer_class = MangaSerializer
     
