@@ -12,7 +12,9 @@ export default new Vuex.Store({
         token_access:  'empty',
         authStatus: 0,
         chosenTags: [],
-        api: 'api_url'
+        api: {
+            tags_link: 'http://localhost:8000/api/v1/tag/?format=json'
+        }
     },
     mutations: {
         SET_LOADING_STATUS(state, status) {
@@ -76,8 +78,8 @@ export default new Vuex.Store({
         takeChosenTags(state){
             return state.chosenTags
         },
-        takeApi(state){
-            return state.api
+        takeTagsLink(state){
+            return state.api.tags_link
         }
     }
 })

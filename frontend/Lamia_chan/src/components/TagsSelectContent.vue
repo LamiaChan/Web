@@ -52,7 +52,7 @@ export default {
             noManga: 0,
             url: {
                 mangalink: 'http://localhost:8000/api/v1/manga/?format=json',
-                tagslink: 'http://localhost:8000/api/v1/tag/?format=json'
+                tagslink: this.$store.getters.takeTagsLink
             },
         }
     },

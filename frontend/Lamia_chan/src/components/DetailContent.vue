@@ -73,7 +73,7 @@ export default {
             tags: [],
             url: {
                 mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl()  + '/?format=json',
-                tagslink: 'http://localhost:8000/api/v1/tag/?format=json'
+                tagslink: this.$store.getters.takeTagsLink
             },
         }
     },
@@ -126,7 +126,8 @@ export default {
 
     beforeMount(){
       this.getHashtags(),
-      this.testingStorg()
+      this.testingStorg(),
+      console.log("kek",this.test)
     },
 
     

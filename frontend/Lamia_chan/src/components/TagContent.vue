@@ -30,7 +30,7 @@ export default {
             tags: [],
             takenTags: [],
             url: {
-                tagslink: 'http://localhost:8000/api/v1/tag/?format=json'
+                tagslink: this.$store.getters.takeTagsLink
             },
         }
     },
