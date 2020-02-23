@@ -4,18 +4,18 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="leftBar">
-                        <div class="imgContainer"><img :src="user.user_image" class="userImg" alt=""></div>
-                        <div><button class="btn btn-outline-dark userButton" @click="imgedit()" >Редактировать</button></div>
-                        <div><span class="userName">{{user.username}}</span></div>
-                        <div><span class="userEmail">{{user.email}}</span></div>
-                        <div><span class="userAbout">О себе: {{user.user_moto}}</span></div>
-                        <div><span class="userAbout">Звание: {{user.rank}}</span></div>
-                        <div><button @click="exitAccount()" class="blubtn">Выйти</button></div>
+                        <div class="imgContainer"><img :src="users.user_image" class="userImg" alt=""></div>
+                        <div><button v-if="user.id == users.id" class="btn btn-outline-dark userButton" @click="imgedit()" >Редактировать</button></div>
+                        <div><span class="userName">{{users.username}}</span></div>
+                        <div><span class="userEmail">{{users.email}}</span></div>
+                        <div><span class="userAbout">О себе: {{users.user_moto}}</span></div>
+                        <div><span class="userAbout">Звание: {{users.rank}}</span></div>
+                        <div><button v-if="user.id == users.id" @click="exitAccount()" class="blubtn">Выйти</button></div>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="UserMain">
-                        <PictureEdit v-if="editPict==1" :url="url" :token="token" :user="user" />
+                        <PictureEdit v-if="(editPict==1)&&(user.id == users.id)" :url="url" :token="token" :user="user" />
                     </div>
                 </div>
             </div>
@@ -37,8 +37,10 @@ export default {
         return {
             user: [],
             editPict: 0,
+            users: [],
             url:{
-                getUserInfo: this.$store.getters.takeUserInfoLink
+                getUserInfo: this.$store.getters.takeUserInfoLink,
+                getUserList: 'http://localhost:8000/api/v1/show_users/' + this.getPageUrl() + '/?format=json'
             },
             token: '',
         }
@@ -72,6 +74,25 @@ export default {
 
             }
         },
+        getUserList(){
+            axios.get(this.url.getUserList).then((response) => {
+                this.users = response.data;
+                console.log("Users:",this.users)
+
+            });
+        },
+        getPageUrl(){
+
+          var currentUrl = window.location.pathname;
+
+          var params = currentUrl.split('/');
+
+          for (let i = 0; i < params.length; i++) {
+              var element = params[i];
+          }
+            console.log(params[params.length-1])
+            return params[params.length-1];
+        },
         exitAccount(){
             window.localStorage.setItem('token_access','empty')
             window.localStorage.setItem('token_refresh','empty')
@@ -90,7 +111,8 @@ export default {
         }
     },
     beforeMount(){
-      this.takeTag()
+      this.takeTag(),
+      this.getUserList()
     },
 }
 </script>
