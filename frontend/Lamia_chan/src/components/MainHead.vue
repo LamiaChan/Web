@@ -19,7 +19,7 @@
                 <router-link class="nav-link" to="/about">О нас </router-link>
               </li>
               <li v-if="user.username" class="nav-item">
-                <router-link class="nav-link" :to="'/user'+user.id">{{ user.username }}</router-link>
+                <router-link class="nav-link" :to="'/users/'+user.id">{{ user.username }}</router-link>
               </li>
                 <li v-else class="nav-item">
                 <router-link class="nav-link" to="/auth">Войти</router-link>
