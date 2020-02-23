@@ -71,7 +71,7 @@ export default {
       user: [],
       
       url: {
-          mangalink: this.$store.getters.takeMangaLink1 + "/" + this.$store.getters.takeEndLink,
+          mangalink: this.$store.getters.takeMangaLink1 + this.$store.getters.takeEndLink,
           getUserInfo: this.$store.getters.takeUserInfoLink
       },
     }

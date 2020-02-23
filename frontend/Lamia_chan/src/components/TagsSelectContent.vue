@@ -51,7 +51,7 @@ export default {
             repeatStatus: 0,
             noManga: 0,
             url: {
-                mangalink: this.$store.getters.takeMangaLink1 + this.$store.getters.takeMangaLink2,
+                mangalink: this.$store.getters.takeMangaLink1 + this.$store.getters.takeEndLink,
                 tagslink: this.$store.getters.takeTagsLink
             },
         }
