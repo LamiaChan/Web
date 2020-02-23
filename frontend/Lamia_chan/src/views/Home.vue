@@ -25,8 +25,8 @@ export default {
       testapi: [],
       reports: [],
       url: {
-          testapilink: 'http://localhost:8000/api/v1/manga/',
-          newslist: 'http://localhost:8000/api/v1/news/',
+          testapilink: this.$store.getters.takeMangaLink1 + this.$store.getters.takeEndLink,
+          newslist: this.$store.getters.takeNewsLink + this.$store.getters.takeEndLink,
       },
     }
   },

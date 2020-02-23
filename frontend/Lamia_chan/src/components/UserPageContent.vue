@@ -38,7 +38,7 @@ export default {
             user: [],
             editPict: 0,
             url:{
-                getUserInfo: 'http://localhost:8000/api/v1/userinfo/'
+                getUserInfo: this.$store.getters.takeUserInfoLink
             },
             token: '',
         }

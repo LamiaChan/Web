@@ -27,7 +27,7 @@ export default {
         return{
             news:[],
             url:{
-                newslink: 'http://localhost:8000/api/v1/news/' + this.getPageUrl()  + '/?format=json'
+                newslink: this.$store.getters.takeNewsLink + "/" + this.getPageUrl()  + this.$store.getters.takeEndLink
             }
         }
     },
