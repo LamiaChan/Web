@@ -40,7 +40,7 @@ export default {
             users: [],
             url:{
                 getUserInfo: this.$store.getters.takeUserInfoLink,
-                getUserList: 'http://localhost:8000/api/v1/show_users/' + this.getPageUrl() + '/?format=json'
+                getUserList: this.$store.getters.takeAllUsersLinks + this.getPageUrl() + this.$store.getters.takeEndLink
             },
             token: '',
         }

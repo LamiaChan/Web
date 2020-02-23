@@ -20,7 +20,8 @@ export default new Vuex.Store({
             token_link: 'http://localhost:8000/api/v1/token/?format=json',
             createUser_link: 'http://localhost:8000/api/v1/create/',
             userInfo_link: 'http://localhost:8000/api/v1/userinfo/',
-            news_link1: 'http://localhost:8000/api/v1/news'
+            news_link1: 'http://localhost:8000/api/v1/news',
+            allUsersLinks: 'http://localhost:8000/api/v1/show_users/'
         }
     },
     mutations: {
@@ -108,6 +109,9 @@ export default new Vuex.Store({
         },
         takeNewsLink(state){
             return state.api.news_link1
+        },
+        takeAllUsersLinks(state){
+            return state.api.allUsersLinks
         }
 
     }
