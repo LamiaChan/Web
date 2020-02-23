@@ -8,7 +8,7 @@
                     <!-- добавить сортировку по дате обнавления (testapione.updated) 
                     .sort( (a,b) => b.chapter_set.updated.localeCompare(a.chapter_set.updated) )-->
 
-                    <div class="col-md-3" v-for="(testapione,index) in testapi" :key="index">
+                    <!-- <div class="col-md-3" v-for="(testapione,index) in testapi" :key="index">
                         <router-link v-bind:to="'/detail/'+ testapione.id">
                             <div class="manga">
                                 <div class="manga__img">
@@ -17,8 +17,17 @@
                                 </div>
                             </div>
                         </router-link>
-                    </div>
+                    </div> -->
 
+
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div v-for="(page,index) in manga.length" :key="index">
+                            <span><router-link v-bind:to="'/?page='+ page">{{page}}</router-link></span>
+                        </div>
+                    </div>
                 </div>
 
                 <h2>Новости</h2>
@@ -50,8 +59,42 @@
 
 
 <script>
+import axios from 'axios'
 export default {
-        props: ['testapi', 'reports'],
+        data(){
+    return {
+        testapi: [],
+        reports: [],
+        manga: [],
+        url: {
+          mangaPages_link: this.$store.getters.takeMangaLink1 + "/?page=1"
+        },
+    }
+  },
+  methods:{
+        getHashtags(){
+            axios.get(this.url.mangaPages_link).then((response) => {
+                this.manga = response.data.results;
+                console.log(this.manga.results)
+            });
+        },
+        getPageUrl(){
+
+          var currentUrl = window.location.pathname;
+
+          var params = currentUrl.split('/');
+
+          for (let i = 0; i < params.length; i++) {
+              var element = params[i];
+          }
+            console.log(params[params.length-1])
+            return params[params.length-1];
+        },
+  },
+  beforeMount(){
+      this.getHashtags(),
+      this.getPageUrl()
+  }
 }
 </script>
 
