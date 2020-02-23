@@ -39,8 +39,8 @@ export default {
             token_refresh: "",
             token_access: "",
             url: {
-                getToken: 'http://localhost:8000/api/v1/token/?format=json',
-                createUser: 'http://localhost:8000/api/v1/create/'
+                getToken: this.$store.getters.takeTokenLink,
+                createUser: this.$store.getters.takeCreateUserLink
             },
         }
     },

@@ -71,8 +71,8 @@ export default {
       user: [],
       
       url: {
-          mangalink: 'http://localhost:8000/api/v1/manga/?format=json',
-          getUserInfo: 'http://localhost:8000/api/v1/userinfo/'
+          mangalink: this.$store.getters.takeMangaLink1 + "/" + this.$store.getters.takeEndLink,
+          getUserInfo: this.$store.getters.takeUserInfoLink
       },
     }
   },

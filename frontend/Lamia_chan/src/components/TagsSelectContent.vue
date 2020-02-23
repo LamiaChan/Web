@@ -51,7 +51,7 @@ export default {
             repeatStatus: 0,
             noManga: 0,
             url: {
-                mangalink: 'http://localhost:8000/api/v1/manga/?format=json',
+                mangalink: this.$store.getters.takeMangaLink1 + this.$store.getters.takeMangaLink2,
                 tagslink: this.$store.getters.takeTagsLink
             },
         }

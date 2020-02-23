@@ -72,7 +72,7 @@ export default {
             chapter: [],
             tags: [],
             url: {
-                mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl()  + '/?format=json',
+                mangalink: this.$store.getters.takeMangaLink1 + "/" + this.getPageUrl()  + this.$store.getters.takeEndLink,
                 tagslink: this.$store.getters.takeTagsLink
             },
         }

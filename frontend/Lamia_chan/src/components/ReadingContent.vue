@@ -78,9 +78,9 @@ export default {
             chapter: [],
             nextPgStatus: 0,
             url: {
-                chapterlink: 'http://localhost:8000/api/v1/chapter/' + this.getPageUrl(1)  + '/?format=json',
-                mangalink: 'http://localhost:8000/api/v1/manga/' + this.getPageUrl(2)  + '/?format=json',
-                nextlink: 'http://localhost:8000/api/v1/chapter/' + (Number(this.getPageUrl(1))+1) + '/?format=json'
+                chapterlink: this.$store.getters.takeChapterLink1 + this.getPageUrl(1)  + this.$store.getters.takeEndLink,
+                mangalink: this.$store.getters.takeMangaLink1 + "/" + this.getPageUrl(2) + this.$store.getters.takeEndLink,
+                nextlink: this.$store.getters.takeChapterLink1 + (Number(this.getPageUrl(1))+1) + this.$store.getters.takeEndLink
             },
         }
     },

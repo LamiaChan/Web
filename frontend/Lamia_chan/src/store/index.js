@@ -13,7 +13,13 @@ export default new Vuex.Store({
         authStatus: 0,
         chosenTags: [],
         api: {
-            tags_link: 'http://localhost:8000/api/v1/tag/?format=json'
+            mangalink1: 'http://localhost:8000/api/v1/manga',
+            endLink: '/?format=json',
+            tags_link: 'http://localhost:8000/api/v1/tag/?format=json',
+            chapter_link1: 'http://localhost:8000/api/v1/chapter/',
+            token_link: 'http://localhost:8000/api/v1/token/?format=json',
+            createUser_link: 'http://localhost:8000/api/v1/create/',
+            userInfo_link: 'http://localhost:8000/api/v1/userinfo/'
         }
     },
     mutations: {
@@ -80,6 +86,25 @@ export default new Vuex.Store({
         },
         takeTagsLink(state){
             return state.api.tags_link
+        },
+        takeMangaLink1(state){
+            return state.api.mangalink1
+        },
+        takeChapterLink1(state){
+            return state.api.chapter_link1
+        },
+        takeEndLink(state){
+            return state.api.endLink
+        },
+        takeTokenLink(state){
+            return state.api.token_link
+        },
+        takeCreateUserLink(state){
+            return state.api.createUser_link
+        },
+        takeUserInfoLink(state){
+            return state.api.userInfo_link
         }
+
     }
 })
