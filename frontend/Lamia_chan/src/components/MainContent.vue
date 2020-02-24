@@ -5,30 +5,30 @@
                 <h2>Недавно обновленные</h2>
                 <div class="row">
                     
-                    <!-- добавить сортировку по дате обнавления (testapione.updated) 
+                    <!-- добавить сортировку по дате обнавления (mangaOne.updated) 
                     .sort( (a,b) => b.chapter_set.updated.localeCompare(a.chapter_set.updated) )-->
 
-                    <!-- <div class="col-md-3" v-for="(testapione,index) in testapi" :key="index">
-                        <router-link v-bind:to="'/detail/'+ testapione.id">
+                    <div class="col-md-3" v-for="(mangaOne,index) in manga" :key="index">
+                        <router-link v-bind:to="'/detail/'+ mangaOne.id">
                             <div class="manga">
                                 <div class="manga__img">
-                                    <img :src="testapione.preview_image_url"   alt="" class="manga__img__pict">
-                                    <span class="manga__title">{{ testapione.title }}</span>
+                                    <img :src="mangaOne.preview_image_url"   alt="" class="manga__img__pict">
+                                    <span class="manga__title">{{ mangaOne.title }}</span>
                                 </div>
                             </div>
                         </router-link>
-                    </div> -->
+                    </div> 
 
 
 
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-lg-12">
                         <div v-for="(page,index) in manga.length" :key="index">
                             <span><router-link v-bind:to="'/?page='+ page">{{page}}</router-link></span>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <h2>Новости</h2>
                 <div class="row">
@@ -67,7 +67,8 @@ export default {
         reports: [],
         manga: [],
         url: {
-          mangaPages_link: this.$store.getters.takeMangaLink1 + "/?page=1"
+          mangaPages_link: this.$store.getters.takeMangaLink1 + this.$store.getters.takeEndLink,
+          newslist: this.$store.getters.takeNewsLink + this.$store.getters.takeEndLink
         },
     }
   },
@@ -75,25 +76,15 @@ export default {
         getHashtags(){
             axios.get(this.url.mangaPages_link).then((response) => {
                 this.manga = response.data.results;
-                console.log(this.manga.results)
+                console.log(this.manga)
             });
-        },
-        getPageUrl(){
-
-          var currentUrl = window.location.pathname;
-
-          var params = currentUrl.split('/');
-
-          for (let i = 0; i < params.length; i++) {
-              var element = params[i];
-          }
-            console.log(params[params.length-1])
-            return params[params.length-1];
+            axios.get(this.url.newslist).then((response) => {
+                this.reports = response.data;
+            });
         },
   },
   beforeMount(){
-      this.getHashtags(),
-      this.getPageUrl()
+      this.getHashtags()
   }
 }
 </script>

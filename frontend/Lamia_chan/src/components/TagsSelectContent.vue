@@ -74,7 +74,7 @@ export default {
 
         getHashtags(){
             axios.get(this.url.mangalink).then((response) => {
-                this.manga = response.data;
+                this.manga = response.data.results;
             });
         },
         getTags(){          
