@@ -1,9 +1,5 @@
 FROM node:12.16.1-alpine
-RUN mkdir /app
+COPY . /app/
 WORKDIR /app
+RUN npm install
 
-RUN apk add --no-cache ffmpeg opus pixman cairo pango giflib ca-certificates \
-    && apk add --no-cache --virtual .build-deps python g++ make gcc .build-deps curl git pixman-dev cairo-dev pangomm-dev libjpeg-turbo-dev giflib-dev \
-    && npm install \
-    && apk del .build-deps
-COPY . .

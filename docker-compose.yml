@@ -2,7 +2,8 @@ version: '3'
 
 services:
   vue:
-    build: 
+    build:
+        context: . 
         dockerfile: ./frontend/Lamia_chan/Dockerfile
     command: npm run serve
     volumes:
@@ -11,7 +12,8 @@ services:
         - "8080:8080"
 
   django:
-    build: 
+    build:
+        context: . 
         dockerfile: ./backend/Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
