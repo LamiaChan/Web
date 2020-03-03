@@ -16,5 +16,6 @@ urlpatterns = [
     path('add_page_select_manga', views.add_page_select_manga, name='add_page_select_manga'),
     path('add_page_select_chapter/<int:manga_id>', views.add_page_select_chapter, name='add_page_select_chapter'),
     path('add_page/<int:manga_id>/<int:chapter_id>', views.add_page, name='add_page'),
+    path('updater', views.updater, name='updater')
 
 ]

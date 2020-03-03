@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .models import Manga, Page, Source, Chapter
+from subprocess import Popen, PIPE, STDOUT
 import os
 import os.path as pathj
 import sys
@@ -146,8 +147,25 @@ def add_page(request, manga_id, chapter_id):
                 # file_path = pathj.abspath(pathj.join(__file__ ,"../../media/manga/" + form['images'][i]))
                 
 
-            return HttpResponse('Манга созданна')
-
-    
+            return HttpResponse('Манга созданна')    
     return render(request, 'add_page.html', {'errors': errors, 'form': form })
+
+
+def updater(request):
+    if request.method == 'POST':
+        command = ["git pull"]
+        try:
+                process = Popen(command, stdout=PIPE, stderr=STDOUT)
+                output = process.stdout.read()
+                exitstatus = process.poll()
+                if (exitstatus==0):
+                        result = {"status": "Success", "output":str(output)}
+                else:
+                        result = {"status": "Failed", "output":str(output)}
+
+        except Exception as e:
+                result =  {"status": "failed", "output":str(e)}
+
+        html = "<html><body>Script status: %s \n Output: %s</body></html>" %(result['status'],result['output'])
+        return HttpResponse(html)
 
