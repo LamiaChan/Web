@@ -23,29 +23,8 @@ jobs:
     # Если тесты были пройдены успешно
     needs: [build]
     runs-on: [ubuntu-latest]
-    env:
-      LOGIN: ${{ secrets.DOCKER_LOGIN }}
-      NAME: ${{ secrets.DOCKER_NAME }}
     steps:
-      - name: Login to docker.io
-        # Сначала мы логинимся в docker.io
-        run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
-        # Чекаутим код
-      - uses: actions/checkout@master
-      - name: Build image
-        # Собираем image и называем его так как указано в hub.docker т.е. login/repository:version
-        run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
-      - name: Push image to docker.io
-        # Пушим образ в registry
-        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
-
-  deploy:
-    # Если мы успешно собрали контейнер и отправили в registry, то делаем хук деплоймент серверу
-    # Попробуем готовый экшен curl из маркетплэйса
-    needs: [build_and_pub]
-    runs-on: [ubuntu-latest]
-    steps:
-      - name: Set tag to env
-        run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:11})
-      - name: Send webhook for deploy
-        run: "curl --silent --show-error --fail -X POST ${{ secrets.DEPLOYMENT_SERVER }} -H 'Authorization: ${{ secrets.DEPLOYMENT_TOKEN }}' -H 'Content-Type: application/json' -d '{\"owner\": \"${{ secrets.DOCKER_LOGIN }}\", \"repository\": \"${{ secrets.DOCKER_NAME }}\", \"tag\": \"${{ env.RELEASE_VERSION }}\", \"ports\": {\"8080\": 8080}}'"
+    - name: curl
+      uses: wei/curl@v1
+      with:
+        args: -X POST http://queryberry.ru/updater
