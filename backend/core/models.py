@@ -63,8 +63,8 @@ class Manga(models.Model):
     description = models.CharField(max_length=500)
     sources = models.ManyToManyField(Source)
     tags = models.ManyToManyField(Tag)
-    upload_date =  models.ManyToManyField(DateUp)
-    updated = models.DateTimeField(auto_now=True)
+    #upload_date =  models.ManyToManyField(DateUp)
+    updated = models.DateTimeField(default=datetime.now)
     year_of_publish = models.DateTimeField()
 
     OBJECT_TYPES = [
