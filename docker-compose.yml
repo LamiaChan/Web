@@ -14,7 +14,10 @@ services:
     build:
         context: ./frontend
         dockerfile: Dockerfile
-    command: npm run serve --prefix app
+    command: npm run serve  
+    volumes:
+      - ./frontend:/app
+      - ./app/node_modules
     ports:
       - "8080:8080"
  

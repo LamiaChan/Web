@@ -1,9 +1,25 @@
-FROM node:12.16.1-alpine
-COPY . /app/
+FROM node:lts-alpine
+
+# делаем каталог 'app' текущим рабочим каталогом
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-COPY ./package.json /app/package.json
+
+# копируем оба 'package.json' и 'package-lock.json' (если есть)
+COPY package*.json ./app/
+
 RUN npm install -g @vue/cli
+
+RUN npm i @vue/cli-service
+
+RUN npm i @vue/cli-plugin-babel     
+
+RUN npm install --save vue vue-router vuex
+
+RUN npm i vue-template-compiler
+
+RUN npm install --save axios
+
+# устанавливаем зависимости проекта
 RUN npm install
-RUN npm audit fix
+
+COPY . /app/
 
