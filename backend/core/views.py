@@ -153,19 +153,11 @@ def add_page(request, manga_id, chapter_id):
 
 def updater(request):
     if request.method == 'POST':
-        command = ["git pull"]
-        try:
-                process = Popen(command, stdout=PIPE, stderr=STDOUT)
-                output = process.stdout.read()
-                exitstatus = process.poll()
-                if (exitstatus==0):
-                        result = {"status": "Success", "output":str(output)}
-                else:
-                        result = {"status": "Failed", "output":str(output)}
+        
+        stream = os.popen('git pull')
+        output = stream.read()
+        output
 
-        except Exception as e:
-                result =  {"status": "failed", "output":str(e)}
-
-        html = "<html><body>Script status: %s \n Output: %s</body></html>" %(result['status'],result['output'])
+        html = "<html><body>Output: %s</body></html>" %(output)
         return HttpResponse(html)
 
