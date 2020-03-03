@@ -1,0 +1,7 @@
+System check identified some issues:
+
+WARNINGS:
+[33;1mcore.User.bookmarks: (fields.W340) null has no effect on ManyToManyField.[0m
+[33;1mcore.User.user_favorite_manga: (fields.W340) null has no effect on ManyToManyField.[0m
+[[31;1mCommandError: Unable to serialize database: fe_sendauth: no password supplied
+[0m

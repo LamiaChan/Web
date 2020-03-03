@@ -1,7 +1,14 @@
 version: '3'
 
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "postgres"
   django:
+    restart: always
     build:
         context: ./backend 
         dockerfile: Dockerfile
@@ -10,7 +17,11 @@ services:
       - ./backend:/code
     ports:
       - "8000:8000"
+    depends_on:
+      - db
+  
   vue:
+    restart: always
     build:
         context: ./frontend
         dockerfile: Dockerfile
@@ -20,8 +31,4 @@ services:
       - ./app/node_modules
     ports:
       - "8080:8080"
- 
-    
-    
-
 
