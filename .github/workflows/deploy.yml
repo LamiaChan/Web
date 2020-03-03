@@ -27,4 +27,4 @@ jobs:
     - name: curl
       uses: wei/curl@v1
       with:
-        args: -X POST http://queryberry.ru:8000/updater
+        args: -X POST http://queryberry.ru:8000/core/updater
