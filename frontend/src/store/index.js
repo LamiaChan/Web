@@ -13,15 +13,15 @@ export default new Vuex.Store({
         authStatus: 0,
         chosenTags: [],
         api: {
-            mangalink1: 'http://localhost:8000/api/v1/manga',
+            mangalink1: 'http://queryberry.ru:8000/api/v1/manga',
             endLink: '/?format=json',
-            tags_link: 'http://localhost:8000/api/v1/tag/?format=json',
-            chapter_link1: 'http://localhost:8000/api/v1/chapter/',
-            token_link: 'http://localhost:8000/api/v1/token/?format=json',
-            createUser_link: 'http://localhost:8000/api/v1/create/',
-            userInfo_link: 'http://localhost:8000/api/v1/userinfo/',
-            news_link1: 'http://localhost:8000/api/v1/news',
-            allUsersLinks: 'http://localhost:8000/api/v1/show_users/'
+            tags_link: 'http://queryberry.ru:8000/api/v1/tag/?format=json',
+            chapter_link1: 'http://queryberry.ru:8000/api/v1/chapter/',
+            token_link: 'http://queryberry.ru:8000/api/v1/token/?format=json',
+            createUser_link: 'http://queryberry.ru:8000/api/v1/create/',
+            userInfo_link: 'http://queryberry.ru:8000/api/v1/userinfo/',
+            news_link1: 'http://queryberry.ru:8000/api/v1/news',
+            allUsersLinks: 'http://queryberry.ru:8000/api/v1/show_users/'
         }
     },
     mutations: {
