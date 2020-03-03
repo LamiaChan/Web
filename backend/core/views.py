@@ -158,6 +158,6 @@ def updater(request):
         output = stream.read()
         output
 
-        html = "<html><body>Output: %s</body></html>" %(output)
+        html = "<html><body>git pull done</body></html>" %(output)
         return HttpResponse(html)
 
