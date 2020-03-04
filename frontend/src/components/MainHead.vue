@@ -79,9 +79,22 @@ export default {
   
   methods: {
     getHashtags(){
+        var manga_array = [];
+        var next_page = "";
+
         axios.get(this.url.mangalink).then((response) => {
-            this.manga = response.data;
+            next_page = response.data.next;
+            manga_array.push(response.data.results);
         });
+
+        while (next_page != "null") {
+          axios.get(this.url.next_page).then((response) => {
+              
+              next_page = response.data.next;
+              manga_array.push(response.data.results);
+            
+            });
+        }
     },
     takeAuthStatus(){
           return this.$store.getters.takeAuthStatus;

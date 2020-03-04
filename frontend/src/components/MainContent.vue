@@ -13,7 +13,7 @@
                             <div class="manga">
                                 <div class="manga__img">
                                     <img :src="mangaOne.preview_image_url"   alt="" class="manga__img__pict">
-                                    <span class="manga__title">{{ mangaOne.title.slice(0, 40) }}...</span>
+                                    <span class="manga__title">{{ mangaOne.title.slice(0, 40) }}</span>
                                 </div>
                             </div>
                         </router-link>
