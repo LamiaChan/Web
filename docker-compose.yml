@@ -7,6 +7,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "postgres"
+
   django:
     restart: always
     build:
@@ -19,6 +20,17 @@ services:
       - "8000:8000"
     depends_on:
       - db
+
+  nginx:
+    restart: always
+    image: nginx:1.17.4-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - vue
   
   vue:
     restart: always
@@ -31,4 +43,7 @@ services:
       - ./app/node_modules
     ports:
       - "8080:8080"
+    depends_on:
+      - django
+
 

@@ -3,3 +3,4 @@ ENV PYTHONUNBUFFERED 1
 COPY . /code/
 WORKDIR /code
 RUN pip install -r requirements.txt
+CMD ["gunicorn", "--chdir", "lamia_django", "--bind", ":8000", "lamia_django.wsgi:application"]
