@@ -30,7 +30,7 @@
           <form class="form-inline my-2 my-lg-0 dropdown">
             <input class="manga-searcher form-control" type="texts" placeholder="Поиск по манге" id="menu1" data-toggle="dropdown"  v-model="searchQuery">
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" >
-                <div v-for="(item,index) in filteredResources.slice(0, 10)" :key="index">
+                <div v-for="(item,index) in filteredResources.slice(0, 5)" :key="index">
                   <li role="presentation" style="padding:5px;">
                     <div class="d-flex justify-content-start bd-highlight mb-3">
                     <div class="">
@@ -71,7 +71,7 @@ export default {
       user: [],
       
       url: {
-          mangalink: this.$store.getters.takeMangaLink1 + this.$store.getters.takeEndLink,
+          mangalink: this.$store.getters.takeNonPagMangaLink + this.$store.getters.takeEndLink,
           getUserInfo: this.$store.getters.takeUserInfoLink
       },
     }
@@ -79,22 +79,10 @@ export default {
   
   methods: {
     getHashtags(){
-        var manga_array = [];
-        var next_page = "";
 
         axios.get(this.url.mangalink).then((response) => {
-            next_page = response.data.next;
-            manga_array.push(response.data.results);
-        });
-
-        while (next_page != "null") {
-          axios.get(this.url.next_page).then((response) => {
-              
-              next_page = response.data.next;
-              manga_array.push(response.data.results);
-            
-            });
-        }
+            this.manga = response.data;
+        });     
     },
     takeAuthStatus(){
           return this.$store.getters.takeAuthStatus;

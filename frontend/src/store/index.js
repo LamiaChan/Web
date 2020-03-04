@@ -14,6 +14,7 @@ export default new Vuex.Store({
         chosenTags: [],
         api: {
             mangalink1: 'http://queryberry.ru:8000/api/v1/manga',
+            nonpagmangalink: 'http://queryberry.ru:8000/api/v1/nonpagmanga',
             endLink: '/?format=json',
             tags_link: 'http://queryberry.ru:8000/api/v1/tag/?format=json',
             chapter_link1: 'http://queryberry.ru:8000/api/v1/chapter/',
@@ -91,6 +92,9 @@ export default new Vuex.Store({
         },
         takeMangaLink1(state){
             return state.api.mangalink1
+        },
+        takeNonPagMangaLink(state){
+            return state.api.nonpagmangalink
         },
         takeChapterLink1(state){
             return state.api.chapter_link1
