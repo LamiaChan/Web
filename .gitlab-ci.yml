@@ -37,7 +37,7 @@ test_backend:
   stage: test
   script:
     - docker pull $CONTAINER_TEST_BACKEND_IMAGE
-    - docker run $CONTAINER_TEST_BACKEND_IMAGE /bin/sh ./backend/test.sh
+    - docker run $CONTAINER_TEST_BACKEND_IMAGE /bin/sh  ./code/test.sh
 # зависимость
 
 release_image_backend:
