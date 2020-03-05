@@ -24,13 +24,13 @@ before_script:
 build_backend:
   stage: build
   script:
-    - docker build -f backend/Dockerfile --pull -t $CONTAINER_TEST_BACKEND_IMAGE .
+    - docker build -f backend/Dockerfile --pull -t $CONTAINER_TEST_BACKEND_IMAGE ./backend
     - docker push $CONTAINER_TEST_BACKEND_IMAGE
 
 build_frontend:
   stage: build
   script:
-    - docker build -f frontend/Dockerfile --pull -t $CONTAINER_TEST_FRONTEND_IMAGE .
+    - docker build -f frontend/Dockerfile --pull -t $CONTAINER_TEST_FRONTEND_IMAGE ./frontend
     - docker push $CONTAINER_TEST_FRONTEND_IMAGE
     
 test_backend:
