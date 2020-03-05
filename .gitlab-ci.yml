@@ -4,7 +4,7 @@ services:
 
 stages:
   - build
-  - test
+  #- test
   - release
   # - deploy
 
@@ -33,11 +33,11 @@ build_frontend:
     - docker build -f frontend/Dockerfile --pull -t $CONTAINER_TEST_FRONTEND_IMAGE ./frontend
     - docker push $CONTAINER_TEST_FRONTEND_IMAGE
     
-test_backend:
-  stage: test
-  script:
-    - docker pull $CONTAINER_TEST_BACKEND_IMAGE
-    - docker run $CONTAINER_TEST_BACKEND_IMAGE /bin/sh  ./code/test.sh
+# test_backend:
+#   stage: test
+#   script:
+#     - docker pull $CONTAINER_TEST_BACKEND_IMAGE
+#     - docker run $CONTAINER_TEST_BACKEND_IMAGE /bin/sh code/test.sh
 # зависимость
 
 release_image_backend:
