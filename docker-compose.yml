@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+  # переписать
   db:
     image: postgres
     restart: always
