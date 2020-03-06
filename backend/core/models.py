@@ -43,13 +43,6 @@ class Source(models.Model):
         return str(self.url)
     
 
-class DateUp(models.Model):
-    date = models.DateTimeField(default=datetime.now, blank=True)
-
-    def __str__(self):
-        return str(self.date)
-
-
 class Tag(models.Model):
     title = models.CharField(max_length=256)
     
@@ -63,16 +56,26 @@ class Manga(models.Model):
     description = models.CharField(max_length=500)
     sources = models.ManyToManyField(Source)
     tags = models.ManyToManyField(Tag)
-    #upload_date =  models.ManyToManyField(DateUp)
     updated = models.DateTimeField(default=datetime.now)
     year_of_publish = models.DateTimeField()
-
+    
     OBJECT_TYPES = [
         ('Манга', 'Манга'),
         ('Манхва', 'Манхва'),
         ('Маньхуа', 'Маньхуа'),
         ('Ранобэ', 'Ранобэ'),
     ]
+
+    NSWF_TYPES = [
+        ('true', 'true'),
+        ('false', 'false'),
+    ]
+
+    nswf = models.CharField(
+        max_length = 30,
+        choices = NSWF_TYPES,
+        default = 'false',
+    )
 
     object_type = models.CharField(
         max_length = 30,
@@ -125,7 +128,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_image = models.ImageField(upload_to='upicks', null=True, blank=True)
     user_moto = models.CharField(max_length=256, null=True, blank=True)
     user_favorite_manga = models.ManyToManyField(Manga, null=True, blank=True)
-    bookmarks = models.ManyToManyField(Chapter, null=True, blank=True)
+    bookmarks = models.ManyToManyField(Page, null=True, blank=True)
     RANK_LIST = [
         ('Новичок', 'Новичок'),
         ('Завсегдатый', 'Завсегдатый'),
@@ -135,7 +138,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         #Funny
 
         ('Жидо-скриптизер', 'Жидо-скриптизер'),
-        ('Хозяин-питона', 'Хозяин-питона')
+        ('Хозяин-питона', 'Хозяин-питона'),
+        ('Джабист', 'Джабист'),
+        ('Веб хуежник', 'Веб хуежник')
     ]
 
     rank = models.CharField(
@@ -173,3 +178,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         send_mail(subject, message, from_email, [self.email], **kwargs)
     '''
+
+class PageComment(models.Model):
+    page = models.ForeignKey(Page, on_delete=models.CASCADE)
+    author = models.ForeignKey(User)
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.text

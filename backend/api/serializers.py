@@ -138,6 +138,7 @@ class MangaSerializer(serializers.ModelSerializer):
             'preview_image_url',
             'tags',
             'year_of_publish',
+            'nswf',
             'updated',
             'chapter_set',
 
