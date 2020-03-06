@@ -1,19 +1,31 @@
 version: '3'
 
+volumes:
+  pgdata:
+    driver: local
+
+
 services:
   # переписать
   db:
     image: postgres
     restart: always
+    ports:
+      - 5432:5432
+      
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "postgres"
+      PGDATA: /var/www/db_data/postgresql/lamiachan
+      volumes:
+        - pgdata:/var/www/db_data/postgresql/lamiachan
 
   django:
     restart: always
-    build:
-        context: ./backend 
-        dockerfile: Dockerfile
+    image: registry.gitlab.com/mar4elkin/lamia_chan_web_devops/backend
+    # build:
+    #     context: ./backend 
+    #     dockerfile: Dockerfile
     command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/code
@@ -35,9 +47,10 @@ services:
   
   vue:
     restart: always
-    build:
-        context: ./frontend
-        dockerfile: Dockerfile
+    image: registry.gitlab.com/mar4elkin/lamia_chan_web_devops/frontend
+    # build:
+    #     context: ./frontend
+    #     dockerfile: Dockerfile
     command: npm run serve  
     volumes:
       - ./frontend:/app
