@@ -181,7 +181,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class PageComment(models.Model):
     page = models.ForeignKey(Page, on_delete=models.CASCADE)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
 
