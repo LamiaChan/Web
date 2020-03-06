@@ -48,7 +48,7 @@ services:
   
   vue:
     restart: always
-    # разобраться с ошибкой
+    # разобраться с ошибкой node_models
     #image: registry.gitlab.com/mar4elkin/lamia_chan_web_devops/frontend
     build:
         context: ./frontend
