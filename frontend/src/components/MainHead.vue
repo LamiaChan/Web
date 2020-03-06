@@ -29,7 +29,7 @@
 
           <form class="form-inline my-2 my-lg-0 dropdown">
             <input class="manga-searcher form-control" type="texts" placeholder="Поиск по манге" id="menu1" data-toggle="dropdown"  v-model="searchQuery">
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" >
+            <ul class="dropdown-menu manga-drop" role="menu" aria-labelledby="menu1" >
                 <div v-for="(item,index) in filteredResources.slice(0, 5)" :key="index">
                   <li role="presentation" style="padding:5px;">
                     <div class="d-flex justify-content-start bd-highlight mb-3">
@@ -133,6 +133,9 @@ export default {
 </script>
 
 <style scoped>
+  .manga-searcher, .manga-drop{
+    width: 300px;
+  }
   .search__img{
     width: 30px;
   }
