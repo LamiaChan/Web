@@ -76,3 +76,5 @@ deploy_staging:
     # when: manual
   only:
     - master
+    
+    
