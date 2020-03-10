@@ -97,9 +97,21 @@ class DateUpSerializer(serializers.ModelSerializer):
             'id',
             'date',
         ]
+
+
+class PageCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PageComment
+        fields = [
+            'id',
+            'author',
+            'text',
+            'created_date',
+        ]
     
 
 class PageSerializer(serializers.ModelSerializer):
+    pagecomment_set = serializers.SerializerMethodField()
     class Meta:
         model = Page
         fields = [
@@ -108,6 +120,9 @@ class PageSerializer(serializers.ModelSerializer):
             'image', 
             'chapter'
         ]
+    def get_pagecomment_set(self, instance):
+        page_comment = instance.pagecomment_set.all()
+        return PageCommentSerializer(page_comment, many=True).data
 
 class ChapterSerializer(serializers.ModelSerializer):
     page_set = serializers.SerializerMethodField()

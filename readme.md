@@ -1,4 +1,5 @@
 # Lamia chan
+[![pipeline status](https://gitlab.com/mar4elkin/lamia_chan_web_devops/badges/master/pipeline.svg)](https://gitlab.com/mar4elkin/lamia_chan_web_devops/-/commits/master)
 
 ## dependence
 ### python
