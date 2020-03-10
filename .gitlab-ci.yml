@@ -69,9 +69,7 @@ deploy_staging:
     - chmod 700 ~/.ssh/id_rsa
     - eval "$(ssh-agent -s)"
   script:
-    - ssh $SERVER_USER@$SERVER_ADDRES -p $SERVER_PORT
-    - echo $SERVER_PASSWORD
-    - cd /var/www/html/Lamia_chan_web && bash /var/www/html/Lamia_chan_web/backend/deploy.sh
+    - ssh $SERVER_USER@$SERVER_ADDRES -i ~/.ssh/id_rsa -p $SERVER_PORT -o 'StrictHostKeyChecking no' "cd /var/www/html/Lamia_chan_web && bash /var/www/html/Lamia_chan_web/backend/deploy.sh" 
   environment:
     name: staging
     url: http://$SERVER_ADDRES_STAGING
