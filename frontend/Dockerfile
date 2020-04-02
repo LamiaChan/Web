@@ -1,26 +1,19 @@
-FROM node:lts-alpine
+FROM node:lts-alpine as build-stage
 
-# делаем каталог 'app' текущим рабочим каталогом
 WORKDIR /app
 
-# копируем оба 'package.json' и 'package-lock.json' (если есть)
-COPY package*.json ./app/
+COPY package*.json /app/
 
-RUN npm install -g @vue/cli
+RUN [ "npm", "install", "-g", "react-script" ]
 
-RUN npm i @vue/cli-service
+#RUN npm install
+RUN [ "npm", "install" ]
 
-RUN npm i @vue/cli-plugin-babel     
-
-RUN npm install --save vue vue-router vuex
-
-RUN npm i vue-template-compiler
-
-RUN npm install --save axios
-
-# устанавливаем зависимости проекта
-RUN npm install
-
-COPY . /app/
+COPY ./ /app/
 
 
+# for prod
+#RUN npm run build
+
+EXPOSE 3000
+CMD [ "npm", "start" ]

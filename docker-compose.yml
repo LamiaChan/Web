@@ -44,22 +44,24 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
-      - vue
-  
-  vue:
+      - react
+
+  react:
     restart: always
     # разобраться с ошибкой node_models
     #image: registry.gitlab.com/mar4elkin/lamia_chan_web_devops/frontend
     build:
         context: ./frontend
         dockerfile: Dockerfile
-    command: npm run serve  
     volumes:
-      - ./frontend:/app
-      - ./app/node_modules
+        - ./frontend:/app
+        - ./app/node_modules
+    expose:
+        - 3000
     ports:
-      - "8080:8080"
+        - "3000:3000"
     depends_on:
       - django
+
 
 
