@@ -9,7 +9,7 @@ const reduser = (state = initialState, action) => {
 
     switch (action.type) {
         case "CHANGE_COLOR":
-            newState.mainColor = "#8a2be2"
+            state.mainColor === "#11998E" ? newState.mainColor = "#8a2be2" : newState.mainColor = "#11998E"
             break;
     
         default:

@@ -2,17 +2,12 @@ import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
 import LamiaNavbar from './components/Navbar'
+import * as actionCreator from './store/actions/action'
 
 class App extends React.Component {
 
   constructor(){
     super()
-    this.changeTheme = this.changeTheme.bind(this)
-  }
-
-  changeTheme(){
-    this.props.changeColor()
-    console.log("done")
   }
 
   render(){
@@ -20,9 +15,8 @@ class App extends React.Component {
       <div className="App">
         <LamiaNavbar
           mainColor={this.props.mainColor}
-          changeTheme={this.changeTheme}
+          changeTheme={this.props.changeColor}
         />
-        <button onClick={this.changeTheme}>KEK</button>
       </div>
     );
   }
@@ -35,7 +29,7 @@ const mapStateToProps = (state)=>{
 }
 const mapDispachToProps = (dispach) => {
   return {
-    changeColor: () => dispach({type:'CHANGE_COLOR'})
+    changeColor: () => dispach(actionCreator.changeColor())
   }
 }
 
