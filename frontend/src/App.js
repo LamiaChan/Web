@@ -4,10 +4,25 @@ import { connect } from 'react-redux'
 import LamiaNavbar from './components/Navbar'
 
 class App extends React.Component {
+
+  constructor(){
+    super()
+    this.changeTheme = this.changeTheme.bind(this)
+  }
+
+  changeTheme(){
+    this.props.changeColor()
+    console.log("done")
+  }
+
   render(){
     return (
       <div className="App">
-        <LamiaNavbar />
+        <LamiaNavbar
+          mainColor={this.props.mainColor}
+          changeTheme={this.changeTheme}
+        />
+        <button onClick={this.changeTheme}>KEK</button>
       </div>
     );
   }
@@ -15,12 +30,12 @@ class App extends React.Component {
 
 const mapStateToProps = (state)=>{
   return {
-    test: state.test
+    mainColor: state.mainColor
   }
 }
 const mapDispachToProps = (dispach) => {
   return {
-    onDeliteItem: (id) => dispach({type:'DELITE_ITEM', key:id})
+    changeColor: () => dispach({type:'CHANGE_COLOR'})
   }
 }
 
