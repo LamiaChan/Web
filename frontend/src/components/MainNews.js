@@ -5,8 +5,8 @@ import '../App.css'
 export default class MainNews extends React.Component {
   render(){
     return(
-        <div className="MainContent" style={{borderColor: this.props.mainColor}}>
-          <h1>KEK</h1>
+        <div className="MainNews" style={{borderColor: this.props.mainColor}}>
+          <h1>LOL</h1>
         </div>
     )
   }
