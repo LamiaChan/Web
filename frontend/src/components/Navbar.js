@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css';
+import '../App.css'
 
 
 export default class LamiaNavbar extends React.Component{
@@ -21,14 +21,7 @@ export default class LamiaNavbar extends React.Component{
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        {this.props.mainColor}
       </header>
     )
-  }
-}
-
-const mapStateToProps = (state)=>{
-  return {
-    test: state.test
   }
 }
