@@ -14,10 +14,10 @@ class App extends React.Component {
 
   async componentDidMount(){
     try{
-      const response = await fetch("http://queryberry.ru:8000/api/v1/nonpagmanga/")
+      const response = await fetch("http://queryberry.ru:8000/api/v1/manga/")
       const data = await response.json();
       console.log(data)
-      this.props.takeApi(data)
+      this.props.takeApi(data.results)
       console.log(this.props.api)
     }
     catch(err){
@@ -37,7 +37,7 @@ class App extends React.Component {
             <div className="col-md-9">
               <div className="row">
                 <div className="col-md-12">
-                  <Main mainColor={this.props.mainColor} />
+                  <Main mainColor={this.props.mainColor} api={this.props.api} />
                 </div>
               </div>
               <div className="row">

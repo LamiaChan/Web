@@ -105,6 +105,14 @@
   margin: 20px 0px 15px 35px; 
 }
 
+.mangaCard__img{
+  width: 117px;
+height: 164px;
+}
+.mangaCard__title{
+  font-size: 15px;
+}
+
 /* MAIN NEWS */
 .MainNews{
   background: rgba(196, 196, 196, 0.3);
