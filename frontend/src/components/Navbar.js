@@ -4,13 +4,16 @@ import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'
-
+import Lamia from '../images/Lamia.png'
 
 export default class LamiaNavbar extends React.Component{
   render(){
     return(
       <header>
-        <Navbar expand="lg" className="Navbar" style={{background: this.props.mainColor}}>
+        <div className="Lamia d-lg-block d-none mx-lg-3">
+          <img src={Lamia} alt="Lamia"></img>
+        </div>
+        <Navbar expand="lg" className="Navbar mx-lg-3" style={{background: this.props.mainColor}}>
           <Navbar.Brand href="#home">Lamia chan</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

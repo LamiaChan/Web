@@ -1,11 +1,8 @@
-.App {
-  text-align: center;
-}
-
 
 /* NAVBAR MAIN */
-.navbar{
-  color:#fff
+.Navbar{
+  color:#fff;
+  border-radius: 8px;
 }
 
 /* SIDEBAR MAIN */
