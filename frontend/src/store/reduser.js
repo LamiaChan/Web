@@ -1,15 +1,32 @@
 
 
 const initialState = {
-    mainColor: "#11998E"
+    mainColor:{
+      color: "#11998E",
+      mainBack: "#fff",
+      smallBack: "#e6e6e6",
+      textColor: "#000"
+    },
+    darkMode: false
 }
 
 const reduser = (state = initialState, action) => {
     const newState = {...state}
-
     switch (action.type) {
         case "CHANGE_COLOR":
-            state.mainColor === "#11998E" ? newState.mainColor = "#8a2be2" : newState.mainColor = "#11998E"
+            const darkColor = {
+              color: "#B52556",
+              mainBack: "#000",
+              smallBack: "#1F1F1F",
+              textColor: "#fff"
+            }
+            const lightColor = {
+              color: "#11998E",
+              mainBack: "#fff",
+              smallBack: "#e6e6e6",
+              textColor: "#000"
+            }
+            action.status ? newState.mainColor = darkColor : newState.mainColor = lightColor
             break;
     
         default:

@@ -6,7 +6,7 @@ export default class Main extends React.Component {
   render(){
     return(
     <nav className="col-md-3 d-none d-md-block">
-      <div className="sidebar__content" style={{borderColor: this.props.mainColor}}>
+      <div className="sidebar__content" style={{borderColor: this.props.mainColor.color, background: this.props.mainColor.smallBack, color:this.props.mainColor.textColor}}>
 
       </div>
     </nav>

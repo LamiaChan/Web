@@ -1,3 +1,3 @@
-export const changeColor = (val) =>{
-    return  {type:'CHANGE_COLOR'}
+export const changeColor = (status) =>{
+    return  {type:'CHANGE_COLOR', status:status}
  }

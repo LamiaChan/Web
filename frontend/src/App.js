@@ -18,7 +18,7 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="App">
+      <div className="App" style={{background: this.props.mainColor.mainBack}}>
         <LamiaNavbar
           mainColor={this.props.mainColor}
           changeTheme={this.props.changeColor}
@@ -52,7 +52,7 @@ const mapStateToProps = (state)=>{
 }
 const mapDispachToProps = (dispach) => {
   return {
-    changeColor: () => dispach(actionCreator.changeColor())
+    changeColor: (status) => dispach(actionCreator.changeColor(status))
   }
 }
 
