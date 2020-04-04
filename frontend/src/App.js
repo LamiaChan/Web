@@ -12,8 +12,17 @@ import MainNews from './components/MainNews'
 
 class App extends React.Component {
 
-  constructor(){
-    super()
+  async componentDidMount(){
+    try{
+      const response = await fetch("http://queryberry.ru:8000/api/v1/nonpagmanga/")
+      const data = await response.json();
+      console.log(data)
+      this.props.takeApi(data)
+      console.log(this.props.api)
+    }
+    catch(err){
+      console.log(err)
+    }
   }
 
   render(){
@@ -47,12 +56,14 @@ class App extends React.Component {
 
 const mapStateToProps = (state)=>{
   return {
-    mainColor: state.mainColor
+    mainColor: state.mainColor,
+    api: state.api
   }
 }
 const mapDispachToProps = (dispach) => {
   return {
-    changeColor: (status) => dispach(actionCreator.changeColor(status))
+    changeColor: (status) => dispach(actionCreator.changeColor(status)),
+    takeApi: (api) => dispach(actionCreator.takeApi(api))
   }
 }
 

@@ -7,7 +7,7 @@ const initialState = {
       smallBack: "#e6e6e6",
       textColor: "#000"
     },
-    darkMode: false
+    api: []
 }
 
 const reduser = (state = initialState, action) => {
@@ -28,9 +28,12 @@ const reduser = (state = initialState, action) => {
             }
             action.status ? newState.mainColor = darkColor : newState.mainColor = lightColor
             break;
-    
-        default:
+          case "TAKE_API":
+            newState.api = action.api
             break;
+
+        default:
+          break;
     }
 
     return newState
