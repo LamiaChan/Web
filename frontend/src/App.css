@@ -11,6 +11,11 @@
   color: #fff !important;
   font-size: 20px;
 }
+.NavInput{
+  width: 300px !important;
+  height: 25px !important;
+  border-radius: 10px !important;
+}
 
 /* NAVBAR BUTTON */
 .form-switch {
