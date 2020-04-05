@@ -6,11 +6,11 @@ const MangaCard = (props) =>{
   const mangaCards = []
   for (let i = 0; i < props.api.length; i++) {
     mangaCards.push(
-      <div key={props.api[i].id} className="col-md-2">
+      <div key={props.api[i].id} className="col-md-3 centered">
         <div className="mangaCard">
           <img src={props.api[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
           <div class="middle">
-            <div class="text">{props.api[i].title}</div>
+            <div class="mangaName">{props.api[i].title}</div>
           </div>
         </div>
       </div>
@@ -26,12 +26,12 @@ const MangaCard = (props) =>{
 export default class Main extends React.Component {
   render(){
     return(
-        <div>
+        <React.Fragment>
           <h3 className="componentTitle" style={{color:this.props.mainColor.textColor}}>Обновления популярной манги</h3>
           <div className="MainContent" style={{borderColor: this.props.mainColor.color, background: this.props.mainColor.smallBack, color:this.props.mainColor.textColor}}>
             <MangaCard api={this.props.api} />
           </div>
-        </div>
+        </React.Fragment>
     )
   }
 }
