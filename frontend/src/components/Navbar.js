@@ -36,7 +36,7 @@ export default class LamiaNavbar extends React.Component{
                 <i></i>
               </label>
             </Nav>
-            <Form inline className="nav navbar-nav navbar-right">
+            <Form inline className="">
               <FormControl type="text" placeholder="Поиск" className="mr-sm-2 NavInput" />
             </Form>
           </Navbar.Collapse>

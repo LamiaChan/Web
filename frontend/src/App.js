@@ -16,9 +16,7 @@ class App extends React.Component {
     try{
       const response = await fetch("http://queryberry.ru:8000/api/v1/manga/")
       const data = await response.json();
-      console.log(data)
       this.props.takeApi(data.results)
-      console.log(this.props.api)
     }
     catch(err){
       console.log(err)

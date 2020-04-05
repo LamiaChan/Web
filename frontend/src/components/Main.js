@@ -8,8 +8,10 @@ const MangaCard = (props) =>{
     mangaCards.push(
       <div key={props.api[i].id} className="col-md-2">
         <div className="mangaCard">
-          <img src={props.api[i].preview_image_url} className="mangaCard__img"></img>
-          <h3 className="mangaCard__title">{props.api[i].title}</h3>
+          <img src={props.api[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
+          <div class="middle">
+            <div class="text">{props.api[i].title}</div>
+          </div>
         </div>
       </div>
     )
