@@ -1,8 +1,6 @@
 import React, {createRef} from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import FormControl from 'react-bootstrap/FormControl'
-import Form from 'react-bootstrap/Form'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'
 import Lamia from '../images/Lamia.png'
@@ -36,9 +34,13 @@ export default class LamiaNavbar extends React.Component{
                 <i></i>
               </label>
             </Nav>
-            <Form inline className="">
-              <FormControl type="text" placeholder="Поиск" className="mr-sm-2 NavInput" />
-            </Form>
+            <div className="flexbox">
+              <div className="search">
+                <div>
+                  <input type="text" placeholder="Поиск" required />
+                </div>
+              </div>
+            </div>
           </Navbar.Collapse>
         </Navbar>
       </header>
