@@ -35,33 +35,33 @@ services:
     depends_on:
       - db
 
-  nginx:
-    restart: always
-    image: nginx:1.17.4-alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    depends_on:
-      - react
+  # nginx:
+  #   restart: always
+  #   image: nginx:1.17.4-alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx:/etc/nginx/conf.d
+  #   depends_on:
+  #     - react
 
-  react:
-    restart: always
-    # разобраться с ошибкой node_models
-    #image: registry.gitlab.com/mar4elkin/lamia_chan_web_devops/frontend
-    build:
-        context: ./frontend
-        dockerfile: Dockerfile
-    volumes:
-        - ./frontend:/app
-        - ./app/node_modules
-    expose:
-        - 3000
-    ports:
-        - "3000:3000"
-    depends_on:
-      - django
+  # react:
+  #   restart: always
+  #   # разобраться с ошибкой node_models
+  #   #image: registry.gitlab.com/mar4elkin/lamia_chan_web_devops/frontend
+  #   build:
+  #       context: ./frontend
+  #       dockerfile: Dockerfile
+  #   volumes:
+  #       - ./frontend:/app
+  #       - ./app/node_modules
+  #   expose:
+  #       - 3000
+  #   ports:
+  #       - "3000:3000"
+  #   depends_on:
+  #     - django
 
 
 
