@@ -9,8 +9,8 @@ const MangaCard = (props) =>{
       <div key={props.api[i].id} className="col-md-3 centered">
         <div className="mangaCard">
           <img src={props.api[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
-          <div class="middle">
-            <div class="mangaName">{props.api[i].title}</div>
+          <div className="middle">
+            <div className="mangaName">{props.api[i].title}</div>
           </div>
         </div>
       </div>

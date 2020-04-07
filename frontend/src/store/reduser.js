@@ -7,7 +7,14 @@ const initialState = {
       smallBack: "#e6e6e6",
       textColor: "#000"
     },
-    api: []
+    api: {
+      manga: [],
+      news: []
+    },
+    apiLinks: {
+      manga: "http://queryberry.ru:8000/api/v1/manga/",
+      news: "http://queryberry.ru:8000/api/v1/news/"
+    }
 }
 
 const reduser = (state = initialState, action) => {
@@ -28,8 +35,11 @@ const reduser = (state = initialState, action) => {
             }
             action.status ? newState.mainColor = darkColor : newState.mainColor = lightColor
             break;
-          case "TAKE_API":
-            newState.api = action.api
+          case "SAVE_MANGA":
+            newState.api.manga = action.api
+            break;
+          case "SAVE_NEWS":
+            newState.api.news = action.api
             break;
 
         default:

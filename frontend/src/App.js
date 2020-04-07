@@ -12,11 +12,34 @@ import MainNews from './components/MainNews'
 
 class App extends React.Component {
 
-  async componentDidMount(){
+  // async componentDidMount(){
+  //   try{
+  //     const response = await fetch("http://queryberry.ru:8000/api/v1/manga/")
+  //     const data = await response.json();
+  //     this.props.takeApi(data.results)
+  //     console.log("API: ", data.results)
+  //   }
+  //   catch(err){
+  //     console.log(err)
+  //   }
+  // }
+ 
+  constructor(){
+    super()
+    this.takeApi = this.takeApi.bind(this)
+  }
+
+  componentDidMount(){
+    this.takeApi(this.props.apiLinks.manga, this.props.saveManga)
+    this.takeApi(this.props.apiLinks.news, this.props.saveNews)
+    console.log(this.props.apiNews)
+  }
+
+  async takeApi(link, savingPlace){
     try{
-      const response = await fetch("http://queryberry.ru:8000/api/v1/manga/")
-      const data = await response.json();
-      this.props.takeApi(data.results)
+      const response = await fetch(link)
+      const data = await response.json()
+      savingPlace(data.results)
     }
     catch(err){
       console.log(err)
@@ -35,7 +58,7 @@ class App extends React.Component {
             <div className="col-md-9">
               <div className="row">
                 <div className="col-md-12">
-                  <Main mainColor={this.props.mainColor} api={this.props.api} />
+                  <Main mainColor={this.props.mainColor} api={this.props.apiManga} />
                 </div>
               </div>
               <div className="row">
@@ -55,13 +78,16 @@ class App extends React.Component {
 const mapStateToProps = (state)=>{
   return {
     mainColor: state.mainColor,
-    api: state.api
+    apiManga: state.api.manga,
+    apiNews: state.api.news,
+    apiLinks: state.apiLinks
   }
 }
 const mapDispachToProps = (dispach) => {
   return {
     changeColor: (status) => dispach(actionCreator.changeColor(status)),
-    takeApi: (api) => dispach(actionCreator.takeApi(api))
+    saveManga: (api) => dispach(actionCreator.saveManga(api)),
+    saveNews: (api) => dispach(actionCreator.saveNews(api))
   }
 }
 
