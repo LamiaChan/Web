@@ -43,3 +43,4 @@ npm run serve --prefix frontend/Lamia_chan & python backend/manage.py runserver
 * Разобраться с api сделать его более удобным
 * Сделать выводы на frontend через api
 * Разобраться с загрузкой картинок
+* Переделать, использую React
