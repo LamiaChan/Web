@@ -32,7 +32,7 @@ class App extends React.Component {
   componentDidMount(){
     this.takeApi(this.props.apiLinks.manga, this.props.saveManga)
     this.takeApi(this.props.apiLinks.news, this.props.saveNews)
-    console.log(this.props.apiNews)
+    //console.log(this.props.apiNews)
   }
 
   async takeApi(link, savingPlace){
