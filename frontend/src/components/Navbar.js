@@ -17,11 +17,11 @@ export default class LamiaNavbar extends React.Component{
   render(){
     return(
       <header>
-        <div className="Lamia d-lg-block d-none mx-lg-3">
-          <img src={Lamia} alt="Lamia"></img>
-        </div>
-        <Navbar expand="lg" className="Navbar mx-lg-3" style={{background: this.props.mainColor.color}}>
-          <Navbar.Brand href="#home" className="logo">Lamia chan</Navbar.Brand>
+        <Navbar expand="lg" className="Navbar mx-lg-3 mt-lg-3" style={{background: this.props.mainColor.color}}>
+          <Navbar.Brand href="#home" className="logo">
+            <img src={Lamia} alt="Lamia"></img>
+            Lamia chan
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">

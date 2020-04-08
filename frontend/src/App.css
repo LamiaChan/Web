@@ -2,6 +2,7 @@
 /* NAVBAR MAIN */
 .Navbar{
   border-radius: 8px;
+  height: 70px;
 }
 .navbar-brand {
   color: #fff !important;
