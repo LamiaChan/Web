@@ -27,7 +27,7 @@ services:
     # build:
     #     context: ./backend 
     #     dockerfile: Dockerfile
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    command: python /srv/www/lamiachan/backend/manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/srv/www/lamiachan/backend
     ports:
@@ -49,10 +49,10 @@ services:
   react:
     restart: always
     # разобраться с ошибкой node_models
-    #image: registry.gitlab.com/mar4elkin/lamia_chan_web_devops/frontend
-    build:
-        context: ./frontend
-        dockerfile: Dockerfile
+    image: registry.gitlab.com/mar4elkin/lamia_chan_web_devops/frontend
+    # build:
+    #     context: ./frontend
+    #     dockerfile: Dockerfile
     volumes:
         - ./frontend:/srv/www/lamiachan/frontend
         - ./srv/www/lamiachan/frontend/node_modules
