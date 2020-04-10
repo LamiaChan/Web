@@ -1,19 +1,11 @@
 FROM node:lts-alpine as build-stage
 
-WORKDIR /app
+WORKDIR /srv/www/lamiachan/frontend
 
-COPY package*.json /app/
+COPY package*.json /srv/www/lamiachan/frontend/
 
-RUN [ "npm", "install", "-g", "react-script" ]
-
-#RUN npm install
 RUN [ "npm", "install" ]
 
-COPY ./ /app/
+COPY ./ /srv/www/lamiachan/frontend/
 
-
-# for prod
-#RUN npm run build
-
-EXPOSE 3000
 CMD [ "npm", "start" ]
