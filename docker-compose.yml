@@ -35,16 +35,16 @@ services:
     depends_on:
       - db
 
-  # nginx:
-  #   restart: always
-  #   image: nginx:1.17.4-alpine
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - ./nginx:/etc/nginx/conf.d
-  #   depends_on:
-  #     - react
+  nginx:
+    restart: always
+    image: nginx:1.17.4-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - react
 
   react:
     restart: always
