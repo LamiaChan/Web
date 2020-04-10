@@ -157,14 +157,14 @@
 .sidebar__content{
   background: rgba(196, 196, 196, 0.3);
   margin: 0 20px;
-  min-width: 50%;
+  height: 240px;
   border-radius: 8px;
   border: 2px solid #fff;
 }
-
+/* 
 .sidebar__content{
-  min-height: 545px;
-}
+  width: 100%;
+} */
 .sidebarTitle{
   font-size: 26px;
   margin: 20px 0 15px 35px;
@@ -190,6 +190,7 @@
 }
 .mangaCard{
   display: inline-block;
+  height: 250px;
 }
 .mangaCard__title{
   font-size: 15px;

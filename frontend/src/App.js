@@ -32,7 +32,7 @@ class App extends React.Component {
   componentDidMount(){
     this.takeApi(this.props.apiLinks.manga, this.props.saveManga)
     this.takeApi(this.props.apiLinks.news, this.props.saveNews)
-    //console.log(this.props.apiNews)
+    console.log(this.props.apiNews)
   }
 
   async takeApi(link, savingPlace){
@@ -55,19 +55,17 @@ class App extends React.Component {
         />
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-9">
-              <div className="row">
-                <div className="col-md-12">
-                  <Main mainColor={this.props.mainColor} api={this.props.apiManga} />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-12">
-                  <MainNews mainColor={this.props.mainColor} />
-                </div>
-              </div>
+            <div className="col-md-12">
+              <Main mainColor={this.props.mainColor} api={this.props.apiManga} />
             </div>
-            <Sidebar mainColor={this.props.mainColor} />
+          </div>
+          <div className="row">
+            <div className="col-md-9">
+              <MainNews mainColor={this.props.mainColor} />
+            </div>
+            <div className="col-md-3">
+              <Sidebar mainColor={this.props.mainColor} />
+            </div>
           </div>
         </div>
       </div>
