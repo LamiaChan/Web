@@ -6,7 +6,7 @@ COPY package*.json /srv/www/lamiachan/frontend/
 
 RUN [ "npm", "install" ]
 
-RUN [ "npm", "install", "bootstrap" ]
+RUN [ "npm", "install", "react-bootstrap" ]
 
 COPY ./ /srv/www/lamiachan/frontend/
 
