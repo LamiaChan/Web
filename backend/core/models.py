@@ -127,8 +127,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_('is_staff'), default=False)
     user_image = models.ImageField(upload_to='upicks', null=True, blank=True)
     user_moto = models.CharField(max_length=256, null=True, blank=True)
-    user_favorite_manga = models.ManyToManyField(Manga, null=True, blank=True)
-    bookmarks = models.ManyToManyField(Page, null=True, blank=True)
+    user_favorite_manga = models.ManyToManyField(Manga, default="", null=True, blank=True)
+    bookmarks = models.ManyToManyField(Page, default="", null=True, blank=True)
     RANK_LIST = [
         ('Новичок', 'Новичок'),
         ('Завсегдатый', 'Завсегдатый'),

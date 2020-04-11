@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import datetime
-from   corsheaders.defaults import default_headers
+from  corsheaders.defaults import default_headers
+
+#project_status = dev / prod
+project_status = 'dev'
+#host = local / foreign
+host = 'local'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -134,20 +139,39 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lamia_chan_web.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#database
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db', # set in docker-compose.yml
-        'PORT': 5432 # default postgres port
+if (project_status == 'prod'): 
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'db', # set in docker-compose.yml
+            'PORT': 5432 # default postgres port
+        }
     }
-}
+
+elif(project_status == 'dev'): 
+    
+    if (host == 'local'):
+        host_ip = '192.168.88.46'
+    else:
+        host_ip = '45.136.247.192'
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'django_db',
+            'USER' : 'user_name',
+            'PASSWORD' : 'password',
+            'HOST' : host_ip,
+            'PORT' : '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
