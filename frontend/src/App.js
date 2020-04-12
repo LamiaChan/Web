@@ -29,17 +29,21 @@ class App extends React.Component {
     this.takeApi = this.takeApi.bind(this)
   }
 
-  componentDidMount(){
-    this.takeApi(this.props.apiLinks.manga, this.props.saveManga)
-    this.takeApi(this.props.apiLinks.news, this.props.saveNews)
-    console.log(this.props.apiNews)
+  async componentDidMount(){
+    await this.takeApi(this.props.apiLinks.manga, this.props.saveManga)
+    await this.takeApi(this.props.apiLinks.news, this.props.saveNews)
   }
 
   async takeApi(link, savingPlace){
     try{
       const response = await fetch(link)
       const data = await response.json()
-      savingPlace(data.results)
+      if(data.results){
+        savingPlace(data.results)
+      }
+      else{
+        await savingPlace(data)
+      }
     }
     catch(err){
       console.log(err)
@@ -61,7 +65,7 @@ class App extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-9">
-              <MainNews mainColor={this.props.mainColor} />
+              <MainNews mainColor={this.props.mainColor} api={this.props.apiNews} />
             </div>
             <div className="col-md-3">
               <Sidebar mainColor={this.props.mainColor} />

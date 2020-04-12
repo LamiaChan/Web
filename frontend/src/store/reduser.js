@@ -12,8 +12,8 @@ const initialState = {
       news: []
     },
     apiLinks: {
-      manga: "http://queryberry.ru:8000/api/v1/manga/",
-      news: "http://queryberry.ru:8000/api/v1/news/"
+      manga: "http://localhost:8000/api/v1/manga/",
+      news: "http://localhost:8000/api/v1/news/"
     }
 }
 
