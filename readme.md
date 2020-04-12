@@ -50,3 +50,8 @@ npm run serve --prefix frontend/Lamia_chan & python backend/manage.py runserver
 * Сделать выводы на frontend через api
 * Разобраться с загрузкой картинок
 * Переделать, использую React
+
+
+#### Важно!
+
+Когда вы устанавливаете зависимости не забывайте про префикс --save
