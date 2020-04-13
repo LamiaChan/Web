@@ -1,84 +1,47 @@
-import React from 'react';
-import './App.css';
-//Redux-react connecter import
-import { connect } from 'react-redux'
-//Redux actions import
-import * as actionCreator from './store/actions/action'
-// Components exports
-import LamiaNavbar from './components/Navbar'
-import Main from './components/Main'
-import Sidebar from './components/Sidebar'
-import MainNews from './components/MainNews'
 
-class App extends React.Component {
- 
-  constructor(){
-    super()
-    this.takeApi = this.takeApi.bind(this)
-  }
+import React from "react";
+import Main from './components/MainPage/Main'
+import Catalog from './components/Catalog/Catalog'
+import Rate from './components/Rate/Rate'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-  async componentDidMount(){
-    await this.takeApi(this.props.apiLinks.manga, this.props.saveManga)
-    await this.takeApi(this.props.apiLinks.news, this.props.saveNews)
-  }
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/catalog">About</Link>
+            </li>
+            <li>
+              <Link to="/rate">Users</Link>
+            </li>
+          </ul>
+        </nav>
 
-  async takeApi(link, savingPlace){
-    try{
-      const response = await fetch(link)
-      const data = await response.json()
-      if(data.results){
-        savingPlace(data.results)
-      }
-      else{
-        await savingPlace(data)
-      }
-    }
-    catch(err){
-      console.log(err)
-    }
-  }
-
-  render(){
-    return (
-      <div className="App" style={{background: this.props.mainColor.mainBack}}>
-        <LamiaNavbar
-          mainColor={this.props.mainColor}
-          changeTheme={this.props.changeColor}
-        />
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-12">
-              <Main mainColor={this.props.mainColor} api={this.props.apiManga} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-9">
-              <MainNews mainColor={this.props.mainColor} api={this.props.apiNews} />
-            </div>
-            <div className="col-md-3">
-              <Sidebar mainColor={this.props.mainColor} />
-            </div>
-          </div>
-        </div>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/">
+            <Main />
+          </Route>
+          <Route path="/catalog">
+            <Catalog />
+          </Route>
+          <Route path="/rate">
+            <Rate />
+          </Route>
+        </Switch>
       </div>
-    );
-  }
+    </Router>
+  );
 }
-
-const mapStateToProps = (state)=>{
-  return {
-    mainColor: state.mainColor,
-    apiManga: state.api.manga,
-    apiNews: state.api.news,
-    apiLinks: state.apiLinks
-  }
-}
-const mapDispachToProps = (dispach) => {
-  return {
-    changeColor: (status) => dispach(actionCreator.changeColor(status)),
-    saveManga: (api) => dispach(actionCreator.saveManga(api)),
-    saveNews: (api) => dispach(actionCreator.saveNews(api))
-  }
-}
-
-export default connect(mapStateToProps, mapDispachToProps) (App);

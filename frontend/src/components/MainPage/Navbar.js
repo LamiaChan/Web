@@ -2,8 +2,8 @@ import React, {createRef} from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css'
-import Lamia from '../images/Lamia.png'
+import './MainStyle.css'
+import Lamia from '../../images/Lamia.png'
 
 export default class LamiaNavbar extends React.Component{
   constructor(){
