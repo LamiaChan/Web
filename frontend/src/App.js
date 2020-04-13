@@ -11,18 +11,6 @@ import Sidebar from './components/Sidebar'
 import MainNews from './components/MainNews'
 
 class App extends React.Component {
-
-  // async componentDidMount(){
-  //   try{
-  //     const response = await fetch("http://queryberry.ru:8000/api/v1/manga/")
-  //     const data = await response.json();
-  //     this.props.takeApi(data.results)
-  //     console.log("API: ", data.results)
-  //   }
-  //   catch(err){
-  //     console.log(err)
-  //   }
-  // }
  
   constructor(){
     super()

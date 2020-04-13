@@ -5,12 +5,11 @@ import '../App.css'
 
 const NewsCard = (props) =>{
   const newsCards = []
-  console.log(props.api)
   for (let i = 0; i < props.api.length; i++) {
     newsCards.push(
       <div key={props.api[i].id} className="col-md-3 centered">
         <div className="newsCard">
-          <img src={props.api[i].image} className="newsCard__img" alt="manga"></img>
+          <img src={props.api[i].image} className="newsCard__img" alt="news"></img>
           <div className="middleNews">
             <div className="newsName">{props.api[i].title}</div>
           </div>
