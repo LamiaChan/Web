@@ -156,21 +156,22 @@
 
 .sidebar__content{
   background: rgba(196, 196, 196, 0.3);
-  margin: 0 20px;
-  min-height: 240px;
+  min-height: 306px;
+  width: 100%;
   border-radius: 8px;
   border: 2px solid #fff;
+  text-align: center;
+
 }
-/* 
-.sidebar__content{
-  width: 100%;
-} */
+
 .sidebarTitle{
   font-size: 26px;
   margin: 20px 0 15px 35px;
 }
 .ads__img{
   max-height: 260px;
+  display: inline-block;
+  margin-top: 5%;
 }
 
 /* MAIN CONTENT */
