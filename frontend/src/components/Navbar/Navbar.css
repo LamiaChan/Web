@@ -12,6 +12,9 @@
     color: #fff !important;
     font-size: 20px;
   }
+  .nav-link:hover{
+    text-decoration: none;
+  }
   .NavInput{
     width: 300px !important;
     height: 25px !important;
@@ -25,6 +28,7 @@
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     margin-top: 10px;
+    height: 30px;
   }
   
   .form-switch i {

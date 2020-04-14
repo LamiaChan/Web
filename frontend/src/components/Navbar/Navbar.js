@@ -44,11 +44,11 @@ class LamiaNavbar extends React.Component{
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                  <Nav.Link href="#home"><Link to="/">Главаня</Link></Nav.Link>
-                  <Nav.Link href="#home"><Link to="/catalog">Каталог</Link></Nav.Link>
-                  <Nav.Link href="#link"><Link to="/rate">Рецтинг</Link></Nav.Link>
-                  <Nav.Link href="#home"><Link to="/community">Сообщество</Link></Nav.Link>
-                <label className="form-switch">
+              <Link to="/" className="nav-link"><Nav.Link href="#home">Главаня</Nav.Link></Link>
+              <Link to="/catalog" className="nav-link"><Nav.Link href="#home">Каталог</Nav.Link></Link>
+              <Link to="/rate" className="nav-link"><Nav.Link href="#link">Рецтинг</Nav.Link></Link>
+              <Link to="/community" className="nav-link"><Nav.Link href="#home">Сообщество</Nav.Link></Link>
+                <label className="form-switch nav-link">
                   <input type="checkbox" ref={this.colorChange} onClick={this.changeColor} />
                   <i></i>
                 </label>
