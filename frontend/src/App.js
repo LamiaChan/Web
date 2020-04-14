@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 function App(props) {
   return (
-      <div style={{background: props.mainColor.mainBack}}>
+      <div className="pt-lg-3" style={{background: props.mainColor.mainBack}}>
         <LamiaNavbar />
       </div>
   );
