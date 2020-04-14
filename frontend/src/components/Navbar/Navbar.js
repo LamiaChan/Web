@@ -9,6 +9,20 @@ import { connect } from 'react-redux'
 //Redux actions import
 import * as actionCreator from '../../store/actions/action'
 
+// COmponents for router
+
+import Main from '../MainPage/Main';
+import Catalog from '../Catalog/Catalog'
+import Rate from '../Rate/Rate'
+import Community from '../Community/Community'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 class LamiaNavbar extends React.Component{
   constructor(){
     super()
@@ -21,32 +35,50 @@ class LamiaNavbar extends React.Component{
   render(){
     return(
       <header>
-        <Navbar expand="lg" className="Navbar mx-lg-3 mt-lg-3" style={{background: this.props.mainColor.color}}>
-          <Navbar.Brand href="#home" className="logo">
-            <img src={Lamia} alt="Lamia"></img>
-            Lamia chan
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-                <Nav.Link href="#home">Главаня</Nav.Link>
-                <Nav.Link href="#home">Каталог</Nav.Link>
-                <Nav.Link href="#link">Рейтинг</Nav.Link>
-                <Nav.Link href="#home">Сообщество</Nav.Link>
-              <label className="form-switch">
-                <input type="checkbox" ref={this.colorChange} onClick={this.changeColor} />
-                <i></i>
-              </label>
-            </Nav>
-            <div className="flexbox">
-              <div className="search">
-                <div>
-                  <input type="text" placeholder="Поиск" required />
+        <Router>
+          <Navbar expand="lg" className="Navbar mx-lg-3 mt-lg-3" style={{background: this.props.mainColor.color}}>
+            <Navbar.Brand href="#home" className="logo">
+              <img src={Lamia} alt="Lamia"></img>
+              Lamia chan
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                  <Nav.Link href="#home"><Link to="/">Главаня</Link></Nav.Link>
+                  <Nav.Link href="#home"><Link to="/catalog">Каталог</Link></Nav.Link>
+                  <Nav.Link href="#link"><Link to="/rate">Рецтинг</Link></Nav.Link>
+                  <Nav.Link href="#home"><Link to="/community">Сообщество</Link></Nav.Link>
+                <label className="form-switch">
+                  <input type="checkbox" ref={this.colorChange} onClick={this.changeColor} />
+                  <i></i>
+                </label>
+              </Nav>
+              <div className="flexbox">
+                <div className="search">
+                  <div>
+                    <input type="text" placeholder="Поиск" required />
+                  </div>
                 </div>
               </div>
-            </div>
-          </Navbar.Collapse>
-        </Navbar>
+            </Navbar.Collapse>
+          </Navbar>
+
+          <Switch>
+            <Route exact strict path="/">
+              <Main />
+            </Route>
+            <Route exact strict path="/catalog">
+              <Catalog />
+            </Route>
+            <Route exact strict path="/rate">
+              <Rate />
+            </Route>
+            <Route exact strict path="/community">
+              <Community />
+            </Route>
+          </Switch>
+
+        </Router>
       </header>
     )
   }
