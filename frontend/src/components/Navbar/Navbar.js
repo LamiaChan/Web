@@ -36,7 +36,7 @@ class LamiaNavbar extends React.Component{
     return(
       <header>
         <Router>
-          <Navbar expand="lg" className="Navbar mx-lg-3 mt-lg-3" style={{background: this.props.mainColor.color}}>
+          <Navbar expand="lg" className="Navbar mx-lg-3" style={{background: this.props.mainColor.color}}>
             <Navbar.Brand href="#home" className="logo">
               <img src={Lamia} alt="Lamia"></img>
               Lamia chan
@@ -86,17 +86,12 @@ class LamiaNavbar extends React.Component{
 
 const mapStateToProps = (state)=>{
   return {
-    mainColor: state.mainColor,
-    apiManga: state.api.manga,
-    apiNews: state.api.news,
-    apiLinks: state.apiLinks
+    mainColor: state.mainColor
   }
 }
 const mapDispachToProps = (dispach) => {
   return {
     changeColor: (status) => dispach(actionCreator.changeColor(status)),
-    saveManga: (api) => dispach(actionCreator.saveManga(api)),
-    saveNews: (api) => dispach(actionCreator.saveNews(api))
   }
 }
 

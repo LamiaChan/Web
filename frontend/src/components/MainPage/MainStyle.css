@@ -101,6 +101,9 @@
 
 /* NEWS PICTURES */
 
+.newsCard{
+  max-height: 240px;
+}
 .newsCard__img {
   opacity: 1;
   display: block;
