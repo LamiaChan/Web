@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 //Redux actions import
 import * as actionCreator from '../../store/actions/action'
 // Components exports
-import LamiaNavbar from './Navbar'
 import Main from './MainManga'
 import Sidebar from './Sidebar'
 import MainNews from './MainNews'
@@ -41,10 +40,6 @@ class App extends React.Component {
   render(){
     return (
       <div className="App" style={{background: this.props.mainColor.mainBack}}>
-        <LamiaNavbar
-          mainColor={this.props.mainColor}
-          changeTheme={this.props.changeColor}
-        />
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">

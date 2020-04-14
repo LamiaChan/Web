@@ -2,10 +2,14 @@ import React, {createRef} from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './MainStyle.css'
+import './Navbar.css'
 import Lamia from '../../images/Lamia.png'
+//React-redax import
+import { connect } from 'react-redux'
+//Redux actions import
+import * as actionCreator from '../../store/actions/action'
 
-export default class LamiaNavbar extends React.Component{
+class LamiaNavbar extends React.Component{
   constructor(){
     super()
     this.changeColor = this.changeColor.bind(this)
@@ -25,10 +29,10 @@ export default class LamiaNavbar extends React.Component{
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#home">Главаня</Nav.Link>
-              <Nav.Link href="#home">Каталог</Nav.Link>
-              <Nav.Link href="#link">Рейтинг</Nav.Link>
-              <Nav.Link href="#home">Сообщество</Nav.Link>
+                <Nav.Link href="#home">Главаня</Nav.Link>
+                <Nav.Link href="#home">Каталог</Nav.Link>
+                <Nav.Link href="#link">Рейтинг</Nav.Link>
+                <Nav.Link href="#home">Сообщество</Nav.Link>
               <label className="form-switch">
                 <input type="checkbox" ref={this.colorChange} onClick={this.changeColor} />
                 <i></i>
@@ -47,3 +51,21 @@ export default class LamiaNavbar extends React.Component{
     )
   }
 }
+
+const mapStateToProps = (state)=>{
+  return {
+    mainColor: state.mainColor,
+    apiManga: state.api.manga,
+    apiNews: state.api.news,
+    apiLinks: state.apiLinks
+  }
+}
+const mapDispachToProps = (dispach) => {
+  return {
+    changeColor: (status) => dispach(actionCreator.changeColor(status)),
+    saveManga: (api) => dispach(actionCreator.saveManga(api)),
+    saveNews: (api) => dispach(actionCreator.saveNews(api))
+  }
+}
+
+export default connect(mapStateToProps, mapDispachToProps) (LamiaNavbar);

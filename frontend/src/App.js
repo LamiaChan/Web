@@ -3,6 +3,7 @@ import React from "react";
 import Main from './components/MainPage/Main'
 import Catalog from './components/Catalog/Catalog'
 import Rate from './components/Rate/Rate'
+import LamiaNavbar from './components/Navbar/Navbar'
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,17 +28,18 @@ export default function App() {
             </li>
           </ul>
         </nav>
+        <LamiaNavbar />
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/">
+          <Route exact strict path="/">
             <Main />
           </Route>
-          <Route path="/catalog">
+          <Route exact strict path="/catalog">
             <Catalog />
           </Route>
-          <Route path="/rate">
+          <Route exact strict path="/rate">
             <Rate />
           </Route>
         </Switch>
