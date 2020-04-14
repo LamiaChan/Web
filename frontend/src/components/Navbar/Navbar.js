@@ -30,7 +30,7 @@ class LamiaNavbar extends React.Component{
   }
   colorChange = createRef();
   changeColor(){
-    this.props.changeTheme(this.colorChange.current.checked)
+    this.props.changeColor(this.colorChange.current.checked)
   }
   render(){
     return(
