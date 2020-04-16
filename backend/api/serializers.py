@@ -154,6 +154,7 @@ class MangaSerializer(serializers.ModelSerializer):
             'tags',
             'year_of_publish',
             'nswf',
+            'likes',
             'updated',
             'chapter_set',
 

@@ -58,6 +58,7 @@ class Manga(models.Model):
     tags = models.ManyToManyField(Tag)
     updated = models.DateTimeField(default=datetime.now)
     year_of_publish = models.DateTimeField()
+    likes = models.PositiveIntegerField(default=0)
     
     OBJECT_TYPES = [
         ('Манга', 'Манга'),
