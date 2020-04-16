@@ -17,24 +17,25 @@ const MangaCard = (props) =>{
     )
   }
   return(
-    <div className="row">
+    <div className="row mr-0">
       {mangaCards}
     </div>
   )
 }
 
 const CenresTabs = (props) =>{
+  const tapColor = {backgroundImage: "linear-gradient(to right, "+props.mainColor.color+", "+props.mainColor.color+" 50%, #000 50%)"};
   return(
-    <div className="row">
-      <div className="col-lg-8">
+    <div className="row mr-0 ">
+      <div className="col-lg-8" id="primary">
         <ul className="tabList">
-          <li className="tab">Любовь</li>
-          <li className="tab">Завершенные</li>
-          <li className="tab">Фентази</li>
-          <li className="tab">Боевик</li>
-          <li className="tab">Приключение</li>
-          <li className="tab">Комедия</li>
-          <li className="tab">Ужасы</li>
+          <li className="tab" style={tapColor}>Любовь</li>
+          <li className="tab" style={tapColor}>Завершенные</li>
+          <li className="tab" style={tapColor}>Фентази</li>
+          <li className="tab" style={tapColor}>Боевик</li>
+          <li className="tab" style={tapColor}>Приключение</li>
+          <li className="tab" style={tapColor}>Комедия</li>
+          <li className="tab" style={tapColor}>Ужасы</li>
         </ul>
       </div>
     </div>
@@ -46,7 +47,7 @@ export default class Genres extends React.Component {
     return(
         <section className="genresSection" style={{background:this.props.mainColor.genres}}>
           <h3 className="componentTitle">Жанры</h3>
-            <CenresTabs />
+            <CenresTabs mainColor={this.props.mainColor} />
             <MangaCard api={this.props.api} />
         </section>
     )

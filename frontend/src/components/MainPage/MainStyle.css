@@ -91,7 +91,7 @@
 /* GENRES */
 
 .genresSection{
-  min-height: 500px;
+  min-height: 450px;
   padding: 5px;
   margin: 25px 0 25px 0;
 }
@@ -100,20 +100,34 @@
   border-radius: 0;
 }
 
-.tabList{
-  list-style-type: none;
+#primary li {
+  margin: 0 20px;
+  position: relative;
 }
-.tab{
-  display: inline-block;
-  margin-left: 25px;
+#primary li {
   font-size: 20px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #11998E, #11998E 50%, #000 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  transition: all 0.3s ease-in-out;
+}
+#primary li:hover {
+  background-position: 0%;
+}
+#primary li:hover:before {
+  width: 100%;
 }
 
 /* MAIN NEWS */
 .MainNews{
   background: rgba(196, 196, 196, 0.3);
   border-radius: 8px;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   margin:20px;
   min-height: 240px;
   padding: 10px;
