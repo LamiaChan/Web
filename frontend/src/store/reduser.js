@@ -33,7 +33,8 @@ const reduser = (state = initialState, action) => {
               color: "#11998E",
               mainBack: "#fff",
               smallBack: "#e6e6e6",
-              textColor: "#000"
+              textColor: "#000",
+              genres: "#D3F6F0"
             }
             action.status ? newState.mainColor = darkColor : newState.mainColor = lightColor
             break;
