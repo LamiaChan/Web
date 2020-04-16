@@ -2,15 +2,30 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MainStyle.css'
 
-const MangaCard = (props) =>{
-  const mangaCards = []
-  for (let i = 0; i < props.api.slice(0, 6).length; i++) {
+const sortByLikes = (arr) =>{
+  const sortedArr = arr.sort((a,b)=>{
+    if(a.likes > b.likes){
+      return -1
+    }
+    if(a.likes < b.likes){
+      return 1;
+    }
+    return 0
+  })
+  return sortedArr
+}
+
+const MangaCardGenres = (props) =>{
+  const mangaCards = [];
+  const sortedApi = sortByLikes(props.api)
+  console.log(sortedApi)
+  for (let i = 0; i < sortedApi.slice(0, 6).length; i++) {
     mangaCards.push(
-      <div key={props.api[i].id} className="col-lg-2 centered">
+      <div key={sortedApi[i].id} className="col-lg-2 centered">
         <div className="mangaCard genreCard">
-          <img src={props.api[i].preview_image_url} className="mangaCard__img genreCard__img" alt="manga"></img>
+          <img src={sortedApi[i].preview_image_url} className="mangaCard__img genreCard__img" alt="manga"></img>
           <div className="middle">
-            <div className="mangaName">{props.api[i].title}</div>
+            <div className="mangaName">{sortedApi[i].title}</div>
           </div>
         </div>
       </div>
@@ -48,7 +63,7 @@ export default class Genres extends React.Component {
         <section className="genresSection" style={{background:this.props.mainColor.genres}}>
           <h3 className="componentTitle">Жанры</h3>
             <CenresTabs mainColor={this.props.mainColor} />
-            <MangaCard api={this.props.api} />
+            <MangaCardGenres api={this.props.api} />
         </section>
     )
   }
