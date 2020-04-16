@@ -42,18 +42,16 @@ const MangaCardGenres = (props) =>{
 }
 
 const CenresTabs = (props) =>{
+  const tabs = [];
   const tapColor = {backgroundImage: "linear-gradient(to right, "+props.mainColor.color+", "+props.mainColor.color+" 50%, #000 50%)"};
+  for (let i = 0; i < props.apiTags.slice(0, 7).length; i++) {
+    tabs.push(<li id={props.apiTags[i].id} className="tab" style={tapColor}>{props.apiTags[i].title}</li>)
+  }
   return(
     <div className="row mr-0 ">
       <div className="col-lg-8" id="primary">
         <ul className="tabList">
-          <li className="tab" style={tapColor}>Любовь</li>
-          <li className="tab" style={tapColor}>Завершенные</li>
-          <li className="tab" style={tapColor}>Фентази</li>
-          <li className="tab" style={tapColor}>Боевик</li>
-          <li className="tab" style={tapColor}>Приключение</li>
-          <li className="tab" style={tapColor}>Комедия</li>
-          <li className="tab" style={tapColor}>Ужасы</li>
+          {tabs}
         </ul>
       </div>
     </div>
@@ -65,7 +63,7 @@ export default class Genres extends React.Component {
     return(
         <section className="genresSection" style={{background:this.props.mainColor.genres}}>
           <h3 className="componentTitle">Жанры</h3>
-            <CenresTabs mainColor={this.props.mainColor} />
+            <CenresTabs mainColor={this.props.mainColor} apiTags={this.props.apiTags} />
             <MangaCardGenres api={this.props.api} />
         </section>
     )

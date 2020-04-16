@@ -20,6 +20,7 @@ class App extends React.Component {
   async componentDidMount(){
     await this.takeApi(this.props.apiLinks.manga, this.props.saveManga)
     await this.takeApi(this.props.apiLinks.news, this.props.saveNews)
+    await this.takeApi(this.props.apiLinks.tags, this.props.saveTags)
   }
 
   async takeApi(link, savingPlace){
@@ -49,7 +50,7 @@ class App extends React.Component {
           </div>
           <div className="row">
             <div className="col-lg-12 pl-lg-0 pr-lg-0">
-              <Geners mainColor={this.props.mainColor} api={this.props.apiManga} />
+              <Geners mainColor={this.props.mainColor} api={this.props.apiManga} apiTags={this.props.apiTags} />
             </div>
           </div>
           <div className="row">
@@ -71,6 +72,7 @@ const mapStateToProps = (state)=>{
     mainColor: state.mainColor,
     apiManga: state.api.manga,
     apiNews: state.api.news,
+    apiTags: state.api.tags,
     apiLinks: state.apiLinks
   }
 }
@@ -78,7 +80,8 @@ const mapDispachToProps = (dispach) => {
   return {
     changeColor: (status) => dispach(actionCreator.changeColor(status)),
     saveManga: (api) => dispach(actionCreator.saveManga(api)),
-    saveNews: (api) => dispach(actionCreator.saveNews(api))
+    saveNews: (api) => dispach(actionCreator.saveNews(api)),
+    saveTags: (api) => dispach(actionCreator.saveTags(api))
   }
 }
 

@@ -10,11 +10,13 @@ const initialState = {
     },
     api: {
       manga: [],
-      news: []
+      news: [],
+      tags: []
     },
     apiLinks: {
       manga: "http://localhost:8000/api/v1/manga/",
-      news: "http://localhost:8000/api/v1/news/"
+      news: "http://localhost:8000/api/v1/news/",
+      tags: "http://localhost:8000/api/v1/tag/"
     }
 }
 
@@ -43,6 +45,9 @@ const reduser = (state = initialState, action) => {
             break;
           case "SAVE_NEWS":
             newState.api.news = action.api
+            break;
+          case "SAVE_TAGS":
+            newState.api.tags = action.api
             break;
 
         default:
