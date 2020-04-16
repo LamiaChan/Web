@@ -4,7 +4,7 @@
 
 .sidebar__content{
   background: rgba(196, 196, 196, 0.3);
-  min-height: 306px;
+  min-height: 284px;
   width: 100%;
   border-radius: 8px;
   border: 2px solid #fff;
@@ -86,6 +86,27 @@
   height: 250px;
   padding: 5px 5px 0 5px;
   border-radius: 8px;
+}
+
+/* GENRES */
+
+.genresSection{
+  min-height: 500px;
+  padding: 5px;
+  margin: 25px 0 25px 0;
+}
+
+.genreCard__img{
+  border-radius: 0;
+}
+
+.tabList{
+  list-style-type: none;
+}
+.tab{
+  display: inline-block;
+  margin-left: 25px;
+  font-size: 20px;
 }
 
 /* MAIN NEWS */

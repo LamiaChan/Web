@@ -8,6 +8,7 @@ import * as actionCreator from '../../store/actions/action'
 import Main from './MainManga'
 import Sidebar from './Sidebar'
 import MainNews from './MainNews'
+import Geners from './MainGenres'
 
 class App extends React.Component {
  
@@ -44,6 +45,11 @@ class App extends React.Component {
           <div className="row">
             <div className="col-md-12">
               <Main mainColor={this.props.mainColor} api={this.props.apiManga} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-12 pl-lg-0 pr-lg-0">
+              <Geners mainColor={this.props.mainColor} api={this.props.apiManga} />
             </div>
           </div>
           <div className="row">

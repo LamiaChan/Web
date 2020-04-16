@@ -5,7 +5,8 @@ const initialState = {
       color: "#11998E",
       mainBack: "#fff",
       smallBack: "#e6e6e6",
-      textColor: "#000"
+      textColor: "#000",
+      genres: "#D3F6F0"
     },
     api: {
       manga: [],
@@ -25,7 +26,8 @@ const reduser = (state = initialState, action) => {
               color: "#B52556",
               mainBack: "#000",
               smallBack: "#1F1F1F",
-              textColor: "#fff"
+              textColor: "#fff",
+              genres: "#cf4a76"
             }
             const lightColor = {
               color: "#11998E",
