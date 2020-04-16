@@ -24,8 +24,11 @@ const MangaCardGenres = (props) =>{
       <div key={sortedApi[i].id} className="col-lg-2 centered">
         <div className="mangaCard genreCard">
           <img src={sortedApi[i].preview_image_url} className="mangaCard__img genreCard__img" alt="manga"></img>
+          <div className="likes">
+            <h4 className="likes__text"><i class="fa fa-heart"></i> {sortedApi[i].likes}</h4>
+          </div>
           <div className="middle">
-            <div className="mangaName">{sortedApi[i].title}</div>
+            <div className="mangaName genreCard__img">{sortedApi[i].title} </div>
           </div>
         </div>
       </div>

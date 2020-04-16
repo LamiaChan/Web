@@ -77,7 +77,7 @@
   
   .form-switch input { display: none; }
   
-  .form-switch input:checked + i { background-color: #B52556; }
+  .form-switch input:checked + i { background-color: #e6e6e6; }
   
   .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
   

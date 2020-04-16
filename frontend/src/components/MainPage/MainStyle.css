@@ -29,7 +29,7 @@
   border-radius: 8px;
   border: 2px solid #fff;
   margin: 0 20px 0 20px;
-  min-height: 240px;
+  min-height: 310px;
 }
 .componentTitle{
   font-size: 26px;
@@ -42,7 +42,7 @@
 }
 .mangaCard{
   display: inline-block;
-  height: 250px;
+  height: 260px;
 }
 .mangaCard__title{
   font-size: 15px;
@@ -63,7 +63,7 @@
   transition: .5s ease;
   opacity: 0;
   position: relative;
-  top: -125px;
+  top: -165px;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -121,6 +121,14 @@
 }
 #primary li:hover:before {
   width: 100%;
+}
+
+.likes{
+  color: #F5574B;
+  margin-top: 8px;
+}
+.likes__text{
+  font-size: 20px;
 }
 
 /* MAIN NEWS */
