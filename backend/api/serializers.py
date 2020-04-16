@@ -118,7 +118,8 @@ class PageSerializer(serializers.ModelSerializer):
             'id', 
             'number', 
             'image', 
-            'chapter'
+            'chapter',
+            'pagecomment_set'
         ]
     def get_pagecomment_set(self, instance):
         page_comment = instance.pagecomment_set.all()

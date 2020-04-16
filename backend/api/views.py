@@ -61,9 +61,9 @@ class MangaViewSet(viewsets.ModelViewSet):
     queryset = Manga.objects.all().order_by('-updated')
     serializer_class = MangaSerializer
 
-class NonPaginationMangaViewSet(viewsets.ModelViewSet):
-    queryset = Manga.objects.all().order_by('-updated')
-    serializer_class = MangaSerializer
+# class NonPaginationMangaViewSet(viewsets.ModelViewSet):
+#     queryset = Manga.objects.all().order_by('-updated')
+#     serializer_class = MangaSerializer
     
 
 class ReportViewSet(viewsets.ModelViewSet):
