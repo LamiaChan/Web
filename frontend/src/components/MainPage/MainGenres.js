@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MainStyle.css'
 
@@ -18,7 +18,7 @@ const sortByLikes = (arr) =>{
 const MangaCardGenres = (props) =>{
   const mangaCards = [];
   const sortedApi = sortByLikes(props.api)
-  for (let i = 0; i < sortedApi.slice(0, 6).length; i++) {
+  for (let i = 0; i < sortedApi.length; i++) {
     //Check manga tags and current tag
     var findTag = false;
     for (let j = 0; j < sortedApi[i].tags.length; j++) {
@@ -29,7 +29,8 @@ const MangaCardGenres = (props) =>{
       }
     }
     //Show manga only with founded tag
-    if(findTag){
+    // Max show = 6
+    if((findTag)&&(mangaCards.length <= 6)){
       mangaCards.push(
         <div key={sortedApi[i].id} className="col-lg-2 centered">
           <div className="mangaCard genreCard">
@@ -90,7 +91,6 @@ export default class Genres extends React.Component {
     this.setState({
       currentTag : parseInt(event.target.id)
     })
-    console.log(this.state.currentTag)
   }
   render(){
     return(
