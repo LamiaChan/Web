@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MainStyle.css'
 
@@ -25,7 +25,7 @@ const MangaCardGenres = (props) =>{
         <div className="mangaCard genreCard">
           <img src={sortedApi[i].preview_image_url} className="mangaCard__img genreCard__img" alt="manga"></img>
           <div className="likes">
-            <h4 className="likes__text"><i class="fa fa-heart"></i> {sortedApi[i].likes}</h4>
+            <h4 className="likes__text"><i className="fa fa-heart"></i> {sortedApi[i].likes}</h4>
           </div>
           <div className="middle">
             <div className="mangaName genreCard__img">{sortedApi[i].title} </div>
@@ -41,29 +41,51 @@ const MangaCardGenres = (props) =>{
   )
 }
 
-const CenresTabs = (props) =>{
-  const tabs = [];
-  const tapColor = {backgroundImage: "linear-gradient(to right, "+props.mainColor.color+", "+props.mainColor.color+" 50%, #000 50%)"};
-  for (let i = 0; i < props.apiTags.slice(0, 7).length; i++) {
-    tabs.push(<li id={props.apiTags[i].id} className="tab" style={tapColor}>{props.apiTags[i].title}</li>)
+class CenresTabs extends React.Component{
+  constructor(){
+    super()
+    this.renderTags = this.renderTags.bind(this);
   }
-  return(
-    <div className="row mr-0 ">
-      <div className="col-lg-8" id="primary">
-        <ul className="tabList">
-          {tabs}
-        </ul>
+  renderTags(){
+    const tabs = [];
+    const tapColor = {backgroundImage: "linear-gradient(to right, "+this.props.mainColor.color+", "+this.props.mainColor.color+" 50%, #000 50%)"};
+    for (let i = 0; i < this.props.apiTags.slice(0, 7).length; i++) {
+      tabs.push(<li id={this.props.apiTags[i].id} className="tab" style={tapColor} onClick={this.props.changeCurrentTag}>{this.props.apiTags[i].title}</li>)
+    }
+    return tabs
+  }
+  render(){
+    return(
+      <div className="row mr-0 ">
+        <div className="col-lg-8" id="primary">
+          <ul className="tabList">
+            {this.renderTags()}
+          </ul>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default class Genres extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      currentTag: "Драма"
+    }
+    this.changeCurrentTag = this.changeCurrentTag.bind(this)
+  }
+  changeCurrentTag(event){
+    this.setState({
+      currentTag : event.target.id
+    })
+    console.log(this.state.currentTag)
+  }
   render(){
     return(
         <section className="genresSection" style={{background:this.props.mainColor.genres}}>
           <h3 className="componentTitle">Жанры</h3>
-            <CenresTabs mainColor={this.props.mainColor} apiTags={this.props.apiTags} />
+            <CenresTabs mainColor={this.props.mainColor} apiTags={this.props.apiTags} changeCurrentTag={this.changeCurrentTag} currentTag={this.state.currentTag} />
             <MangaCardGenres api={this.props.api} />
         </section>
     )
