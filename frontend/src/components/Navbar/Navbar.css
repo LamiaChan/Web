@@ -20,6 +20,10 @@
     height: 25px !important;
     border-radius: 10px !important;
   }
+
+  .active{
+    font-weight: 700;
+  }
   
   .logo{
     color: #fff;

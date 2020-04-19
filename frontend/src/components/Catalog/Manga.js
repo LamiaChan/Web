@@ -1,12 +1,18 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Catalog.css'
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
 
 const MangaCard = (props) =>{
   const mangaCards = []
   for (let i = 0; i < props.api.length; i++) {
     mangaCards.push(
-      <div key={props.api[i].id} className="col-lg-2 centeredManga">
+      <div key={props.api[i].id} className="col-lg-2 centered">
+        <Router>
+        <Link to='/'>
         <div className="mangaCard">
           <img src={props.api[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
           <div className="likes">
@@ -16,6 +22,8 @@ const MangaCard = (props) =>{
             <div className="mangaName">{props.api[i].title}</div>
           </div>
         </div>
+        </Link>
+        </Router>
       </div>
     )
   }

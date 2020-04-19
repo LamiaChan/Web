@@ -20,6 +20,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  NavLink,
   Link
 } from "react-router-dom";
 
@@ -44,10 +45,10 @@ class LamiaNavbar extends React.Component{
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-              <Link to="/" className="nav-link">Главаня</Link>
-              <Link to="/catalog" className="nav-link">Каталог</Link>
-              <Link to="/rate" className="nav-link">Рецтинг</Link>
-              <Link to="/community" className="nav-link">Сообщество</Link>
+              <NavLink exact to="/" className="nav-link">Главаня</NavLink>
+              <NavLink to="/catalog" className="nav-link">Каталог</NavLink>
+              <NavLink to="/rate" className="nav-link">Рецтинг</NavLink>
+              <NavLink to="/community" className="nav-link">Сообщество</NavLink>
                 <label className="form-switch nav-link">
                   <input type="checkbox" ref={this.colorChange} onClick={this.changeColor} />
                   <i></i>
