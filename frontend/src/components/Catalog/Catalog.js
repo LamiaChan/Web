@@ -1,5 +1,6 @@
 import React from 'react';
 import Tags from './Tags'
+import './Catalog.css'
 
 //Redux-react connecter import
 import { connect } from 'react-redux'
@@ -9,7 +10,7 @@ import * as actionCreator from '../../store/actions/action'
 class Catalog extends React.Component{
   render(){
     return(
-      <div className="container-fluid">
+      <div className="container-fluid  pr-0 pl-0">
         <Tags mainColor={this.props.mainColor} apiTags={this.props.apiTags} />
       </div>
     )
