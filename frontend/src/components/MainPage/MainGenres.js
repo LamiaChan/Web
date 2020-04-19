@@ -30,7 +30,7 @@ const MangaCardGenres = (props) =>{
     }
     //Show manga only with founded tag
     // Max show = 6
-    if((findTag)&&(mangaCards.length <= 6)){
+    if((findTag)&&(mangaCards.length < 6)){
       mangaCards.push(
         <div key={sortedApi[i].id} className="col-lg-2 centered">
           <div className="mangaCard genreCard">

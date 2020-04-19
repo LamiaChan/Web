@@ -1,11 +1,36 @@
 import React from 'react';
+import Tags from './Tags'
 
-export default class Catalog extends React.Component{
+//Redux-react connecter import
+import { connect } from 'react-redux'
+//Redux actions import
+import * as actionCreator from '../../store/actions/action'
+
+class Catalog extends React.Component{
   render(){
     return(
-      <div>
-        <h1>Catalog</h1>
+      <div className="container-fluid">
+        <Tags mainColor={this.props.mainColor} apiTags={this.props.apiTags} />
       </div>
     )
   }
 }
+
+const mapStateToProps = (state)=>{
+  return {
+    mainColor: state.mainColor,
+    apiManga: state.api.manga,
+    apiTags: state.api.tags,
+    apiLinks: state.apiLinks
+  }
+}
+const mapDispachToProps = (dispach) => {
+  return {
+    changeColor: (status) => dispach(actionCreator.changeColor(status)),
+    saveManga: (api) => dispach(actionCreator.saveManga(api)),
+    saveNews: (api) => dispach(actionCreator.saveNews(api)),
+    saveTags: (api) => dispach(actionCreator.saveTags(api))
+  }
+}
+
+export default connect(mapStateToProps, mapDispachToProps) (Catalog);
