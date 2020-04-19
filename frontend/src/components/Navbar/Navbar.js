@@ -37,10 +37,10 @@ class LamiaNavbar extends React.Component{
       <header>
         <Router>
           <Navbar expand="lg" className="Navbar mx-lg-3" style={{background: this.props.mainColor.color}}>
-            <Navbar.Brand href="#home" className="logo">
+            <Link to="/" className="logo">
               <img src={Lamia} alt="Lamia"></img>
               Lamia chan
-            </Navbar.Brand>
+            </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">

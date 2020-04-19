@@ -21,6 +21,15 @@
     border-radius: 10px !important;
   }
   
+  .logo{
+    color: #fff;
+    font-size: 25px;
+    margin-right: 40px;
+  }
+  .logo:hover{
+    color: #fff;
+    text-decoration: none;
+  }
   
   /* NAVBAR BUTTON */
   .form-switch {
