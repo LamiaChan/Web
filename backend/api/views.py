@@ -21,7 +21,7 @@ need to refactor frontend
 '''
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 8
+    page_size = 18
     page_size_query_param = 'page_size'
     max_page_size = 1000
 
@@ -58,12 +58,12 @@ class CreateUserAPIView(CreateAPIView):
 
 class MangaViewSet(viewsets.ModelViewSet):
     pagination_class = StandardResultsSetPagination
-    queryset = Manga.objects.all().order_by('-updated')
+    queryset = Manga.objects.all().order_by('-likes')
     serializer_class = MangaSerializer
 
-class NonPaginationMangaViewSet(viewsets.ModelViewSet):
-    queryset = Manga.objects.all().order_by('-updated')
-    serializer_class = MangaSerializer
+# class NonPaginationMangaViewSet(viewsets.ModelViewSet):
+#     queryset = Manga.objects.all().order_by('-updated')
+#     serializer_class = MangaSerializer
     
 
 class ReportViewSet(viewsets.ModelViewSet):

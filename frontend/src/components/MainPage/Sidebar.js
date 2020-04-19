@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css'
-import image from '../images/ads.jpg'
+import './MainStyle.css'
+import image from '../../images/ads.jpg'
 
 export default class Sidebar extends React.Component {
   render(){

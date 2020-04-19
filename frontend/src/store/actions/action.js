@@ -7,3 +7,6 @@ export const saveManga = (api) =>{
 export const saveNews = (api) =>{
     return  {type:'SAVE_NEWS', api:api}
  }
+ export const saveTags = (api) =>{
+    return  {type:'SAVE_TAGS', api:api}
+ }
