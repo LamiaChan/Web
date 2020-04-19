@@ -4,7 +4,7 @@ import './MainStyle.css'
 import { connect } from 'react-redux'
 
 // Components exports
-import Main from './MainManga'
+import MainManga from './MainManga'
 import Sidebar from './Sidebar'
 import MainNews from './MainNews'
 import Geners from './MainGenres'
@@ -18,7 +18,7 @@ class App extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
-              <Main mainColor={this.props.mainColor} api={this.props.apiManga} />
+              <MainManga mainColor={this.props.mainColor} api={this.props.apiManga} />
             </div>
           </div>
           <div className="row">
