@@ -54,6 +54,8 @@
     border-radius: 23px;
     vertical-align: text-bottom;
     transition: all 0.3s linear;
+    padding: 0;
+    margin-left: 20px;
   }
   
   .form-switch i::before {
