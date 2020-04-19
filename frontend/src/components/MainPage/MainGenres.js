@@ -61,7 +61,7 @@ class CenresTabs extends React.Component{
   renderTags(){
     const tabs = [];
     const tapColor = {backgroundImage: "linear-gradient(to right, "+this.props.mainColor.color+", "+this.props.mainColor.color+" 50%, #000 50%)"};
-    for (let i = 0; i < this.props.apiTags.length; i++) {
+    for (let i = 0; i < this.props.apiTags.slice(0, 7).length; i++) {
       tabs.push(<li id={this.props.apiTags[i].id} key={this.props.apiTags[i].id} className="tab" style={tapColor} onClick={this.props.changeCurrentTag}>{this.props.apiTags[i].title}</li>)
     }
     return tabs
