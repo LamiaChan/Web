@@ -1,4 +1,5 @@
 
+const uri = 'http://localhost:8000'
 
 const initialState = {
     mainColor:{
@@ -14,9 +15,9 @@ const initialState = {
       tags: []
     },
     apiLinks: {
-      manga: "http://localhost:8000/api/v1/manga/",
-      news: "http://localhost:8000/api/v1/news/",
-      tags: "http://localhost:8000/api/v1/tag/"
+      manga: uri +"/api/v1/manga/",
+      news:  uri +"/api/v1/news/",
+      tags:  uri +"/api/v1/tag/"
     }
 }
 
