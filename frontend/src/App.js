@@ -17,6 +17,7 @@ class App extends React.Component {
     await this.takeApi(this.props.apiLinks.manga, this.props.saveManga)
     await this.takeApi(this.props.apiLinks.news, this.props.saveNews)
     await this.takeApi(this.props.apiLinks.tags, this.props.saveTags)
+
   }
 
   async takeApi(link, savingPlace){
