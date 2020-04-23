@@ -5,6 +5,19 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 class MangaInfo extends React.Component{
+  
+  constructor(){
+    super()
+    this.getPageUrl = this.getPageUrl.bind(this)
+  }
+
+  getPageUrl(){
+    var currentUrl = window.location.pathname;
+    var params = currentUrl.split('/');
+    console.log(params[params.length-1])
+    return params[params.length-1];
+  }
+
   render(){
     return(
     <React.Fragment>

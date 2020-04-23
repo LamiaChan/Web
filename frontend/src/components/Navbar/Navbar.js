@@ -72,7 +72,7 @@ class LamiaNavbar extends React.Component{
             <Route exact strict path="/catalog">
               <Catalog />
             </Route>
-            <Route exact strict path="/info">
+            <Route exact strict path="/info/:mangaId">
               <MangaInfo />
             </Route>
             <Route exact strict path="/rate">
