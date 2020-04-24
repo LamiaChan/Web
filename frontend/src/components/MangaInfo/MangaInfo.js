@@ -25,21 +25,20 @@ class MangaInfo extends React.Component{
     this.getNeededManga = this.getNeededManga.bind(this)
   }
 
-  componentDidMount(){
-    this.getPageUrl()
-    console.log(this.props)
+  async componentDidMount(){
+    await this.getPageUrl()
     this.getNeededManga()
   }
 
   //FUNCTION FOR FINDING MANGA WICH WE NEED ON THIS PAGE IN PROPS
   getNeededManga(){
-    console.log('MANGALENGTH: ', this.props.apiManga.length)
+    console.log('manga: ', this.props.apiManga)
     for (let i = 0; i < this.props.apiManga.length; i++) {
-      if (this.props.apiManga[i].id === this.state.actualMangaId) {
+      if (this.props.apiManga[i].id == this.state.actualMangaId) {
+        console.log(this.props.apiManga[i].title)
         this.setState({
           actualManga: this.props.apiManga[i]
         })
-        console.log(this.state.actualManga)
         break
       }
       
@@ -52,7 +51,7 @@ class MangaInfo extends React.Component{
     await this.setState({
       actualMangaId: params[params.length-1]
     })
-    console.log(this.state.actualMangaId)
+    console.log("ACTUAL ID AFTER SET STATE: ", this.state.actualMangaId)
     return params[params.length-1];
   }
 
