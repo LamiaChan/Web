@@ -13,6 +13,7 @@ const MangaCard = (props) =>{
             <img src={props.api[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
             <div className="likes">
               <h4 className="likes__text"><i className="fa fa-heart"></i> {props.api[i].likes}</h4>
+              <Link to={'#'}><i className="fal fa-heart-circle"></i></Link>
             </div>
             <div className="middle">
               <div className="mangaName">{props.api[i].title}</div>

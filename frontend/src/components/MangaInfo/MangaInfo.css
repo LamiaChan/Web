@@ -1,5 +1,45 @@
+/* FONTS */
+@font-face {
+  font-family: "Nunito";
+  src: url("../../fonts/Nunito-Bold.ttf");
+}
+
 /* HEADER */
 
 .mangaHeader{
+  height: 300px;
+  margin-top: 30px;
+  line-height: 300px;
+  width: 100%;
+}
+
+.mangaHeader__title{
+  font-family: Nunito;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 30px;
+  color: #fff;
+  font-size: 60px;
+}
+
+.mangaLinks{
+  height:70px;
+  padding: 15px 5px 10px 10px;
+  min-width: 210px;
+  border: 2px solid #FFFFFF;
+  border-radius: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.mangaLinks__like{
+  color: #F5574B;
+  font-size: 30px;
+}
+.mangaLinks__otherLinks{
+  color: #fff;
+  margin-left: 10px;
+}
+
+.mangaHeader__img{
   height: 300px;
 }
