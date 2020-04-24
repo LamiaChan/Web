@@ -30,7 +30,7 @@ const reduser = (state = initialState, action) => {
               mainBack: "#000",
               smallBack: "#1F1F1F",
               textColor: "#fff",
-              genres: "#cf4a76"
+              genres: "#a63350"
             }
             const lightColor = {
               color: "#11998E",

@@ -20,7 +20,9 @@ class UserSerializer(serializers.ModelSerializer):
             'user_moto', 
             'user_favorite_manga',
             'bookmarks',
-            'rank'
+            'rank',
+            'gradient_color1',
+            'gradient_color2'
         ]
         
         extra_kwargs = {'password': {'write_only': True}}

@@ -17,7 +17,7 @@ from  corsheaders.defaults import default_headers
 #project_status = dev / prod
 project_status = 'dev'
 #host = local / foreign
-host = 'foreign'
+host = 'local'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

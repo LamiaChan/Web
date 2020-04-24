@@ -59,6 +59,8 @@ class Manga(models.Model):
     updated = models.DateTimeField(default=datetime.now)
     year_of_publish = models.DateTimeField()
     likes = models.PositiveIntegerField(default=0)
+    gradient_color1 = models.CharField(default='empty', max_length=50)
+    gradient_color2 = models.CharField(default='empty', max_length=50)
     
     OBJECT_TYPES = [
         ('Манга', 'Манга'),
