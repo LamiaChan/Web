@@ -21,8 +21,6 @@ class UserSerializer(serializers.ModelSerializer):
             'user_favorite_manga',
             'bookmarks',
             'rank',
-            'gradient_color1',
-            'gradient_color2'
         ]
         
         extra_kwargs = {'password': {'write_only': True}}
@@ -159,6 +157,8 @@ class MangaSerializer(serializers.ModelSerializer):
             'nswf',
             'likes',
             'updated',
+            'gradient_color1',
+            'gradient_color2',
             'chapter_set',
 
         ]
