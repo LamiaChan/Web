@@ -23,9 +23,9 @@
 }
 
 .mangaLinks{
-  height:70px;
-  padding: 15px 5px 10px 10px;
-  min-width: 210px;
+  height:65px;
+  padding: 15px 10px 10px 10px;
+  min-width: 180px;
   border: 2px solid #FFFFFF;
   border-radius: 20px;
   display: inline-block;
@@ -37,7 +37,8 @@
 }
 .mangaLinks__otherLinks{
   color: #fff;
-  margin-left: 10px;
+  display: inline-block;
+  float: right;
 }
 
 .mangaHeader__img{
