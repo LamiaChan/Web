@@ -10,7 +10,7 @@ const initialState = {
       genres: "#D3F6F0"
     },
     api: {
-      manga: [],
+      manga: ["null"],
       news: [],
       tags: []
     },

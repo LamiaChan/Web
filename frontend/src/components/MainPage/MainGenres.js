@@ -96,8 +96,8 @@ export default class Genres extends React.Component {
     return(
         <section className="genresSection" style={{background:this.props.mainColor.genres}}>
           <h3 className="componentTitle">Жанры</h3>
-            <CenresTabs mainColor={this.props.mainColor} apiTags={this.props.apiTags} changeCurrentTag={this.changeCurrentTag} />
-            <MangaCardGenres api={this.props.api} currentTag={this.state.currentTag} />
+            <CenresTabs mainColor={this.props.mainColor} apiTags={this.props.tags} changeCurrentTag={this.changeCurrentTag} />
+            <MangaCardGenres api={this.props.manga} currentTag={this.state.currentTag} />
         </section>
     )
   }

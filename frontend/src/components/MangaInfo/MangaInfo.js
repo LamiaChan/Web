@@ -44,7 +44,8 @@ class MangaInfo extends React.Component{
     super()
     this.state = {
       actualMangaId: 1,
-      actualManga: {}
+      actualManga: {},
+      manga: []
     }
     this.getPageUrl = this.getPageUrl.bind(this)
     this.getNeededManga = this.getNeededManga.bind(this)
@@ -52,7 +53,9 @@ class MangaInfo extends React.Component{
 
   async componentDidMount(){
     await this.getPageUrl()
-    this.getNeededManga()
+    console.log(this.props.apiManga)
+    await this.props
+    await this.getNeededManga()
   }
 
   //FUNCTION FOR FINDING MANGA WICH WE NEED ON THIS PAGE IN PROPS
@@ -83,6 +86,7 @@ class MangaInfo extends React.Component{
       <div className="container-fluid">
         <MangaHeader manga={this.state.actualManga} />
       </div>
+      <button onClick={()=>console.log(this.props.apiManga)}>KEK</button>
     </React.Fragment>
     )
   }

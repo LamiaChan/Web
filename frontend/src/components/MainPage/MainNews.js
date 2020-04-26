@@ -30,7 +30,7 @@ export default class MainNews extends React.Component {
       <React.Fragment>
         <h3 className="componentTitle" style={{color:this.props.mainColor.textColor}}>Последние новости</h3>
         <div className="MainNews" style={{borderColor: this.props.mainColor.color, background: this.props.mainColor.smallBack, color:this.props.mainColor.textColor}}>
-          <NewsCard api={this.props.api} />
+          <NewsCard api={this.props.news} />
         </div>
       </React.Fragment>
     )

@@ -9,8 +9,23 @@ import Sidebar from './Sidebar'
 import MainNews from './MainNews'
 import Geners from './MainGenres'
 
-class App extends React.Component {
+import {takeApi} from '../ApiRequest'
 
+class Main extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      manga: [],
+      news: [],
+      tags: []
+    }
+  }
+
+  async componentDidMount(){
+    await takeApi(this.props.mangaLink).then(response => {this.setState({manga : response})})
+    await takeApi(this.props.newsLink).then(response => {this.setState({news : response})})
+    await takeApi(this.props.tagLink).then(response => {this.setState({tags : response})})
+  }
 
   render(){
     return (
@@ -18,17 +33,17 @@ class App extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
-              <MainManga mainColor={this.props.mainColor} api={this.props.apiManga} />
+              <MainManga mainColor={this.props.mainColor} manga={this.state.manga} />
             </div>
           </div>
           <div className="row">
             <div className="col-lg-12 pl-lg-0 pr-lg-0">
-              <Geners mainColor={this.props.mainColor} api={this.props.apiManga} apiTags={this.props.apiTags} />
+              <Geners mainColor={this.props.mainColor} manga={this.state.manga} tags={this.state.tags} />
             </div>
           </div>
           <div className="row">
             <div className="col-md-9">
-              <MainNews mainColor={this.props.mainColor} api={this.props.apiNews} />
+              <MainNews mainColor={this.props.mainColor} news={this.state.news}/>
             </div>
             <div className="col-md-3">
               <Sidebar mainColor={this.props.mainColor} />
@@ -43,12 +58,11 @@ class App extends React.Component {
 const mapStateToProps = (state)=>{
   return {
     mainColor: state.mainColor,
-    apiManga: state.api.manga,
-    apiNews: state.api.news,
-    apiTags: state.api.tags,
-    apiLinks: state.apiLinks
+    mangaLink: state.apiLinks.manga,
+    tagLink: state.apiLinks.tags,
+    newsLink: state.apiLinks.news,
   }
 }
 
 
-export default connect(mapStateToProps) (App);
+export default connect(mapStateToProps) (Main);
