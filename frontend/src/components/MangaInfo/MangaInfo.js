@@ -1,6 +1,8 @@
 import React from 'react';
 import './MangaInfo.css'
 
+import {takeApi} from '../ApiRequest'
+
 
 //Redux-react connecter import
 import { connect } from 'react-redux'
@@ -44,32 +46,19 @@ class MangaInfo extends React.Component{
     super()
     this.state = {
       actualMangaId: 1,
-      actualManga: {},
-      manga: []
+      manga: [],
+      tags: []
     }
     this.getPageUrl = this.getPageUrl.bind(this)
-    this.getNeededManga = this.getNeededManga.bind(this)
   }
 
   async componentDidMount(){
     await this.getPageUrl()
-    console.log(this.props.apiManga)
-    await this.props
-    await this.getNeededManga()
+    const mangaLink = this.props.mangaLink + this.state.actualMangaId + "/"
+    await takeApi(mangaLink).then(response => {this.setState({manga : response})})
+    await takeApi(this.props.tagLink).then(response => {this.setState({tags : response})})
   }
 
-  //FUNCTION FOR FINDING MANGA WICH WE NEED ON THIS PAGE IN PROPS
-  getNeededManga(){
-    for (let i = 0; i < this.props.apiManga.length; i++) {
-      if (this.props.apiManga[i].id === this.state.actualMangaId) {
-        this.setState({
-          actualManga: this.props.apiManga[i]
-        })
-        break
-      }
-      
-    }
-  }
   //GET MANGA ID FROM PAGE URL
   async getPageUrl(){
     var currentUrl = window.location.pathname;
@@ -84,9 +73,8 @@ class MangaInfo extends React.Component{
     return(
     <React.Fragment>
       <div className="container-fluid">
-        <MangaHeader manga={this.state.actualManga} />
+        <MangaHeader manga={this.state.manga} />
       </div>
-      <button onClick={()=>console.log(this.props.apiManga)}>KEK</button>
     </React.Fragment>
     )
   }
@@ -95,8 +83,8 @@ class MangaInfo extends React.Component{
 const mapStateToProps = (state)=>{
   return {
     mainColor: state.mainColor,
-    apiManga: state.api.manga,
-    apiTags: state.api.tags
+    mangaLink: state.apiLinks.manga,
+    tagLink: state.apiLinks.tags
   }
 }
 
