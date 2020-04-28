@@ -11,7 +11,7 @@ import React from 'react';
     const tags = [];
     var currentTags = this.props.manga.tags
     //First time we recive udefind props, so we have to check it here
-    if(currentTags == undefined){
+    if(currentTags === undefined){
       currentTags = []
     }
     //Compare aur props and all props

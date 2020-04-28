@@ -7,42 +7,68 @@
 /* HEADER */
 
 .mangaHeader{
-  height: 300px;
+  min-height: 360px;
   margin-top: 30px;
-  line-height: 300px;
   width: 100%;
 }
 
 .mangaHeader__title{
   font-family: Nunito;
-  display: inline-block;
-  vertical-align: middle;
+  display: block;
   margin-left: 30px;
   color: #fff;
   font-size: 60px;
+  margin-top: 40px;
 }
 
 .mangaLinks{
+  display: inline-block;
   height:65px;
-  padding: 15px 10px 10px 10px;
-  min-width: 180px;
+  padding: 10px 10px 10px 10px;
+  width: 200px;
   border: 2px solid #FFFFFF;
   border-radius: 20px;
-  display: inline-block;
-  vertical-align: middle;
-}
-.mangaLinks__like{
   color: #F5574B;
   font-size: 30px;
+  margin: 25px 10px 10px 20px;
 }
+
 .mangaLinks__otherLinks{
   color: #fff;
   display: inline-block;
   float: right;
 }
 
+.chapterDropdown__container{
+  display: inline-block;
+  position: relative;
+  top: -8px;
+  left: 20px;
+}
+
+.chapterDropdown{
+  font-family: Nunito;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0) !important;
+  border: 2px solid #FFFFFF !important;
+  border-radius: 20px !important;
+  height: 65px;
+  width: 200px;
+  
+}
+.chapterDropdown:hover{
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #FFFFFF;
+}
+.show>.btn-primary.dropdown-toggle{
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #FFFFFF;
+}
+.dropdown-toggle::after{
+  display: none;
+}
 .mangaHeader__img{
-  height: 300px;
+  height: 360px;
 }
 
 
