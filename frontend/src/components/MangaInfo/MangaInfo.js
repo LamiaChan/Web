@@ -1,6 +1,5 @@
 import React from 'react';
 import './MangaInfo.css'
-import MangaTags from './MangaInfoTags'
 import MangaHeader from './MangaInfoHeader'
 import MangaDescription from './MangaInfoDescription'
 
@@ -45,8 +44,7 @@ class MangaInfo extends React.Component{
     <React.Fragment>
       <div className="container-fluid">
         <MangaHeader manga={this.state.manga} />
-        <MangaTags tags={this.state.tags} manga={this.state.manga} mainColor={this.props.mainColor} />
-        <MangaDescription manga={this.state.manga} />
+        <MangaDescription manga={this.state.manga} tags={this.state.tags} mainColor={this.props.mainColor} />
       </div>
     </React.Fragment>
     )

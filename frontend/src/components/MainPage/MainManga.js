@@ -1,12 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MainStyle.css'
+import { Link } from 'react-router-dom';
 
 const MangaCard = (props) =>{
   const mangaCards = []
   for (let i = 0; i < props.manga.slice(0, 6).length; i++) {
     mangaCards.push(
       <div key={props.manga[i].id} className="col-lg-2 centered">
+        <Link to={'/info/'+props.manga[i].id}>
         <div className="mangaCard">
           <img src={props.manga[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
           <div className="likes">
@@ -16,6 +18,7 @@ const MangaCard = (props) =>{
             <div className="mangaName">{props.manga[i].title}</div>
           </div>
         </div>
+        </Link>
       </div>
     )
   }

@@ -74,29 +74,35 @@
 
 /* TAGS */
 
-.tagsContainer{
-  width: 100%;
-  min-height: 160px;
-  background: #EEEEEE;
-  border-radius: 10px;
-  margin-top: 50px;
+.tagList{
+  padding: 0;
 }
 
 .tagElement{
-  color: #fff;
+  color: #999BB1;
   display: inline-block;
+  background-color: #F4F4F4;
   font-size: 20px;
   margin-right: 30px;
   margin-top:10px;
   padding: 5px 10px 5px 10px;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 /* DESCRIPTION */
 
 .descriptionBlock{
-  background: linear-gradient(104.74deg, #C4C4C4 1.94%, rgba(255, 255, 255, 100%) 43.16%);
-  min-height: 120px;
-  margin: 50px 0 50px 0;
-  padding: 15px 10px 15px 10px;
+  font-family: Nunito;
+  background: #fff;
+  margin: 10px 0 0px 0;
+  padding: 15px 10px 0px 10px;
+}
+
+.statistics{
+
+}
+.statistics span{
+  display: inline-block;
+  margin: 0 10px 10px 0;
+  font-size: 14px;
 }

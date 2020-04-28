@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MainStyle.css'
+import { Link } from 'react-router-dom';
 
 const sortByLikes = (arr) =>{
   const sortedArr = arr.sort((a,b)=>{
@@ -33,6 +34,7 @@ const MangaCardGenres = (props) =>{
     if((findTag)&&(mangaCards.length < 6)){
       mangaCards.push(
         <div key={sortedApi[i].id} className="col-lg-2 centered">
+          <Link to={'/info/'+sortedApi[i].id}>
           <div className="mangaCard genreCard">
             <img src={sortedApi[i].preview_image_url} className="mangaCard__img genreCard__img" alt="manga"></img>
             <div className="likes">
@@ -42,6 +44,7 @@ const MangaCardGenres = (props) =>{
               <div className="mangaName genreCard__img">{sortedApi[i].title} </div>
             </div>
           </div>
+          </Link>
         </div>
       )
     }

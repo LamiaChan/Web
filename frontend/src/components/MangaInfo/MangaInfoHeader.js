@@ -22,7 +22,7 @@ export default function MangaHeader(props){
               </div>
               <div className="dropdown chapterDropdown__container">
                 <button className="btn btn-success dropdown-toggle chapterDropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
+                  Выберете Главу
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <Link className="dropdown-item" href="#">Action</Link>

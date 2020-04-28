@@ -21,8 +21,7 @@ import React from 'react';
           tags.push(<li 
             id={this.props.tags[i].id} 
             key={this.props.tags[i].id} 
-            className="tagElement" 
-            style={{background: this.props.mainColor.color}}>
+            className="tagElement">
               {this.props.tags[i].title}</li>
           )
         }
@@ -33,15 +32,11 @@ import React from 'react';
   render(){
     return (
       <div className="row">
-        <div className="col-md-1"></div>
-        <div className="col-md-10">
-          <div className="tagsContainer">
-            <ul>
+        <div className="col-md-12">
+            <ul className="tagList">
               {this.tagsRender()}
             </ul>
-          </div>
         </div>
-        <div className="col-md-1"></div>
       </div>
     )
   }
