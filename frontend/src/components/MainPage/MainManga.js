@@ -5,22 +5,24 @@ import { Link } from 'react-router-dom';
 
 const MangaCard = (props) =>{
   const mangaCards = []
-  for (let i = 0; i < props.manga.slice(0, 6).length; i++) {
-    mangaCards.push(
-      <div key={props.manga[i].id} className="col-lg-2 centered">
-        <Link to={'/info/'+props.manga[i].id}>
-        <div className="mangaCard">
-          <img src={props.manga[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
-          <div className="likes">
-            <h4 className="likes__text"><i className="fa fa-heart"></i> {props.manga[i].likes}</h4>
+  if(props.manga!==undefined){
+    for (let i = 0; i < props.manga.slice(0, 6).length; i++) {
+      mangaCards.push(
+        <div key={props.manga[i].id} className="col-lg-2 centered">
+          <Link to={'/info/'+props.manga[i].id}>
+          <div className="mangaCard">
+            <img src={props.manga[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
+            <div className="likes">
+              <h4 className="likes__text"><i className="fa fa-heart"></i> {props.manga[i].likes}</h4>
+            </div>
+            <div className="middle">
+              <div className="mangaName">{props.manga[i].title}</div>
+            </div>
           </div>
-          <div className="middle">
-            <div className="mangaName">{props.manga[i].title}</div>
-          </div>
+          </Link>
         </div>
-        </Link>
-      </div>
-    )
+      )
+    }
   }
   return(
     <div className="row">
