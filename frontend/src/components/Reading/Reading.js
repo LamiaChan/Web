@@ -1,6 +1,7 @@
 import React from 'react';
 import ReadingSettings from './ReadingSettings'
 import ReadingPict from './ReadingPict'
+import './Reading.css'
 
 //Redux-react connecter import
 import { connect } from 'react-redux'

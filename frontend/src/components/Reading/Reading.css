@@ -1,0 +1,9 @@
+.pageButton{
+  position: absolute;
+  top: 50%;
+}
+.buttonContainer{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
