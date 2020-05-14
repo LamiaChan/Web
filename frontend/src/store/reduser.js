@@ -19,6 +19,7 @@ const initialState = {
     },
     //Api links
     apiLinks: {
+      mainLink: uri,
       manga: uri +"/api/v1/manga/",
       news:  uri +"/api/v1/news/",
       tags:  uri +"/api/v1/tag/",

@@ -1,33 +1,32 @@
 import React from 'react';
-
+import ReadingSettings from './ReadingSettings'
+import ReadingPict from './ReadingPict'
 
 //Redux-react connecter import
 import { connect } from 'react-redux'
 
-const ReadingPage = (props)=>{
-  return(
-    <div className="row">
-      <div className="col-md-2"></div>
-      <div className="col-md-8"></div>
-      <div className="col-md-2"></div>
-    </div>
-  )
-}
+
 
 class Reading extends React.Component{
   constructor(){
     super()
-    this.kek = this.kek.bind(this)
+    this.findActualChapter = this.findActualChapter.bind(this)
   }
-  kek(){
-    console.log(this.props.location.state.chapters)
+  findActualChapter(){
+    for (let i = 0; i < this.props.location.state.chapters.length; i++) {
+      if(this.props.location.state.chapters[i].id === this.props.location.state.chapterNumber){
+        return this.props.location.state.chapters[i]
+      }
+    }
   }
+
   render(){
     return(
       <div className="readingContainer">
         <div className="container-fluid">
 
-          <ReadingPage />
+          <ReadingPict chapter={this.findActualChapter()} mainLink={this.props.mainLink} />
+          <ReadingSettings chapters={this.props.location.state.chapters} />
         </div>
       </div>
     )
@@ -37,9 +36,7 @@ class Reading extends React.Component{
 //Parce Redux data to React props
 const mapStateToProps = (state)=>{
   return {
-    mainColor: state.mainColor,
-    mangaLink: state.apiLinks.manga,
-    tagLink: state.apiLinks.tags
+    mainLink: state.apiLinks.mainLink,
   }
 }
 
