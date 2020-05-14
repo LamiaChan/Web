@@ -16,6 +16,7 @@ import Catalog from '../Catalog/Catalog'
 import Rate from '../Rate/Rate'
 import Community from '../Community/Community'
 import MangaInfo from '../MangaInfo/MangaInfo'
+import Reading from '../Reading/Reading'
 
 import {
   BrowserRouter as Router,
@@ -75,6 +76,8 @@ class LamiaNavbar extends React.Component{
             </Route>
             <Route exact strict path="/info/:mangaId">
               <MangaInfo />
+            </Route>
+            <Route exact strict path="/info/:mangaId/:chapterId" component={Reading}>
             </Route>
             <Route exact strict path="/rate">
               <Rate />

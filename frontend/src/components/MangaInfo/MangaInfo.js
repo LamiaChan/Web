@@ -57,7 +57,7 @@ class MangaInfo extends React.Component{
     return(
     <React.Fragment>
       <div className="container-fluid">
-        <MangaHeader manga={this.state.manga} chapters={this.filterChapters()} />
+        <MangaHeader manga={this.state.manga} chapters={this.filterChapters()} actualMangaId={this.state.actualMangaId} />
         <MangaDescription manga={this.state.manga} tags={this.state.tags} mainColor={this.props.mainColor} />
       </div>
     </React.Fragment>

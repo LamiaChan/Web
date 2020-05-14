@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {takeApi} from '../ApiRequest'
 
 //Redux-react connecter import
 import { connect } from 'react-redux'
@@ -16,10 +15,18 @@ const ReadingPage = (props)=>{
 }
 
 class Reading extends React.Component{
+  constructor(){
+    super()
+    this.kek = this.kek.bind(this)
+  }
+  kek(){
+    console.log(this.props.location.state.chapters)
+  }
   render(){
     return(
       <div className="readingContainer">
         <div className="container-fluid">
+
           <ReadingPage />
         </div>
       </div>
@@ -36,4 +43,4 @@ const mapStateToProps = (state)=>{
   }
 }
 
-export default connect(mapStateToProps) (MangaInfo);
+export default connect(mapStateToProps) (Reading);
