@@ -6,6 +6,7 @@ export default class Tags extends React.Component{
     }
     renderTags(){
       const tabs = [];
+      //Loop for tags rendering
       for (let i = 0; i < this.props.apiTags.length; i++) {
         tabs.push(<li 
           id={this.props.apiTags[i].id} 

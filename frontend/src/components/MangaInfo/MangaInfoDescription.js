@@ -3,6 +3,7 @@ import MangaTags from './MangaInfoTags'
 
 export default function MangaHeader(props){
   var year = "";
+  //Prevent recive props before get the response
   if (props.manga.year_of_publish !== undefined){
     year = props.manga.year_of_publish.slice(0,4)
   }

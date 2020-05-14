@@ -1,7 +1,15 @@
+//
+//
+// REDUX DATA
+//
+//
 
+//Api URL (need changing on prodaction)
 const uri = 'http://localhost:8000'
 
+//Default Redux data
 const initialState = {
+  //Theme default colors
     mainColor:{
       color: "#11998E",
       mainBack: "#fff",
@@ -9,11 +17,7 @@ const initialState = {
       textColor: "#000",
       genres: "#D3F6F0"
     },
-    api: {
-      manga: ["null"],
-      news: [],
-      tags: []
-    },
+    //Api links
     apiLinks: {
       manga: uri +"/api/v1/manga/",
       news:  uri +"/api/v1/news/",
@@ -23,7 +27,9 @@ const initialState = {
 
 const reduser = (state = initialState, action) => {
     const newState = {...state}
+    //Switcher which recive commands and change REDUX data
     switch (action.type) {
+      //Change light and dark theme
         case "CHANGE_COLOR":
             const darkColor = {
               color: "#B52556",
@@ -40,15 +46,6 @@ const reduser = (state = initialState, action) => {
               genres: "#D3F6F0"
             }
             action.status ? newState.mainColor = darkColor : newState.mainColor = lightColor
-            break;
-          case "SAVE_MANGA":
-            newState.api.manga = action.api
-            break;
-          case "SAVE_NEWS":
-            newState.api.news = action.api
-            break;
-          case "SAVE_TAGS":
-            newState.api.tags = action.api
             break;
 
         default:

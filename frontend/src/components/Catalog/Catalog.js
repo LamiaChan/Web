@@ -17,6 +17,7 @@ class Catalog extends React.Component{
     }
   }
 
+  //API calls with takeApi function
   async componentDidMount(){
     await takeApi(this.props.mangaLink).then(response => {this.setState({manga : response})})
     await takeApi(this.props.tagLink).then(response => {this.setState({tags : response})})
@@ -35,7 +36,7 @@ class Catalog extends React.Component{
     )
   }
 }
-
+//Parce Redux data to React props
 const mapStateToProps = (state)=>{
   return {
     mainColor: state.mainColor,

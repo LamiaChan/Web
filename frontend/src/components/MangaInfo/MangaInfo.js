@@ -21,7 +21,7 @@ class MangaInfo extends React.Component{
     }
     this.getPageUrl = this.getPageUrl.bind(this)
   }
-
+  //API calls with takeApi function
   async componentDidMount(){
     await this.getPageUrl()
     const mangaLink = this.props.mangaLink + this.state.actualMangaId + "/"
@@ -50,7 +50,7 @@ class MangaInfo extends React.Component{
     )
   }
 }
-
+//Parce Redux data to React props
 const mapStateToProps = (state)=>{
   return {
     mainColor: state.mainColor,

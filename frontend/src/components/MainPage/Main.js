@@ -55,6 +55,7 @@ class Main extends React.Component {
   }
 }
 
+//Parce Redax data into React props
 const mapStateToProps = (state)=>{
   return {
     mainColor: state.mainColor,

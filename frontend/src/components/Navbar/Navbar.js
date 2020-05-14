@@ -65,6 +65,7 @@ class LamiaNavbar extends React.Component{
             </Navbar.Collapse>
           </Navbar>
 
+          {/* Hear we have all routes */}
           <Switch>
             <Route exact strict path="/">
               <Main />

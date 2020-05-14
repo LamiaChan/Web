@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const MangaCard = (props) =>{
   const mangaCards = []
+  //We need this if for preventing using API before we get it
   if(props.manga!==undefined){
     for (let i = 0; i < props.manga.slice(0, 6).length; i++) {
       mangaCards.push(

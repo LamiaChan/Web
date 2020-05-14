@@ -5,6 +5,7 @@ import './MainStyle.css'
 
 const NewsCard = (props) =>{
   const newsCards = []
+  //We need this if for preventing using API before we get it
   if(props.api!==undefined){
     for (let i = 0; i < props.api.length; i++) {
       newsCards.push(

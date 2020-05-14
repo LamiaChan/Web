@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const MangaCard = (props) =>{
   const mangaCards = []
+  //Loop for manga rendering
   for (let i = 0; i < props.api.length; i++) {
     mangaCards.push(
       <div key={props.api[i].id} className="col-lg-2 centered">
