@@ -7,3 +7,23 @@
   height: 100%;
   cursor: pointer;
 }
+.left{
+  position: absolute;
+  width: 500px;
+  right: -200%;
+  z-index: 100;
+  text-align: start;
+}
+.right{
+  position: absolute;
+    width: 500px;
+    left: -200%;
+    z-index: 100;
+    text-align: end;
+}
+.mainImgContainer{
+  text-align: center;
+}
+.mainImg{
+  width: 800px;
+}

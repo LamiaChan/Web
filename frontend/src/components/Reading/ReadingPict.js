@@ -39,21 +39,23 @@ class ReadingPage extends React.Component{
     var currentPg = this.props.mainLink + this.props.chapter.page_set[this.state.currentPg].image;
     return(
       <div className="row">
-        <div className="col-md-1"></div>
+        <div className="col-md-2"></div>
         <div className="col-md-1">
-          <div className="buttonContainer" onClick={()=>this.changePg("back")}>
+          <div className="buttonContainer left" onClick={()=>this.changePg("back")}>
             <img src={LeftArrow} className="pageButton" alt="arrow"></img>
           </div>
         </div>
-        <div className="col-md-8">
-          <img src={currentPg} alt="manga pg"></img>
+        <div className="col-md-6">
+          <div className="mainImgContainer">
+            <img src={currentPg} className="mainImg" alt="manga pg"></img>
+          </div>
         </div>
         <div className="col-md-1">
-          <div className="buttonContainer" onClick={()=>this.changePg("forward")}>
+          <div className="buttonContainer right" onClick={()=>this.changePg("forward")}>
             <img src={RightArrow} className="pageButton" alt="arrow"></img>
           </div>
         </div>
-        <div className="col-md-1"></div>
+        <div className="col-md-2"></div>
       </div>
     )
   }
