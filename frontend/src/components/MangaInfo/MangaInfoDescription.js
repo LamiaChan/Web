@@ -13,7 +13,7 @@ export default function MangaHeader(props){
       <div className="col-md-12">
         <div className="descriptionBlock">
           <div className="statistics">
-            <span><i class="fa fa-eye"></i> 204</span>
+            <span><i className="fa fa-eye"></i> 204</span>
             <span>{year} год</span>
           </div>
           <p>

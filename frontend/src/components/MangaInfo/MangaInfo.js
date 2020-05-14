@@ -17,7 +17,8 @@ class MangaInfo extends React.Component{
     this.state = {
       actualMangaId: 1,
       manga: [],
-      tags: []
+      tags: [],
+      chapters: []
     }
     this.getPageUrl = this.getPageUrl.bind(this)
   }
@@ -27,6 +28,18 @@ class MangaInfo extends React.Component{
     const mangaLink = this.props.mangaLink + this.state.actualMangaId + "/"
     await takeApi(mangaLink).then(response => {this.setState({manga : response})})
     await takeApi(this.props.tagLink).then(response => {this.setState({tags : response})})
+    await takeApi(this.props.chapterLink).then(response => {this.setState({chapters : response})})
+  }
+
+  //Filter chapters
+  filterChapters(){
+    var newChapters = [];
+    for (let i = 0; i < this.state.chapters.length; i++) {
+      if(this.state.chapters[i].manga === this.state.actualMangaId){
+        newChapters.push(this.state.chapters[i])
+      }
+    }
+    return newChapters
   }
 
   //GET MANGA ID FROM PAGE URL
@@ -40,10 +53,11 @@ class MangaInfo extends React.Component{
   }
 
   render(){
+    this.filterChapters()
     return(
     <React.Fragment>
       <div className="container-fluid">
-        <MangaHeader manga={this.state.manga} />
+        <MangaHeader manga={this.state.manga} chapters={this.filterChapters()} />
         <MangaDescription manga={this.state.manga} tags={this.state.tags} mainColor={this.props.mainColor} />
       </div>
     </React.Fragment>
@@ -55,7 +69,8 @@ const mapStateToProps = (state)=>{
   return {
     mainColor: state.mainColor,
     mangaLink: state.apiLinks.manga,
-    tagLink: state.apiLinks.tags
+    tagLink: state.apiLinks.tags,
+    chapterLink: state.apiLinks.chapters
   }
 }
 

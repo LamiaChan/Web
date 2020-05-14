@@ -21,7 +21,8 @@ const initialState = {
     apiLinks: {
       manga: uri +"/api/v1/manga/",
       news:  uri +"/api/v1/news/",
-      tags:  uri +"/api/v1/tag/"
+      tags:  uri +"/api/v1/tag/",
+      chapters: uri +"/api/v1/chapter/"
     }
 }
 
