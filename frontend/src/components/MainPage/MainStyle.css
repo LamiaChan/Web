@@ -90,6 +90,10 @@
 
 /* GENRES */
 
+.tab{
+    cursor: pointer;
+}
+
 .genresSection{
   min-height: 450px;
   padding: 5px;
