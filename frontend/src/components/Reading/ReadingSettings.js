@@ -25,7 +25,7 @@ const PagesDropdown = (props)=>{
   if(props.chapter !== undefined){
       for (let i = 0; i < props.chapter.page_set.length; i++) {
         pageDropdown.push(
-          <div className="dropdown-item" onClick={()=>props.mainPageChanger(props.chapter.page_set[i].id)} key={props.chapter.page_set[i].id}>{props.chapter.page_set[i].id}</div>
+          <div className="dropdown-item readingSettings__dropdown__item" onClick={()=>props.mainPageChanger(props.chapter.page_set[i].number)} key={props.chapter.page_set[i].number}>{props.chapter.page_set[i].number}</div>
         )
       }
     }

@@ -25,6 +25,8 @@ class Reading extends React.Component{
       }
     }
   }
+  //Page changer 
+  //We call this function in child components and change page here!
   mainPageChanger(newPage){
     this.setState({
         currentPg: newPage

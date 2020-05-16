@@ -47,3 +47,6 @@
     margin-bottom: 5px;
     border-radius: 10px;
 }
+.readingSettings__dropdown__item{
+    cursor: pointer;
+}
