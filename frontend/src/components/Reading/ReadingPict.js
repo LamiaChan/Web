@@ -41,8 +41,7 @@ class ReadingPage extends React.Component{
     //Hear we create link to our picture
     var currentPg = this.props.mainLink + this.props.chapter.page_set[this.state.currentPg].image;
     return(
-      <div className="row">
-        <div className="col-md-2"></div>
+      <React.Fragment>
         <div className="col-md-1">
           <div className="buttonContainer left" onClick={()=>this.changePg("back")}>
             <img src={LeftArrow} className="pageButton" alt="arrow"></img>
@@ -58,8 +57,7 @@ class ReadingPage extends React.Component{
             <img src={RightArrow} className="pageButton" alt="arrow"></img>
           </div>
         </div>
-        <div className="col-md-2"></div>
-      </div>
+      </React.Fragment>
     )
   }
 }

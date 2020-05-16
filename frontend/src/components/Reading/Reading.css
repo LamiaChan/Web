@@ -1,3 +1,8 @@
+/* FONTS */
+@font-face {
+    font-family: "Nunito";
+    src: url("../../fonts/Nunito-SemiBold.ttf");
+  }
 .pageButton{
   position: absolute;
   top: 50%;
@@ -26,4 +31,19 @@
 }
 .mainImg{
   width: 850px;
+}
+
+/* Reading Settings */
+.readingSettings{
+    margin: 40px 0 10px 0px;
+    font-family: "Nunito";
+}
+.readingSettings__title{
+    text-align: center;
+    border-radius: 10px;
+}
+.readingSettings__dropdown{
+    background-color: rgba(0, 0, 0, 0) !important;
+    margin-bottom: 5px;
+    border-radius: 10px;
 }

@@ -25,9 +25,13 @@ class Reading extends React.Component{
     return(
       <div className="readingContainer">
         <div className="container-fluid">
-
-          <ReadingPict chapter={this.findActualChapter()} mainLink={this.props.mainLink} />
-          <ReadingSettings chapters={this.props.location.state.chapters} />
+          <div className="row">
+            <div className="col-md-2">
+              <ReadingSettings chapters={this.props.location.state.chapters} chapter={this.findActualChapter()} mangaTitle={this.props.location.state.title} />
+            </div>
+            <ReadingPict chapter={this.findActualChapter()} mainLink={this.props.mainLink} />
+            <div className="col-md-2"></div>
+          </div>
         </div>
       </div>
     )
