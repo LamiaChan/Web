@@ -17,6 +17,8 @@ import Rate from '../Rate/Rate'
 import Community from '../Community/Community'
 import MangaInfo from '../MangaInfo/MangaInfo'
 import Reading from '../Reading/Reading'
+import Auth from '../Auth/Auth'
+import Register from '../Auth/Register'
 
 import {
   BrowserRouter as Router,
@@ -51,6 +53,7 @@ class LamiaNavbar extends React.Component{
               <NavLink to="/catalog" className="nav-link">Каталог</NavLink>
               <NavLink to="/rate" className="nav-link">Рецтинг</NavLink>
               <NavLink to="/community" className="nav-link">Сообщество</NavLink>
+              <NavLink to="/auth" className="nav-link">Войти</NavLink>
                 <label className="form-switch nav-link">
                   <input type="checkbox" ref={this.colorChange} onClick={this.changeColor} />
                   <i></i>
@@ -84,6 +87,12 @@ class LamiaNavbar extends React.Component{
             </Route>
             <Route exact strict path="/community">
               <Community />
+            </Route>
+            <Route exact strict path="/auth">
+              <Auth />
+            </Route>
+            <Route exact strict path="/register">
+              <Register />
             </Route>
           </Switch>
 

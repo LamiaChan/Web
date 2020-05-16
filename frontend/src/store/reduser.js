@@ -23,7 +23,12 @@ const initialState = {
       manga: uri +"/api/v1/manga/",
       news:  uri +"/api/v1/news/",
       tags:  uri +"/api/v1/tag/",
-      chapters: uri +"/api/v1/chapter/"
+      chapters: uri +"/api/v1/chapter/",
+      tokenCheck: uri +"/api/v1/check",
+      tokenRefresh: uri +"/api/v1/refresh/",
+      tokenGetter: uri +"/api/v1/token/",
+      userInfo: uri +"/api/v1/userinfo/",
+      userCreate: uri +"/api/v1/create/"
     }
 }
 

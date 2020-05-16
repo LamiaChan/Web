@@ -9,7 +9,7 @@ import Sidebar from './Sidebar'
 import MainNews from './MainNews'
 import Geners from './MainGenres'
 
-import {takeApi} from '../ApiRequest'
+import {Worker} from '../Api/Worker'
 
 class Main extends React.Component {
   constructor(){
@@ -22,9 +22,9 @@ class Main extends React.Component {
   }
 
   async componentDidMount(){
-    await takeApi(this.props.mangaLink).then(response => {this.setState({manga : response})})
-    await takeApi(this.props.newsLink).then(response => {this.setState({news : response})})
-    await takeApi(this.props.tagLink).then(response => {this.setState({tags : response})})
+    await Worker(this.props.mangaLink).then(response => {this.setState({manga : response})})
+    await Worker(this.props.newsLink).then(response => {this.setState({news : response})})
+    await Worker(this.props.tagLink).then(response => {this.setState({tags : response})})
   }
 
   render(){

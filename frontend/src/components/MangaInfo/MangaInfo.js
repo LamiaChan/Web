@@ -3,7 +3,7 @@ import './MangaInfo.css'
 import MangaHeader from './MangaInfoHeader'
 import MangaDescription from './MangaInfoDescription'
 
-import {takeApi} from '../ApiRequest'
+import {Worker} from '../Api/Worker'
 
 
 //Redux-react connecter import
@@ -22,13 +22,13 @@ class MangaInfo extends React.Component{
     }
     this.getPageUrl = this.getPageUrl.bind(this)
   }
-  //API calls with takeApi function
+  //API calls with Worker function
   async componentDidMount(){
     await this.getPageUrl()
     const mangaLink = this.props.mangaLink + this.state.actualMangaId + "/"
-    await takeApi(mangaLink).then(response => {this.setState({manga : response})})
-    await takeApi(this.props.tagLink).then(response => {this.setState({tags : response})})
-    await takeApi(this.props.chapterLink).then(response => {this.setState({chapters : response})})
+    await Worker(mangaLink).then(response => {this.setState({manga : response})})
+    await Worker(this.props.tagLink).then(response => {this.setState({tags : response})})
+    await Worker(this.props.chapterLink).then(response => {this.setState({chapters : response})})
   }
 
   //Filter chapters
