@@ -17,7 +17,7 @@ from  corsheaders.defaults import default_headers
 #project_status = dev / prod
 project_status = 'dev'
 #host = local / foreign
-host = 'foreign'
+host = 'local'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -160,7 +160,7 @@ if (project_status == 'prod'):
 elif(project_status == 'dev'): 
     
     if (host == 'local'):
-        host_ip = '192.168.88.46'
+        host_ip = '192.168.88.68'
     else:
         host_ip = '45.136.247.192'
 

@@ -2,7 +2,7 @@ import React from 'react';
 import ReadingSettings from './ReadingSettings'
 import ReadingPict from './ReadingPict'
 import './Reading.css'
-import {Worker} from '../Api/Worker'
+import {apiWorker} from '../Api/apiWorker'
 
 //Redux-react connecter import
 import { connect } from 'react-redux'
@@ -40,9 +40,9 @@ class Reading extends React.Component{
   async componentDidMount(){
     const mangaLink = this.props.mangaLink + this.getPageUrl("manga") + "/"
     console.log(mangaLink)
-    await Worker(mangaLink).then(response => {this.setState({manga : response})})
+    await apiWorker(mangaLink).then(response => {this.setState({manga : response})})
     console.log(this.state.manga)
-    await Worker(this.props.chapterLink).then(response => {this.setState({chapters : response})})
+    await apiWorker(this.props.chapterLink).then(response => {this.setState({chapters : response})})
   }
   findActualChapter(){
     if(this.state.chapters !== undefined){

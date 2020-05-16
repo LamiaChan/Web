@@ -6,7 +6,7 @@ import './Catalog.css'
 //Redux-react connecter import
 import { connect } from 'react-redux'
 
-import {Worker} from '../Api/Worker'
+import {apiWorker} from '../Api/apiWorker'
 
 class Catalog extends React.Component{
   constructor(){
@@ -19,8 +19,8 @@ class Catalog extends React.Component{
 
   //API calls with Worker function
   async componentDidMount(){
-    await Worker(this.props.mangaLink).then(response => {this.setState({manga : response})})
-    await Worker(this.props.tagLink).then(response => {this.setState({tags : response})})
+    await apiWorker(this.props.mangaLink).then(response => {this.setState({manga : response})})
+    await apiWorker(this.props.tagLink).then(response => {this.setState({tags : response})})
   }
 
   render(){

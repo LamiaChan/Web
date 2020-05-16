@@ -4,7 +4,7 @@
 //Type it is request type
 //Body it is body of request if it is post xD example: { username: userName, password: password, email: email }
 
-export async function Worker(link, type='get', body=''){
+export async function apiWorker(link, type='get', body=''){
   if(type === 'get'){
       try{
         //User fetch

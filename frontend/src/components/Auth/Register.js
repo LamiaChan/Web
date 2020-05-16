@@ -1,6 +1,6 @@
 import React from 'react';
 import './Auth.css'
-import {Worker} from '../Api/Worker'
+import {apiWorker} from '../Api/apiWorker'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
@@ -24,7 +24,7 @@ class Register extends React.Component{
     //API calls with Worker function
     async createUser(userName, email, password){
         let body = { username: userName, password: password, email: email }
-        await Worker(this.props.createUser, 'post', body).then(response => {this.setState({userCreateArr : response})})
+        await apiWorker(this.props.createUser, 'post', body).then(response => {this.setState({userCreateArr : response})})
     }
 
     handleChange = ({ target }) => {
