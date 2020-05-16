@@ -5,22 +5,33 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
+import { Link } from 'react-router-dom';
+
 const ChaptersDropdown = (props)=>{
+
+  const chapteredDropdown = [];
+  if(props.allChapters !== undefined){
+      for (let i = 0; i < props.allChapters.length; i++) {
+        chapteredDropdown.push(
+          <Link className="dropdown-item" to={{
+            pathname:`/info/${props.mangaId}/${props.allChapters[i].id}`
+          }} key={props.allChapters[i].id}>{props.allChapters[i].title}</Link>
+        )
+      }
+    }
   return(
   <div className="dropdown readingSettings__dropdown" >
     <button className="btn btn-success dropdown-toggle readingSettings__dropdown" style={{border: `2px ${props.mainColor.color} solid`, color: props.mainColor.textColor}} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Выберете страницу
+      {props.chapterTitle}
     </button>
     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      {/* {this.chaptersRender()} */}
+      {chapteredDropdown}
     </div>
   </div>
   )
 }
 
 const PagesDropdown = (props)=>{
- 
-  console.log(typeof(props.mainPageChanger))
   const pageDropdown = [];
   if(props.chapter !== undefined){
       for (let i = 0; i < props.chapter.page_set.length; i++) {
@@ -42,12 +53,18 @@ const PagesDropdown = (props)=>{
 
 const ReadingSettings = (props)=>{
   
+if(props.chapters !== undefined){
   return(
     <div className="readingSettings">
-      <h3 className="readingSettings__title" style={{border: `2px ${props.mainColor.color} solid`, color: props.mainColor.textColor}} >{props.mangaTitle}</h3>
-      <PagesDropdown currentPg={props.currentPg} mainPageChanger={props.mainPageChanger.bind()} mainColor={props.mainColor} chapter={props.chapters[0]} />
+      <h3 className="readingSettings__title" style={{border: `2px ${props.mainColor.color} solid`, color: props.mainColor.textColor}} >{props.manga.title}</h3>
+      <PagesDropdown currentPg={props.currentPg} mainPageChanger={props.mainPageChanger.bind()} mainColor={props.mainColor} chapter={props.chapters} />
+      <ChaptersDropdown allChapters={props.allChapters} mainColor={props.mainColor} mangaId={props.manga.id} chapterTitle={props.chapters.title} />
     </div>
   )
+}
+else{
+  return(<div></div>)
+}
 }
 
 //Parce Redux data to React props

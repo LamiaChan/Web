@@ -2,6 +2,7 @@ import React from 'react';
 import ReadingSettings from './ReadingSettings'
 import ReadingPict from './ReadingPict'
 import './Reading.css'
+import {Worker} from '../Api/Worker'
 
 //Redux-react connecter import
 import { connect } from 'react-redux'
@@ -13,17 +14,55 @@ class Reading extends React.Component{
     super()
     //CURRENT PAGE
     this.state = {
-        currentPg: 1
+        currentPg: 1,
+        chapters: [],
+        manga: []
       }
     this.findActualChapter = this.findActualChapter.bind(this)
     this.mainPageChanger = this.mainPageChanger.bind(this)
+    this.getPageUrl = this.getPageUrl.bind(this)
+  }
+    //GET MANGA ID FROM PAGE URL
+  getPageUrl(needed){
+    var currentUrl = window.location.pathname;
+    var params = currentUrl.split('/');
+    // await this.setState({
+    //   actualMangaId: parseInt(params[params.length-1])
+    // })
+    if(needed === "chapter"){
+      return params[params.length-1];
+    }
+    if(needed === "manga"){
+      return params[params.length-2];
+    }
+  }
+  //API calls with Worker function
+  async componentDidMount(){
+    const mangaLink = this.props.mangaLink + this.getPageUrl("manga") + "/"
+    console.log(mangaLink)
+    await Worker(mangaLink).then(response => {this.setState({manga : response})})
+    console.log(this.state.manga)
+    await Worker(this.props.chapterLink).then(response => {this.setState({chapters : response})})
   }
   findActualChapter(){
-    for (let i = 0; i < this.props.location.state.chapters.length; i++) {
-      if(this.props.location.state.chapters[i].id === this.props.location.state.chapterNumber){
-        return this.props.location.state.chapters[i]
+    if(this.state.chapters !== undefined){
+      for (let i = 0; i < this.state.chapters.length; i++) {
+        if(this.state.chapters[i].id === parseInt(this.getPageUrl("chapter"))){
+          return this.state.chapters[i]
+        }
       }
     }
+  }
+  //Filter chapters
+  filterChapters(){
+    var newChapters = [];
+    for (let i = 0; i < this.state.chapters.length; i++) {
+      if(this.state.chapters[i].manga === parseInt(this.getPageUrl("manga"))){
+        newChapters.push(this.state.chapters[i])
+      }
+    }
+    console.log("LOL",newChapters)
+    return newChapters
   }
   //Page changer 
   //We call this function in child components and change page here!
@@ -39,9 +78,9 @@ class Reading extends React.Component{
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-2">
-              <ReadingSettings currentPg={this.state.currentPg} mainPageChanger={this.mainPageChanger} chapters={this.props.location.state.chapters} chapter={this.findActualChapter()} mangaTitle={this.props.location.state.title} />
+              <ReadingSettings currentPg={this.state.currentPg} mainPageChanger={this.mainPageChanger} chapters={this.findActualChapter()} allChapters={this.filterChapters()} manga={this.state.manga} />
             </div>
-            <ReadingPict currentPg={this.state.currentPg} mainPageChanger={this.mainPageChanger} chapter={this.findActualChapter()} mainLink={this.props.mainLink} />
+              <ReadingPict currentPg={this.state.currentPg} mainPageChanger={this.mainPageChanger} chapter={this.findActualChapter()} mainLink={this.props.mainLink} />
             <div className="col-md-2"></div>
           </div>
         </div>
@@ -54,6 +93,8 @@ class Reading extends React.Component{
 const mapStateToProps = (state)=>{
   return {
     mainLink: state.apiLinks.mainLink,
+    mangaLink: state.apiLinks.manga,
+    chapterLink: state.apiLinks.chapters
   }
 }
 

@@ -17,8 +17,7 @@ export default class MangaHeader extends React.Component{
         for (let i = 0; i < this.props.chapters.length; i++) {
           chapteredDropdown.push(
             <Link className="dropdown-item" to={{
-              pathname:`/info/${this.props.actualMangaId}/${this.props.chapters[i].id}`,
-              state: {chapters: this.props.chapters, chapterNumber:this.props.chapters[i].id, title: this.props.manga.title }
+              pathname:`/info/${this.props.actualMangaId}/${this.props.chapters[i].id}`
             }} key={this.props.chapters[i].id}>{this.props.chapters[i].title}</Link>
           )
         }

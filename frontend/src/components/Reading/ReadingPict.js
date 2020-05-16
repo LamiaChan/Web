@@ -34,27 +34,34 @@ class ReadingPage extends React.Component{
   }
   render(){
     //Hear we create link to our picture
-    console.log(this.props.currentPg)
-    var currentPg = this.props.mainLink + this.props.chapter.page_set[this.props.currentPg-1].image;
-    return(
-      <React.Fragment>
-        <div className="col-md-1">
-          <div className="buttonContainer left" onClick={()=>this.changePg("back")}>
-            <img src={LeftArrow} className="pageButton" alt="arrow"></img>
+
+    if(this.props.chapter !== undefined){
+      console.log(this.props.currentPg)
+      var currentPg = this.props.mainLink + this.props.chapter.page_set[this.props.currentPg-1].image;
+      return(
+        <React.Fragment>
+          <div className="col-md-1">
+            <div className="buttonContainer left" onClick={()=>this.changePg("back")}>
+              <img src={LeftArrow} className="pageButton" alt="arrow"></img>
+            </div>
           </div>
-        </div>
-        <div className="col-md-6">
-          <div className="mainImgContainer">
-            <img src={currentPg} className="mainImg" alt="manga pg"></img>
+          <div className="col-md-6">
+            <div className="mainImgContainer">
+              <img src={currentPg} className="mainImg" alt="manga pg"></img>
+            </div>
           </div>
-        </div>
-        <div className="col-md-1">
-          <div className="buttonContainer right" onClick={()=>this.changePg("forward")}>
-            <img src={RightArrow} className="pageButton" alt="arrow"></img>
+          <div className="col-md-1">
+            <div className="buttonContainer right" onClick={()=>this.changePg("forward")}>
+              <img src={RightArrow} className="pageButton" alt="arrow"></img>
+            </div>
           </div>
-        </div>
-      </React.Fragment>
-    )
+        </React.Fragment>
+      )
+    }
+    else{
+      return (<div></div>)
+    }
+
   }
 }
 
