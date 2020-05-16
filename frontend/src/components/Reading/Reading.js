@@ -13,7 +13,7 @@ class Reading extends React.Component{
     super()
     //CURRENT PAGE
     this.state = {
-        currentPg: 0
+        currentPg: 1
       }
     this.findActualChapter = this.findActualChapter.bind(this)
     this.mainPageChanger = this.mainPageChanger.bind(this)

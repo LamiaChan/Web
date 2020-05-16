@@ -13,13 +13,13 @@ class ReadingPage extends React.Component{
     //Select action: + or -
     switch (action) {
       case "back":
-        if(pgChang !== 0){
+        if(pgChang !== 1){
           pgChang--;
         }
         break;
 
       case "forward":
-        if((pgChang+1) !== this.props.chapter.page_set.length){
+        if((pgChang) !== this.props.chapter.page_set.length){
           pgChang++;
         }
         break;
@@ -35,7 +35,7 @@ class ReadingPage extends React.Component{
   render(){
     //Hear we create link to our picture
     console.log(this.props.currentPg)
-    var currentPg = this.props.mainLink + this.props.chapter.page_set[this.props.currentPg].image;
+    var currentPg = this.props.mainLink + this.props.chapter.page_set[this.props.currentPg-1].image;
     return(
       <React.Fragment>
         <div className="col-md-1">

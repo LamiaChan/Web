@@ -32,7 +32,7 @@ const PagesDropdown = (props)=>{
   return(
   <div className="dropdown readingSettings__dropdown" >
     <button className="btn btn-success dropdown-toggle readingSettings__dropdown" style={{border: `2px ${props.mainColor.color} solid`, color: props.mainColor.textColor}} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Выберете страницу
+      Страница {props.currentPg} из {props.chapter.page_set.length}
     </button>
     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
       {pageDropdown}
