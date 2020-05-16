@@ -11,7 +11,12 @@ import { connect } from 'react-redux'
 class Reading extends React.Component{
   constructor(){
     super()
+    //CURRENT PAGE
+    this.state = {
+        currentPg: 0
+      }
     this.findActualChapter = this.findActualChapter.bind(this)
+    this.mainPageChanger = this.mainPageChanger.bind(this)
   }
   findActualChapter(){
     for (let i = 0; i < this.props.location.state.chapters.length; i++) {
@@ -20,6 +25,11 @@ class Reading extends React.Component{
       }
     }
   }
+  mainPageChanger(newPage){
+    this.setState({
+        currentPg: newPage
+      })
+  }
 
   render(){
     return(
@@ -27,9 +37,9 @@ class Reading extends React.Component{
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-2">
-              <ReadingSettings chapters={this.props.location.state.chapters} chapter={this.findActualChapter()} mangaTitle={this.props.location.state.title} />
+              <ReadingSettings currentPg={this.state.currentPg} mainPageChanger={this.mainPageChanger} chapters={this.props.location.state.chapters} chapter={this.findActualChapter()} mangaTitle={this.props.location.state.title} />
             </div>
-            <ReadingPict chapter={this.findActualChapter()} mainLink={this.props.mainLink} />
+            <ReadingPict currentPg={this.state.currentPg} mainPageChanger={this.mainPageChanger} chapter={this.findActualChapter()} mainLink={this.props.mainLink} />
             <div className="col-md-2"></div>
           </div>
         </div>

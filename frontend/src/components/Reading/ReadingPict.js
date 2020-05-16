@@ -5,14 +5,11 @@ import LeftArrow from '../../images/LeftArrow.png'
 class ReadingPage extends React.Component{
   constructor(){
     super()
-    this.state = {
-      currentPg: 0
-    }
     this.changePg = this.changePg.bind(this)
   }
   //Change page number
   changePg(action){
-    var pgChang = this.state.currentPg;
+    var pgChang = this.props.currentPg;
     //Select action: + or -
     switch (action) {
       case "back":
@@ -33,13 +30,12 @@ class ReadingPage extends React.Component{
     //Scroll top
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    this.setState({
-      currentPg: pgChang
-    })
+    this.props.mainPageChanger(pgChang)
   }
   render(){
     //Hear we create link to our picture
-    var currentPg = this.props.mainLink + this.props.chapter.page_set[this.state.currentPg].image;
+    console.log(this.props.currentPg)
+    var currentPg = this.props.mainLink + this.props.chapter.page_set[this.props.currentPg].image;
     return(
       <React.Fragment>
         <div className="col-md-1">

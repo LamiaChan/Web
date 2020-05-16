@@ -19,12 +19,13 @@ const ChaptersDropdown = (props)=>{
 }
 
 const PagesDropdown = (props)=>{
-  console.log(props.chapter)
+ 
+  console.log(typeof(props.mainPageChanger))
   const pageDropdown = [];
   if(props.chapter !== undefined){
       for (let i = 0; i < props.chapter.page_set.length; i++) {
         pageDropdown.push(
-          <a className="dropdown-item" key={props.chapter.page_set[i].id}>{props.chapter.page_set[i].id}</a>
+          <div className="dropdown-item" onClick={()=>props.mainPageChanger(props.chapter.page_set[i].id)} key={props.chapter.page_set[i].id}>{props.chapter.page_set[i].id}</div>
         )
       }
     }
@@ -37,15 +38,14 @@ const PagesDropdown = (props)=>{
       {pageDropdown}
     </div>
   </div>
-  )
-}
+  )}
 
 const ReadingSettings = (props)=>{
-  console.log(props.chapters)
+  
   return(
     <div className="readingSettings">
       <h3 className="readingSettings__title" style={{border: `2px ${props.mainColor.color} solid`, color: props.mainColor.textColor}} >{props.mangaTitle}</h3>
-      <PagesDropdown mainColor={props.mainColor} chapter={props.chapters[0]} />
+      <PagesDropdown currentPg={props.currentPg} mainPageChanger={props.mainPageChanger.bind()} mainColor={props.mainColor} chapter={props.chapters[0]} />
     </div>
   )
 }
