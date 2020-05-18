@@ -14,11 +14,6 @@ import os
 import datetime
 from  corsheaders.defaults import default_headers
 
-#project_status = dev / prod
-project_status = 'dev'
-#host = local / foreign
-host = 'local'
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,6 +22,11 @@ from os.path import dirname, join, abspath
 from os import environ
 MEDIA_ROOT = join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+#project_status = dev / prod
+project_status = 'dev'
+#host = local / foreign
+host = bool(environ.get('LAMIA', default=False))
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
@@ -159,7 +159,7 @@ if (project_status == 'prod'):
 
 elif(project_status == 'dev'): 
     
-    if (host == 'local'):
+    if (host == True):
         host_ip = '192.168.88.68'
     else:
         host_ip = '45.136.247.192'
