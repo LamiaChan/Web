@@ -10,11 +10,9 @@ class Register extends React.Component{
     constructor(){
         super()
         this.state = {
-          userCreateArr: [],
           username: '',
           email: '',
           password: '',
-          body: {}
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,7 +22,16 @@ class Register extends React.Component{
     //API calls with Worker function
     async createUser(userName, email, password){
         let body = { username: userName, password: password, email: email }
-        await apiWorker(this.props.createUser, 'post', body).then(response => {this.setState({userCreateArr : response})})
+        await apiWorker(this.props.createUser, 'post', body).then(response => {this.setState({userArr : response})})
+        let userAnswer = this.state.userArr;
+        console.log(userAnswer);
+
+        if ( 'refresh' in userAnswer &&  'access' in userAnswer ){
+            window.localStorage.setItem('tokens', JSON.stringify(userAnswer));
+        } else {
+            console.log('plz check server answer array');
+        }
+
     }
 
     handleChange = ({ target }) => {

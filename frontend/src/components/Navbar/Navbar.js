@@ -91,7 +91,7 @@ class LamiaNavbar extends React.Component{
             <Route exact strict path="/auth">
               <Auth />
             </Route>
-            <Route exact strict path="/register">
+            <Route exact strict path="/registration">
               <Register />
             </Route>
           </Switch>
