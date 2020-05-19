@@ -118,6 +118,7 @@ class MangaSerializer(serializers.ModelSerializer):
             'description', 
             'preview_image_url',
             'tags',
+            'url_name',
             'year_of_publish',
             'nswf',
             'likes',
@@ -127,6 +128,12 @@ class MangaSerializer(serializers.ModelSerializer):
             'chapter_set',
 
         ]
+        
+        lookup_field = 'url_name'
+
+        extra_kwargs = {
+            'url': {'lookup_field': 'url_name'}
+        }
     
     def get_chapter_set(self, instance):
         chapter = instance.chapter_set.all()

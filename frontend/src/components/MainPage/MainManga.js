@@ -9,8 +9,8 @@ const MangaCard = (props) =>{
   if(props.manga!==undefined){
     for (let i = 0; i < props.manga.slice(0, 6).length; i++) {
       mangaCards.push(
-        <div key={props.manga[i].id} className="col-lg-2 centered">
-          <Link to={'/info/'+props.manga[i].id}>
+        <div key={props.manga[i].url_name} className="col-lg-2 centered">
+          <Link to={'/manga/'+props.manga[i].url_name}>
           <div className="mangaCard">
             <img src={props.manga[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
             <div className="likes">

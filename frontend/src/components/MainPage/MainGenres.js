@@ -37,7 +37,7 @@ const MangaCardGenres = (props) =>{
       if((findTag)&&(mangaCards.length < 6)){
         mangaCards.push(
           <div key={sortedApi[i].id} className="col-lg-2 centered">
-            <Link to={'/info/'+sortedApi[i].id}>
+            <Link to={'/manga/'+sortedApi[i].id}>
             <div className="mangaCard genreCard">
               <img src={sortedApi[i].preview_image_url} className="mangaCard__img genreCard__img" alt="manga"></img>
               <div className="likes">

@@ -61,10 +61,8 @@ class MangaViewSet(viewsets.ModelViewSet):
     queryset = Manga.objects.all().order_by('-likes')
     serializer_class = MangaSerializer
 
-# class NonPaginationMangaViewSet(viewsets.ModelViewSet):
-#     queryset = Manga.objects.all().order_by('-updated')
-#     serializer_class = MangaSerializer
-    
+    lookup_field = 'url_name'
+
 
 class ReportViewSet(viewsets.ModelViewSet):
     #pagination_class = StandardResultsSetPagination

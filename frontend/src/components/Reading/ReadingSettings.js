@@ -14,7 +14,7 @@ const ChaptersDropdown = (props)=>{
       for (let i = 0; i < props.allChapters.length; i++) {
         chapteredDropdown.push(
           <Link className="dropdown-item" to={{
-            pathname:`/info/${props.mangaId}/${props.allChapters[i].id}`
+            pathname:`/manga/${props.mangaName}/${props.allChapters[i].id}`
           }} key={props.allChapters[i].id}>{props.allChapters[i].title}</Link>
         )
       }
@@ -58,7 +58,7 @@ if(props.chapters !== undefined){
     <div className="readingSettings">
       <h3 className="readingSettings__title" style={{border: `2px ${props.mainColor.color} solid`, color: props.mainColor.textColor}} >{props.manga.title}</h3>
       <PagesDropdown currentPg={props.currentPg} mainPageChanger={props.mainPageChanger.bind()} mainColor={props.mainColor} chapter={props.chapters} />
-      <ChaptersDropdown allChapters={props.allChapters} mainColor={props.mainColor} mangaId={props.manga.id} chapterTitle={props.chapters.title} />
+      <ChaptersDropdown allChapters={props.allChapters} mainColor={props.mainColor} mangaName={props.manga.url_name} chapterTitle={props.chapters.title} />
     </div>
   )
 }
