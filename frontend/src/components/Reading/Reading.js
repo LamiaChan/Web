@@ -26,9 +26,7 @@ class Reading extends React.Component{
   getPageUrl(needed){
     var currentUrl = window.location.pathname;
     var params = currentUrl.split('/');
-    // await this.setState({
-    //   actualMangaId: parseInt(params[params.length-1])
-    // })
+
     if(needed === "chapter"){
       return params[params.length-1];
     }
@@ -36,12 +34,10 @@ class Reading extends React.Component{
       return params[params.length-2];
     }
   }
-  //API calls with Worker function
+  //API calls with apiWorker function
   async componentDidMount(){
     const mangaLink = this.props.mangaLink + this.getPageUrl("manga") + "/"
-    //console.log(mangaLink)
     await apiWorker(mangaLink).then(response => {this.setState({manga : response})})
-    //console.log(this.state.manga)
     await apiWorker(this.props.chapterLink).then(response => {this.setState({chapters : response})})
   }
   findActualChapter(){
@@ -56,6 +52,7 @@ class Reading extends React.Component{
 
 
   //Filter chapters
+  //This function sort needed chapters from others
   filterChapters(){
     var newChapters = [];
     for (let i = 0; i < this.state.chapters.length; i++) {
@@ -63,7 +60,6 @@ class Reading extends React.Component{
         newChapters.push(this.state.chapters[i])
       }
     }
-    //console.log("LOL",newChapters)
     return newChapters
   }
   //Page changer 
