@@ -117,7 +117,8 @@ class Page(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
     
     def __str__(self):
-        return str(self.image.url)
+        page_title = str(self.chapter) + ' - ' + str(self.number)
+        return str(page_title)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -130,8 +131,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_('is_staff'), default=False)
     user_image = models.ImageField(upload_to='upicks', null=True, blank=True)
     user_moto = models.CharField(max_length=256, null=True, blank=True)
-    user_favorite_manga = models.ManyToManyField(Manga, default="", null=True, blank=True)
-    bookmarks = models.ManyToManyField(Page, default="", null=True, blank=True)
+    user_favorite_manga = models.ManyToManyField(Manga, blank=True, default=None)
+    bookmarks = models.ManyToManyField(Page, blank=True, default=None)
     RANK_LIST = [
         ('Новичок', 'Новичок'),
         ('Завсегдатый', 'Завсегдатый'),
