@@ -8,8 +8,8 @@ const MangaCard = (props) =>{
   //Loop for manga rendering
   for (let i = 0; i < props.api.length; i++) {
     mangaCards.push(
-      <div key={props.api[i].id} className="col-lg-2 centered">
-        <Link to={'/manga/'+props.api[i].id}>
+      <div key={props.api[i].url_name} className="col-lg-2 centered">
+        <Link to={'/manga/'+props.api[i].url_name}>
           <div className="mangaCard">
             <img src={props.api[i].preview_image_url} className="mangaCard__img" alt="manga"></img>
             <div className="likes">
