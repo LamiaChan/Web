@@ -66,8 +66,10 @@ INSTALLED_APPS = [
 
 ]
 
+# модель аунтификации
 AUTH_USER_MODEL = 'core.User'
 
+#Настройки drf
 REST_FRAMEWORK = {
     #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     #'PAGE_SIZE': 100,
@@ -76,6 +78,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
+
+#Настройки токенов
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=45),
@@ -115,6 +119,8 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',    
 ]
 
+#Настройки corc
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
@@ -143,6 +149,7 @@ WSGI_APPLICATION = 'lamia_chan_web.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#database
+#TODO Не забыть дописать базу для докера 
 
 if (project_status == 'prod'): 
 

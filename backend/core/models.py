@@ -12,6 +12,7 @@ from django.contrib.auth.base_user      import AbstractBaseUser
 from .managers                          import UserManager
 from tinymce.models                     import HTMLField
 
+# Модель новостей  
 
 class Report(models.Model):
     title = models.CharField(max_length=256)
@@ -21,6 +22,9 @@ class Report(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+# Модель источников
+# Нужно переделать
 
 class Source(models.Model):
     url = models.URLField()
@@ -41,7 +45,8 @@ class Source(models.Model):
 
     def __str__(self):
         return str(self.url)
-    
+
+# Модель тегов
 
 class Tag(models.Model):
     title = models.CharField(max_length=256)
@@ -49,10 +54,12 @@ class Tag(models.Model):
     def __str__(self):
         return str(self.title)
 
+# Модель Манги
+
 class Manga(models.Model):
     title = models.CharField(max_length=256)
     url_name = models.CharField(max_length=256, unique=True)
-    #preview_image_url = models.CharField(max_length=256, default='none')
+    # url_name мы используем вместо первичного ключа
     preview_image_url = models.ImageField(upload_to='manga')
     description = models.CharField(max_length=500)
     sources = models.ManyToManyField(Source)
@@ -60,6 +67,7 @@ class Manga(models.Model):
     updated = models.DateTimeField(default=datetime.now)
     year_of_publish = models.DateTimeField()
     likes = models.PositiveIntegerField(default=0)
+    # Градиенты должны генерироваться автоматически с фронта при создании манги или ее редактировании
     gradient_color1 = models.CharField(default='empty', max_length=50)
     gradient_color2 = models.CharField(default='empty', max_length=50)
     
@@ -103,6 +111,8 @@ class Manga(models.Model):
     def __str__(self):
         return str(self.title)
 
+# Модель Глав
+
 class Chapter(models.Model):
     title = models.CharField(max_length=256)
     manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
@@ -111,6 +121,8 @@ class Chapter(models.Model):
     def __str__(self):
         bookmark_title = str(self.manga) + ' : ' + str(self.title)
         return str(bookmark_title)
+
+# Модель Страниц
 
 class Page(models.Model):
     number = models.IntegerField(null=True, blank=True)
@@ -121,8 +133,13 @@ class Page(models.Model):
         page_title = str(self.chapter) + ' - ' + str(self.number)
         return str(page_title)
 
+# Модель Юзера
 
 class User(AbstractBaseUser, PermissionsMixin):
+    #TODO
+    #Нужно добавть ролей пользователям и переработать RANK_LIST
+    #В зависемости от ролей юзер получает или не получает досуп к побликации манги
+    # ВАЖНО побликация != загрузке
     username = models.CharField(_('user name'), max_length=50, unique=True)
     email = models.EmailField(_('email address'), max_length=30, blank=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
@@ -183,6 +200,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         send_mail(subject, message, from_email, [self.email], **kwargs)
     '''
+
+# Модель Коментарев к главе
 
 class PageComment(models.Model):
     page = models.ForeignKey(Page, on_delete=models.CASCADE)

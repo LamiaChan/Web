@@ -62,6 +62,8 @@ class MangaViewSet(viewsets.ModelViewSet):
     serializer_class = MangaSerializer
     lookup_field = 'url_name'
 
+    #TODO нужно сделать права доступа https://stackoverflow.com/questions/39392007/django-rest-framework-viewset-permissions-create-without-list
+
     def get_queryset(self):
         queryset = Manga.objects.all()
         
