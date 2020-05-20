@@ -15,9 +15,12 @@ class Catalog extends React.Component{
     this.state = {
       manga: [],
       tags: [],
-      mangaFilter: '?likes=more'
+      mangaFilter: '?likes=more',
+      pickedTags: []
     }
     this.changeFilterPar = this.changeFilterPar.bind(this)
+    this.addOneTag = this.addOneTag.bind(this)
+    this.renderMangaDependsOnTags = this.renderMangaDependsOnTags.bind(this)
   }
 
   //API calls with Worker function
@@ -35,15 +38,54 @@ class Catalog extends React.Component{
     await apiWorker(this.props.mangaLink + this.state.mangaFilter).then(response => {this.setState({manga : response})})
   }
 
+  addOneTag(newTag){
+    var tagAlreadyPicked = false;
+    const pickedTagsArray = this.state.pickedTags
+    for (let i = 0; i < pickedTagsArray.length; i++) {
+      if(newTag == pickedTagsArray[i]){
+        pickedTagsArray.splice(i, 1)
+        tagAlreadyPicked = true
+        break
+      }
+    }
+    if(!tagAlreadyPicked){
+      pickedTagsArray.push(newTag)
+    }
+    this.setState({
+      pickedTags : pickedTagsArray
+    })
+    console.log(this.state.pickedTags)
+    this.renderMangaDependsOnTags()
+  }
+
+  renderMangaDependsOnTags(){
+    const filteredManga = []
+    for (let i = 0; i < this.state.manga.length; i++) {
+      for (let j = 0; j < this.state.pickedTags.length; j++) {
+        for (let k = 0; k < this.state.manga[i].tags.length; k++) {
+          if(this.state.pickedTags[j] === this.state.manga[i].tags[k]){
+            filteredManga.push(this.state.manga[i])
+          } 
+        }
+      }
+    }
+    console.log(filteredManga)
+    if(filteredManga.length === 0){
+      return this.state.manga
+    }
+    else{
+      return filteredManga
+    }
+  }
   render(){
     return(
     <React.Fragment>
       <div className="container-fluid  pr-0 pl-0">
-        <Tags mainColor={this.props.mainColor} apiTags={this.state.tags} />
+        <Tags addOneTag={this.addOneTag} mainColor={this.props.mainColor} apiTags={this.state.tags} />
       </div>
       <div className="container-fluid">
         <CatalogFilter changeFilterPar={this.changeFilterPar} />
-        <Manga api={this.state.manga} />
+        <Manga api={this.renderMangaDependsOnTags()} />
       </div>
     </React.Fragment>
     )

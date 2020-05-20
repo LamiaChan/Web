@@ -13,7 +13,7 @@ export default class Tags extends React.Component{
           key={this.props.apiTags[i].id} 
           className="tag" 
           style={{background: this.props.mainColor.color}} 
-          onClick={this.props.changeCurrentTag}>{this.props.apiTags[i].title}</li>
+          onClick={()=>this.props.addOneTag(this.props.apiTags[i].id)}>{this.props.apiTags[i].title}</li>
         )
       }
       return tabs
