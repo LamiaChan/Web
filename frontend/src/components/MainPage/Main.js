@@ -22,7 +22,7 @@ class Main extends React.Component {
   }
 
   async componentDidMount(){
-    await apiWorker(this.props.mangaLink).then(response => {this.setState({manga : response})})
+    await apiWorker(this.props.mangaLink + "?liked_updated=newer").then(response => {this.setState({manga : response})})
     await apiWorker(this.props.newsLink).then(response => {this.setState({news : response})})
     await apiWorker(this.props.tagLink).then(response => {this.setState({tags : response})})
   }

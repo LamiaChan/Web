@@ -38,7 +38,6 @@ class Catalog extends React.Component{
   render(){
     return(
     <React.Fragment>
-      {this.state.mangaFilter}
       <div className="container-fluid  pr-0 pl-0">
         <Tags mainColor={this.props.mainColor} apiTags={this.state.tags} />
       </div>
