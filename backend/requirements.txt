@@ -83,3 +83,4 @@ xlrd==1.2.0
 xlwt==1.3.0
 coreapi
 openapi_codec
+drf-url-filters

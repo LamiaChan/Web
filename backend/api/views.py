@@ -58,10 +58,43 @@ class CreateUserAPIView(CreateAPIView):
 
 class MangaViewSet(viewsets.ModelViewSet):
     pagination_class = StandardResultsSetPagination
-    queryset = Manga.objects.all().order_by('-likes')
+    #queryset = Manga.objects.all().order_by('-likes')
     serializer_class = MangaSerializer
-
     lookup_field = 'url_name'
+
+    def get_queryset(self):
+        queryset = Manga.objects.all()
+        
+        #filtering by query params
+        #ex url: http://localhost:8000/api/v1/manga/?likes=less
+
+        likes = self.request.query_params.get('likes')
+        updated = self.request.query_params.get('updated')
+        published = self.request.query_params.get('published')
+        liked_updated = self.request.query_params.get('liked_updated')
+
+        #TODO проверить фильтрацию        
+
+        if likes == 'more':
+            queryset = Manga.objects.all().order_by('-likes')
+        elif likes == 'less':
+            queryset = Manga.objects.all().order_by('likes')
+        elif published == 'earlier':
+            queryset = Manga.objects.all().order_by('-year_of_publish')
+        elif published == 'later':
+            queryset = Manga.objects.all().order_by('year_of_publish')
+        elif updated == 'rather':
+            queryset = Manga.objects.all().order_by('-updated_day')
+        elif updated == 'newer':
+            queryset = Manga.objects.all().order_by('updated_day')
+        elif liked_updated == 'rather':
+            queryset = Manga.objects.all().order_by('likes','-updated_day')
+        elif liked_updated == 'newer':
+            queryset = Manga.objects.all().order_by('-likes', 'updated_day')
+        
+        return queryset
+
+    
 
 
 class ReportViewSet(viewsets.ModelViewSet):

@@ -11,12 +11,13 @@ from rest_framework_simplejwt.views import (
 )
 
 router = routers.DefaultRouter()
-router.register(r'manga', MangaViewSet)
+router.register(r'manga', MangaViewSet, basename='manga')
 router.register(r'chapter', ChapterViewSet)
 router.register(r'page', PageViewSet)
 router.register(r'tag', TagViewSet)
 router.register(r'news', ReportViewSet)
 router.register(r'show_users', ShowUserViewSet)
+#router.register(r'manga/(?P<library_id>[0-9]+)', MangaViewSet, basename='manga')
 #router.register(r'manga/<name>', MangaUrlNameViewSet, basename='manga')
 #router.register(r'books/(?P<library_id>[0-9]+)', MangaUrlNameViewSet, base_name='books')
 
