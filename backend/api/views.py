@@ -84,13 +84,13 @@ class MangaViewSet(viewsets.ModelViewSet):
         elif published == 'later':
             queryset = Manga.objects.all().order_by('year_of_publish')
         elif updated == 'rather':
-            queryset = Manga.objects.all().order_by('-updated_day')
+            queryset = Manga.objects.all().order_by('-updated')
         elif updated == 'newer':
-            queryset = Manga.objects.all().order_by('updated_day')
+            queryset = Manga.objects.all().order_by('updated')
         elif liked_updated == 'rather':
-            queryset = Manga.objects.all().order_by('likes','-updated_day')
+            queryset = Manga.objects.all().order_by('likes','-updated')
         elif liked_updated == 'newer':
-            queryset = Manga.objects.all().order_by('-likes', 'updated_day')
+            queryset = Manga.objects.all().order_by('-likes', 'updated')
         
         return queryset
 
