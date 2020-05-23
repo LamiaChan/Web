@@ -36,7 +36,7 @@ class Catalog extends React.Component{
     })
     await apiWorker(this.props.mangaLink + this.state.mangaFilter).then(response => {this.setState({manga : response})})
   }
-
+  //Add one tag to picked tags
   addOneTag(newTag, ref){
 
     var tagAlreadyPicked = false;
@@ -56,24 +56,26 @@ class Catalog extends React.Component{
     this.setState({
       pickedTags : pickedTagsArray
     })
-    console.log(this.state.pickedTags)
     this.renderMangaDependsOnTags()
   }
-
+  //show manga which depends on picked tags
   renderMangaDependsOnTags(){
     const filteredManga = []
     for (let i = 0; i < this.state.manga.length; i++) {
       var repeatStatus = 0
+      var consideres = 0
       for (let j = 0; j < this.state.pickedTags.length; j++) {
         for (let k = 0; k < this.state.manga[i].tags.length; k++) {
-          if((this.state.pickedTags[j] === this.state.manga[i].tags[k])&&(repeatStatus == 0)){
-            repeatStatus = 1
-            filteredManga.push(this.state.manga[i])
+          if((this.state.pickedTags[j] === this.state.manga[i].tags[k])&&(repeatStatus === 0)){
+            consideres++;
+            if(consideres === this.state.pickedTags.length){
+              repeatStatus = 1
+              filteredManga.push(this.state.manga[i])
+            }
           } 
         }
       }
     }
-    console.log(filteredManga)
     if(filteredManga.length === 0){
       return this.state.manga
     }
