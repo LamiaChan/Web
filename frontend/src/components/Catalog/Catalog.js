@@ -3,7 +3,6 @@ import Tags from './Tags'
 import Manga from './Manga'
 import CatalogFilter from './CatalogFilter'
 import './Catalog.css'
-
 //Redux-react connecter import
 import { connect } from 'react-redux'
 
@@ -38,23 +37,25 @@ class Catalog extends React.Component{
     await apiWorker(this.props.mangaLink + this.state.mangaFilter).then(response => {this.setState({manga : response})})
   }
 
-  addOneTag(newTag){
+  addOneTag(newTag, ref){
+
     var tagAlreadyPicked = false;
     const pickedTagsArray = this.state.pickedTags
     for (let i = 0; i < pickedTagsArray.length; i++) {
-      if(newTag == pickedTagsArray[i]){
+      if(newTag === pickedTagsArray[i]){
         pickedTagsArray.splice(i, 1)
         tagAlreadyPicked = true
+        ref.style.background = this.props.mainColor.color
         break
       }
     }
     if(!tagAlreadyPicked){
       pickedTagsArray.push(newTag)
+      ref.style.background = 'red'
     }
     this.setState({
       pickedTags : pickedTagsArray
     })
-    console.log(this.state.pickedTags)
     this.renderMangaDependsOnTags()
   }
 

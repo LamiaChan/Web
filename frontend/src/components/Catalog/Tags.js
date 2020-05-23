@@ -3,6 +3,10 @@ export default class Tags extends React.Component{
     constructor(){
       super()
       this.renderTags = this.renderTags.bind(this);
+      this.kek = this.kek.bind(this)
+    }
+    kek(){
+        // console.log(this.refs['tag'+id])
     }
     renderTags(){
       const tabs = [];
@@ -12,8 +16,9 @@ export default class Tags extends React.Component{
           id={this.props.apiTags[i].id} 
           key={this.props.apiTags[i].id} 
           className="tag" 
-          style={{background: this.props.mainColor.color}} 
-          onClick={()=>this.props.addOneTag(this.props.apiTags[i].id)}>{this.props.apiTags[i].title}</li>
+          style={{background: this.props.mainColor.color}}
+          ref={"tag"+this.props.apiTags[i].id}
+          onClick={()=>this.props.addOneTag(this.props.apiTags[i].id, this.refs['tag'+this.props.apiTags[i].id])}>{this.props.apiTags[i].title}</li>
         )
       }
       return tabs
