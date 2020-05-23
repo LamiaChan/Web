@@ -15,7 +15,7 @@ class Catalog extends React.Component{
       manga: [],
       tags: [],
       mangaFilter: '?likes=more',
-      pickedTags: []
+      pickedTags: [],
     }
     this.changeFilterPar = this.changeFilterPar.bind(this)
     this.addOneTag = this.addOneTag.bind(this)
@@ -56,15 +56,18 @@ class Catalog extends React.Component{
     this.setState({
       pickedTags : pickedTagsArray
     })
+    console.log(this.state.pickedTags)
     this.renderMangaDependsOnTags()
   }
 
   renderMangaDependsOnTags(){
     const filteredManga = []
     for (let i = 0; i < this.state.manga.length; i++) {
+      var repeatStatus = 0
       for (let j = 0; j < this.state.pickedTags.length; j++) {
         for (let k = 0; k < this.state.manga[i].tags.length; k++) {
-          if(this.state.pickedTags[j] === this.state.manga[i].tags[k]){
+          if((this.state.pickedTags[j] === this.state.manga[i].tags[k])&&(repeatStatus == 0)){
+            repeatStatus = 1
             filteredManga.push(this.state.manga[i])
           } 
         }
