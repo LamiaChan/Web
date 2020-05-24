@@ -13,6 +13,7 @@ class Auth extends React.Component{
         this.state = {
           username: '',
           password: '',
+          userData: '',
           redirect: false
         }
 
@@ -20,6 +21,13 @@ class Auth extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderRedirect = this.renderRedirect.bind(this);
         this.getUser = this.getUser.bind(this)
+    }
+
+    _isMounted = false;
+
+    componentDidMount(){
+      this._isMounted = true;
+      this.getUser()
     }
 
     async authUser(userName, password){
@@ -37,7 +45,7 @@ class Auth extends React.Component{
             window.localStorage.setItem('token-access', userAnswer.access);
             window.localStorage.setItem('token-refresh', userAnswer.refresh);
             console.log("Token saved successfully!")
-            this.getUser()
+            
             //DO redirect
             this.setState({
               redirect: true
@@ -55,16 +63,27 @@ class Auth extends React.Component{
           'Authorization': 'Bearer '+currentToken
         },
       }
-      axios
+      var userArray = [];
+      await axios
         .get('http://localhost:8000/api/v1/userinfo/', body)
         .then(function(response) {
-          console.log(response.data);
+          userArray = response.data
       })
+      if(this._isMounted){
+        await this.setState({
+          userData: userArray
+        })
+      }
     }
+
+    componentWillUnmount() {
+      this._isMounted = false;
+    }
+    
     //Redirect function
     renderRedirect = () => {
       if (this.state.redirect) {
-          return <Redirect to='/userpage' />
+          return <Redirect to={'/userpage/'+ this.state.userData.username} />
       }
     }
     //Need change: We don't need state for this purpose!
