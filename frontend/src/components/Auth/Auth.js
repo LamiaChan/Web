@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
+import axios from 'axios';
 
 class Auth extends React.Component{
     constructor(){
@@ -18,6 +19,7 @@ class Auth extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderRedirect = this.renderRedirect.bind(this);
+        this.getUser = this.getUser.bind(this)
     }
 
     async authUser(userName, password){
@@ -35,6 +37,7 @@ class Auth extends React.Component{
             window.localStorage.setItem('token-access', userAnswer.access);
             window.localStorage.setItem('token-refresh', userAnswer.refresh);
             console.log("Token saved successfully!")
+            this.getUser()
             //DO redirect
             this.setState({
               redirect: true
@@ -42,6 +45,21 @@ class Auth extends React.Component{
         } else {
             console.log('plz check server answer array');
         }
+        
+    }
+    async getUser() {
+      const currentToken  = localStorage.getItem('token-access')
+      let body = {
+        contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer '+currentToken
+        },
+      }
+      axios
+        .get('http://localhost:8000/api/v1/userinfo/', body)
+        .then(function(response) {
+          console.log(response.data);
+      })
     }
     //Redirect function
     renderRedirect = () => {
