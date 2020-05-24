@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
-import axios from 'axios';
+import getUser from '../Api/userAPI'
 
 class Auth extends React.Component{
     constructor(){
@@ -20,14 +20,15 @@ class Auth extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderRedirect = this.renderRedirect.bind(this);
-        this.getUser = this.getUser.bind(this)
     }
 
     _isMounted = false;
 
-    componentDidMount(){
+    async componentDidMount(){
       this._isMounted = true;
-      this.getUser()
+      await getUser(this.props.userLink).then(data =>{
+        this.setState({ userData: data })
+      })
     }
 
     async authUser(userName, password){
@@ -54,26 +55,6 @@ class Auth extends React.Component{
             console.log('plz check server answer array');
         }
         
-    }
-    async getUser() {
-      const currentToken  = localStorage.getItem('token-access')
-      let body = {
-        contentType: 'application/json',
-        headers: {
-          'Authorization': 'Bearer '+currentToken
-        },
-      }
-      var userArray = [];
-      await axios
-        .get('http://localhost:8000/api/v1/userinfo/', body)
-        .then(function(response) {
-          userArray = response.data
-      })
-      if(this._isMounted){
-        await this.setState({
-          userData: userArray
-        })
-      }
     }
 
     componentWillUnmount() {
@@ -138,6 +119,7 @@ class Auth extends React.Component{
 const mapStateToProps = (state)=>{
     return {
       tokenGetter: state.apiLinks.tokenGetter,
+      userLink: state.apiLinks.userInfo
     }
   }
   

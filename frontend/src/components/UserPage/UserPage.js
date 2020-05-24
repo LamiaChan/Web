@@ -2,14 +2,31 @@ import React from 'react'
 //Redux-react connecter import
 import { connect } from 'react-redux'
 //API function
-import {apiWorker} from '../Api/apiWorker'
+import getUser from '../Api/userAPI'
 
 
 class UserPage extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      userData: []
+    }
+  }
+  async componentDidMount(){
+    await getUser(this.props.userLink).then(data =>{
+      this.setState({ userData: data })
+    })
+    console.log(this.state.userData)
+    // this.setState({
+    //   userData: response
+    // })
+    // console.log(this.state.userData)
+  }
+
   render(){
     return(
       <div className="container-fluid">
-        <h1>WELCOME!</h1>
+        <h1>{this.state.userData.username}</h1>
       </div>
     )
   }
@@ -19,8 +36,7 @@ class UserPage extends React.Component{
 const mapStateToProps = (state)=>{
   return {
     mainColor: state.mainColor,
-    mangaLink: state.apiLinks.manga,
-    tagLink: state.apiLinks.tags
+    userLink: state.apiLinks.userInfo
   }
 }
 

@@ -8,6 +8,7 @@ import Lamia from '../../images/Lamia.png'
 import { connect } from 'react-redux'
 //Redux actions import
 import * as actionCreator from '../../store/actions/action'
+import getUser from '../Api/userAPI'
 
 // COmponents for router
 
@@ -32,11 +33,35 @@ import {
 class LamiaNavbar extends React.Component{
   constructor(){
     super()
+    this.state = {
+      userData: []
+    }
     this.changeColor = this.changeColor.bind(this)
+    this.checkAuth = this.checkAuth.bind(this)
   }
+
   colorChange = createRef();
+
   changeColor(){
     this.props.changeColor(this.colorChange.current.checked)
+  }
+
+  async componentDidMount(){
+    await getUser(this.props.userLink).then(data =>{
+      this.setState({ userData: data })
+    })
+  }
+  checkAuth(){
+    if(this.state.userData === []){
+      return(
+        <NavLink to="/auth" className="nav-link">Войти</NavLink>
+      )
+    }
+    else{
+      return(
+        <NavLink to={'/userpage/'+ this.state.userData.username} className="nav-link">{this.state.userData.username}</NavLink>
+      )
+    }
   }
   render(){
     return(
@@ -54,7 +79,7 @@ class LamiaNavbar extends React.Component{
               <NavLink to="/catalog" className="nav-link">Каталог</NavLink>
               <NavLink to="/rate" className="nav-link">Рецтинг</NavLink>
               <NavLink to="/community" className="nav-link">Сообщество</NavLink>
-              <NavLink to="/auth" className="nav-link">Войти</NavLink>
+              {this.checkAuth()}
                 <label className="form-switch nav-link">
                   <input type="checkbox" ref={this.colorChange} onClick={this.changeColor} />
                   <i></i>
@@ -108,7 +133,8 @@ class LamiaNavbar extends React.Component{
 
 const mapStateToProps = (state)=>{
   return {
-    mainColor: state.mainColor
+    mainColor: state.mainColor,
+    userLink: state.apiLinks.userInfo
   }
 }
 const mapDispachToProps = (dispach) => {
