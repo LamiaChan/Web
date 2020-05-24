@@ -4,6 +4,7 @@ import {apiWorker} from '../Api/apiWorker'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import { Redirect } from "react-router-dom";
 
 class Auth extends React.Component{
     constructor(){
@@ -11,10 +12,12 @@ class Auth extends React.Component{
         this.state = {
           username: '',
           password: '',
+          redirect: false
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
     }
 
     async authUser(userName, password){
@@ -27,14 +30,26 @@ class Auth extends React.Component{
         //TODO we need to render server answer
         //https://blog.logrocket.com/the-complete-guide-to-using-localstorage-in-javascript-apps-ba44edb53a36/
         //and make checks on all pages to understand when user logged
-
+        console.log(userAnswer.access)
         if ( 'refresh' in userAnswer &&  'access' in userAnswer ){
-            window.localStorage.setItem('tokens', JSON.stringify(userAnswer));
+            window.localStorage.setItem('token-access', userAnswer.access);
+            window.localStorage.setItem('token-refresh', userAnswer.refresh);
+            console.log("Token saved successfully!")
+            //DO redirect
+            this.setState({
+              redirect: true
+            })
         } else {
             console.log('plz check server answer array');
         }
     }
-
+    //Redirect function
+    renderRedirect = () => {
+      if (this.state.redirect) {
+          return <Redirect to='/userpage' />
+      }
+    }
+    //Need change: We don't need state for this purpose!
     handleChange = ({ target }) => {
         this.setState({ [target.name]: target.value });
     };
@@ -72,6 +87,9 @@ class Auth extends React.Component{
                 >
                     Submit
                 </Button>
+                {/* This thing will make redirect? don't touch it! */}
+                {this.renderRedirect()}
+                <button onClick={()=><Redirect to={'/userpage'}/>} >kek </button>
                 
                 <Link to="/registration">Создать аккаунт</Link>
         </div>

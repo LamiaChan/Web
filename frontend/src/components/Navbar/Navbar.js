@@ -19,6 +19,7 @@ import MangaInfo from '../MangaInfo/MangaInfo'
 import Reading from '../Reading/Reading'
 import Auth from '../Auth/Auth'
 import Register from '../Auth/Register'
+import UserPage from '../UserPage/UserPage'
 
 import {
   BrowserRouter as Router,
@@ -81,6 +82,9 @@ class LamiaNavbar extends React.Component{
               <MangaInfo />
             </Route>
             <Route exact strict path="/manga/:mangaId/:chapterId" component={Reading}>
+            </Route>
+            <Route exact strict path="/userpage">
+              <UserPage />
             </Route>
             <Route exact strict path="/rate">
               <Rate />
