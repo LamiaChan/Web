@@ -2,7 +2,7 @@
 @font-face {
     font-family: "Nunito";
     src: url("../../fonts/Nunito-SemiBold.ttf");
-  }
+}
 .pageButton{
   position: absolute;
   top: 50%;

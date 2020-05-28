@@ -2,14 +2,16 @@ import React from 'react'
 //Redux-react connecter import
 import { connect } from 'react-redux'
 import './UserPage.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 //API function
 import getUser from '../Api/userAPI'
+import { Link } from 'react-router-dom';
 
 //Component with main user information
 const MainInfo = (props) =>{
   return(
-  <div className="col-md-5">
-    <div className="mainInfo" style={{background:props.mainColor.genres}}>
+  <div className="col-lg-5">
+    <div className="userPageComp" style={{background:props.mainColor.genres}}>
       <div className="row">
         <div className="col-xs-4">
           <div className="userImgContainer">
@@ -20,11 +22,51 @@ const MainInfo = (props) =>{
           <h2 className="userName">{props.userData.username}</h2>
           <ul className="userPunktsList">
             <li className="userPunkt">Звание: {props.userData.rank}</li>
+            <li className="userPunkt"><a href="#" className="userPunkt__link">Написать <i className="fa fa-envelope"></i></a></li>
+            <li className="userPunkt"><a href="#" className="userPunkt__link">В друзья</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+  )
+}
+
+const FavoriteTitles = (props)=>{
+  const titlesArr = [];
+  if(props.userData.user_favorite_manga !== undefined){
+    for (let i = 0; i < props.userData.user_favorite_manga.length; i++) {
+      if(i <= 6){
+        titlesArr.push(
+          <div className="col-sm-2 favCentered" key={props.userData.user_favorite_manga[i].id}>
+            <Link to={'/manga/'+props.userData.user_favorite_manga[i].url_name}>
+              <div className="favMangaCard">
+                <img src={props.userData.user_favorite_manga[i].preview_image_url} className="favMangaCard__img" alt="manga"></img>
+                {/* <div className="middle">
+                  <div className="mangaName">{props.userData.user_favorite_manga[i].title}</div>
+                </div> */}
+              </div>
+            </Link>
+          </div>
+        )
+      }
+      else{
+        titlesArr.push(
+        <h1 className="moreManga" key="end"> +{props.userData.user_favorite_manga.length-i}</h1>
+        )
+        break
+      }
+    }
+  }
+  return(
+    <div className="col-lg-7">
+      <div className="userPageComp" style={{background:props.mainColor.genres}}>
+        <h2 className="blockTitle">Любимые тайтлы</h2>
+        <div className="row">
+          {titlesArr}
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -39,13 +81,15 @@ class UserPage extends React.Component{
     await getUser(this.props.userLink).then(data =>{
       this.setState({ userData: data })
     })
-    console.log(this.state.userData)
   }
 
   render(){
     return(
       <div className="container-fluid">
-        <MainInfo mainColor={this.props.mainColor} userData={this.state.userData} />
+        <div className="row">
+          <MainInfo mainColor={this.props.mainColor} userData={this.state.userData} />
+          <FavoriteTitles mainColor={this.props.mainColor} userData={this.state.userData} />
+        </div>
       </div>
     )
   }
