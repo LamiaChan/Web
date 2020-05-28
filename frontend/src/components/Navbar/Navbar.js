@@ -52,7 +52,7 @@ class LamiaNavbar extends React.Component{
     })
   }
   checkAuth(){
-    if(this.state.userData === []){
+    if(this.state.userData.length === 0){
       return(
         <NavLink to="/auth" className="nav-link">Войти</NavLink>
       )
