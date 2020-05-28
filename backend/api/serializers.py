@@ -9,6 +9,9 @@ User = get_user_model()
 
 class ShowUserSerializer(serializers.ModelSerializer):
 
+    # user_favorite_manga = MangaSerializer(many=True, required=False)
+    # bookmarks = PageSerializer(many=True, required=False)
+
     class Meta:
         model = User
         fields = [
@@ -18,6 +21,7 @@ class ShowUserSerializer(serializers.ModelSerializer):
             'user_image', 
             'user_moto', 
             'user_favorite_manga',
+            'bookmarks',
             'rank'
         ]
 
@@ -150,7 +154,7 @@ class UserSerializer(serializers.ModelSerializer):
     #user_favorite_manga = MangaSerializer(queryset=Manga.objects.all(), many=True)
 
     user_favorite_manga = MangaSerializer(many=True, required=False)
-    bookmarks = ChapterSerializer(many=True, required=False)
+    bookmarks = PageSerializer(many=True, required=False)
 
 
     class Meta:
