@@ -1,0 +1,25 @@
+.mainInfo{
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+.userImgContainer{
+    margin: 30px;
+}
+.userImg{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: 40% 0px;
+    border-radius: 50%;
+}
+.userName{
+    font-size: 23px;
+    margin-top: 30px;
+}
+.userPunktsList{ 
+    padding: 0;
+}
+.userPunkt{
+    list-style-type: none;
+}

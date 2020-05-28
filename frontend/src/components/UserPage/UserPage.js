@@ -1,9 +1,32 @@
 import React from 'react'
 //Redux-react connecter import
 import { connect } from 'react-redux'
+import './UserPage.css'
 //API function
 import getUser from '../Api/userAPI'
 
+//Component with main user information
+const MainInfo = (props) =>{
+  return(
+  <div className="col-md-5">
+    <div className="mainInfo" style={{background:props.mainColor.genres}}>
+      <div className="row">
+        <div className="col-xs-4">
+          <div className="userImgContainer">
+            <img className="userImg" src={props.userData.user_image} alt="usrImg"></img>
+          </div>
+        </div>
+        <div className="col-sm-4">
+          <h2 className="userName">{props.userData.username}</h2>
+          <ul className="userPunktsList">
+            <li className="userPunkt">Звание: {props.userData.rank}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  )
+}
 
 class UserPage extends React.Component{
   constructor(){
@@ -17,16 +40,12 @@ class UserPage extends React.Component{
       this.setState({ userData: data })
     })
     console.log(this.state.userData)
-    // this.setState({
-    //   userData: response
-    // })
-    // console.log(this.state.userData)
   }
 
   render(){
     return(
       <div className="container-fluid">
-        <h1>{this.state.userData.username}</h1>
+        <MainInfo mainColor={this.props.mainColor} userData={this.state.userData} />
       </div>
     )
   }
