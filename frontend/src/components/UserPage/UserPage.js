@@ -5,35 +5,64 @@ import './UserPage.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 //API function
 import getUser from '../Api/userAPI'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+
 
 //Component with main user information
-const MainInfo = (props) =>{
+class MainInfo extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      redirect: false
+    }
+    this.userLogout = this.userLogout.bind(this)
+    this.renderRedirect = this.renderRedirect.bind(this);
+  }
+  userLogout(){
+    window.localStorage.removeItem('token-access')
+    window.localStorage.removeItem('token-refresh')
+    console.log("Token delited!")
+    this.setState({
+      redirect: true
+    })
+  }
+  //Redirect function
+  renderRedirect = () => {
+    if (this.state.redirect) {
+        return <Redirect to={'/auth'} />
+    }
+  }
+  render(){
   return(
-  <div className="col-lg-5">
-    <div className="userPageComp" style={{background:props.mainColor.genres}}>
-      <div className="row">
-        <div className="col-xs-4">
-          <div className="userImgContainer">
-            <img className="userImg" src={props.userData.user_image} alt="usrImg"></img>
+    <div className="col-lg-5">
+      <div className="userPageComp" style={{background:this.props.mainColor.genres}}>
+        <div className="row">
+          <div className="col-xs-4">
+            <div className="userImgContainer">
+              <img className="userImg" src={this.props.userData.user_image} alt="usrImg"></img>
+            </div>
           </div>
-        </div>
-        <div className="col-sm-4">
-          <h2 className="userName">{props.userData.username}</h2>
-          <ul className="userPunktsList">
-            <li className="userPunkt">Звание: {props.userData.rank}</li>
-            <li className="userPunkt"><a href="#" className="userPunkt__link">Написать <i className="fa fa-envelope"></i></a></li>
-            <li className="userPunkt"><a href="#" className="userPunkt__link">В друзья</a></li>
-          </ul>
+          <div className="col-sm-4">
+            <h2 className="userName">{this.props.userData.username}</h2>
+            <ul className="userPunktsList">
+              <li className="userPunkt">Звание: {this.props.userData.rank}</li>
+              <li className="userPunkt"><a href="#" className="userPunkt__link">Написать <i className="fa fa-envelope"></i></a></li>
+              <li className="userPunkt"><a href="#" className="userPunkt__link">В друзья</a></li>
+              <li className="userPunkt"><a href="#" className="userPunkt__link exit" onClick={this.userLogout}>Выйти</a></li>
+            </ul>
+            {/* This thing will make redirect? don't touch it! */}
+            {this.renderRedirect()}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  )
+    )
+  }
 }
 
 const FavoriteTitles = (props)=>{
   const titlesArr = [];
+  console.log(props.userData)
   if(props.userData.user_favorite_manga !== undefined){
     for (let i = 0; i < props.userData.user_favorite_manga.length; i++) {
       if(i <= 6){
