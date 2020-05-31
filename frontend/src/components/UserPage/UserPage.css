@@ -1,7 +1,18 @@
-.mainInfo{
+/* FONTS */
+@font-face {
+    font-family: "Nunito";
+    src: url("../../fonts/Nunito-SemiBold.ttf");
+}
+.userPageComp{
     border-radius: 10px;
     width: 100%;
+    min-height: 210px;
     margin-top: 20px;
+    padding-left: 15px;
+}
+.blockTitle{
+    margin: 20px 0 0 10px;
+    font-size: 20px;
 }
 .userImgContainer{
     margin: 30px;
@@ -22,4 +33,28 @@
 }
 .userPunkt{
     list-style-type: none;
+}
+.userPunkt__link{
+    color: #000;
+}
+.userPunkt__link:hover{
+    color: #000;
+    text-decoration: none;
+}
+.favMangaCard{
+    height: 150px;
+}
+.favMangaCard__img{
+    height: 150px;
+}
+.favCentered{
+    max-width: 130px;
+}
+.moreManga{
+    font-family: 'Nunito';
+    font-size: 50px;
+    margin-top: 40px;
+}
+.exit{
+    color: red;
 }
