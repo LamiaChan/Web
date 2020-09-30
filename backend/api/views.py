@@ -6,8 +6,7 @@ from rest_framework                 import status
 from rest_framework.generics        import CreateAPIView
 from rest_framework.generics        import RetrieveUpdateAPIView
 from .serializers                   import MangaSerializer, ChapterSerializer, PageSerializer, TagSerializer, UserSerializer, ReportSerializer, ShowUserSerializer
-from core.models                    import Manga, Page, Source, Chapter, Tag, Report
-#, MangaUser
+from core.models                    import Manga, Page, Chapter, Tag, Report
 from rest_framework.permissions     import IsAuthenticated, AllowAny
 from rest_framework.decorators      import api_view
 from rest_framework.decorators      import permission_classes
@@ -15,12 +14,10 @@ from django.contrib.auth            import get_user_model
 from rest_framework.parsers         import FileUploadParser, FormParser
 from rest_framework.pagination      import PageNumberPagination
 
-
-'''
-need to refactor frontend
-'''
-
 class StandardResultsSetPagination(PageNumberPagination):
+    """
+    Класс с настройкой пагинации 
+    """
     page_size = 18
     page_size_query_param = 'page_size'
     max_page_size = 1000
@@ -29,11 +26,17 @@ class StandardResultsSetPagination(PageNumberPagination):
 User = get_user_model()
 
 class GetUserInfo(APIView):
+    """
+    Класс для работы с юзером
+    """
 
     permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
 
     def get(self, request, *args, **kwargs):
+        """
+        Метод для получения информации
+        """
         # serializer to handle turning our `User` object into something that
         # can be JSONified and sent to the client.
         serializer = self.serializer_class(request.user, context={"request":request})
@@ -41,6 +44,9 @@ class GetUserInfo(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, *args, **kwargs):
+        """
+        Метод для обновления данных
+        """
         serializer = self.serializer_class(request.user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -48,15 +54,24 @@ class GetUserInfo(APIView):
 
 
 class ShowUserViewSet(viewsets.ModelViewSet):
+    """
+    Класс для вывода информации о юзере
+    """
     queryset = User.objects.all()
     serializer_class = ShowUserSerializer
     http_method_names = ['get']
 
 class CreateUserAPIView(CreateAPIView):
+    """
+    Класс для создания юзера
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 class MangaViewSet(viewsets.ModelViewSet):
+    """
+    Класс для вывода манги
+    """
     pagination_class = StandardResultsSetPagination
     #queryset = Manga.objects.all().order_by('-likes')
     serializer_class = MangaSerializer
@@ -65,6 +80,9 @@ class MangaViewSet(viewsets.ModelViewSet):
     #TODO нужно сделать права доступа https://stackoverflow.com/questions/39392007/django-rest-framework-viewset-permissions-create-without-list
 
     def get_queryset(self):
+        """
+        Метод для сортировки манги
+        """
         queryset = Manga.objects.all()
         
         #filtering by query params
@@ -96,10 +114,10 @@ class MangaViewSet(viewsets.ModelViewSet):
         
         return queryset
 
-    
-
-
 class ReportViewSet(viewsets.ModelViewSet):
+    """
+    Класс для вывода новостей
+    """
     #pagination_class = StandardResultsSetPagination
     queryset = Report.objects.all().order_by('-updated')
     serializer_class = ReportSerializer
@@ -108,14 +126,23 @@ class ReportViewSet(viewsets.ModelViewSet):
 
 
 class ChapterViewSet(viewsets.ModelViewSet):
+    """
+    Класс для вывода глав 
+    """
     queryset = Chapter.objects.all().order_by('-updated')
     serializer_class = ChapterSerializer
 
 class PageViewSet(viewsets.ModelViewSet):
+    """
+    Класс для вывода страниц 
+    """
     queryset = Page.objects.all()
     serializer_class = PageSerializer
 
 class TagViewSet(viewsets.ModelViewSet):
+    """
+    Класс для вывода тегов
+    """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
 

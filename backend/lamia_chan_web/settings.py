@@ -24,13 +24,7 @@ from os import environ
 MEDIA_ROOT = join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-#project_status = dev / prod
-project_status = 'dev'
-#host = local / foreign
-host = bool(environ.get('LAMIA', default=False))
-
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
 DOCKER = bool(environ.get('DOCKER', default=0))
 
 
@@ -152,40 +146,12 @@ WSGI_APPLICATION = 'lamia_chan_web.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#database
 #TODO Не забыть дописать базу для докера 
 
-if (project_status == 'prod'): 
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'db', # set in docker-compose.yml
-            'PORT': 5432 # default postgres port
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-
-elif(project_status == 'dev'): 
-    
-    if (host == True):
-        host_ip = '192.168.88.68'
-    else:
-        host_ip = '45.136.247.192'
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'django_db',
-            'USER' : 'user_name',
-            'PASSWORD' : 'password',
-            'HOST' : host_ip,
-            'PORT' : '5432',
-        },
-        'dbForTest': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

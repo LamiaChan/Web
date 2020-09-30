@@ -15,10 +15,7 @@ django version:2.2
 python: 3.6+
 
 ```
-pip install django 
-pip install django-cors-headers
-pip install djangorestframework
-pip install Pillow
+pip install -r requirements.txt
 ```
 
 ### javascript 
@@ -27,31 +24,10 @@ nodejs version: v12.13.1
 
 npm version: 6.12.1
 
-vue/cli: 4.1.1
+react: 16.0.0
 
 ```
-sudo apt install nodejs
-sudo apt install npm
-npm install vue   
-sudo npm install -g @vue/cli
+npm i
 ```
 
 
-#### startproject
-
-```
-npm run serve --prefix frontend/Lamia_chan & python backend/manage.py runserver
-```
-
-
-#### TODO
-
-* Разобраться с api сделать его более удобным
-* Сделать выводы на frontend через api
-* Разобраться с загрузкой картинок
-* Переделать, использую React
-
-
-#### Важно!
-
-Когда вы устанавливаете зависимости не забывайте про префикс --save

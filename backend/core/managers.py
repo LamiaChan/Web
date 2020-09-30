@@ -1,11 +1,14 @@
 from django.contrib.auth.base_user import BaseUserManager
 
 class UserManager(BaseUserManager):
+    """
+    Надстройка над стандартным юзером
+    """
     use_in_migrations = True
 
     def _create_user(self, username, password, **extra_fields):
         """
-        Creates and saves a User with the given email and password.
+        Метод для создания пользователя
         """
         if not username:
             raise ValueError('The given nick must be set')
@@ -16,10 +19,16 @@ class UserManager(BaseUserManager):
         return user
 
     def create_user(self, username, password=None, **extra_fields):
+        """
+        Метод для оканчательного создания пользователя
+        """
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(username, password, **extra_fields)
 
     def create_superuser(self, username, password, **extra_fields):
+        """
+        Метод для создания супер пользователя
+        """
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_staff', True)
 

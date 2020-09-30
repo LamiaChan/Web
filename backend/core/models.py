@@ -12,9 +12,10 @@ from django.contrib.auth.base_user      import AbstractBaseUser
 from .managers                          import UserManager
 from tinymce.models                     import HTMLField
 
-# Модель новостей  
-
 class Report(models.Model):
+    """
+    Модель новостей
+    """
     title = models.CharField(max_length=256)
     image = models.ImageField(upload_to='news')
     body = HTMLField()
@@ -23,46 +24,24 @@ class Report(models.Model):
     def __str__(self):
         return str(self.title)
 
-# Модель источников
-# Нужно переделать
-
-class Source(models.Model):
-    url = models.URLField()
-
-    PLATFORM_DICT = {
-        'lamiachan.ru': 'lamiachan',
-        'mangalib.me': 'mangalib',
-        'mangas.rocks': 'readmanga',
-        'mints.rocks': 'mintmanga',
-        'manga-chan.me': 'mangachan',
-        'h-chan.me': 'hentaichan',
-    }
-
-    @property
-    def platform(self):
-        root_url = '.'.join(urlparse(url).netloc.split('.')[-2:])
-        return self.PLATFORM_DICT[root_url]
-
-    def __str__(self):
-        return str(self.url)
-
-# Модель тегов
-
 class Tag(models.Model):
+    """
+    Модель тегов
+    """
     title = models.CharField(max_length=256)
     
     def __str__(self):
         return str(self.title)
 
-# Модель Манги
-
 class Manga(models.Model):
+    """
+    Модель манги
+    """
     title = models.CharField(max_length=256)
     url_name = models.CharField(max_length=256, unique=True)
     # url_name мы используем вместо первичного ключа
     preview_image_url = models.ImageField(upload_to='manga')
     description = models.CharField(max_length=500)
-    sources = models.ManyToManyField(Source)
     tags = models.ManyToManyField(Tag)
     updated = models.DateTimeField(default=datetime.now)
     year_of_publish = models.DateTimeField()
@@ -111,9 +90,10 @@ class Manga(models.Model):
     def __str__(self):
         return str(self.title)
 
-# Модель Глав
-
 class Chapter(models.Model):
+    """
+    Модель Глав
+    """
     title = models.CharField(max_length=256)
     manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
@@ -122,9 +102,10 @@ class Chapter(models.Model):
         bookmark_title = str(self.manga) + ' : ' + str(self.title)
         return str(bookmark_title)
 
-# Модель Страниц
-
 class Page(models.Model):
+    """
+    Модель Страниц
+    """
     number = models.IntegerField(null=True, blank=True)
     image = models.ImageField(upload_to='manga')
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
@@ -133,13 +114,14 @@ class Page(models.Model):
         page_title = str(self.chapter) + ' - ' + str(self.number)
         return str(page_title)
 
-# Модель Юзера
-
 class User(AbstractBaseUser, PermissionsMixin):
+    """
+    Модель Юзера
+    """
     #TODO
     #Нужно добавть ролей пользователям и переработать RANK_LIST
     #В зависемости от ролей юзер получает или не получает досуп к побликации манги
-    # ВАЖНО побликация != загрузке
+    # ВАЖНО публикация != загрузке
     username = models.CharField(_('user name'), max_length=50, unique=True)
     email = models.EmailField(_('email address'), max_length=30, blank=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
@@ -201,9 +183,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
     '''
 
-# Модель Коментарев к главе
-
 class PageComment(models.Model):
+    """
+    Модель коментарии к странице
+    """
     page = models.ForeignKey(Page, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()

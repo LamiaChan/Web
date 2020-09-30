@@ -8,10 +8,9 @@ from django.contrib.auth                    import get_user_model
 User = get_user_model()
 
 class ShowUserSerializer(serializers.ModelSerializer):
-
-    # user_favorite_manga = MangaSerializer(many=True, required=False)
-    # bookmarks = PageSerializer(many=True, required=False)
-
+    """
+    Cериализатор для вывода информации о юзере
+    """
     class Meta:
         model = User
         fields = [
@@ -38,6 +37,9 @@ class ShowUserSerializer(serializers.ModelSerializer):
 
 
 class ReportSerializer(serializers.ModelSerializer):
+    """
+    Cериализатор для вывода новостей
+    """
     class Meta:
         model = Report
         fields = [
@@ -50,6 +52,9 @@ class ReportSerializer(serializers.ModelSerializer):
 
 
 class TagSerializer(serializers.ModelSerializer):
+    """
+    Cериализатор для вывода тегов
+    """
     class Meta:
         model = Tag
         fields = [
@@ -67,6 +72,9 @@ class DateUpSerializer(serializers.ModelSerializer):
 
 
 class PageCommentSerializer(serializers.ModelSerializer):
+    """
+    Cериализатор для вывода коментарьев на странице
+    """
     class Meta:
         model = PageComment
         fields = [
@@ -78,6 +86,9 @@ class PageCommentSerializer(serializers.ModelSerializer):
     
 
 class PageSerializer(serializers.ModelSerializer):
+    """
+    Cериализатор для вывода страницы
+    """
     pagecomment_set = serializers.SerializerMethodField()
     class Meta:
         model = Page
@@ -89,12 +100,18 @@ class PageSerializer(serializers.ModelSerializer):
             'pagecomment_set'
         ]
     def get_pagecomment_set(self, instance):
+        """
+        Метод для линковке кометарьев к странице
+        """
         page_comment = instance.pagecomment_set.all()
         return PageCommentSerializer(page_comment, many=True).data
 
     
 
 class ChapterSerializer(serializers.ModelSerializer):
+    """
+    Cериализатор для вывода главы
+    """
     page_set = serializers.SerializerMethodField()
     class Meta:
         model = Chapter
@@ -108,11 +125,17 @@ class ChapterSerializer(serializers.ModelSerializer):
         ]
     
     def get_page_set(self, instance):
+        """
+        Метод для линковке страниц к главам
+        """
         page = instance.page_set.all()
         return PageSerializer(page, many=True).data
         
 
 class MangaSerializer(serializers.ModelSerializer):
+    """
+    Cериализатор для вывода манги
+    """
     chapter_set = serializers.SerializerMethodField()
     class Meta:
         model = Manga
@@ -140,6 +163,9 @@ class MangaSerializer(serializers.ModelSerializer):
         }
     
     def get_chapter_set(self, instance):
+        """
+        Метод для линковке глав к манге
+        """
         chapter = instance.chapter_set.all()
         return ChapterSerializer(chapter, many=True).data
     
@@ -147,11 +173,9 @@ class MangaSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    
-    # user_favorite_manga = serializers.PrimaryKeyRelatedField(many=True, queryset=Manga.objects.all())
-    # bookmarks = serializers.PrimaryKeyRelatedField(many=True, queryset=Page.objects.all())
-
-    #user_favorite_manga = MangaSerializer(queryset=Manga.objects.all(), many=True)
+    """
+    Cериализатор пользователей
+    """
 
     user_favorite_manga = MangaSerializer(many=True, required=False)
     bookmarks = PageSerializer(many=True, required=False)
@@ -176,6 +200,9 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
+        """
+        Метод для создания юзера
+        """
         password = validated_data.pop('password', None)
 
         instance = self.Meta.model(**validated_data)
@@ -186,6 +213,9 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
 
     def update(self, instance, validated_data):
+        """
+        Метод для обновления юзера
+        """
         for attr, value in validated_data.items():
             if attr == 'password':
                 instance.set_password(value)
