@@ -7,6 +7,11 @@ We want to create big project wich will unite all manga and anime fans.
 For this purpose we use React, Redux, Django.
 Feel free to connect us and help us.
 
+
+## trello
+
+https://trello.com/b/ir8rj3zZ/lamia-chan
+
 ## dependence
 ### python
 
