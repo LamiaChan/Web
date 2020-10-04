@@ -96,6 +96,7 @@ class Chapter(models.Model):
     """
     title = models.CharField(max_length=256)
     manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
+    translater = models.CharField(max_length=200, default='Неизвестно')
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -130,9 +131,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('is_staff'), default=False)
     user_image = models.ImageField(upload_to='upicks', null=True, blank=True)
+    user_big_profile_image = models.ImageField(upload_to='upicks', null=True, blank=True)
     user_moto = models.CharField(max_length=256, null=True, blank=True)
     user_favorite_manga = models.ManyToManyField(Manga, blank=True, default=None)
     bookmarks = models.ManyToManyField(Page, blank=True, default=None)
+    loved_tags = models.ManyToManyField(Tag, blank=True, default=None)
     RANK_LIST = [
         ('Новичок', 'Новичок'),
         ('Завсегдатый', 'Завсегдатый'),
