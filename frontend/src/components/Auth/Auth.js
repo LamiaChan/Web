@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
-import getUser from '../Api/userAPI'
+import getUser from '../Api/userAPI';
+import image from '../../images/loginLight.png';
 
 class Auth extends React.Component{
     constructor(){
@@ -81,66 +82,52 @@ class Auth extends React.Component{
 
     render(){
         return(
-        //     <div className="container">
-        //     <h3>Auth</h3>
-        //         <Form.Group controlId="formBasicEmail">
-        //             <Form.Label>User name</Form.Label>
-        //             <Form.Control type="text" placeholder="Enter user name" 
-        //                 name="username"
-        //                 value={this.state.username}
-        //                 onChange={this.handleChange}
-        //             />
-        //         </Form.Group>
-
-        //         <Form.Group controlId="formBasicPassword">
-        //             <Form.Label>Password</Form.Label>
-        //             <Form.Control type="password" placeholder="Password" 
-        //                 name="password"
-        //                 value={this.state.password}
-        //                 onChange={this.handleChange}
-        //             />
-        //         </Form.Group>
-        //         <Button variant="primary" type="submit" 
-        //             onClick={this.handleSubmit}
-        //         >
-        //             Submit
-        //         </Button>
-        //         {/* This thing will make redirect? don't touch it! */}
-        //         {this.renderRedirect()}
-        //         <button onClick={()=><Redirect to={'/userpage'}/>} >kek </button>
-                
-        //         <Link to="/registration">Создать аккаунт</Link>
-        // </div>
-        <div className="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
+        <div className="modal fade bd-example-modal-xl" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-xl" role="document">
             <div className="modal-content">
-            <div class="modal-body">
-                <Form.Group controlId="formBasicEmail">
-                        <Form.Label>User name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter user name" 
-                            name="username"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                        />
-                </Form.Group>
+                <div class="modal-body px-0 pt-0">
+                        <div className="MainForm">
+                            <div className="forms_container">
+                                <div className="forms">
+                                <h1 className="forms_header">Авторизация</h1>
+                                <Form.Group controlId="formBasicEmail">
+                                        <Form.Control type="text" placeholder="Enter user name" 
+                                            className="forms_form"
+                                            name="username"
+                                            value={this.state.username}
+                                            onChange={this.handleChange}
+                                        />
+                                </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" 
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                    />
-                </Form.Group>
-                <Button variant="primary" type="submit" 
-                    onClick={this.handleSubmit}
-                >
-                    Submit
-                </Button>
-                {/* This thing will make redirect? don't touch it! */}
-                {this.renderRedirect()}
-                <Link to="/registration">Создать аккаунт</Link>
-            </div>
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Control type="password" placeholder="Password"
+                                        className="forms_form"
+                                        name="password"
+                                        value={this.state.password}
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit" 
+                                    className="forms_button"
+                                    onClick={this.handleSubmit}
+                                >
+                                    Войти
+                                </Button>
+                                {/* This thing will make redirect? don't touch it! */}
+                                {this.renderRedirect()}
+                                <Link to="/registration">
+                                    <Button variant="primary" type="submit" 
+                                        className="forms_button mr-0"
+                                        onClick={this.handleSubmit}
+                                    >
+                                        Зарегистрироваться
+                                    </Button>
+                                </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <img src={image} className="pict"></img>
+                </div>
             </div>
             </div>
         </div>
