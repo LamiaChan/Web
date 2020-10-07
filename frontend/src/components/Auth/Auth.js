@@ -81,15 +81,47 @@ class Auth extends React.Component{
 
     render(){
         return(
-            <div className="container">
-            <h3>Auth</h3>
+        //     <div className="container">
+        //     <h3>Auth</h3>
+        //         <Form.Group controlId="formBasicEmail">
+        //             <Form.Label>User name</Form.Label>
+        //             <Form.Control type="text" placeholder="Enter user name" 
+        //                 name="username"
+        //                 value={this.state.username}
+        //                 onChange={this.handleChange}
+        //             />
+        //         </Form.Group>
+
+        //         <Form.Group controlId="formBasicPassword">
+        //             <Form.Label>Password</Form.Label>
+        //             <Form.Control type="password" placeholder="Password" 
+        //                 name="password"
+        //                 value={this.state.password}
+        //                 onChange={this.handleChange}
+        //             />
+        //         </Form.Group>
+        //         <Button variant="primary" type="submit" 
+        //             onClick={this.handleSubmit}
+        //         >
+        //             Submit
+        //         </Button>
+        //         {/* This thing will make redirect? don't touch it! */}
+        //         {this.renderRedirect()}
+        //         <button onClick={()=><Redirect to={'/userpage'}/>} >kek </button>
+                
+        //         <Link to="/registration">Создать аккаунт</Link>
+        // </div>
+        <div className="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+            <div class="modal-body">
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>User name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter user name" 
-                        name="username"
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                    />
+                        <Form.Label>User name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter user name" 
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                        />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
@@ -107,9 +139,10 @@ class Auth extends React.Component{
                 </Button>
                 {/* This thing will make redirect? don't touch it! */}
                 {this.renderRedirect()}
-                <button onClick={()=><Redirect to={'/userpage'}/>} >kek </button>
-                
                 <Link to="/registration">Создать аккаунт</Link>
+            </div>
+            </div>
+            </div>
         </div>
         )
     }

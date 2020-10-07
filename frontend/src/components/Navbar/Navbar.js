@@ -51,10 +51,17 @@ class LamiaNavbar extends React.Component{
       this.setState({ userData: data })
     })
   }
+  //This func check if user is loginned ore not
   checkAuth(){
+    //If user isn't loggined we loand button. If u click on it, you'll meet login window
     if(this.state.userData.length === 0){
       return(
-        <NavLink to="/auth" className="nav-link">Войти</NavLink>
+        <div>
+          <div class="text-center">
+            <a href="" class="btn btn-default btn-rounded mb-4 login__button" data-toggle="modal" data-target="#modalLoginForm">Вход</a>
+          </div>
+          <Auth />
+        </div>
       )
     }
     else{
@@ -124,6 +131,8 @@ class LamiaNavbar extends React.Component{
               <Register />
             </Route>
           </Switch>
+
+          
 
         </Router>
       </header>
