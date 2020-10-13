@@ -82,7 +82,7 @@ class LamiaNavbar extends React.Component{
               <Nav className="mr-auto">
               <NavLink exact to="/" className="nav-link">Главаня</NavLink>
               <NavLink to="/catalog" className="nav-link">Каталог</NavLink>
-              <NavLink to="/rate" className="nav-link">Рецтинг</NavLink>
+              <NavLink to="/rate" className="nav-link">Рейтинг</NavLink>
               <NavLink to="/community" className="nav-link">Сообщество</NavLink>
               {this.checkAuth()}
                 <label className="form-switch nav-link">

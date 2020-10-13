@@ -75,3 +75,34 @@
     display: inline-block;
     float: right;
 }
+
+.links{
+    margin-top: 70px;
+    font-size: 30px;
+}
+
+.links_link{
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+    border: 1px #11998E solid;
+    border-radius: 10px;
+    width: 45px;
+    height: 45px;
+}
+
+.google, .google:hover, .google:active{
+    color: #DB4437;
+}
+
+.facebook, .facebook:hover, .facebook:active{
+    color: #1877F2;
+}
+
+.twitter, .twitter:hover, .twitter:active{
+    color: #1DA1F2;
+}
+
+.vk, .vk:hover, .vk:active{
+    color: #4A76A8;
+}

@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 import getUser from '../Api/userAPI';
-import image from '../../images/loginLight.png';
+import imageLight from '../../images/loginLight.png';
+import imageDark from '../../images/loginDark.png';
 
 class Auth extends React.Component{
     constructor(){
@@ -80,20 +81,36 @@ class Auth extends React.Component{
         this.authUser(userName, password);
     }
 
+    //Render picture depends on color theme
+    pictRender(props){
+        if(this.props.mainColor.color == "#B52556"){
+            return(
+                <img src={imageDark} className="pict"></img>
+            )
+        }
+        else{
+            return(
+                <img src={imageLight} className="pict"></img>
+            )
+        }
+    }
+
+
     render(){
         return(
         <div className="modal fade bd-example-modal-xl" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-xl" role="document">
             <div className="modal-content">
-                <div class="modal-body px-0 pt-0">
+                <div class="modal-body px-0 pt-0" style={{background: this.props.mainColor.smallBack}}>
                         <div className="MainForm">
                             <div className="forms_container">
                                 <div className="forms">
-                                <h1 className="forms_header">Авторизация</h1>
+                                <h1 className="forms_header" style={{color: this.props.mainColor.textColor}}>Авторизация</h1>
                                 <Form.Group controlId="formBasicEmail">
                                         <Form.Control type="text" placeholder="Enter user name" 
                                             className="forms_form"
                                             name="username"
+                                            style={{borderColor: this.props.mainColor.color}}
                                             value={this.state.username}
                                             onChange={this.handleChange}
                                         />
@@ -103,6 +120,7 @@ class Auth extends React.Component{
                                     <Form.Control type="password" placeholder="Password"
                                         className="forms_form"
                                         name="password"
+                                        style={{borderColor: this.props.mainColor.color, borderColor: this.props.mainColor.color}}
                                         value={this.state.password}
                                         onChange={this.handleChange}
                                     />
@@ -110,6 +128,7 @@ class Auth extends React.Component{
                                 <Button variant="primary" type="submit" 
                                     className="forms_button"
                                     onClick={this.handleSubmit}
+                                    style={{background: this.props.mainColor.color}}
                                 >
                                     Войти
                                 </Button>
@@ -119,14 +138,21 @@ class Auth extends React.Component{
                                     <Button variant="primary" type="submit" 
                                         className="forms_button mr-0"
                                         onClick={this.handleSubmit}
+                                        style={{background: this.props.mainColor.color, borderColor: this.props.mainColor.color}}
                                     >
                                         Зарегистрироваться
                                     </Button>
                                 </Link>
                                 </div>
                             </div>
+                            <div className="links">
+                                <a className="links_link google" style={{borderColor: this.props.mainColor.color}} href="#"><i class="fa fa-google"></i></a>
+                                <a className="links_link facebook" style={{borderColor: this.props.mainColor.color}} href="#"><i className="fa fa-facebook-f"></i></a>
+                                <a className="links_link twitter" style={{borderColor: this.props.mainColor.color}} href="#"><i className="fa fa-twitter"></i></a>
+                                <a className="links_link vk" style={{borderColor: this.props.mainColor.color}} href="#"><i className="fa fa-vk"></i></a>
+                            </div>
                         </div>
-                        <img src={image} className="pict"></img>
+                        {this.pictRender()}
                 </div>
             </div>
             </div>
@@ -139,7 +165,8 @@ class Auth extends React.Component{
 const mapStateToProps = (state)=>{
     return {
       tokenGetter: state.apiLinks.tokenGetter,
-      userLink: state.apiLinks.userInfo
+      userLink: state.apiLinks.userInfo,
+      mainColor: state.mainColor
     }
   }
   
