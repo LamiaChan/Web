@@ -56,12 +56,10 @@ class LamiaNavbar extends React.Component{
     //If user isn't loggined we loand button. If u click on it, you'll meet login window
     if(this.state.userData.length === 0){
       return(
-        <div>
-          <div class="text-center">
-            <a href="" class="btn btn-default btn-rounded mb-4 login__button" data-toggle="modal" data-target="#modalLoginForm">Вход</a>
-          </div>
+        <React.Fragment>
+            <a href="" class="btn btn-default btn-rounded login__button" data-toggle="modal" data-target="#modalLoginForm">Вход</a>
           <Auth />
-        </div>
+        </React.Fragment>
       )
     }
     else{
