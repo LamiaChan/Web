@@ -82,8 +82,6 @@ class LamiaNavbar extends React.Component{
               <Nav className="mr-auto">
               <NavLink exact to="/" className="nav-link">Главаня</NavLink>
               <NavLink to="/catalog" className="nav-link">Каталог</NavLink>
-              <NavLink to="/rate" className="nav-link">Рейтинг</NavLink>
-              <NavLink to="/community" className="nav-link">Сообщество</NavLink>
               {this.checkAuth()}
                 <label className="form-switch nav-link">
                   <input type="checkbox" ref={this.colorChange} onClick={this.changeColor} />
@@ -115,7 +113,7 @@ class LamiaNavbar extends React.Component{
             </Route>
             <Route exact strict path="/userpage/:userName">
               <UserPage />
-            </Route>
+            </Route> 
             <Route exact strict path="/rate">
               <Rate />
             </Route>
