@@ -7,12 +7,14 @@ from rest_framework.generics        import CreateAPIView
 from rest_framework.generics        import RetrieveUpdateAPIView
 from .serializers                   import MangaSerializer, ChapterSerializer, PageSerializer, TagSerializer, UserSerializer, ReportSerializer, ShowUserSerializer
 from core.models                    import Manga, Page, Chapter, Tag, Report
-from rest_framework.permissions     import IsAuthenticated, AllowAny
+from rest_framework.permissions     import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework.decorators      import api_view
 from rest_framework.decorators      import permission_classes
 from django.contrib.auth            import get_user_model
 from rest_framework.parsers         import FileUploadParser, FormParser
 from rest_framework.pagination      import PageNumberPagination
+
+ #TODO нужно ограничить добавления манги юзерам без прав или сделать модерацуию
 
 class StandardResultsSetPagination(PageNumberPagination):
     """
@@ -72,12 +74,11 @@ class MangaViewSet(viewsets.ModelViewSet):
     """
     Класс для вывода манги
     """
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     pagination_class = StandardResultsSetPagination
     #queryset = Manga.objects.all().order_by('-likes')
     serializer_class = MangaSerializer
     lookup_field = 'url_name'
-
-    #TODO нужно сделать права доступа https://stackoverflow.com/questions/39392007/django-rest-framework-viewset-permissions-create-without-list
 
     def get_queryset(self):
         """
@@ -92,25 +93,33 @@ class MangaViewSet(viewsets.ModelViewSet):
         updated = self.request.query_params.get('updated')
         published = self.request.query_params.get('published')
         liked_updated = self.request.query_params.get('liked_updated')
+        tag = self.request.query_params.get('tag')
+ 
 
-        #TODO проверить фильтрацию        
-
-        if likes == 'more':
-            queryset = Manga.objects.all().order_by('-likes')
-        elif likes == 'less':
-            queryset = Manga.objects.all().order_by('likes')
-        elif published == 'earlier':
-            queryset = Manga.objects.all().order_by('-year_of_publish')
-        elif published == 'later':
-            queryset = Manga.objects.all().order_by('year_of_publish')
-        elif updated == 'rather':
-            queryset = Manga.objects.all().order_by('-updated')
-        elif updated == 'newer':
-            queryset = Manga.objects.all().order_by('updated')
-        elif liked_updated == 'rather':
-            queryset = Manga.objects.all().order_by('likes','-updated')
-        elif liked_updated == 'newer':
-            queryset = Manga.objects.all().order_by('-likes', 'updated')
+        if tag:
+            if likes == 'more':
+                queryset = Manga.objects.filter(tags__pk=tag).order_by('-likes')
+            elif likes == 'less':
+                queryset = Manga.objects.filter(tags__pk=tag).order_by('likes')
+            else:
+                queryset = Manga.objects.filter(tags__pk=tag) 
+        else:
+            if likes == 'more':
+                queryset = Manga.objects.all().order_by('-likes')
+            elif likes == 'less':
+                queryset = Manga.objects.all().order_by('likes')
+            elif published == 'earlier':
+                queryset = Manga.objects.all().order_by('-year_of_publish')
+            elif published == 'later':
+                queryset = Manga.objects.all().order_by('year_of_publish')
+            elif updated == 'rather':
+                queryset = Manga.objects.all().order_by('-updated')
+            elif updated == 'newer':
+                queryset = Manga.objects.all().order_by('updated')
+            elif liked_updated == 'rather':
+                queryset = Manga.objects.all().order_by('likes','-updated')
+            elif liked_updated == 'newer':
+                queryset = Manga.objects.all().order_by('-likes', 'updated')
         
         return queryset
 
@@ -118,6 +127,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     """
     Класс для вывода новостей
     """
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     #pagination_class = StandardResultsSetPagination
     queryset = Report.objects.all().order_by('-updated')
     serializer_class = ReportSerializer
@@ -129,6 +139,7 @@ class ChapterViewSet(viewsets.ModelViewSet):
     """
     Класс для вывода глав 
     """
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Chapter.objects.all().order_by('-updated')
     serializer_class = ChapterSerializer
 
@@ -136,6 +147,7 @@ class PageViewSet(viewsets.ModelViewSet):
     """
     Класс для вывода страниц 
     """
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Page.objects.all()
     serializer_class = PageSerializer
 
@@ -143,6 +155,8 @@ class TagViewSet(viewsets.ModelViewSet):
     """
     Класс для вывода тегов
     """
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
 

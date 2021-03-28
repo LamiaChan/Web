@@ -136,6 +136,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_favorite_manga = models.ManyToManyField(Manga, blank=True, default=None)
     bookmarks = models.ManyToManyField(Page, blank=True, default=None)
     loved_tags = models.ManyToManyField(Tag, blank=True, default=None)
+    #TODO смотреть когда человек зарегался и давать ему тэг или забить
     RANK_LIST = [
         ('Новичок', 'Новичок'),
         ('Завсегдатый', 'Завсегдатый'),

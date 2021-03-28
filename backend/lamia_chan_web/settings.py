@@ -14,7 +14,6 @@ import os
 import datetime
 from  corsheaders.defaults import default_headers
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -114,12 +113,12 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',    
 ]
 
-#Настройки corc
+#Настройки cors
 
 CORS_ORIGIN_ALLOW_ALL = True
-
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = list(default_headers) + [
-    'Authorization',
+    'Authorization'
 ]
 
 ROOT_URLCONF = 'lamia_chan_web.urls'
