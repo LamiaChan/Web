@@ -1,0 +1,14 @@
+.manga_covers_box {
+  background-position: 0 0;
+  background-size: 1030px 1700px;
+  animation: animatedBackground 350s linear infinite;
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 10000px;
+  }
+}
