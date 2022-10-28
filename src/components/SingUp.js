@@ -22,8 +22,8 @@ export function SingUp(props) {
     let upperCase = String(value).match(/[A-Z]/g);
     let characters = String(value).match(/^[a-zA-Z0-9]{8,}$/);
 
-    if (digit == null) {
-      setTextFieldError(password, setPassword, "Password should contain at least one digit");
+    if (characters == null) {
+      setTextFieldError(password, setPassword, "Password should contain at least 8 from the mentioned characters");
       return false;
     } else if (lowerCase == null) {
       setTextFieldError(password, setPassword, "Password should contain at least one lower case");
@@ -31,8 +31,8 @@ export function SingUp(props) {
     } else if (upperCase == null) {
       setTextFieldError(password, setPassword, "Password should contain at least one upper case");
       return false;
-    } else if (characters == null) {
-      setTextFieldError(password, setPassword, "Password should contain at least 8 from the mentioned characters");
+    } else if (digit == null) {
+      setTextFieldError(password, setPassword, "Password should contain at least one digit");
       return false;
     }
 
@@ -91,6 +91,7 @@ export function SingUp(props) {
             required
             variant="standard" 
             label="Username" 
+            name="Login"
             helperText={username.helperText} 
             error={username.error} 
             value={username.value}
@@ -100,6 +101,7 @@ export function SingUp(props) {
             required
             variant="standard" 
             label="Email" 
+            name="Email"
             helperText={email.helperText} 
             error={email.error} 
             value={email.value}
@@ -108,6 +110,7 @@ export function SingUp(props) {
           <TextField 
             required
             variant="standard" 
+            name="Password"
             label="Password" 
             type={'password'}
             helperText={password.helperText} 
@@ -118,8 +121,9 @@ export function SingUp(props) {
           <TextField 
             required
             variant="standard" 
-            label="Password Repeat" 
+            label="Password Confirm" 
             type={'password'}
+            name="ConfirmPasswd"
             helperText={passwordRepeat.helperText} 
             error={passwordRepeat.error} 
             value={passwordRepeat.value}
