@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { setTextFieldError, setTextFieldErrorClear, onTextFieldChangeHandler} from '../functions/forms';
 import { Stack, Container, Typography, Button, TextField, Box } from "@mui/material";
 
+import { useStore } from '../store/hooks';
+
 export function SingUp(props) {
   let textFieldProps = {
     helperText: null, 
@@ -15,6 +17,8 @@ export function SingUp(props) {
   const [email, setEmail] = useState({...textFieldProps});
   const [password, setPassword] = useState({...textFieldProps});
   const [passwordRepeat, setPasswordRepeat] = useState({...textFieldProps});
+
+  const userStore = useStore("userStore");
 
   const validatePassword = (value) => {
     let digit = String(value).match(/([1-9][0-9]*)/g);
@@ -46,14 +50,17 @@ export function SingUp(props) {
 
   function formHandle() {
     //TODO: Check if email address is available
+    let bValid = true;
     if (username.value.length <= 3) {
       setTextFieldError(username, setUsername, "Username must be at least more than 3 characters");
+      bValid = true;
     } else {
       setTextFieldErrorClear(username, setUsername);
     }
 
     if (!validateEmail(email.value)) {
       setTextFieldError(email, setEmail, "Incorrect email address");
+      bValid = true;
     } else {
       setTextFieldErrorClear(email, setEmail);
     }
@@ -62,8 +69,15 @@ export function SingUp(props) {
 
     if (password.value !== passwordRepeat.value || passwordRepeat.value.length === 0) {
       setTextFieldError(passwordRepeat, setPasswordRepeat, "Password must be match");
+      bValid = true;
     } else {
       setTextFieldErrorClear(passwordRepeat, setPasswordRepeat);
+    }
+
+    //TODO: server new user logic here
+    if (bValid) {
+      userStore.setUsername(username.value)
+      userStore.setAuth(true)
     }
   };
 

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { setTextFieldError, setTextFieldErrorClear, onTextFieldChangeHandler} from '../functions/forms';
 import { Stack, Container, Typography, Button, TextField, Box } from "@mui/material";
 
+import { useStore } from '../store/hooks';
+
 export function SingIn(props) {
   let textFieldProps = {
     helperText: null, 
@@ -12,18 +14,30 @@ export function SingIn(props) {
   const [username, setUsername] = useState({...textFieldProps});
   const [password, setPassword] = useState({...textFieldProps});
 
+  const userStore = useStore("userStore");
+  
   function formHandle() {
+    let bValid = true;
+
     //TODO: Check credentials on server side
     if (username.value.length <= 3) {
       setTextFieldError(username, setUsername, "Username must be at least more than 3 characters");
+      bValid = false;
     } else {
       setTextFieldErrorClear(username, setUsername);
     }
 
     if (password.value.length <= 3) {
       setTextFieldError(password, setPassword, "Password must be at least more than 3 characters");
+      bValid = false;
     } else {
       setTextFieldErrorClear(password, setPassword);
+    }
+
+    //TODO: server old user logic here
+    if (bValid) {
+      userStore.setUsername(username.value)
+      userStore.setAuth(true)
     }
   };
 

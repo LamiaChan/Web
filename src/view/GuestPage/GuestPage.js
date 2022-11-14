@@ -136,6 +136,7 @@ function SingTemplate(props) {
             <Stack spacing={stackSpacing}>
               <Button onClick={() => handleModalOpen(true)} variant="contained">Sign up</Button>
               <Button onClick={() => handleModalOpen(false)} variant="outlined">Sign in</Button>
+              <Button onClick={() => {}} variant="outlined">Continue as guest</Button>
             </Stack>
           </Container>
         </Stack>
