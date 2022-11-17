@@ -1,11 +1,13 @@
 import { ReactComponent as Logo } from '../../assets/logo_colored.svg';
 import { useTheme } from '@mui/material/styles';
+import { useStore } from '../../store/hooks';
 import { useEffect, useState, Fragment } from 'react';
 import CloseButton from '../../components/CloseButton';
 import { SingUp } from '../../components/SingUp';
 import { SingIn } from '../../components/SingIn';
 import { Grid, Stack, Container, Box, Typography, Button, useMediaQuery, Modal } from "@mui/material";
 import MangaCovers from '../../assets/manga_covers.png';
+import { useNavigate } from 'react-router-dom';
 import './GuestPage.css';
 
 function MangaCoversTemplate(props) {
@@ -36,6 +38,7 @@ function MangaCoversTemplate(props) {
 };
 
 function SingTemplate(props) {
+  const userStore = useStore("userStore");
   const [xs, setXs] = useState(6);
   const [logoWidth, setLogoWidth] = useState(531);
   const [logoHeight, setLogoHeight] = useState(120);
@@ -46,7 +49,13 @@ function SingTemplate(props) {
   const [modalAnimationClass, setModalAnimationClass] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [singUpClicked, setSingUpClicked] = useState(null);
+  const navigate = useNavigate();
   
+  const asGuest = () => {
+    userStore.setAsGuest(true);
+    navigate("/");
+  };
+
   const handleModalOpen = (isSingUp) => {
     setSingUpClicked(isSingUp);
     setModalAnimationClass('animate__fadeIn');
@@ -136,7 +145,7 @@ function SingTemplate(props) {
             <Stack spacing={stackSpacing}>
               <Button onClick={() => handleModalOpen(true)} variant="contained">Sign up</Button>
               <Button onClick={() => handleModalOpen(false)} variant="outlined">Sign in</Button>
-              <Button onClick={() => {}} variant="outlined">Continue as guest</Button>
+              <Button onClick={() => asGuest()} variant="outlined">Continue as guest</Button>
             </Stack>
           </Container>
         </Stack>

@@ -5,7 +5,8 @@ export class UserStore {
   data = {
     user: {
       name: '',
-      bAuth: false
+      bAuth: false,
+      bContinueAsGuest: false
     }
   }
 
@@ -21,5 +22,8 @@ export class UserStore {
   }
   setAuth(value) {
     this.data.user.bAuth = value
+  }
+  setAsGuest(value) {
+    this.data.user.bContinueAsGuest = value
   }
 }
