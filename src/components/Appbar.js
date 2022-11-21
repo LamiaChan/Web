@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import {
   AppBar as MuiAppBar, 
   Box, 
@@ -12,15 +12,16 @@ import {
   Tooltip, 
   MenuItem
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { Menu as MenuIcon } from '@mui/icons-material';
 
-import {Menu as MenuIcon, Adb as  AdbIcon} from '@mui/icons-material';
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Catalog', 'Search'];
+const settings = ['Profile', 'Settings', 'Logout'];
 
 export default function AppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const theme = useTheme();
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -38,26 +39,36 @@ export default function AppBar() {
   };
 
   return (
-    <MuiAppBar position="static">
+    <MuiAppBar  
+      sx={{ 
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: '15px',
+        width: '95%',
+        marginTop: '10px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      }} 
+      position="static"
+      >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h2"
             noWrap
             component="a"
             href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              fontFamily: 'Roboto',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              fontSize:'28px',
+              lineHeight: '56px',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            LamiaChan
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -96,7 +107,6 @@ export default function AppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -113,9 +123,9 @@ export default function AppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            LamiaChan
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end', marginRight: '25px' }}>
             {pages.map((page) => (
               <Button
                 key={page}

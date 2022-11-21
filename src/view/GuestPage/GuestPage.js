@@ -5,10 +5,10 @@ import { useEffect, useState, Fragment } from 'react';
 import CloseButton from '../../components/CloseButton';
 import { SingUp } from '../../components/SingUp';
 import { SingIn } from '../../components/SingIn';
-import { Grid, Stack, Container, Box, Typography, Button, useMediaQuery, Modal } from "@mui/material";
 import MangaCovers from '../../assets/manga_covers.png';
 import { useNavigate } from 'react-router-dom';
 import './GuestPage.css';
+import { Grid, Stack, Container, Box, Typography, Button, useMediaQuery, Modal } from "@mui/material";
 
 function MangaCoversTemplate(props) {
   const [xs, setXs] = useState(6);
