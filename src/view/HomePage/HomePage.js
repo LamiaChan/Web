@@ -1,6 +1,6 @@
-import Group from "../../components/Group";
-import TitlesHorizontal from "../../components/TitlesHorizontal";
-import { Grid, Stack } from "@mui/material";
+import { BoxWithTitleSubCol, PaperWithMangaRow } from "../../components/Manga/ContentOrginization";
+import { BasicTitle } from "../../components/Manga/Title";
+import { Grid } from "@mui/material";
 
 export default function HomePage(props) {
   return (
@@ -12,11 +12,22 @@ export default function HomePage(props) {
         marginRight: 'auto',
       }}
       >
-      <Group 
-        title="Personal selections" 
-        subtitle="The more titles you like, the more accurate the recommendations" 
-      />
-      <TitlesHorizontal />
+        <BoxWithTitleSubCol 
+          title="Personal selections" 
+          subtitle="The more titles you like, the more accurate the recommendations"
+          sx={{ m: 3}} 
+        >
+          <PaperWithMangaRow showAllButton>
+            <BasicTitle />
+            <BasicTitle />
+            <BasicTitle />
+            <BasicTitle />
+            <BasicTitle />
+            <BasicTitle />
+            <BasicTitle />
+            <BasicTitle />
+          </PaperWithMangaRow>
+      </BoxWithTitleSubCol>
     </Grid>
   )
 }
