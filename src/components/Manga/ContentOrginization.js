@@ -24,7 +24,7 @@ export function PaperWithMangaRow(props) {
   const [bShowAll, setShowAll] = useState(false);
 
   const gridStyle = {
-    backgroundColor: theme.palette.background.paper, 
+    backgroundColor: props.withBackground ? theme.palette.background.paper : 'none', 
     borderRadius: '20px',
     display: 'flex',
     flexWrap: 'wrap',
@@ -32,7 +32,6 @@ export function PaperWithMangaRow(props) {
     maxHeight: bShowAll ? 'none' : '337px',
     overflow: bShowAll ? 'visible' : 'hidden',
   }
-
 
   return (
     <Box sx={{ 

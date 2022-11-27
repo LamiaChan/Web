@@ -1,5 +1,5 @@
 import { BoxWithTitleSubCol, PaperWithMangaRow } from "../../components/Manga/ContentOrginization";
-import { BasicTitle } from "../../components/Manga/Title";
+import { BasicTitle, GeneratedTitle } from "../../components/Manga/Title";
 import { Grid } from "@mui/material";
 
 export default function HomePage(props) {
@@ -18,6 +18,26 @@ export default function HomePage(props) {
           sx={{ m: 3}} 
         >
           <PaperWithMangaRow showAllButton>
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+            <GeneratedTitle />
+          </PaperWithMangaRow>
+      </BoxWithTitleSubCol>
+
+        <BoxWithTitleSubCol 
+          title="Personal selections" 
+          subtitle="The more titles you like, the more accurate the recommendations"
+          sx={{ m: 3}} 
+        >
+          <PaperWithMangaRow showAllButton withBackground>
             <BasicTitle />
             <BasicTitle />
             <BasicTitle />
