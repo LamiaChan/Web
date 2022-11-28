@@ -12,6 +12,52 @@ export function BasicTitle(props) {
   )
 }
 
+export function FeedTitle(props) {
+
+  const FeedTitleStyle = {
+    Container: {
+      m: 2,
+      display: "flex",
+      justifyContent: "start",
+      width: "100%",
+    },
+    Img: {
+      width: '115px',
+      height: '180px',
+      borderRadius: '5px'
+    },
+    title: {
+
+    },
+    subTitle: {
+      color: 'rgba(255, 255, 255, 0.63)'
+    },
+    Info: {
+      ml: 3
+    }
+  }
+
+  return (
+    <Box sx={FeedTitleStyle.Container}>
+      <img 
+        style={FeedTitleStyle.Img} 
+        src="https://mangalib.me/uploads/cover/naruto-digital-colored-comics/cover/fk3SoTZyNAHe_250x350.jpg" 
+        alt="alt"
+      />
+      <Box sx={FeedTitleStyle.Info}>
+        <Typography variant="body1" gutterBottom>
+          {props.title}
+          Манускрипт ниндзя: Демоническое перерождение
+        </Typography>
+        <Typography variant="body1" gutterBottom sx={FeedTitleStyle.subTitle}>
+          {props.title}
+          Juu ~Ninpou Makai Tenshou~
+        </Typography>
+      </Box>
+    </Box>
+  )
+}
+
 export function GeneratedTitle(props) {
   const ContainerStyle = { 
     backgroundColor: 'rgba(49, 49, 49, 0.92)',
