@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import { Stack } from '@mui/system';
 
 export function BasicTitle(props) {
   return (
@@ -12,6 +13,25 @@ export function BasicTitle(props) {
   )
 }
 
+export function FeedUpdateBox(props) {
+  return (
+    <Box sx={{
+      display: 'flex', 
+      justifyContent: 'space-between', 
+      backgroundColor: '#524F4F', 
+      borderRadius: '4px', 
+      p: 0.5}}
+    >
+      <Typography variant="body1" gutterBottom sx={{fontSize: '12px'}}>
+        {props.title}
+      </Typography>
+      <Typography variant="body1" gutterBottom sx={{fontSize: '12px'}}>
+        {props.date}
+      </Typography>
+    </Box>
+  )
+}
+
 export function FeedTitle(props) {
 
   const FeedTitleStyle = {
@@ -20,6 +40,7 @@ export function FeedTitle(props) {
       display: "flex",
       justifyContent: "start",
       width: "100%",
+      cursor: "pointer",
     },
     Img: {
       width: '115px',
@@ -60,9 +81,25 @@ export function FeedTitle(props) {
           Манускрипт ниндзя: Демоническое перерождение
         </Typography>
         <Typography variant="body1" gutterBottom sx={FeedTitleStyle.subTitle}>
-          {props.title}
+          {props.subtitle}
           Juu ~Ninpou Makai Tenshou~
         </Typography>
+        <Stack spacing={1}>
+          <FeedUpdateBox
+            title="New Chapter 1"
+            date="Today"
+          />
+
+          <FeedUpdateBox
+            title="New Chapter 1"
+            date="Today"
+          />
+
+          <FeedUpdateBox
+            title="New Chapter 1"
+            date="Today"
+          />
+        </Stack>
       </Box>
     </Box>
     <Box sx={FeedTitleStyle.Border} />
