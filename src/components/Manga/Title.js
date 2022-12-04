@@ -34,10 +34,20 @@ export function FeedTitle(props) {
     },
     Info: {
       ml: 3
+    },
+    Border: {
+      border: '1px solid rgba(255, 255, 255, 0.69)',
+      height: '1px',
+      width: '90%',
+      ml: 'auto',
+      mr: 'auto',
+      mt: 1,
+      mb: 3
     }
   }
 
   return (
+    <>
     <Box sx={FeedTitleStyle.Container}>
       <img 
         style={FeedTitleStyle.Img} 
@@ -55,6 +65,8 @@ export function FeedTitle(props) {
         </Typography>
       </Box>
     </Box>
+    <Box sx={FeedTitleStyle.Border} />
+    </>
   )
 }
 

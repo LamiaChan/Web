@@ -29,8 +29,8 @@ function WrappedGeneratedTitle(props) {
 function WrappedPopularTitles(props) {
   return (
     <BoxWithTitleSubCol 
-      title="Personal selections" 
-      subtitle="The more titles you like, the more accurate the recommendations"
+      title="Popular titles" 
+      subtitle="Most liked titles"
       sx={{ m: 3}} 
     >
       <PaperWithMangaRow showAllButton withBackground>
@@ -50,8 +50,8 @@ function WrappedPopularTitles(props) {
 function WrappedFeed(props) {
   return (
     <BoxWithTitleSubCol 
-        title="Personal selections" 
-        subtitle="The more titles you like, the more accurate the recommendations"
+        title="Feed" 
+        subtitle="New Chapters"
         sx={{ m: 3 }} 
       >
         <FeedRow>
