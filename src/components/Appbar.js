@@ -15,6 +15,7 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { useNavigate } from "react-router-dom";
+import { useStore } from '../store/hooks';
 
 const pages = ['Catalog', 'Search'];
 const settings = ['Profile', 'Settings', 'Logout'];
@@ -22,11 +23,12 @@ const settings = ['Profile', 'Settings', 'Logout'];
 export default function AppBar() {
   const theme = useTheme();
   const navigate = useNavigate();
+  const userStore = useStore("userStore");
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   function navigateWrapper(path) {
-    if (path) {
+    if (path != null && path !== '/null') {
       navigate(path)
     }
   }
@@ -150,7 +152,7 @@ export default function AppBar() {
               </Button>
             ))}
           </Box>
-
+          {!userStore.data.user.bContinueAsGuest && userStore.data.user.bAuth &&
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -180,6 +182,7 @@ export default function AppBar() {
               ))}
             </Menu>
           </Box>
+          }
         </Toolbar>
       </Container>
     </MuiAppBar>

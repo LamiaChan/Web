@@ -17,7 +17,10 @@ export function RequireAuth({ children }) {
   let location = useLocation();
 
   if (!userStore.data.user.bAuth) {
-    return <Navigate to="/auth" state={{ from: location }} replace />;
+    userStore.clearState()
+    return <Navigate to="/guest" state={{ from: location }} replace />;
+    //TODO: add component for auth without redirect to guest page
+    //return <Navigate to="/auth" state={{ from: location }} replace />;
   }
 
   return children;

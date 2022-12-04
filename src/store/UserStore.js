@@ -26,4 +26,9 @@ export class UserStore {
   setAsGuest(value) {
     this.data.user.bContinueAsGuest = value
   }
+  clearState() {
+    this.data.user.name = ""
+    this.data.user.bAuth = false
+    this.data.user.bContinueAsGuest = false
+  }
 }
