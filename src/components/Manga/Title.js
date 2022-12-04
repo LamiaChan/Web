@@ -1,13 +1,22 @@
 import { Box, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
+import { useNavigate } from "react-router-dom";
 
 export function BasicTitle(props) {
-  const { title = null } = props
-  const { likes = null } = props
-  const { containerStyle = title && likes ? {mr: 5, ml: 5, mt: 2, mb: 2} : {m: 5}} = props
-  const { imgStyle = {width: '160px', height: '250px'}} = props
+  const { title = null } = props;
+  const { likes = null } = props;
+  const { href = null } = props;
+  const { imgUrl = "https://mangalib.me/uploads/cover/naruto-digital-colored-comics/cover/fk3SoTZyNAHe_250x350.jpg" } = props;
+  const { containerStyle = title && likes ? {mr: 5, ml: 5, mt: 2, mb: 2, cursor: 'pointer'} : {m: 5, cursor: 'pointer'}} = props;
+  const { imgStyle = {width: '160px', height: '250px'}} = props;
+
+  const navigate = useNavigate();
+
   return (
-    <Box sx={containerStyle}>
+    <Box 
+      sx={containerStyle}
+      onClick={() => navigate(href)}
+    >
       {title &&
         <Typography variant="subtitle1" sx={{}}>
           {title}
@@ -15,7 +24,7 @@ export function BasicTitle(props) {
       }
       <img 
         style={imgStyle} 
-        src="https://mangalib.me/uploads/cover/naruto-digital-colored-comics/cover/fk3SoTZyNAHe_250x350.jpg" 
+        src={imgUrl} 
         alt="alt"
       />
       {likes &&
@@ -130,18 +139,24 @@ export function FeedTitle(props) {
 }
 
 export function GeneratedTitle(props) {
+  const navigate = useNavigate();
+  const { href = null } = props;
+  const { title = "少年 Сёнэн" } = props;
+  const { imgUrl = 'https://mangalib.me/uploads/cover/naruto-digital-colored-comics/cover/fk3SoTZyNAHe_250x350.jpg' } = props;
+
   const ContainerStyle = { 
     backgroundColor: 'rgba(49, 49, 49, 0.92)',
     borderRadius: '8px',
     width: '160px', 
     height: '250px',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    cursor: 'pointer',
   }
 
   const ImgStyle = {
     backdropFilter: 'blur(10px)',
-    background: `url(${'https://mangalib.me/uploads/cover/naruto-digital-colored-comics/cover/fk3SoTZyNAHe_250x350.jpg'})`,
+    background: `url(${imgUrl})`,
     backgroundSize: 'cover',
     width: '160px', 
     height: '250px',
@@ -159,11 +174,10 @@ export function GeneratedTitle(props) {
   }
 
   return (
-    <Box sx={ImgStyle}>
+    <Box sx={ImgStyle} onClick={() => navigate(href)}>
       <Box sx={ContainerStyle}>
         <Typography variant="h4" gutterBottom sx={TextStyle}>
-          少年
-          Сёнэн
+          {title}
         </Typography>
       </Box>
     </Box>  
