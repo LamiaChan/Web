@@ -14,28 +14,39 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Menu as MenuIcon } from '@mui/icons-material';
+import { useNavigate } from "react-router-dom";
 
 const pages = ['Catalog', 'Search'];
 const settings = ['Profile', 'Settings', 'Logout'];
 
 export default function AppBar() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+
+  function navigateWrapper(path) {
+    if (path) {
+      navigate(path)
+    }
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  function handleCloseNavMenu(path) {
     setAnchorElNav(null);
+    navigateWrapper(`/${path}`);
   };
 
-  const handleCloseUserMenu = () => {
+  function handleCloseUserMenu(path) {
     setAnchorElUser(null);
+    navigateWrapper(`/${path}`);
   };
 
   return (
@@ -53,10 +64,10 @@ export default function AppBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
+            onClick={() => navigate('/')}
             variant="h2"
             noWrap
-            component="a"
-            href="/"
+            component="span"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -66,6 +77,7 @@ export default function AppBar() {
               lineHeight: '56px',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer'
             }}
           >
             LamiaChan
@@ -95,22 +107,23 @@ export default function AppBar() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => handleCloseNavMenu(null)}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Typography
+            onClick={() => navigate('/')}
             variant="h5"
             noWrap
-            component="a"
+            component="span"
             href=""
             sx={{
               mr: 2,
@@ -121,6 +134,7 @@ export default function AppBar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer'
             }}
           >
             LamiaChan
@@ -129,7 +143,7 @@ export default function AppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -157,10 +171,10 @@ export default function AppBar() {
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              onClose={() => handleCloseUserMenu(null)}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

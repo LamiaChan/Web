@@ -7,6 +7,7 @@ import { RequireAuth, RequireAuthOrGuest, RequireNotAuthOrGuest } from './compon
 import AppBar from './components/Appbar';
 
 import HomePage from './view/HomePage/HomePage';
+import CatalogPage from './view/CatalogPage/CatalogPage';
 import { GuestPage } from "./view/GuestPage/GuestPage";
 
 const router = createBrowserRouter([
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
       <RequireNotAuthOrGuest>
         <GuestPage />
       </RequireNotAuthOrGuest>,
+  },
+  {
+    path: "catalog",
+    element: 
+      <RequireAuthOrGuest>
+        <AppBar />
+        <CatalogPage />
+      </RequireAuthOrGuest>,
   },
 ]);
 
