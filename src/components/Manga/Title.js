@@ -2,13 +2,27 @@ import { Box, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 
 export function BasicTitle(props) {
+  const { title = null } = props
+  const { likes = null } = props
+  const { containerStyle = title && likes ? {mr: 5, ml: 5, mt: 2, mb: 2} : {m: 5}} = props
+  const { imgStyle = {width: '160px', height: '250px'}} = props
   return (
-    <Box sx={{m: 5}}>
+    <Box sx={containerStyle}>
+      {title &&
+        <Typography variant="subtitle1" sx={{}}>
+          {title}
+        </Typography>
+      }
       <img 
-        style={{width: '160px', height: '250px'}} 
+        style={imgStyle} 
         src="https://mangalib.me/uploads/cover/naruto-digital-colored-comics/cover/fk3SoTZyNAHe_250x350.jpg" 
         alt="alt"
       />
+      {likes &&
+        <Typography variant="subtitle1" sx={{}}>
+          {likes}
+        </Typography>
+      }
     </Box>
   )
 }
@@ -36,10 +50,13 @@ export function FeedTitle(props) {
 
   const FeedTitleStyle = {
     Container: {
-      m: 2,
+      mt: 3,
+      mb: 3,
+      ml: 'auto',
+      mr: 'auto',
       display: "flex",
       justifyContent: "start",
-      width: "100%",
+      width: "95%",
       cursor: "pointer",
     },
     Img: {
@@ -54,7 +71,8 @@ export function FeedTitle(props) {
       color: 'rgba(255, 255, 255, 0.63)'
     },
     Info: {
-      ml: 3
+      ml: 3,
+      width: '90%'
     },
     Border: {
       border: '1px solid rgba(255, 255, 255, 0.69)',
@@ -75,6 +93,10 @@ export function FeedTitle(props) {
         src="https://mangalib.me/uploads/cover/naruto-digital-colored-comics/cover/fk3SoTZyNAHe_250x350.jpg" 
         alt="alt"
       />
+      {/* <BasicTitle 
+        containerStyle={{}}
+        imgStyle={FeedTitleStyle.Img}
+      /> */}
       <Box sx={FeedTitleStyle.Info}>
         <Typography variant="body1" gutterBottom>
           {props.title}
