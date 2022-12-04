@@ -8,6 +8,10 @@ import AppBar from './components/Appbar';
 
 import HomePage from './view/HomePage/HomePage';
 import CatalogPage from './view/CatalogPage/CatalogPage';
+import LogoutPage from './view/LogoutPage/LogoutPage';
+import SettingsPage from './view/SettingsPage/SettingsPage';
+import ProfilePage from './view/ProfilePage/ProfilePage';
+import SearchPage from './view/SearchPage/SearchPage';
 import { GuestPage } from "./view/GuestPage/GuestPage";
 
 const router = createBrowserRouter([
@@ -41,6 +45,38 @@ const router = createBrowserRouter([
         <AppBar />
         <CatalogPage />
       </RequireAuthOrGuest>,
+  },
+  {
+    path: "search",
+    element: 
+      <RequireAuthOrGuest>
+        <AppBar />
+        <SearchPage />
+      </RequireAuthOrGuest>,
+  },
+  {
+    path: "logout",
+    element: 
+      <RequireAuth>
+        <AppBar />
+        <LogoutPage />
+      </RequireAuth>,
+  },
+  {
+    path: "settings",
+    element: 
+      <RequireAuth>
+        <AppBar />
+        <SettingsPage />
+      </RequireAuth>,
+  },
+  {
+    path: "profile",
+    element: 
+      <RequireAuth>
+        <AppBar />
+        <ProfilePage />
+      </RequireAuth>,
   },
 ]);
 
