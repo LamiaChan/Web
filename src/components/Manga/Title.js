@@ -8,6 +8,8 @@ export function BasicTitle(props) {
   const { href = null } = props;
   const { imgUrl = "https://mangalib.me/uploads/cover/naruto-digital-colored-comics/cover/fk3SoTZyNAHe_250x350.jpg" } = props;
   const { containerStyle = title && likes ? {mr: 5, ml: 5, mt: 2, mb: 2, cursor: 'pointer'} : {m: 5, cursor: 'pointer'}} = props;
+  const { titleStyle } = props;
+  const { likesStyle } = props;
   const { imgStyle = {width: '160px', height: '250px'}} = props;
 
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ export function BasicTitle(props) {
       onClick={() => navigate(href)}
     >
       {title &&
-        <Typography variant="subtitle1" sx={{}}>
+        <Typography variant="subtitle1" sx={titleStyle}>
           {title}
         </Typography>
       }
@@ -28,7 +30,7 @@ export function BasicTitle(props) {
         alt="alt"
       />
       {likes &&
-        <Typography variant="subtitle1" sx={{}}>
+        <Typography variant="subtitle1" sx={likesStyle}>
           {likes}
         </Typography>
       }
@@ -183,3 +185,17 @@ export function GeneratedTitle(props) {
     </Box>  
   )
 }
+
+export function CatalogTitle(props) {
+  const { title = null } = props;
+  const { likes = null } = props;
+
+  return (
+    <BasicTitle 
+      title={title}
+      likes={likes}
+      imgStyle={{borderRadius: '5px', width: '160px', height: '250px'}}
+      containerStyle={{m: 2}}
+    />
+  )
+} 
