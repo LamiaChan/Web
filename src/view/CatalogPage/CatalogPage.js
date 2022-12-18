@@ -1,4 +1,4 @@
-import { Grid, Box, Typography } from '@mui/material';
+import { Grid, Box, Typography, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { CatalogTitle } from '../../components/Manga/Title';
 import { FromToInput, TitleType, Genres } from '../../components/Catalog';
@@ -39,6 +39,18 @@ export default function CatalogPage(props) {
         xs={9} 
         sx={CatalogPageStyle.content}
       >
+        <Box sx={{width: '100%', mt: 2, ml: 2, mr: 2}}>
+          <Typography variant="h4" gutterBottom>
+            Catalog
+          </Typography>
+          <TextField 
+            size="small" 
+            id="outlined-basic" 
+            label="Search" 
+            variant="outlined" 
+            sx={{width: '100%'}}
+          />
+        </Box>
         <CatalogTitle title="naroo o oooo" likes="10m" />
         <CatalogTitle title="naroo o oooo" likes="10m" />
         <CatalogTitle title="naroo o oooo" likes="10m" />
